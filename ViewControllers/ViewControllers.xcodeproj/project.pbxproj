@@ -29,8 +29,8 @@
 		9275D66E1E9E293A000A7AA2 /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
 		9275D6701E9E294A000A7AA2 /* ViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController3.h; sourceTree = "<group>"; };
 		9275D6711E9E294A000A7AA2 /* ViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController3.m; sourceTree = "<group>"; };
-		9275D6761E9E2CFC000A7AA2 /* MyNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavController.h; sourceTree = "<group>"; };
-		9275D6771E9E2CFC000A7AA2 /* MyNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavController.m; sourceTree = "<group>"; };
+		9275D6761E9E2CFC000A7AA2 /* MyNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyNavController.h; path = ../MyNavController.h; sourceTree = "<group>"; };
+		9275D6771E9E2CFC000A7AA2 /* MyNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyNavController.m; path = ../MyNavController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,8 +47,6 @@
 		9275D63E1E9DFC51000A7AA2 = {
 			isa = PBXGroup;
 			children = (
-				9275D6761E9E2CFC000A7AA2 /* MyNavController.h */,
-				9275D6771E9E2CFC000A7AA2 /* MyNavController.m */,
 				9275D6491E9DFC52000A7AA2 /* ViewControllers */,
 				9275D6481E9DFC52000A7AA2 /* Products */,
 			);
@@ -65,6 +63,8 @@
 		9275D6491E9DFC52000A7AA2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9275D6761E9E2CFC000A7AA2 /* MyNavController.h */,
+				9275D6771E9E2CFC000A7AA2 /* MyNavController.m */,
 				9275D64D1E9DFC52000A7AA2 /* AppDelegate.h */,
 				9275D64E1E9DFC52000A7AA2 /* AppDelegate.m */,
 				9275D6561E9DFC52000A7AA2 /* Assets.xcassets */,
