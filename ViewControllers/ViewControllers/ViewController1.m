@@ -7,27 +7,27 @@
 //
 
 #import "ViewController1.h"
+#import "randomColor.h"
 
 @interface ViewController1 () <UITableViewDataSource, UITableViewDelegate>
-struct rand_color_struct{
-    float red;
-    float green;
-    float blue;
-};
+//struct rand_color_struct{    float red;
+//    float green;
+//float blue;
+//};
 @end
 
 @implementation ViewController1
 {
     NSMutableArray* colors;
-    struct rand_color_struct rands_color;
+//    struct rand_color_struct rands_color;
 
 
 }
 
 -(instancetype)init{
-    
+    self = [super init];
     if (self){
-        self.tabBarItem.title = @"TableView";
+        colors = [[NSMutableArray alloc]init];
     }
 
     return self;
@@ -37,17 +37,13 @@ struct rand_color_struct{
     
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
     UITableView *tableView = [UITableView new];
     CGRect bounds = self.view.bounds;
     double root_width = bounds.size.width;
     double root_hight = bounds.size.height;
-    double step_width = bounds.size.width/10;
-    double step_hight = 20;
     
-    tableView.frame = CGRectMake(step_width, step_hight, root_width-2*step_width, root_hight/2);
-    tableView.layer.borderColor = [UIColor brownColor].CGColor;
-    tableView.layer.borderWidth = 1;
-    tableView.layer.cornerRadius = 10.0f;
+    tableView.frame = CGRectMake(0 , 0, root_width, root_hight);
     
     tableView.dataSource=self;
     tableView.delegate=self;
@@ -68,26 +64,45 @@ struct rand_color_struct{
     return 10;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return self.view.bounds.size.height/10;
+
+}
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UIColor* color = [UIColor colorWithRed:rands_color.red
-                                     green:rands_color.green
-                                      blue:rands_color.blue alpha:1];
+    randomColor *rcolor = [[randomColor alloc] init];
     
-    [colors addObject:color];
+    [colors addObject:rcolor];
     
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:nil];
-    cell.textLabel.text = [NSString stringWithFormat:@"(%.2f, %.2f, %.2f)", rands_color.red,
-                                                                            rands_color.green,
-                                                                            rands_color.blue];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row];
+    
+    cell.textLabel.text = [rcolor print];
+    cell.textLabel.textColor=[UIColor blackColor];
+    cell.backgroundColor = [UIColor colorWithRed:rcolor.red green:rcolor.green blue:rcolor.blue alpha:1];
+    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UIViewController *vc = [UIViewController new];
-    vc.view.backgroundColor = colors[indexPath.row];
     
+    //UIViewController *vc = [UIViewController new];
+    //vc.view.backgroundColor = UIColor.redColor;
+    //vc.navigationItem.title =[NSString stringWithFormat:@"%ld", (long)indexPath.row];
+    //[self.navigationController pushViewController:vc animated:YES];
+
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UIViewController *vc = [UIViewController new];
+    randomColor *coloritem = colors[indexPath.row];
+    
+    vc.view.backgroundColor = [UIColor colorWithRed:coloritem.red green:coloritem.green blue:coloritem.blue alpha:1];
+    vc.navigationItem.title = [coloritem print];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

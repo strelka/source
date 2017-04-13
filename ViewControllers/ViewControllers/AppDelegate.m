@@ -28,14 +28,16 @@
     ViewController2* secondVC = [ViewController2 new];
     MyNavController* thirdVC = [MyNavController new];
     
+    UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:firstVC];
+    
     UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:secondVC];
     UINavigationController* nav3 = [[UINavigationController alloc] initWithRootViewController:thirdVC];
-    
+    nav1.tabBarItem.title = @"TableView";
     nav2.tabBarItem.title = @"VC2";
     nav3.tabBarItem.title = @"VC3";
     
     
-    NSArray* controllers = @[firstVC, nav2, nav3];
+    NSArray* controllers = @[nav1, nav2, nav3];
     
     tabbar.viewControllers = controllers;
     self.window.rootViewController = tabbar;
