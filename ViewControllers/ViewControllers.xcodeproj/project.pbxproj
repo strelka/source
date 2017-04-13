@@ -14,6 +14,7 @@
 		9275D66F1E9E293A000A7AA2 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9275D66E1E9E293A000A7AA2 /* ViewController2.m */; };
 		9275D6721E9E294A000A7AA2 /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 9275D6711E9E294A000A7AA2 /* ViewController3.m */; };
 		9275D6781E9E2CFC000A7AA2 /* MyNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9275D6771E9E2CFC000A7AA2 /* MyNavController.m */; };
+		9275D67B1E9F6B94000A7AA2 /* randomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9275D67A1E9F6B94000A7AA2 /* randomColor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		9275D6711E9E294A000A7AA2 /* ViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController3.m; sourceTree = "<group>"; };
 		9275D6761E9E2CFC000A7AA2 /* MyNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyNavController.h; path = ../MyNavController.h; sourceTree = "<group>"; };
 		9275D6771E9E2CFC000A7AA2 /* MyNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyNavController.m; path = ../MyNavController.m; sourceTree = "<group>"; };
+		9275D6791E9F6B93000A7AA2 /* randomColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = randomColor.h; sourceTree = "<group>"; };
+		9275D67A1E9F6B94000A7AA2 /* randomColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = randomColor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,8 @@
 				9275D64A1E9DFC52000A7AA2 /* Supporting Files */,
 				9275D66A1E9E292A000A7AA2 /* ViewController1.h */,
 				9275D66B1E9E292A000A7AA2 /* ViewController1.m */,
+				9275D6791E9F6B93000A7AA2 /* randomColor.h */,
+				9275D67A1E9F6B94000A7AA2 /* randomColor.m */,
 				9275D66D1E9E293A000A7AA2 /* ViewController2.h */,
 				9275D66E1E9E293A000A7AA2 /* ViewController2.m */,
 				9275D6701E9E294A000A7AA2 /* ViewController3.h */,
@@ -158,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9275D64F1E9DFC52000A7AA2 /* AppDelegate.m in Sources */,
+				9275D67B1E9F6B94000A7AA2 /* randomColor.m in Sources */,
 				9275D6781E9E2CFC000A7AA2 /* MyNavController.m in Sources */,
 				9275D66F1E9E293A000A7AA2 /* ViewController2.m in Sources */,
 				9275D64C1E9DFC52000A7AA2 /* main.m in Sources */,
