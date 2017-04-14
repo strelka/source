@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllers/ViewController1.m"
-            timestampString = "513893133.330919"
+            timestampString = "513893470.926222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllers/ViewController1.m"
-            timestampString = "513893133.330919"
+            timestampString = "513893470.926222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllers/ViewController1.m"
-            timestampString = "513893133.330919"
+            timestampString = "513893470.926222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllers/ViewController1.m"
-            timestampString = "513893133.330919"
+            timestampString = "513893470.926222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllers/ViewController1.m"
-            timestampString = "513893133.330919"
+            timestampString = "513893470.926222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllers/ViewController1.m"
-            timestampString = "513893133.330919"
+            timestampString = "513893470.926222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
