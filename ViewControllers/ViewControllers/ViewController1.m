@@ -53,6 +53,8 @@
     self.tableView.tableFooterView=[UIView new];
     self.tableView.allowsSelectionDuringEditing=NO;
     
+    self.tableView.backgroundColor = [UIColor lightGrayColor];
+    
     UIBarButtonItem *edit = [[UIBarButtonItem alloc]
                              initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
                              target:self
