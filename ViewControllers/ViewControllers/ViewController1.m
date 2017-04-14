@@ -10,6 +10,7 @@
 #import "randomColor.h"
 
 @interface ViewController1 () <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, strong) UITableView* tableView;
 //struct rand_color_struct{    float red;
 //    float green;
 //float blue;
@@ -27,7 +28,7 @@
 -(instancetype)init{
     self = [super init];
     if (self){
-        colors = [[NSMutableArray alloc]init];
+        colors = [self generate_colors];
     }
 
     return self;
@@ -38,18 +39,20 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UITableView *tableView = [UITableView new];
+    self.tableView = [UITableView new];
     CGRect bounds = self.view.bounds;
     double root_width = bounds.size.width;
     double root_hight = bounds.size.height;
     
-    tableView.frame = CGRectMake(0 , 0, root_width, root_hight);
+    self.tableView.frame = CGRectMake(0, 0, root_width, root_hight);
     
-    tableView.dataSource=self;
-    tableView.delegate=self;
+    self.tableView.dataSource=self;
+    self.tableView.delegate=self;
     
-    tableView.tableFooterView=[UIView new];
-    [self.view addSubview:tableView];
+    self.tableView.tableFooterView=[UIView new];
+    self.tableView.allowsSelectionDuringEditing=NO;
+    
+    [self.view addSubview:self.tableView];
     
     // Do any additional setup after loading the view.
 }
@@ -58,28 +61,46 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        [colors removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                         withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [colors count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.view.bounds.size.height/10;
 
 }
+
+-(NSMutableArray* )generate_colors{
+    
+    NSMutableArray* colorArray = [NSMutableArray new];
+    int color_count = arc4random_uniform(12) + 2;
+    for (int i = 0; i < color_count; i++){
+        colorArray[i] = [[randomColor alloc]init];
+    }
+    
+    return colorArray;
+}
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    randomColor *rcolor = [[randomColor alloc] init];
-    
-    [colors addObject:rcolor];
     
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
+    randomColor* rcolor = colors[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld - %@", (long)indexPath.row,
+                                                                   [rcolor print]];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row];
-    
-    cell.textLabel.text = [rcolor print];
     cell.textLabel.textColor=[UIColor blackColor];
     cell.backgroundColor = [UIColor colorWithRed:rcolor.red green:rcolor.green blue:rcolor.blue alpha:1];
     
@@ -88,13 +109,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    //UIViewController *vc = [UIViewController new];
-    //vc.view.backgroundColor = UIColor.redColor;
-    //vc.navigationItem.title =[NSString stringWithFormat:@"%ld", (long)indexPath.row];
-    //[self.navigationController pushViewController:vc animated:YES];
-
-    
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UIViewController *vc = [UIViewController new];
