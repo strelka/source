@@ -15,6 +15,7 @@
 		9275D6721E9E294A000A7AA2 /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 9275D6711E9E294A000A7AA2 /* ViewController3.m */; };
 		9275D6781E9E2CFC000A7AA2 /* MyNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9275D6771E9E2CFC000A7AA2 /* MyNavController.m */; };
 		9275D67B1E9F6B94000A7AA2 /* randomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9275D67A1E9F6B94000A7AA2 /* randomColor.m */; };
+		927A8C2C1EA16E46009E2C75 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 927A8C2B1EA16E46009E2C75 /* CustomCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		9275D6771E9E2CFC000A7AA2 /* MyNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyNavController.m; path = ../MyNavController.m; sourceTree = "<group>"; };
 		9275D6791E9F6B93000A7AA2 /* randomColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = randomColor.h; sourceTree = "<group>"; };
 		9275D67A1E9F6B94000A7AA2 /* randomColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = randomColor.m; sourceTree = "<group>"; };
+		927A8C2A1EA16E46009E2C75 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		927A8C2B1EA16E46009E2C75 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +53,8 @@
 		9275D63E1E9DFC51000A7AA2 = {
 			isa = PBXGroup;
 			children = (
+				927A8C2A1EA16E46009E2C75 /* CustomCell.h */,
+				927A8C2B1EA16E46009E2C75 /* CustomCell.m */,
 				9275D6491E9DFC52000A7AA2 /* ViewControllers */,
 				9275D6481E9DFC52000A7AA2 /* Products */,
 			);
@@ -164,6 +169,7 @@
 			files = (
 				9275D64F1E9DFC52000A7AA2 /* AppDelegate.m in Sources */,
 				9275D67B1E9F6B94000A7AA2 /* randomColor.m in Sources */,
+				927A8C2C1EA16E46009E2C75 /* CustomCell.m in Sources */,
 				9275D6781E9E2CFC000A7AA2 /* MyNavController.m in Sources */,
 				9275D66F1E9E293A000A7AA2 /* ViewController2.m in Sources */,
 				9275D64C1E9DFC52000A7AA2 /* main.m in Sources */,
@@ -304,6 +310,7 @@
 				9275D6601E9DFC52000A7AA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

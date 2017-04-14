@@ -8,6 +8,7 @@
 
 #import "ViewController1.h"
 #import "randomColor.h"
+#import "CustomCell.h"
 
 @interface ViewController1 () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView* tableView;
@@ -79,12 +80,34 @@
     return YES;
 }
 
+-(UITableViewCellEditingStyle) tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return UITableViewCellEditingStyleInsert;
+    } else{
+        return UITableViewCellEditingStyleDelete;
+        
+    }
+    
+}
+
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete){
         [colors removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                         withRowAnimation:UITableViewRowAnimationAutomatic];
+        [colors insertObject:[[randomColor alloc] init]
+                     atIndex:indexPath.row];
+        //[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+        //                 withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle==UITableViewCellEditingStyleInsert){
+        [colors insertObject:[[randomColor alloc]init] atIndex:0];
+        //[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:
+        //                                   UITableViewRowAnimationFade];
+        [colors removeLastObject];
+        //[tableView deleteRowsAt:[NSArray arrayWithObject:]
+        //                 withRowAnimation:UITableViewRowAnimationFade];
     }
+    [self.tableView reloadData];
+    
 
 }
 
@@ -100,7 +123,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return self.view.bounds.size.height/10;
+    return self.view.bounds.size.height/14;
 
 }
 
@@ -139,16 +162,5 @@
     vc.navigationItem.title = [coloritem print];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-/*
- 
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
