@@ -52,11 +52,21 @@
     self.tableView.tableFooterView=[UIView new];
     self.tableView.allowsSelectionDuringEditing=NO;
     
+    UIBarButtonItem *edit = [[UIBarButtonItem alloc]
+                             initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+                             target:self
+                             action:@selector(editing)];
+    self.navigationItem.rightBarButtonItem = edit;
+    
+    
     [self.view addSubview:self.tableView];
     
     // Do any additional setup after loading the view.
 }
 
+-(void)editing{
+    [self.tableView setEditing:!self.tableView.editing animated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
