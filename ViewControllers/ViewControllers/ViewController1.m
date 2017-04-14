@@ -139,14 +139,24 @@
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    //UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    
+    CustomCell* cell = [[CustomCell alloc] initWithFrame:CGRectZero];
     
     randomColor* rcolor = colors[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld - %@", (long)indexPath.row,
-                                                                   [rcolor print]];
     
-    cell.textLabel.textColor=[UIColor blackColor];
-    cell.backgroundColor = [UIColor colorWithRed:rcolor.red green:rcolor.green blue:rcolor.blue alpha:1];
+    cell.primaryLabel.backgroundColor = [UIColor colorWithRed:rcolor.red green:rcolor.green blue:rcolor.blue alpha:1];
+    ;
+    cell.secondaryLabel.text = [NSString stringWithFormat:@"%ld - %@", (long)indexPath.row,
+                                [rcolor print]];
+    
+    cell.secondaryLabel.textColor=[UIColor blackColor];
+    
+    //cell.textLabel.text = [NSString stringWithFormat:@"%ld - %@", (long)indexPath.row,
+    //                                                               [rcolor print]];
+    //
+    //cell.textLabel.textColor=[UIColor blackColor];
+    //cell.backgroundColor = [UIColor colorWithRed:rcolor.red green:rcolor.green blue:rcolor.blue alpha:1];
     
     return cell;
 }
