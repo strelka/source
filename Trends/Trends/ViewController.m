@@ -34,47 +34,9 @@
     [self.view addSubview:label];
     label.backgroundColor = [UIColor whiteColor];
     
-    [self getTwitterTrends];
-    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
--(void) getTwitterTrends{
-    [Fabric with:@[[Twitter class]]];
-    TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
-    NSString *trendsShow = @"https://api.twitter.com/1.1/trends/current.json";
-    NSDictionary *params = @{@"id":@"20"};
-    NSError *clientError;
-    
-    NSURLRequest *request = [client URLRequestWithMethod:@"GET"
-                                                     URL:trendsShow
-                                              parameters:params
-                                                   error:&clientError];
-    if (request){
-        [client sendTwitterRequest:request completion:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-            if (data) {
-            NSError* jsonError;
-            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
-                                                                 options:0
-                                                                   error:&jsonError];
-                NSArray* results = json[@"trends"];
-                NSLog(@"%@", json);
-                
-        }
-         else {
-             NSLog(@"Error: %@", connectionError);
-         
-         }
-         
-         }];
-    
-    }
-    else {
-        NSLog(@"Error: %@", clientError);
-    }
-}
-
-    
     
 //    NSURL *feedURL = [NSURL URLWithString:@"https://api.twitter.com/1.1/trends/current.json"];
 //    SLRequest *twitterFeed = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:feedURL parameters:nil];

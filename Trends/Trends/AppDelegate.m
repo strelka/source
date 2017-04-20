@@ -27,7 +27,7 @@
     [self.window makeKeyAndVisible];
     vc.view.backgroundColor = [UIColor greenColor];
     
-    [Fabric with:@[[Twitter class]]];
+    [self getTwitterTrends];
     
     // Override point for customization after application launch.
     return YES;
@@ -62,6 +62,43 @@
     [self saveContext];
 }
 
+-(void) getTwitterTrends{
+    [Fabric with:@[[Twitter class]]];
+    TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
+    NSString *trendsShow = @"https://api.twitter.com/1.1/trends/place.json?id=1";
+    NSDictionary *params = @{};
+    NSError *clientError;
+    
+    NSURLRequest *request = [client URLRequestWithMethod:@"GET"
+                                                     URL:trendsShow
+                                              parameters:params
+                                                   error:&clientError];
+    if (request){
+        [client sendTwitterRequest:request completion:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+            if (data) {
+                NSError* jsonError;
+                NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                     options:0
+                                                                       error:&jsonError];
+                
+                NSDictionary *trends = [json "]);
+                    
+                }
+                NSLog(@"%@", json);
+                
+            }
+            else {
+                NSLog(@"Error: %@", connectionError);
+                
+            }
+            
+        }];
+        
+    }
+    else {
+        NSLog(@"Error: %@", clientError);
+    }
+}
 
 #pragma mark - Core Data stack
 
