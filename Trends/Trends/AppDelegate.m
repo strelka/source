@@ -65,8 +65,9 @@
 -(void) getTwitterTrends{
     [Fabric with:@[[Twitter class]]];
     TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
-    NSString *trendsShow = @"https://api.twitter.com/1.1/trends/place.json?id=1";
-    NSDictionary *params = @{};
+    NSString *trendsShow = @"https://api.twitter.com/1.1/trends/place.json";
+    //NSDictionary *params = @{@"id":@2122265};
+    NSDictionary *params = @{@"id" : @"2122265"};
     NSError *clientError;
     
     NSURLRequest *request = [client URLRequestWithMethod:@"GET"
@@ -77,21 +78,23 @@
         [client sendTwitterRequest:request completion:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
             if (data) {
                 NSError* jsonError;
-                NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                NSArray* json = [NSJSONSerialization JSONObjectWithData:data
                                                                      options:0
                                                                        error:&jsonError];
                 
-                NSDictionary *trends = [json "]);
+                NSDictionary* entities = json[0];
+                NSDictionary *trends = [entities objectForKey:@"trends"];
+                
+                for (NSDictionary* key in trends){
+                    NSString* str = [NSString stringWithFormat:@"%@ - %@", key[@"name"],
+                                                                           key[@"tweet_volume"]];
+                    NSLog(@"%@", str);
+                }
                     
                 }
-                NSLog(@"%@", json);
-                
-            }
             else {
                 NSLog(@"Error: %@", connectionError);
-                
             }
-            
         }];
         
     }
