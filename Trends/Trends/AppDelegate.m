@@ -5,14 +5,14 @@
 //  Created by Jullia Sharaeva on 19.04.17.
 //  Copyright © 2017 Julia Sharaeva. All rights reserved.
 //
-
+#import "NXOAuth2.h"
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "myInstagramConsoleVcViewController.h"
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
@@ -21,7 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    ViewController* vc = [ViewController new];
+    myInstagramConsoleVcViewController* vc = [myInstagramConsoleVcViewController new];
     self.window.rootViewController = vc;
     
     [self.window makeKeyAndVisible];
@@ -96,6 +96,7 @@
                 NSLog(@"Error: %@", connectionError);
             }
         }];
+        
         
     }
     else {
