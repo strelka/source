@@ -11,7 +11,20 @@
 		9263D75F1EADF94500275DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263D75E1EADF94500275DF0 /* AppDelegate.m */; };
 		9263D7621EADF94500275DF0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263D7611EADF94500275DF0 /* ViewController.m */; };
 		9263D7671EADF94500275DF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9263D7661EADF94500275DF0 /* Assets.xcassets */; };
+		9263D7841EAE221200275DF0 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9263D7821EAE04BD00275DF0 /* Masonry.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9263D7781EAE005500275DF0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9263D7571EADF94500275DF0 /* TestConstraintsMasonry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestConstraintsMasonry.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +35,8 @@
 		9263D7611EADF94500275DF0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9263D7661EADF94500275DF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9263D76B1EADF94500275DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9263D77F1EAE037B00275DF0 /* Documents */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Documents; path = ../../..; sourceTree = "<group>"; };
+		9263D7821EAE04BD00275DF0 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9263D7841EAE221200275DF0 /* Masonry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +56,7 @@
 			children = (
 				9263D7591EADF94500275DF0 /* TestConstraintsMasonry */,
 				9263D7581EADF94500275DF0 /* Products */,
+				9263D77E1EAE037B00275DF0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +90,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9263D77E1EAE037B00275DF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9263D7821EAE04BD00275DF0 /* Masonry.framework */,
+				9263D77F1EAE037B00275DF0 /* Documents */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,6 +109,8 @@
 				9263D7531EADF94500275DF0 /* Sources */,
 				9263D7541EADF94500275DF0 /* Frameworks */,
 				9263D7551EADF94500275DF0 /* Resources */,
+				9263D7781EAE005500275DF0 /* CopyFiles */,
+				9263D7851EAE225000275DF0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -136,6 +164,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9263D7851EAE225000275DF0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Masonry.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9263D7531EADF94500275DF0 /* Sources */ = {
@@ -243,10 +288,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = TestConstraintsMasonry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.TestConstraintsMasonry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -254,10 +305,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = TestConstraintsMasonry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.TestConstraintsMasonry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
