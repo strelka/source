@@ -1,0 +1,58 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6B19FF14ABACBCB966A5576DFED3D2E148173BC3+++14EF6B2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "81DC696D8E507D22EF80C91E6C5FBADA470CAC66+++D6F754F" : 9223372036854775807,
+    "81DC696D8E507D22EF80C91E6C5FBADA470CAC66+++C401653" : 9223372036854775807,
+    "81DC696D8E507D22EF80C91E6C5FBADA470CAC66+++9B4617B" : 9223372036854775807,
+    "8288BF8CF28B3E5AF1AACD236CA60FFF46288124+++11BFA52" : 9223372036854775807,
+    "81DC696D8E507D22EF80C91E6C5FBADA470CAC66+++36F0AD4" : 9223372036854775807,
+    "6B19FF14ABACBCB966A5576DFED3D2E148173BC3+++14EF6B2" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "11060AA4-68A3-4494-BF1C-4BA461026230",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "81DC696D8E507D22EF80C91E6C5FBADA470CAC66+++D6F754F" : "..\/Trends",
+    "81DC696D8E507D22EF80C91E6C5FBADA470CAC66+++C401653" : "..\/repositories",
+    "81DC696D8E507D22EF80C91E6C5FBADA470CAC66+++9B4617B" : "..\/repo1\/repo1",
+    "8288BF8CF28B3E5AF1AACD236CA60FFF46288124+++11BFA52" : "docs\/",
+    "81DC696D8E507D22EF80C91E6C5FBADA470CAC66+++36F0AD4" : "..\/repo1\/repo1",
+    "6B19FF14ABACBCB966A5576DFED3D2E148173BC3+++14EF6B2" : "source\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TestConstraintsMasonry",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TestConstraintsMasonry\/TestConstraintsMasonry.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/strelka\/source.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6B19FF14ABACBCB966A5576DFED3D2E148173BC3+++14EF6B2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/strelka\/repo1.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "81DC696D8E507D22EF80C91E6C5FBADA470CAC66+++36F0AD4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/strelka\/repo1.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "81DC696D8E507D22EF80C91E6C5FBADA470CAC66+++9B4617B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/strelka\/repo1.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "81DC696D8E507D22EF80C91E6C5FBADA470CAC66+++C401653"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/strelka\/repo1.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "81DC696D8E507D22EF80C91E6C5FBADA470CAC66+++D6F754F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/strelka\/docs.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8288BF8CF28B3E5AF1AACD236CA60FFF46288124+++11BFA52"
+    }
+  ]
+}
