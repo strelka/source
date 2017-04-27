@@ -16,7 +16,7 @@
 @property(nonatomic) UILabel* lastName;
 @property(nonatomic) UILabel* phone;
 @property(nonatomic) UILabel* email;
-@property(nonatomic) CBAvatarView* avatar;
+@property(nonatomic) UIImageView* avatar;
 
 //-(void) setName:(NSString*)text;
 //-(void) setLastName:(NSString*)text;

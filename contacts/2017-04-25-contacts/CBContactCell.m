@@ -8,7 +8,6 @@
 
 #import "CBContactCell.h"
 #import "CBContact.h"
-#import "CBAvatarView.h"
 #import <Masonry/Masonry.h>
 
 NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
@@ -17,7 +16,7 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
 
 @property(nonatomic, strong) UILabel *firstNameLabel;
 @property(nonatomic, strong) UILabel *lastNameLabel;
-@property(nonatomic, strong) CBAvatarView *avatarView;
+@property(nonatomic, strong) UIImageView *avatarView;
 
 @end
 
@@ -35,7 +34,7 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
 - (void)createSubviewsWithContact {
     _firstNameLabel = [UILabel new];
     _lastNameLabel = [UILabel new];
-    _avatarView = [CBAvatarView new];
+    _avatarView = [UIImageView new];
     
     [self addSubview:_firstNameLabel];
     [self addSubview:_lastNameLabel];
@@ -71,6 +70,7 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
 - (void)addContact:(CBContact *)contact {
     self.firstNameLabel.text = contact.firstName;
     self.lastNameLabel.text = contact.lastName;
+    self.avatarView.image = contact.avatar;
 }
 
 + (CGFloat)heightForCell {

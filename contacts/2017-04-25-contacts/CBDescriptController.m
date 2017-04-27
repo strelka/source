@@ -30,7 +30,7 @@
 //    [descView setPhone: _contact.phoneNumber];
 //    [descView setEmail:_contact.email];
     
-    descView.avatar = _contact.avatar;
+    descView.avatar.image = _contact.avatar;
     [self.view addSubview:descView];
     
     

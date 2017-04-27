@@ -9,5 +9,4 @@
 #import "CBContact.h"
 
 @implementation CBContact
-
-@end
+@end;

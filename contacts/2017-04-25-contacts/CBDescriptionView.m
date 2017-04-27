@@ -27,30 +27,13 @@
     return self;
 }
 
-//-(void)setName:(NSString*)text {
-//    _name.text= text;
-//}
-//
-//-(void)setLastName:(NSString*)text {
-//    _lastName.text= text;
-//}
-//
-//-(void)setPhone:(NSString*)text {
-//    _phone.text= text;
-//}
-//
-//-(void)setEmail:(NSString*)text {
-//    _email.text= text;
-//}
-
-
 -(void)createSubviewsWithContact{
     
     _name = [UILabel new];
     _lastName = [UILabel new];
     _phone = [UILabel new];
     _email = [UILabel new];
-    _avatar = [CBAvatarView new];
+    _avatar = [UIImageView new];
     
     UIView *contactInfo = [[UIView alloc] initWithFrame:self.bounds];
     [self addSubview:contactInfo];
@@ -76,7 +59,7 @@
         
     }];
     
-    _avatar.backgroundColor= [UIColor redColor];
+    _avatar.backgroundColor= [UIColor whiteColor];
     
     [_name mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_avatar.mas_top);

@@ -9,6 +9,7 @@
 #import "CBFakeContactsService.h"
 #import "CBContactsList.h"
 #import "CBContact.h"
+#import "CBAvatarView.h"
 
 
 @implementation CBFakeContactsService
@@ -25,6 +26,13 @@
         contact.lastName = lastName;
         contact.phoneNumber = phoneNumber;
         contact.email = email;
+        CBAvatarView* avatarView = [[CBAvatarView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+        avatarView.name=firstName;
+        avatarView.lastName=lastName;
+        
+        [avatarView fillRect:CGRectMake(0, 0, 100, 100)];
+        contact.avatar=[avatarView getImage];
+        
         return contact;
     };
     
