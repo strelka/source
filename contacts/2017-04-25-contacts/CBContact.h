@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+@class CBAvatarView;
+
 
 @interface CBContact : NSObject
 
+@property (nonatomic, copy) CBAvatarView *avatar;
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
 @property (nonatomic, copy) NSString *phoneNumber;

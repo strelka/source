@@ -9,6 +9,7 @@
 #import "CBContactCell.h"
 #import "CBContact.h"
 #import "CBAvatarView.h"
+#import <Masonry/Masonry.h>
 
 NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
 
@@ -36,11 +37,35 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
     _lastNameLabel = [UILabel new];
     _avatarView = [CBAvatarView new];
     
-    // .frame = cgrectmake()
-    
     [self addSubview:_firstNameLabel];
     [self addSubview:_lastNameLabel];
     [self addSubview:_avatarView];
+    
+    [_avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
+        
+        make.width.equalTo(self.mas_height);
+        make.height.equalTo(self.mas_height);
+        
+    }];
+    
+    [_firstNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_avatarView.mas_right);
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_centerY);
+        
+        make.right.equalTo(self.mas_right);
+    }];
+    
+    [_lastNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_avatarView.mas_right);
+        make.top.equalTo(self.mas_centerY);
+        make.bottom.equalTo(self.mas_bottom);
+        
+        make.right.equalTo(self.mas_right);
+    }];
 }
 
 - (void)addContact:(CBContact *)contact {

@@ -11,6 +11,7 @@
 #import "CBContactManager.h"
 #import "CBContactCell.h"
 #import "CBFakeContactsService.h"
+#import "CBDescriptController.h"
 
 @interface CBContactsTableViewController ()
 
@@ -55,6 +56,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [CBContactCell heightForCell];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CBDescriptController *dc = [CBDescriptController new];
+    dc.contact = [self.contacts objectAtIndexedSubscript:indexPath.row];
+    
+    [self.navigationController pushViewController:dc animated:YES];
+    
 }
 
 @end

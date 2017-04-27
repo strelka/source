@@ -17,6 +17,10 @@
 		04F44B721EAFBF5B00194FE4 /* CBContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F44B711EAFBF5B00194FE4 /* CBContactCell.m */; };
 		04F44B761EAFC0E500194FE4 /* CBAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F44B751EAFC0E500194FE4 /* CBAvatarView.m */; };
 		04F44B7D1EAFC3C200194FE4 /* CBFakeContactsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F44B7C1EAFC3C200194FE4 /* CBFakeContactsService.m */; };
+		92AA7B841EB11D5F00D4E918 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AA7B831EB11D5F00D4E918 /* Masonry.framework */; };
+		92AA7B8B1EB1297B00D4E918 /* CBDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA7B8A1EB1297B00D4E918 /* CBDescriptionView.m */; };
+		92AA7B8D1EB134AA00D4E918 /* ??.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 92AA7B8C1EB134AA00D4E918 /* ??.rtf */; };
+		92AA7B901EB13ED000D4E918 /* CBDescriptController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA7B8F1EB13ED000D4E918 /* CBDescriptController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +45,13 @@
 		04F44B7A1EAFC31000194FE4 /* CBContactManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBContactManager.h; sourceTree = "<group>"; };
 		04F44B7B1EAFC3C200194FE4 /* CBFakeContactsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBFakeContactsService.h; sourceTree = "<group>"; };
 		04F44B7C1EAFC3C200194FE4 /* CBFakeContactsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBFakeContactsService.m; sourceTree = "<group>"; };
+		92AA7B811EB11D4B00D4E918 /* contacts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = contacts; sourceTree = "<group>"; };
+		92AA7B831EB11D5F00D4E918 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
+		92AA7B891EB1297B00D4E918 /* CBDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBDescriptionView.h; sourceTree = "<group>"; };
+		92AA7B8A1EB1297B00D4E918 /* CBDescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBDescriptionView.m; sourceTree = "<group>"; };
+		92AA7B8C1EB134AA00D4E918 /* ??.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "??.rtf"; sourceTree = "<group>"; };
+		92AA7B8E1EB13ED000D4E918 /* CBDescriptController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBDescriptController.h; sourceTree = "<group>"; };
+		92AA7B8F1EB13ED000D4E918 /* CBDescriptController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBDescriptController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92AA7B841EB11D5F00D4E918 /* Masonry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,8 +69,10 @@
 		04F44B3C1EAFAFBE00194FE4 = {
 			isa = PBXGroup;
 			children = (
+				92AA7B8C1EB134AA00D4E918 /* ??.rtf */,
 				04F44B471EAFAFBE00194FE4 /* 2017-04-25-contacts */,
 				04F44B461EAFAFBE00194FE4 /* Products */,
+				92AA7B801EB11D4A00D4E918 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +111,8 @@
 			children = (
 				04F44B5F1EAFBC5900194FE4 /* CBViewController.h */,
 				04F44B601EAFBC5900194FE4 /* CBViewController.m */,
+				92AA7B8E1EB13ED000D4E918 /* CBDescriptController.h */,
+				92AA7B8F1EB13ED000D4E918 /* CBDescriptController.m */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -117,6 +133,8 @@
 				04F44B6F1EAFBF2F00194FE4 /* Cell */,
 				04F44B631EAFBC7300194FE4 /* Table */,
 				04F44B621EAFBC6200194FE4 /* Navigation */,
+				92AA7B891EB1297B00D4E918 /* CBDescriptionView.h */,
+				92AA7B8A1EB1297B00D4E918 /* CBDescriptionView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -177,6 +195,15 @@
 			name = Service;
 			sourceTree = "<group>";
 		};
+		92AA7B801EB11D4A00D4E918 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92AA7B831EB11D5F00D4E918 /* Masonry.framework */,
+				92AA7B811EB11D4B00D4E918 /* contacts */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -187,6 +214,7 @@
 				04F44B411EAFAFBE00194FE4 /* Sources */,
 				04F44B421EAFAFBE00194FE4 /* Frameworks */,
 				04F44B431EAFAFBE00194FE4 /* Resources */,
+				92AA7B851EB11D6800D4E918 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -235,11 +263,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92AA7B8D1EB134AA00D4E918 /* ??.rtf in Resources */,
 				04F44B551EAFAFBE00194FE4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		92AA7B851EB11D6800D4E918 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Masonry.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		04F44B411EAFAFBE00194FE4 /* Sources */ = {
@@ -250,9 +296,11 @@
 				04F44B4D1EAFAFBE00194FE4 /* AppDelegate.m in Sources */,
 				04F44B6E1EAFBD0700194FE4 /* CBContact.m in Sources */,
 				04F44B681EAFBCBD00194FE4 /* CBContactsTableViewController.m in Sources */,
+				92AA7B8B1EB1297B00D4E918 /* CBDescriptionView.m in Sources */,
 				04F44B6B1EAFBCEF00194FE4 /* CBContactsList.m in Sources */,
 				04F44B4A1EAFAFBE00194FE4 /* main.m in Sources */,
 				04F44B7D1EAFC3C200194FE4 /* CBFakeContactsService.m in Sources */,
+				92AA7B901EB13ED000D4E918 /* CBDescriptController.m in Sources */,
 				04F44B721EAFBF5B00194FE4 /* CBContactCell.m in Sources */,
 				04F44B611EAFBC5900194FE4 /* CBViewController.m in Sources */,
 			);
@@ -356,6 +404,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "2017-04-25-contacts/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "m.-017-04-25-contacts";
@@ -368,6 +420,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "2017-04-25-contacts/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "m.-017-04-25-contacts";

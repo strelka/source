@@ -15,7 +15,6 @@
 
 - (CBContactsList *)getContacts {
     
-
     CBContact* (^createContact)(NSString *, NSString *, NSString *, NSString *);
     createContact = ^CBContact*(NSString *firstName,
                                NSString *lastName,
@@ -29,12 +28,12 @@
         return contact;
     };
     
-NSArray *contacts = @[createContact(@"Mivaequi",@"Tiboigee",@"+86469496458",@"Mivaequi.Tiboigee@gmail.com"),
-                          createContact(@"phuwohdi",@"quinguos",@"+96896544346",@""),
-                          createContact(@"ahpaeshe",@"eekonoog",@"",@"eekonoog@ojohchau.edu"),
-                          createContact(@"uphohvak",@"soengaev",@"+29395987342",@"soengaev@ya.ru"),
-                          createContact(@"agheepoo",@"kothaeka",@"+84628799628",@"")];
-    
+    NSArray *contacts =  @[createContact(@"Mivaequi",@"Tiboigee",@"+86469496458",@"Mivaequi.Tiboigee@gmail.com"),
+                                  createContact(@"phuwohdi",@"quinguos",@"+96896544346",@""),
+                                  createContact(@"ahpaeshe",@"eekonoog",@"",@"eekonoog@ojohchau.edu"),
+                                  createContact(@"uphohvak",@"soengaev",@"+29395987342",@"soengaev@ya.ru"),
+                                  createContact(@"agheepoo",@"kothaeka",@"+84628799628",@"")];
+    return [[CBContactsList alloc] initWithArray:contacts];
 }
 
 @end
