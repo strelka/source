@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FractionCl.h";
+#import "FractionCl2.h"
 
 @interface FractionCl : NSObject <NSCopying>
+@property(nonatomic, strong) FractionCl2* f1;
     -(void) print;
     -(void) setNumerator: (int) n;
     -(void) setDenominator: (int) d;

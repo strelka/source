@@ -9,10 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CBAvatarView : UIView
-@property(nonatomic, strong) NSString* name;
-@property(nonatomic, strong) NSString* lastName;
-
--(void) fillRect:(CGRect)rect;
--(UIImage*) getImage;
-
+-(void)setRoundedAndColorView:(float)Size andColor:(UIColor*)color;
 @end

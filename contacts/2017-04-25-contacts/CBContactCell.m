@@ -8,7 +8,10 @@
 
 #import "CBContactCell.h"
 #import "CBContact.h"
+#import "CBAvatarView.h"
 #import <Masonry/Masonry.h>
+#import <QuartzCore/QuartzCore.h>
+
 
 NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
 
@@ -16,8 +19,8 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
 
 @property(nonatomic, strong) UILabel *firstNameLabel;
 @property(nonatomic, strong) UILabel *lastNameLabel;
-@property(nonatomic, strong) UIImageView *avatarView;
-
+@property(nonatomic, strong) CBAvatarView *avatarView;
+@property(nonatomic, strong) UILabel *fl;
 @end
 
 
@@ -31,14 +34,17 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
     return self;
 }
 
+
 - (void)createSubviewsWithContact {
     _firstNameLabel = [UILabel new];
     _lastNameLabel = [UILabel new];
-    _avatarView = [UIImageView new];
+    _avatarView = [[CBAvatarView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+    _fl = [UILabel new];
     
     [self addSubview:_firstNameLabel];
     [self addSubview:_lastNameLabel];
     [self addSubview:_avatarView];
+    [self addSubview:_fl];
     
     [_avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
@@ -49,6 +55,17 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
         make.height.equalTo(self.mas_height);
         
     }];
+    
+    [_fl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_avatarView.mas_left);
+        make.top.equalTo(_avatarView.mas_top);
+        make.bottom.equalTo(_avatarView.mas_bottom);
+        
+        make.width.equalTo(_avatarView.mas_height);
+        make.height.equalTo(_avatarView.mas_height);
+        
+    }];
+    _fl.backgroundColor = [UIColor clearColor];
     
     [_firstNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_avatarView.mas_right);
@@ -70,8 +87,10 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
 - (void)addContact:(CBContact *)contact {
     self.firstNameLabel.text = contact.firstName;
     self.lastNameLabel.text = contact.lastName;
-    self.avatarView.image = contact.avatar;
+    [self.avatarView setRoundedAndColorView:80 andColor:contact.avatarColor];
+    NSString *fl = @"ff";
 }
+
 
 + (CGFloat)heightForCell {
     return 80;

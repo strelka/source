@@ -33,7 +33,7 @@
     _lastName = [UILabel new];
     _phone = [UILabel new];
     _email = [UILabel new];
-    _avatar = [UIImageView new];
+    _avatar = [[CBAvatarView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
     
     UIView *contactInfo = [[UIView alloc] initWithFrame:self.bounds];
     [self addSubview:contactInfo];
@@ -81,10 +81,7 @@
         make.top.equalTo(_lastName.mas_bottom);
         make.left.equalTo(_avatar.mas_right);
         make.right.equalTo(contactInfo.mas_right);
-        
         make.height.equalTo(@(hightStep));
-
-        
     }];
     
     [_email mas_makeConstraints:^(MASConstraintMaker *make) {

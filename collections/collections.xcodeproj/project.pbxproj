@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		922269C81E91249700ECE860 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 922269C71E91249700ECE860 /* main.m */; };
 		922269D21E91266700ECE860 /* FractionCl.m in Sources */ = {isa = PBXBuildFile; fileRef = 922269D11E91266700ECE860 /* FractionCl.m */; };
+		92593DC31EB37563000DA14F /* FractionCl2.m in Sources */ = {isa = PBXBuildFile; fileRef = 92593DC21EB37563000DA14F /* FractionCl2.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		922269C71E91249700ECE860 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		922269D01E91266700ECE860 /* FractionCl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FractionCl.h; sourceTree = "<group>"; };
 		922269D11E91266700ECE860 /* FractionCl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FractionCl.m; sourceTree = "<group>"; };
+		92593DC11EB37563000DA14F /* FractionCl2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FractionCl2.h; sourceTree = "<group>"; };
+		92593DC21EB37563000DA14F /* FractionCl2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FractionCl2.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,8 @@
 				922269C71E91249700ECE860 /* main.m */,
 				922269D01E91266700ECE860 /* FractionCl.h */,
 				922269D11E91266700ECE860 /* FractionCl.m */,
+				92593DC11EB37563000DA14F /* FractionCl2.h */,
+				92593DC21EB37563000DA14F /* FractionCl2.m */,
 			);
 			path = collections;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				922269D21E91266700ECE860 /* FractionCl.m in Sources */,
+				92593DC31EB37563000DA14F /* FractionCl2.m in Sources */,
 				922269C81E91249700ECE860 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,6 +258,7 @@
 				922269CD1E91249700ECE860 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

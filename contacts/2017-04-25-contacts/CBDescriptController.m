@@ -9,6 +9,7 @@
 #import "CBDescriptController.h"
 #import "CBDescriptionView.h"
 #import "CBContact.h"
+#import "CBAvatarView.h"
 
 @interface CBDescriptController ()
 @end
@@ -25,12 +26,9 @@
     descView.lastName.text = _contact.lastName;
     descView.phone.text = _contact.phoneNumber;
     descView.email.text = _contact.email;
-    //    [descView setName:_contact.firstName];
-//    [descView setLastName:_contact.lastName];
-//    [descView setPhone: _contact.phoneNumber];
-//    [descView setEmail:_contact.email];
     
-    descView.avatar.image = _contact.avatar;
+    [descView.avatar setRoundedAndColorView:80 andColor:_contact.avatarColor];
+
     [self.view addSubview:descView];
     
     

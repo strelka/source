@@ -17,6 +17,8 @@
 		04F44B721EAFBF5B00194FE4 /* CBContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F44B711EAFBF5B00194FE4 /* CBContactCell.m */; };
 		04F44B761EAFC0E500194FE4 /* CBAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F44B751EAFC0E500194FE4 /* CBAvatarView.m */; };
 		04F44B7D1EAFC3C200194FE4 /* CBFakeContactsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F44B7C1EAFC3C200194FE4 /* CBFakeContactsService.m */; };
+		92593DC91EB3B6A7000DA14F /* VkLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92593DC81EB3B6A7000DA14F /* VkLoginViewController.m */; };
+		92593DCC1EB3DA9D000DA14F /* CBVkContactsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 92593DCB1EB3DA9D000DA14F /* CBVkContactsService.m */; };
 		92AA7B841EB11D5F00D4E918 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AA7B831EB11D5F00D4E918 /* Masonry.framework */; };
 		92AA7B8B1EB1297B00D4E918 /* CBDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA7B8A1EB1297B00D4E918 /* CBDescriptionView.m */; };
 		92AA7B8D1EB134AA00D4E918 /* ??.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 92AA7B8C1EB134AA00D4E918 /* ??.rtf */; };
@@ -45,7 +47,11 @@
 		04F44B7A1EAFC31000194FE4 /* CBContactManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBContactManager.h; sourceTree = "<group>"; };
 		04F44B7B1EAFC3C200194FE4 /* CBFakeContactsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBFakeContactsService.h; sourceTree = "<group>"; };
 		04F44B7C1EAFC3C200194FE4 /* CBFakeContactsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBFakeContactsService.m; sourceTree = "<group>"; };
-		92AA7B811EB11D4B00D4E918 /* contacts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = contacts; sourceTree = "<group>"; };
+		92593DC71EB3B6A7000DA14F /* VkLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VkLoginViewController.h; sourceTree = "<group>"; };
+		92593DC81EB3B6A7000DA14F /* VkLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VkLoginViewController.m; sourceTree = "<group>"; };
+		92593DCA1EB3DA9D000DA14F /* CBVkContactsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBVkContactsService.h; sourceTree = "<group>"; };
+		92593DCB1EB3DA9D000DA14F /* CBVkContactsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBVkContactsService.m; sourceTree = "<group>"; };
+		92AA7B811EB11D4B00D4E918 /* contacts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = contacts; sourceTree = "<group>"; };
 		92AA7B831EB11D5F00D4E918 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
 		92AA7B891EB1297B00D4E918 /* CBDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBDescriptionView.h; sourceTree = "<group>"; };
 		92AA7B8A1EB1297B00D4E918 /* CBDescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBDescriptionView.m; sourceTree = "<group>"; };
@@ -191,6 +197,10 @@
 				04F44B7A1EAFC31000194FE4 /* CBContactManager.h */,
 				04F44B7B1EAFC3C200194FE4 /* CBFakeContactsService.h */,
 				04F44B7C1EAFC3C200194FE4 /* CBFakeContactsService.m */,
+				92593DC71EB3B6A7000DA14F /* VkLoginViewController.h */,
+				92593DC81EB3B6A7000DA14F /* VkLoginViewController.m */,
+				92593DCA1EB3DA9D000DA14F /* CBVkContactsService.h */,
+				92593DCB1EB3DA9D000DA14F /* CBVkContactsService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -298,10 +308,12 @@
 				04F44B681EAFBCBD00194FE4 /* CBContactsTableViewController.m in Sources */,
 				92AA7B8B1EB1297B00D4E918 /* CBDescriptionView.m in Sources */,
 				04F44B6B1EAFBCEF00194FE4 /* CBContactsList.m in Sources */,
+				92593DC91EB3B6A7000DA14F /* VkLoginViewController.m in Sources */,
 				04F44B4A1EAFAFBE00194FE4 /* main.m in Sources */,
 				04F44B7D1EAFC3C200194FE4 /* CBFakeContactsService.m in Sources */,
 				92AA7B901EB13ED000D4E918 /* CBDescriptController.m in Sources */,
 				04F44B721EAFBF5B00194FE4 /* CBContactCell.m in Sources */,
+				92593DCC1EB3DA9D000DA14F /* CBVkContactsService.m in Sources */,
 				04F44B611EAFBC5900194FE4 /* CBViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
