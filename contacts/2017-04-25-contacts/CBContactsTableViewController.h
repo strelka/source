@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CBContactsList;
 
 @interface CBContactsTableViewController : UITableViewController
-
+-(instancetype)initWithStyle:(UITableViewStyle*)style andContacts:(CBContactsList*) contacts;
 @end

@@ -40,10 +40,12 @@ const NSString *_appID = @"6007858";
         _vkWebView.delegate = self;
         _vkWebView.scalesPageToFit = YES;
         [self.view addSubview:_vkWebView];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
         
-        NSString *authLink = [NSString stringWithFormat:@"http://api.vk.com/oauth/authorize?client_id=%@&scope=friends&redirect_uri=http://api.vk.com/blank.html&display=touch&response_type=token", _appID];
-        NSURL *url = [NSURL URLWithString:authLink];
-        [_vkWebView loadRequest:[NSURLRequest requestWithURL:url]];
+        NSString*url=@"https://oauth.vk.com/authorize?client_id=5932466&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends&response_type=token&v=5.63&state=123456";
+        NSURLRequest *nsurlRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+        [_vkWebView loadRequest:nsurlRequest];
         
     }
 
@@ -61,6 +63,8 @@ const NSString *_appID = @"6007858";
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     if ([_vkWebView.request.URL.absoluteString rangeOfString:@"access_token"].location != NSNotFound){
         NSString *accessToken = [self stringBetweenString:@"access_token="
                                                 andString:@"&"
@@ -79,8 +83,7 @@ const NSString *_appID = @"6007858";
         }
         NSLog(@"vkWebView response: %@",[[[webView request] URL] absoluteString]);
         isAuth = YES;
-        [self dismissViewControllerAnimated:NO completion:nil];
-        
+    
     }else if ([_vkWebView.request.URL.absoluteString rangeOfString:@"error"].location != NSNotFound){
         NSLog(@"Error: %@", _vkWebView.request.URL.absoluteString);
     }

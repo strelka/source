@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 @interface VkLoginViewController : UIViewController<UIWebViewDelegate>
     @property(nonatomic, strong) id delegate;

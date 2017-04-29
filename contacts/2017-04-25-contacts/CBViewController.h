@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CBContactManager.h"
 
 @interface CBViewController : UINavigationController
+@property (nonatomic, strong) id<CBContactManager> contactManager;
 
 @end

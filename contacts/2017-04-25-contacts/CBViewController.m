@@ -8,14 +8,30 @@
 
 #import "CBViewController.h"
 #import "CBContactsTableViewController.h"
+#import "VkLoginViewController.h"
+#import "CBContactManager.h"
+#import "CBVkContactsService.h"
+#import "CBContactsList.h"
+
 
 @implementation CBViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    CBContactsTableViewController *tableViewController = [[CBContactsTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    self.viewControllers = @[tableViewController] ;
+   // CBContactsTableViewController *tableViewController = [[CBContactsTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    VkLoginViewController *vkc = [[VkLoginViewController alloc] init];
+    //[self.navigationController pushViewController:vkc animated:YES];
+    self.viewControllers = @[vkc];
+    
+    //self.contactManager = [CBVkContactsService new];
+    //CBContactsList* clist = [self.contactManager getContacts];
+    
+    
+    //CBContactsTableViewController *tbl = [[CBContactsTableViewController alloc] initWithStyle:UITableViewStylePlain andContacts:clist];
+    
+    
 }
 
 

@@ -8,25 +8,32 @@
 
 #import "CBContactsTableViewController.h"
 #import "CBContactsList.h"
-#import "CBContactManager.h"
 #import "CBContactCell.h"
 #import "CBFakeContactsService.h"
+#import "CBVkContactsService.h"
 #import "CBDescriptController.h"
+#import "VkLoginViewController.h"
 
 @interface CBContactsTableViewController ()
 
 @property (nonatomic, strong) CBContactsList *contacts;
-@property (nonatomic, strong) id<CBContactManager> contactManager;
 
 @end
 
 @implementation CBContactsTableViewController
 
+-(instancetype)initWithStyle:(UITableViewStyle*)style andContacts:(CBContactsList*) contacts{
+    self = [super initWithStyle:*style];
+    if (self){
+        _contacts = contacts;
+    }
+    return self;
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Contacts";
-    self.contactManager = [CBFakeContactsService new];
-    self.contacts = [self.contactManager getContacts];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
