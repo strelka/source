@@ -33,7 +33,7 @@
     _lastName = [UILabel new];
     _phone = [UILabel new];
     _email = [UILabel new];
-    _avatar = [[CBAvatarView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+    _avatar = [CBAvatarView new];
     
     UIView *contactInfo = [[UIView alloc] initWithFrame:self.bounds];
     [self addSubview:contactInfo];
@@ -58,8 +58,6 @@
         make.width.equalTo(@(hightStep*2));
         
     }];
-    
-    _avatar.backgroundColor= [UIColor whiteColor];
     
     [_name mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_avatar.mas_top);

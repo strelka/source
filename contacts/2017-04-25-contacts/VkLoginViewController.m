@@ -7,6 +7,8 @@
 //
 
 #import "VkLoginViewController.h"
+#import "CBContactsTableViewController.h"
+
 const NSString *_appID = @"6007858";
 @interface VkLoginViewController ()
 {
@@ -70,20 +72,22 @@ const NSString *_appID = @"6007858";
                                                 andString:@"&"
                                               innerString:[[[webView request] URL] absoluteString]];
         
-        NSArray *userAr = [[[[webView request]URL]absoluteString]componentsSeparatedByString:@"&user_id="];
-        NSString *user_id = [userAr lastObject];
-        NSLog(@"User id:%@", user_id);
+        NSString *user_id = [self stringBetweenString:@"user_id="
+                                            andString:@"&"
+                                          innerString:[[[webView request] URL] absoluteString]];
+        
         if (user_id){
             [[NSUserDefaults standardUserDefaults] setObject:user_id forKey:@"VKAccessUserId"];
         }
         if (accessToken){
-            [[NSUserDefaults standardUserDefaults]setObject:accessToken forKey:@"VKAccessTokenDate"];
+            [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:@"VKAccessToken"];
             [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"VKAccessTokenDate"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            [self goToCBContactsTableViewController];
         }
         NSLog(@"vkWebView response: %@",[[[webView request] URL] absoluteString]);
-        isAuth = YES;
-    
+        
+
     }else if ([_vkWebView.request.URL.absoluteString rangeOfString:@"error"].location != NSNotFound){
         NSLog(@"Error: %@", _vkWebView.request.URL.absoluteString);
     }
@@ -111,5 +115,9 @@ const NSString *_appID = @"6007858";
     return nil;
 }
 
+-(void) goToCBContactsTableViewController{
+    CBContactsTableViewController* cbt = [CBContactsTableViewController new];
+    [self.navigationController pushViewController:cbt animated:YES];
+}
 
 @end

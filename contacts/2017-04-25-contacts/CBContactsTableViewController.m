@@ -17,6 +17,7 @@
 @interface CBContactsTableViewController ()
 
 @property (nonatomic, strong) CBContactsList *contacts;
+@property (nonatomic, strong) id<CBContactManager> contactManager;
 
 @end
 
@@ -34,6 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Contacts";
+    self.contactManager = [CBVkContactsService new];
+    self.contacts = [self.contactManager getContacts];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

@@ -25,6 +25,8 @@
     //[self.navigationController pushViewController:vkc animated:YES];
     self.viewControllers = @[vkc];
     
+    NSLog(@"rrrty");
+    NSLog(@"ddd");
     //self.contactManager = [CBVkContactsService new];
     //CBContactsList* clist = [self.contactManager getContacts];
     

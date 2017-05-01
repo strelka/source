@@ -20,7 +20,6 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
 @property(nonatomic, strong) UILabel *firstNameLabel;
 @property(nonatomic, strong) UILabel *lastNameLabel;
 @property(nonatomic, strong) CBAvatarView *avatarView;
-@property(nonatomic, strong) UILabel *fl;
 @end
 
 
@@ -38,13 +37,11 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
 - (void)createSubviewsWithContact {
     _firstNameLabel = [UILabel new];
     _lastNameLabel = [UILabel new];
-    _avatarView = [[CBAvatarView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-    _fl = [UILabel new];
+    _avatarView = [CBAvatarView new];
     
     [self addSubview:_firstNameLabel];
     [self addSubview:_lastNameLabel];
     [self addSubview:_avatarView];
-    [self addSubview:_fl];
     
     [_avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
@@ -55,17 +52,6 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
         make.height.equalTo(self.mas_height);
         
     }];
-    
-    [_fl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_avatarView.mas_left);
-        make.top.equalTo(_avatarView.mas_top);
-        make.bottom.equalTo(_avatarView.mas_bottom);
-        
-        make.width.equalTo(_avatarView.mas_height);
-        make.height.equalTo(_avatarView.mas_height);
-        
-    }];
-    _fl.backgroundColor = [UIColor clearColor];
     
     [_firstNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_avatarView.mas_right);
@@ -87,8 +73,10 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
 - (void)addContact:(CBContact *)contact {
     self.firstNameLabel.text = contact.firstName;
     self.lastNameLabel.text = contact.lastName;
-    [self.avatarView setRoundedAndColorView:80 andColor:contact.avatarColor];
-    NSString *fl = @"ff";
+    
+    NSURL *url = [[NSURL alloc]initWithString:contact.urlImage];
+    CIImage* im = [[CIImage alloc] initWithContentsOfURL:url];
+    self.avatarView.image = [[UIImage alloc] initWithCIImage:im];
 }
 
 

@@ -27,8 +27,11 @@
     descView.phone.text = _contact.phoneNumber;
     descView.email.text = _contact.email;
     
-    [descView.avatar setRoundedAndColorView:80 andColor:_contact.avatarColor];
-
+    
+    NSURL *url = [[NSURL alloc]initWithString:_contact.urlImage];
+    CIImage* im = [[CIImage alloc] initWithContentsOfURL:url];
+    descView.avatar.image = [[UIImage alloc] initWithCIImage:im];
+    
     [self.view addSubview:descView];
     
     

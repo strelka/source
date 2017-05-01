@@ -26,7 +26,7 @@
         contact.lastName = lastName;
         contact.phoneNumber = phoneNumber;
         contact.email = email;
-        contact.avatarColor = [self getAvatarColor:firstName AndLastName:lastName];
+        //contact.avatarColor = [self getAvatarColor:firstName AndLastName:lastName];
         
         return contact;
     };

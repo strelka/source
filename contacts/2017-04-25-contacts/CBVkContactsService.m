@@ -9,17 +9,31 @@
 #import "CBVkContactsService.h"
 #import "VkLoginViewController.h"
 #import "CBContact.h"
+#import "CBContactsList.h"
 
 @implementation CBVkContactsService
 
 - (CBContactsList *)getContacts {
     NSString* accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"VKAccessToken"];
     NSString* UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"VKAccessUserId"];
-    NSString* url = [[NSString alloc] initWithFormat:@"https://api.vk.com/method/friends.get?user_id=%@&fields=nickname,contacts,photo_100&%@",
+    NSString* url = [[NSString alloc] initWithFormat:@"https://api.vk.com/method/friends.get?user_id=%@&fields=nickname,contacts,photo_100,mobile_phone&%@",
     UserId, accessToken];
     
     NSURLRequest *nsurlRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSData *responseData = [NSURLConnection sendSynchronousRequest:nsurlRequest returningResponse:nil error:nil];
+    
+    
+    
+    CBContact* (^createContact)(NSDictionary* jsonContact);
+    createContact = ^CBContact*(NSDictionary* jsonContact){
+        CBContact *contact = [CBContact new];
+        contact.firstName = [jsonContact objectForKey:@"first_name"];
+        contact.lastName = [jsonContact objectForKey:@"last_name"];
+        contact.urlImage = [jsonContact objectForKey:@"photo_100"];
+        return contact;
+    };
+    
+    NSMutableArray *resultContacts = [NSMutableArray new];
     
     if (responseData){
         NSError* jsonError;
@@ -29,50 +43,14 @@
         
         NSDictionary * contacts = [json objectForKey:@"response"];
         
-
+        
+        for (NSDictionary* contact in contacts){
+            [resultContacts addObject:createContact(contact)];
+        
+        }
     }
     
-    return @"f";
-//    CBContact* (^createContact)(NSString *, NSString *, NSString *, NSString *);
-//    createContact = ^CBContact*(NSString *firstName,
-//                                NSString *lastName,
-//                                NSString *phoneNumber,
-//                                NSString *email) {
-//        CBContact *contact = [CBContact new];
-//        contact.firstName = firstName;
-//        contact.lastName = lastName;
-//        contact.phoneNumber = phoneNumber;
-//        contact.email = email;
-//        contact.avatarColor = [self getAvatarColor:firstName AndLastName:lastName];
-//        
-//        return contact;
-//    };
-//    
-//    NSArray *contacts =  @[createContact(@"Mivaequi",@"Tiboigee",@"+86469496458",@"Mivaequi.Tiboigee@gmail.com"),
-//                           createContact(@"phuwohdi",@"quinguos",@"+96896544346",@""),
-//                           createContact(@"ahpaeshe",@"eekonoog",@"",@"eekonoog@ojohchau.edu"),
-//                           createContact(@"uphohvak",@"soengaev",@"+29395987342",@"soengaev@ya.ru"),
-//                           createContact(@"agheepoo",@"kothaeka",@"+84628799628",@"")];
-//    
-//    return [[CBContactsList alloc] initWithArray:contacts];
-}
-
--(UIColor*) getAvatarColor:(NSString*) name AndLastName:(NSString*)lastName{
-    NSArray* colors = @[[UIColor redColor],
-                        [UIColor blueColor],
-                        [UIColor greenColor],
-                        [UIColor orangeColor],
-                        [UIColor magentaColor],
-                        [UIColor lightGrayColor],
-                        [UIColor yellowColor]
-                        ];
-    
-    
-    int asciiCode = [name characterAtIndex:0];
-    asciiCode += [lastName characterAtIndex:0];
-    int colorIndex = asciiCode % 7;
-    
-    return colors[colorIndex];
-    
+    return [[CBContactsList alloc] initWithArray:resultContacts];
 }
 @end
+

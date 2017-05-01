@@ -11,14 +11,11 @@
 
 @implementation CBAvatarView
 
+-(instancetype) initWithURL:(NSURL *)url{
+    self = [super init];
+    CIImage * im = [[CIImage alloc] initWithContentsOfURL:url];
+    self.image = [[UIImage alloc] initWithCIImage:im scale:1.0 orientation:UIImageOrientationUp];
+    return self;
 
--(void)setRoundedAndColorView:(float)Size andColor:(UIColor*)color;
-{
-    self.layer.cornerRadius = Size / 2.0;
-    self.backgroundColor = color;
-    self.clipsToBounds = YES;
 }
-
-
-
 @end

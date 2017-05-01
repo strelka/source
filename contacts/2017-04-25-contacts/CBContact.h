@@ -18,6 +18,9 @@
 @property (nonatomic, copy) NSString *lastName;
 @property (nonatomic, copy) NSString *phoneNumber;
 @property (nonatomic, copy) NSString *email;
-@property (nonatomic, copy) UIColor  *avatarColor;
+@property (nonatomic, copy) NSString *urlImage;
+
+//@property (nonatomic, copy) UIColor  *avatarColor;
+
 
 @end
