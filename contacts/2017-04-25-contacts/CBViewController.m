@@ -20,13 +20,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
+    
    // CBContactsTableViewController *tableViewController = [[CBContactsTableViewController alloc] initWithStyle:UITableViewStylePlain];
     VkLoginViewController *vkc = [[VkLoginViewController alloc] init];
     //[self.navigationController pushViewController:vkc animated:YES];
     self.viewControllers = @[vkc];
     
-    NSLog(@"rrrty");
-    NSLog(@"ddd");
     //self.contactManager = [CBVkContactsService new];
     //CBContactsList* clist = [self.contactManager getContacts];
     

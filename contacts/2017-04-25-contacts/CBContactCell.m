@@ -10,7 +10,7 @@
 #import "CBContact.h"
 #import "CBAvatarView.h"
 #import <Masonry/Masonry.h>
-#import <QuartzCore/QuartzCore.h>
+//#import <QuartzCore/QuartzCore.h>
 
 
 NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
@@ -81,7 +81,7 @@ NSString *const CBContactCellIdentifier = @"CBContactCellIdentifier";
 
 
 + (CGFloat)heightForCell {
-    return 80;
+    return 35;
 }
 
 @end

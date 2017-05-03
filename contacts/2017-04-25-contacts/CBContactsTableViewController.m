@@ -13,6 +13,7 @@
 #import "CBVkContactsService.h"
 #import "CBDescriptController.h"
 #import "VkLoginViewController.h"
+#import "CBContact.h"
 
 @interface CBContactsTableViewController ()
 
@@ -35,13 +36,52 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Contacts";
-    self.contactManager = [CBVkContactsService new];
-    self.contacts = [self.contactManager getContacts];
     
+    //self.contactManager = [CBVkContactsService new];
+    //self.contacts = [self.contactManager getContacts];
+    [self getContacts];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
     [self.tableView registerClass:[CBContactCell class] forCellReuseIdentifier:CBContactCellIdentifier];
+}
+
+-(void) getContacts{
+    
+    CBVkContactsService *http = [[CBVkContactsService alloc] init];
+    
+    CBContact* (^createContact)(NSDictionary* jsonContact);
+    createContact = ^CBContact*(NSDictionary* jsonContact){
+        CBContact *contact = [CBContact new];
+        contact.firstName = [jsonContact objectForKey:@"first_name"];
+        contact.lastName = [jsonContact objectForKey:@"last_name"];
+        contact.urlImage = [jsonContact objectForKey:@"photo_100"];
+    return contact;
+    };
+
+    NSMutableArray *resultContacts = [NSMutableArray new];
+
+    NSString* accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"VKAccessToken"];
+    NSString* UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"VKAccessUserId"];
+    NSString* url = [[NSString alloc] initWithFormat:@"https://api.vk.com/method/friends.get?user_id=%@&fields=nickname,contacts,photo_100,mobile_phone&%@",
+                 UserId, accessToken];
+
+    [http retrieveURL:[NSURL URLWithString:url] successBlock:^(NSData *response){
+        NSError* jsonError;
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:response
+                                                             options:0
+                                                               error: &jsonError];
+        NSDictionary* contacts = [json objectForKey:@"response"];
+        for (NSDictionary* contact in contacts){
+            [resultContacts addObject:createContact(contact)];
+        }
+        self.contacts = [[CBContactsList alloc] initWithArray:resultContacts];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    //return [[CBContactsList alloc] initWithArray:resultContacts];
+    
+    }];
 }
 
 #pragma mark - Table view data source
