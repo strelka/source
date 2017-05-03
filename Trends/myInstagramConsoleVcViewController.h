@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface myInstagramConsoleVcViewController : UIViewController<UIWebViewDelegate>
-{
-    UIWebView* mywebview;
-}
+
+@property (nonatomic, strong) UIWebView* instWebView;
+
 @end

@@ -5,7 +5,7 @@
 //  Created by Jullia Sharaeva on 19.04.17.
 //  Copyright © 2017 Julia Sharaeva. All rights reserved.
 //
-#import "NXOAuth2.h"
+//#import "NXOAuth2.h"
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "myInstagramConsoleVcViewController.h"
@@ -66,8 +66,10 @@
     [Fabric with:@[[Twitter class]]];
     TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
     NSString *trendsShow = @"https://api.twitter.com/1.1/trends/place.json";
-    //NSDictionary *params = @{@"id":@2122265};
-    NSDictionary *params = @{@"id" : @"2122265"};
+    //NSString *trendsShow = @"https://api.twitter.com/1.1/trends/available.json";
+    
+    NSDictionary *params = @{@"id":@"2112237"};
+    //NSDictionary *params = @{@"id" : @"1"};
     NSError *clientError;
     
     NSURLRequest *request = [client URLRequestWithMethod:@"GET"
@@ -104,6 +106,12 @@
     }
 }
 
+
+-(NSNumber*) trendsVolume:(NSString*) hashtag{
+    
+    
+    return;
+}
 #pragma mark - Core Data stack
 
 @synthesize persistentContainer = _persistentContainer;
