@@ -43,15 +43,13 @@
     CBContactsTableViewController *ctv = [[CBContactsTableViewController alloc] initWithStyle:UITableViewStylePlain];
     
     [self.view addSubview:ctv.tableView];
-    
+        
     [ctv.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.top.equalTo(toolbar.mas_bottom);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
-    
-    
     
     // Do any additional setup after loading the view.
 }

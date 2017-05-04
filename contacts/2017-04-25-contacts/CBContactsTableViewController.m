@@ -33,7 +33,6 @@
     return self;
 
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -41,18 +40,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-//    [sc addTarget:self action:@selector(segmentedControlHasChangedValue:)
-//             forControlEvents:UIControlEventValueChanged];
-
-    
     [self.tableView registerClass:[CBContactCell class] forCellReuseIdentifier:CBContactCellIdentifier];
 }
-
-//-(IBAction)segmentedControlHasChangedValue:(UISegmentedControl*)sender{
-//    [self getContacts];
-//    //VkLoginViewController *vkc = [[VkLoginViewController alloc] init];
-//    //[self.navigationController pushViewController:vkc animated:YES];
-//}
 
 -(void) getContacts{
     
