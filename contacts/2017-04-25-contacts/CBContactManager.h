@@ -10,6 +10,6 @@
 
 @protocol CBContactManager <NSObject>
 @required
-- (CBContactsList *)getContacts;
+- (void)getContacts;
 
 @end
