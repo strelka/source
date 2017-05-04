@@ -14,6 +14,7 @@
 #import "CBDescriptController.h"
 #import "VkLoginViewController.h"
 #import "CBContact.h"
+#import <Masonry/Masonry.h>
 
 @interface CBContactsTableViewController ()
 
@@ -35,16 +36,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Contacts";
     
-    //self.contactManager = [CBVkContactsService new];
-    //self.contacts = [self.contactManager getContacts];
     [self getContacts];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+//    [sc addTarget:self action:@selector(segmentedControlHasChangedValue:)
+//             forControlEvents:UIControlEventValueChanged];
+
+    
     [self.tableView registerClass:[CBContactCell class] forCellReuseIdentifier:CBContactCellIdentifier];
 }
+
+//-(IBAction)segmentedControlHasChangedValue:(UISegmentedControl*)sender{
+//    [self getContacts];
+//    //VkLoginViewController *vkc = [[VkLoginViewController alloc] init];
+//    //[self.navigationController pushViewController:vkc animated:YES];
+//}
 
 -(void) getContacts{
     
@@ -79,8 +87,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-    //return [[CBContactsList alloc] initWithArray:resultContacts];
-    
     }];
 }
 

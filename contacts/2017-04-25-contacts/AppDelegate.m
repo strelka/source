@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "CBViewController.h"
 
-
 @interface AppDelegate ()
 extern NSArray *contactsList;
 @end
@@ -18,19 +17,20 @@ extern NSArray *contactsList;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-//    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:82.0/255.0
-//                                                                  green:176.0/255.0
-//                                                                   blue:243.0/255.0
-//                                                                  alpha:1.0]];
-//    [[UINavigationBar appearance] setTitleTextAttributes:@{
-//                                                           NSForegroundColorAttributeName:[UIColor whiteColor]
-//                                                            }];
-//    [[UINavigationBar appearance] setTranslucent:NO];
+   // [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:82.0/255.0
+   //                                                               green:176.0/255.0
+   //                                                                blue:243.0/255.0
+   //                                                               alpha:1.0]];
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{
+                                                           NSForegroundColorAttributeName:[UIColor whiteColor]
+                                                            }];
+    [[UINavigationBar appearance] setTranslucent:NO];
     
     CBViewController *navigationController = [[CBViewController alloc] init];
     
     UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    
     window.rootViewController = navigationController;
     
     self.window = window;

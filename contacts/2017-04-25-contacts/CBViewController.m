@@ -13,6 +13,7 @@
 #import "CBVkContactsService.h"
 #import "CBContactsList.h"
 
+#import "MainController.h"
 #import <Masonry/Masonry.h>
 
 @implementation CBViewController
@@ -20,27 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self.view  setBackgroundColor:[UIColor lightGrayColor]];
-    UISegmentedControl * sc= [[UISegmentedControl alloc] initWithItems:@[@"vk", @"phoneBook"]];
     
-    self.navigationItem.titleView = sc;
-    [self.view addSubview:sc];
-    [sc mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.navigationBar.mas_left);
-        make.right.equalTo(self.navigationBar.mas_right);
-        make.bottom.equalTo(self.navigationBar.mas_bottom);
-
-    }];
+    //CBContactsTableViewController *tableViewController = [[CBContactsTableViewController alloc] initWithStyle:UITableViewStylePlain];
     
-    [sc setSelectedSegmentIndex:0];
-    [sc addTarget:self action:@selector(segmentedControlHasChangedValue:)
-             forControlEvents:UIControlEventValueChanged];
-    
-    // CBContactsTableViewController *tableViewController = [[CBContactsTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    //VkLoginViewController *vkc = [[VkLoginViewController alloc] init];
-    //[self.navigationController pushViewController:vkc animated:YES];
-    //self.viewControllers = @[vkc];
+    MainController *mc = [MainController new];
+    self.viewControllers = @[mc];
     
     //self.contactManager = [CBVkContactsService new];
     //CBContactsList* clist = [self.contactManager getContacts];
@@ -49,10 +34,6 @@
     //CBContactsTableViewController *tbl = [[CBContactsTableViewController alloc] initWithStyle:UITableViewStylePlain andContacts:clist];
  }
 
--(IBAction)segmentedControlHasChangedValue:(UISegmentedControl*)sender{
-    VkLoginViewController *vkc = [[VkLoginViewController alloc] init];
-    self.viewControllers = @[vkc];
-}
 
 
 

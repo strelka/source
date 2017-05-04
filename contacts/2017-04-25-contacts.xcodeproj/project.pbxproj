@@ -19,6 +19,7 @@
 		04F44B7D1EAFC3C200194FE4 /* CBFakeContactsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F44B7C1EAFC3C200194FE4 /* CBFakeContactsService.m */; };
 		92593DC91EB3B6A7000DA14F /* VkLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92593DC81EB3B6A7000DA14F /* VkLoginViewController.m */; };
 		92593DCC1EB3DA9D000DA14F /* CBVkContactsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 92593DCB1EB3DA9D000DA14F /* CBVkContactsService.m */; };
+		925EAB9E1EBB463300836E53 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925EAB9D1EBB463300836E53 /* MainController.m */; };
 		92AA7B841EB11D5F00D4E918 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AA7B831EB11D5F00D4E918 /* Masonry.framework */; };
 		92AA7B8B1EB1297B00D4E918 /* CBDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA7B8A1EB1297B00D4E918 /* CBDescriptionView.m */; };
 		92AA7B8D1EB134AA00D4E918 /* ??.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 92AA7B8C1EB134AA00D4E918 /* ??.rtf */; };
@@ -51,6 +52,8 @@
 		92593DC81EB3B6A7000DA14F /* VkLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VkLoginViewController.m; sourceTree = "<group>"; };
 		92593DCA1EB3DA9D000DA14F /* CBVkContactsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBVkContactsService.h; sourceTree = "<group>"; };
 		92593DCB1EB3DA9D000DA14F /* CBVkContactsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBVkContactsService.m; sourceTree = "<group>"; };
+		925EAB9C1EBB463300836E53 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		925EAB9D1EBB463300836E53 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		92AA7B811EB11D4B00D4E918 /* contacts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = contacts; sourceTree = "<group>"; };
 		92AA7B831EB11D5F00D4E918 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
 		92AA7B891EB1297B00D4E918 /* CBDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBDescriptionView.h; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 				04F44B601EAFBC5900194FE4 /* CBViewController.m */,
 				92AA7B8E1EB13ED000D4E918 /* CBDescriptController.h */,
 				92AA7B8F1EB13ED000D4E918 /* CBDescriptController.m */,
+				925EAB9C1EBB463300836E53 /* MainController.h */,
+				925EAB9D1EBB463300836E53 /* MainController.m */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 				92AA7B901EB13ED000D4E918 /* CBDescriptController.m in Sources */,
 				04F44B721EAFBF5B00194FE4 /* CBContactCell.m in Sources */,
 				92593DCC1EB3DA9D000DA14F /* CBVkContactsService.m in Sources */,
+				925EAB9E1EBB463300836E53 /* MainController.m in Sources */,
 				04F44B611EAFBC5900194FE4 /* CBViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
