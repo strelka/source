@@ -31,7 +31,7 @@ NSString *const SISCellIdentifier = @"SISCellIdentifier";
     _collection = [UILabel new];
     _imView = [[UIImageView alloc] init];
     _imView.contentMode = UIViewContentModeScaleAspectFit;
-    
+    _imView.clipsToBounds = YES;
     double cellheight = 60;
     
     [self addSubview:_imView];
@@ -50,13 +50,13 @@ NSString *const SISCellIdentifier = @"SISCellIdentifier";
     [_track mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
         make.height.equalTo(@(cellheight/3));
-        make.left.equalTo(self.mas_left).with.offset(cellheight);
+        make.left.equalTo(self.mas_left).with.offset(100);
         make.right.equalTo(self.mas_right);
     }];
     
     [_artist mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_track.mas_bottom);
-        make.left.equalTo(self.mas_left).with.offset(cellheight);
+        make.left.equalTo(self.mas_left).with.offset(100);
         make.right.equalTo(self.mas_right);
         make.height.equalTo(@(cellheight/3));
         
@@ -65,7 +65,7 @@ NSString *const SISCellIdentifier = @"SISCellIdentifier";
         make.top.equalTo(_artist.mas_bottom);
         make.height.equalTo(@(cellheight/3));
         make.bottom.equalTo(self.mas_bottom);
-        make.left.equalTo(self.mas_left).with.offset(cellheight);
+        make.left.equalTo(self.mas_left).with.offset(100);
         make.right.equalTo(self.mas_right);
     }];
 }

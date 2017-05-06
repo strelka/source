@@ -13,7 +13,8 @@
 @interface SISComposition : NSObject
 @property(nonatomic, strong) NSString* artistName;
 @property(nonatomic, strong) NSString* trackName;
-@property(nonatomic, strong) NSString* collectionName;
+@property(nonatomic, strong) NSString* collectionCensoredName;
+@property(nonatomic, strong) NSString* trackPrice;
 @property(nonatomic, strong) NSURL* artworkUrl;
 @property(nonatomic, strong) UIImage* actualImage;
 @end

@@ -12,9 +12,10 @@
 #import "SISTableViewCell.h"
 #import "SISComposition.h"
 
-@interface SISViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface SISViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (nonatomic, strong) NSArray* records;
 @property (nonatomic, strong) id service;
+@property (nonatomic, strong) UITableView* tableView;
 @end
 
 @implementation SISViewController
@@ -34,6 +35,8 @@
     [searchView setBackgroundColor:[UIColor magentaColor]];
     
     UISearchBar *searchBar = [[UISearchBar alloc] init];
+    searchBar.delegate = self;
+    searchBar.placeholder = @"song";
     [searchView addSubview:searchBar];
     
     [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -44,26 +47,19 @@
     }];
     [searchBar setBackgroundColor:[UIColor magentaColor]];
     
-    UITableView *tableView = [[UITableView alloc] init];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [self.view addSubview:tableView];
+    _tableView = [[UITableView alloc] init];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView];
     
-    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(searchView.mas_left);
         make.right.equalTo(searchView.mas_right);
         make.top.equalTo(searchView.mas_bottom);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
     
-    NSString *testSearch = @"jack+johnson";
-    _service = [SISGetInfoFromItunes new];
-    [_service getDataFromItunes:testSearch andComplition:^(NSArray *data){
-        _records = data;
-        [tableView reloadData];
-    }];
-    
-    [tableView registerClass:[SISTableViewCell class] forCellReuseIdentifier:SISCellIdentifier];
+    [_tableView registerClass:[SISTableViewCell class] forCellReuseIdentifier:SISCellIdentifier];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,17 +84,16 @@
     SISComposition *record = self.records[indexPath.row];
     
     cell.artist.text = record.artistName;
-    cell.collection.text = record.collectionName;
+    cell.collection.text = record.collectionCensoredName;
     cell.track.text = record.trackName;
     
     cell.imgUrl = record.artworkUrl;
-//
     NSURL *imgUrl = record.artworkUrl;
     cell.imageView.image = [UIImage imageNamed:@"default.png"];
     NSMutableDictionary *imgDict = [_records objectAtIndex:[indexPath row]];
     if ([imgDict valueForKey:@"actualImage"]){
         cell.imageView.image = [imgDict valueForKey:@"actualImage"];
-    }
+        }
     else {
         [_service getImageFromItunes: imgUrl andComplition:^(NSURL *currentUrl, NSData *data) {
             if (cell.imgUrl == currentUrl){
@@ -114,6 +109,19 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSString *searchText = searchBar.text;
+    searchText = [searchText stringByReplacingOccurrencesOfString:@" "
+                                         withString:@"+"];
+    
+    searchText = [searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    _service = [SISGetInfoFromItunes new];
+    [_service getDataFromItunes:searchText andComplition:^(NSArray *data){
+        _records = data;
+        [_tableView reloadData];
+    }];
 }
 
 @end
