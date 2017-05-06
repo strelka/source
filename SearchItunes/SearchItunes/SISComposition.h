@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 
 @interface SISComposition : NSObject
 @property(nonatomic, strong) NSString* artistName;
 @property(nonatomic, strong) NSString* trackName;
 @property(nonatomic, strong) NSString* collectionName;
-@property(nonatomic, strong) NSData* artworkUrl;
+@property(nonatomic, strong) NSURL* artworkUrl;
+@property(nonatomic, strong) UIImage* actualImage;
 @end

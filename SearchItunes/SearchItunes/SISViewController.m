@@ -14,6 +14,7 @@
 
 @interface SISViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSArray* records;
+@property (nonatomic, strong) id service;
 @end
 
 @implementation SISViewController
@@ -56,8 +57,8 @@
     }];
     
     NSString *testSearch = @"jack+johnson";
-    SISGetInfoFromItunes *service = [SISGetInfoFromItunes new];
-    [service getDataFromItunes:testSearch andComplition:^(NSArray *data) {
+    _service = [SISGetInfoFromItunes new];
+    [_service getDataFromItunes:testSearch andComplition:^(NSArray *data){
         _records = data;
         [tableView reloadData];
     }];
@@ -79,14 +80,34 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    UITableViewCell *cell = (SISTableViewCell *)[tableView dequeueReusableCellWithIdentifier: SISCellIdentifier forIndexPath:indexPath];
+    SISTableViewCell *cell = (SISTableViewCell *)[tableView dequeueReusableCellWithIdentifier: SISCellIdentifier forIndexPath:indexPath];
     
     if (cell == nil) {
         cell = [[SISTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SISCellIdentifier];
     }
     SISComposition *record = self.records[indexPath.row];
-    [(SISTableViewCell*) cell addRecord:record];
     
+    cell.artist.text = record.artistName;
+    cell.collection.text = record.collectionName;
+    cell.track.text = record.trackName;
+    
+    cell.imgUrl = record.artworkUrl;
+//
+    NSURL *imgUrl = record.artworkUrl;
+    cell.imageView.image = [UIImage imageNamed:@"default.png"];
+    NSMutableDictionary *imgDict = [_records objectAtIndex:[indexPath row]];
+    if ([imgDict valueForKey:@"actualImage"]){
+        cell.imageView.image = [imgDict valueForKey:@"actualImage"];
+    }
+    else {
+        [_service getImageFromItunes: imgUrl andComplition:^(NSURL *currentUrl, NSData *data) {
+            if (cell.imgUrl == currentUrl){
+                [imgDict setValue:[UIImage imageWithData:data] forKey:@"actualImage"];
+                cell.imageView.image = [imgDict valueForKey:@"actualImage"];
+                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            }
+        }];
+    }
     return cell;
 }
 

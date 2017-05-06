@@ -13,6 +13,10 @@ extern NSString *const SISCellIdentifier;
 
 @interface SISTableViewCell : UITableViewCell
 
--(void) addRecord:(SISComposition* ) record;
+@property(nonatomic, strong) NSURL* imgUrl;
+@property(nonatomic, strong) UILabel* artist;
+@property(nonatomic, strong) UILabel* track;
+@property(nonatomic, strong) UILabel* collection;
+@property(nonatomic, strong) UIImageView* imView;
 
 @end
