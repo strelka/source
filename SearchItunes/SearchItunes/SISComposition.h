@@ -12,5 +12,5 @@
 @property(nonatomic, strong) NSString* artistName;
 @property(nonatomic, strong) NSString* trackName;
 @property(nonatomic, strong) NSString* collectionName;
-@property(nonatomic, strong) NSData* artworkUrl30;
+@property(nonatomic, strong) NSData* artworkUrl;
 @end

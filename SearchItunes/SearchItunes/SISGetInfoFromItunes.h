@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SISGetInfoFromItunes : NSObject
--(void) getDataFromItunes:(NSString*) searchString andComplition:(void(^)(NSArray* data, NSError* error)) block;
+@interface SISGetInfoFromItunes : NSObject <NSURLSessionDownloadDelegate>
+-(void) getDataFromItunes:(NSString*) searchString andComplition:(void(^)(NSArray* data)) block;
 @end

@@ -9,6 +9,8 @@
 #import "SISViewController.h"
 #import <Masonry/Masonry.h>
 #import "SISGetInfoFromItunes.h"
+#import "SISTableViewCell.h"
+#import "SISComposition.h"
 
 @interface SISViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSArray* records;
@@ -55,10 +57,12 @@
     
     NSString *testSearch = @"jack+johnson";
     SISGetInfoFromItunes *service = [SISGetInfoFromItunes new];
-    [service getDataFromItunes:testSearch andComplition:^(NSArray *data, NSError *error) {
+    [service getDataFromItunes:testSearch andComplition:^(NSArray *data) {
         _records = data;
         [tableView reloadData];
     }];
+    
+    [tableView registerClass:[SISTableViewCell class] forCellReuseIdentifier:SISCellIdentifier];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,14 +79,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.textLabel.text = [[NSString alloc] initWithFormat:@"%ld", (long)indexPath.row];
+    UITableViewCell *cell = (SISTableViewCell *)[tableView dequeueReusableCellWithIdentifier: SISCellIdentifier forIndexPath:indexPath];
+    
+    if (cell == nil) {
+        cell = [[SISTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SISCellIdentifier];
+    }
+    SISComposition *record = self.records[indexPath.row];
+    [(SISTableViewCell*) cell addRecord:record];
+    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 35;
+    return 60;
 }
 
 @end
