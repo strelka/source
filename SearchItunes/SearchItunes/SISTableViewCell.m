@@ -29,6 +29,7 @@ NSString *const SISCellIdentifier = @"SISCellIdentifier";
     _artist = [UILabel new];
     _track = [UILabel new];
     _collection = [UILabel new];
+    //_price = [UILabel new];
     _imView = [[UIImageView alloc] init];
     _imView.contentMode = UIViewContentModeScaleAspectFit;
     _imView.clipsToBounds = YES;
@@ -38,12 +39,37 @@ NSString *const SISCellIdentifier = @"SISCellIdentifier";
     [self addSubview:_artist];
     [self addSubview:_track];
     [self addSubview:_collection];
+    [self addSubview:_price];
+    
+//    [_price setFont:[UIFont boldSystemFontOfSize:8]];
+//    [_price setTextAlignment:NSTextAlignmentCenter];
+//    [_price setTextColor:[UIColor blackColor]];
+//    [_price setBackgroundColor:[UIColor lightGrayColor]];
+//    [_price setTransform:CGAffineTransformMakeRotation(M_PI_2)];
     
     
+    [_track setFont:[UIFont boldSystemFontOfSize:10]];
+    [_track setTextColor:[UIColor darkTextColor]];
+    
+    [_artist setFont:[UIFont boldSystemFontOfSize:8]];
+    [_artist setTextColor:[UIColor darkTextColor]];
+    
+    [_collection setFont:[UIFont boldSystemFontOfSize:8]];
+    [_collection setTextColor:[UIColor darkTextColor]];
+    
+    
+//    [_price mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(self.mas_right);
+//        make.right.equalTo(self.mas_top);
+//        make.left.equalTo(self.mas_bottom);
+//        make.height.equalTo(@(cellheight));
+//        make.width.equalTo(@(20));
+//    }];
+//    
     [_imView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
-        make.height.equalTo(@(cellheight));
-        make.width.equalTo(@(cellheight));
+        make.height.equalTo(@60).priorityHigh();
+        make.width.equalTo(@60).priorityHigh();
         make.left.equalTo(self.mas_left);
     }];
     

@@ -86,6 +86,7 @@
     cell.artist.text = record.artistName;
     cell.collection.text = record.collectionCensoredName;
     cell.track.text = record.trackName;
+   // cell.price.text = [NSString stringWithFormat:@"%@", record.trackPrice];
     
     cell.imgUrl = record.artworkUrl;
     NSURL *imgUrl = record.artworkUrl;
@@ -113,9 +114,6 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSString *searchText = searchBar.text;
-    searchText = [searchText stringByReplacingOccurrencesOfString:@" "
-                                         withString:@"+"];
-    
     searchText = [searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     _service = [SISGetInfoFromItunes new];
     [_service getDataFromItunes:searchText andComplition:^(NSArray *data){
