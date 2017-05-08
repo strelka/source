@@ -7,26 +7,28 @@
 //
 
 #import "MSFMapController.h"
-#import "MFBPlace.h"
+#import "MFBGetDataFromGoogle.h"
 #import <MapKit/MapKit.h>
+#import "MFBAnnotation.h"
 
-@interface MSFMapController ()<MKMapViewDelegate>
+@interface MSFMapController ()<MKMapViewDelegate, CLLocationManagerDelegate>
+
 @property(nonatomic, strong) CLLocationManager* locationManager;
 @property(nonatomic, strong) MKMapView* mapView;
+@property(nonatomic) CLLocationCoordinate2D currentCord;
+@property(nonatomic, strong) NSArray* annotations;
 
 @end
 
 @implementation MSFMapController
+
 -(instancetype) init{
     self = [super init];
     if (self){
         _locationManager = [CLLocationManager new];
-        //_locationManager.
         if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
             [_locationManager requestWhenInUseAuthorization];
         };
-    
-        
     }
     return self;
 }
@@ -35,11 +37,17 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
     [self initViews];
+    MFBGetDataFromGoogle *service = [MFBGetDataFromGoogle new];
     [self initConstraints];
+
+    [service getDataFromGoogleforName:@"sberbank" andCord:_currentCord andComplition:^(NSArray *data) {
+        _annotations = data;
+        [self addAllPins];
+    }];
     
-    [self addAllPins];
+    
+    //[self addAllPins];
 }
 
 -(void)initViews
@@ -48,11 +56,15 @@
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
     
-    MKCoordinateRegion region = self.mapView.region;
-    region.center = CLLocationCoordinate2DMake(12.9752297537231, 80.2313079833984);
-    region.span.longitudeDelta /= 1.0; // Bigger the value, closer the map view
-    region.span.latitudeDelta /= 1.0;
-    [self.mapView setRegion:region animated:NO]; // Choose if you want animate or not
+    //
+    _currentCord.longitude = 37.609218;
+    _currentCord.latitude = 55.7522200;
+    
+//    MKCoordinateRegion region = self.mapView.region;
+//    region.center = CLLocationCoordinate2DMake(_currentCord.latitude, _currentCord.longitude);
+//    region.span.longitudeDelta /= 1.0; // Bigger the value, closer the map view
+//    region.span.latitudeDelta /= 1.0;
+//    [self.mapView setRegion:region animated:NO]; // Choose if you want animate or not
     [self.view addSubview:self.mapView];
 }
 
@@ -69,55 +81,61 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[mapView]|" options:0 metrics:nil views:views]];
 }
 
+
 -(void)addAllPins
 {
-    self.mapView.delegate=self;
+    [_mapView addAnnotations:_annotations];
     
-    NSArray *name=[[NSArray alloc]initWithObjects:
-                   @"1",
-                   @"2",
-                   @"3",
-                   @"4",
-                   @"5",
-                   nil
-                   ];
-    
-    NSMutableArray *arrCoordinateStr = [[NSMutableArray alloc] initWithCapacity:name.count];
-    
-    
-    [arrCoordinateStr addObject:@"55.8210737, 37.604511"];
-    [arrCoordinateStr addObject:@"55.5771014, 38.2480002"];
-    [arrCoordinateStr addObject:@"55.746208, 38.022811"];
-    [arrCoordinateStr addObject:@"55.907199, 37.459048"];
-    [arrCoordinateStr addObject:@"55.7596913, 37.6289863"];
-
-    
-    for(int i = 0; i < name.count; i++)
-    {
-        [self addPinWithTitle:name[i] AndCoordinate:arrCoordinateStr[i]];
-    }
 }
 
--(void)addPinWithTitle:(NSString *)title AndCoordinate:(NSString *)strCoordinate
-{
-    MKPointAnnotation *mapPin = [[MKPointAnnotation alloc] init];
-    
-    // clear out any white space
-    strCoordinate = [strCoordinate stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-    // convert string into actual latitude and longitude values
-    NSArray *components = [strCoordinate componentsSeparatedByString:@","];
-    
-    double latitude = [components[0] doubleValue];
-    double longitude = [components[1] doubleValue];
-    
-    // setup the map pin with all data and add to map view
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-    
-    mapPin.title = title;
-    mapPin.coordinate = coordinate;
-    
-    [self.mapView addAnnotation:mapPin];
+//-(void)addPinWithTitle:(NSString *)title AndCoordinate:(NSString *)strCoordinate
+//{
+//    MKPointAnnotation *mapPin = [[MKPointAnnotation alloc] init];
+//    
+//    // clear out any white space
+//    strCoordinate = [strCoordinate stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    
+//    // convert string into actual latitude and longitude values
+//    NSArray *components = [strCoordinate componentsSeparatedByString:@","];
+//    
+//    double latitude = [components[0] doubleValue];
+//    double longitude = [components[1] doubleValue];
+//    
+//    // setup the map pin with all data and add to map view
+//    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+//    
+//    mapPin.title = title;
+//    mapPin.coordinate = coordinate;
+//    
+//    [self.mapView addAnnotation:mapPin];
+//}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    CLLocation* location = [locations lastObject];
+    NSDate* eventDate = location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (fabs(howRecent) < 15.0){
+        _currentCord.longitude = location.coordinate.longitude;
+        _currentCord.latitude = location.coordinate.latitude;
+    };
+}
+
+-(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+    if ([annotation isKindOfClass:[MFBAnnotation class]])
+    {
+        MFBAnnotation *myLocation = (MFBAnnotation*) annotation;
+        
+        MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MyAnnotation"];
+        
+        if(annotationView == nil)
+            annotationView = myLocation.annotationView;
+        else
+            annotationView.annotation = annotation;
+        return annotationView;
+    }
+    else
+        return nil;
+
 }
 
 @end;

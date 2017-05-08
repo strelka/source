@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface MFBGetDataFromGoogle : UIViewController
-
+@interface MFBGetDataFromGoogle : NSObject
+-(void) getDataFromGoogleforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord andComplition:(void(^)(NSArray* data)) block;
 @end

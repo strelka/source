@@ -10,7 +10,6 @@
 #import "SISGetInfoFromItunes.h"
 
 @interface SISGetInfoFromItunes()
-    @property(nonatomic, strong) NSMutableArray* taskArray;
     @property(nonatomic, strong) NSMutableArray* resultRecords;
 
 @end
