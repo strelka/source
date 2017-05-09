@@ -67,7 +67,10 @@
     
     _tapInterceptor = [[MFBGestureRecognizer alloc] init];
     
+  
+    __weak typeof(self)weakSelf = self;
     _tapInterceptor.touchesEndCallback = ^(NSSet *touches, UIEvent *event) {
+        __strong typeof(self)self = weakSelf;
         MKCoordinateRegion newRegion;
         newRegion.center = self.mapView.region.center;
         newRegion.span = self.mapView.region.span;
@@ -78,11 +81,8 @@
             NSLog(@"change!");
             NSLog(@"%f-%f",newRegion.center.longitude, newRegion.center.latitude);
             [service getDataforName:@"sberbank" andCord:newRegion.center andComplition:^(NSArray *data) {
-                [_mapView addAnnotations:data];
+                [self.mapView addAnnotations:data];
             }];
-        
-            //[mapViewDelegate loadDataforName:@"sberbank" andCord:newRegion.center];
-            //[self.mapView setRegion:newRegion];
     };
     [self.mapView addGestureRecognizer:_tapInterceptor];
 }

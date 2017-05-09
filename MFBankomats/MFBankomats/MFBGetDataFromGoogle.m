@@ -19,7 +19,8 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
 @end
 
 @implementation MFBGetDataFromGoogle
-m  
+-(void) getDataforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord andComplition:(void(^)(NSArray* data)) block{
+
     MFBAnnotation* (^createPlace)(NSDictionary *json);
     
     createPlace = ^MFBAnnotation*(NSDictionary* json){
