@@ -126,22 +126,4 @@
     }
     return nil;
 }
-
-//-(MKPinAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
-//    if ([annotation isKindOfClass:[MFBAnnotation class]])
-//    {
-//        MFBAnnotation *myLocation = (MFBAnnotation*) annotation;
-//        
-//        MKPinAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MyAnnotation"];
-//        
-//        if(annotationView == nil){
-//            annotationView = myLocation.annotationView;
-//        }
-//        else
-//            annotationView.annotation = annotation;
-//        return annotationView;
-//    }
-//    else
-//        return nil;
-//}
 @end;

@@ -16,7 +16,6 @@
 @implementation MFBMapViewDelegate
 
 -(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
-    NSLog(@"fff");
     if ([annotation isKindOfClass:[MFBAnnotation class]])
     {
         MFBAnnotation *myLocation = (MFBAnnotation*) annotation;
@@ -24,11 +23,11 @@
         MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MyAnnotation"];
         
         if(annotationView == nil){
-            annotationView = myLocation.annotationView;
+           annotationView = myLocation.annotationView;
         }
         else
             annotationView.annotation = annotation;
-        return annotationView;
+        return myLocation.annotationView;
     }
     else
         return nil;    
