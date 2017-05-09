@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 @interface MFBAnnotation : NSObject<MKAnnotation>
-@property(readonly, nonatomic) CLLocationCoordinate2D coordinate;
+@property(nonatomic) CLLocationCoordinate2D coordinate;
 @property(copy, nonatomic) NSString *title;
--(id)initWithTitle:(NSString*)newTitle location:(CLLocationCoordinate2D)location;
--(MKAnnotationView *)annotationView;
+@property(nonatomic) int isOpen;
+
+-(void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
+
+-(MKPinAnnotationView *)annotationView;
+
 
 @end

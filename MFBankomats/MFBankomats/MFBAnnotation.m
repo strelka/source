@@ -9,24 +9,23 @@
 #import "MFBAnnotation.h"
 
 @implementation MFBAnnotation
--(id)initWithTitle:(NSString *)newTitle location:(CLLocationCoordinate2D)location
-{
-    self = [super init];
-    if (self)
-    {
-        _title = newTitle;
-        _coordinate = location;
-    }
-    return self;
-
+- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate{
+    _coordinate = newCoordinate;
 }
 
--(MKAnnotationView *)annotationView
+-(MKPinAnnotationView *)annotationView
 {
-    MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"MyAnnotation"];
+    MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"MyAnnotation"];
     annotationView.enabled = YES;
     annotationView.canShowCallout = YES;
-    annotationView.image = [UIImage imageNamed:@"ico"];
+    //annotationView.image = [UIImage imageNamed:@"ico"];
+    if (self.isOpen == 0)
+        annotationView.pinTintColor = [UIColor grayColor];
+    else if (self.isOpen == 1)
+        annotationView.pinTintColor = [UIColor greenColor];
+    else
+        annotationView.pinTintColor = [UIColor redColor];
+        
     return annotationView;
 }
 @end

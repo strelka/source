@@ -16,59 +16,33 @@
 @implementation MFBMapViewDelegate
 
 -(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+    NSLog(@"fff");
     if ([annotation isKindOfClass:[MFBAnnotation class]])
     {
         MFBAnnotation *myLocation = (MFBAnnotation*) annotation;
         
         MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MyAnnotation"];
         
-        if(annotationView == nil)
+        if(annotationView == nil){
             annotationView = myLocation.annotationView;
+        }
         else
             annotationView.annotation = annotation;
         return annotationView;
     }
     else
-        return nil;
-    
+        return nil;    
 }
-
 
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
     
     NSLog(@"regionDidChangeAnimated");
     NSLog(@"loadData");
-    
-    
-    //newRegion = mapView.region;
-    //NSLog(@"regionDidChangeAnimated");
-    //CLLocationCoordinate2D centre = [mapView centerCoordinate];
-    
-//    MKCoordinateRegion newRegion = mapView.region;
-//
-//    if (_mapRegion.span.latitudeDelta != newRegion.span.latitudeDelta ||
-//        _mapRegion.span.longitudeDelta != newRegion.span.longitudeDelta)
-//        NSLog(@"The zoom has changed");
-//    
-    
-    //[self loadDataforName:@"sberbank" andCord:centre];
-
-//    [_service getDataforName:@"sberbank" andCord:centre andComplition:^(NSArray *data) {
-//        [mapView addAnnotations:data];
-//    }];
 }
-
-//-(void)loadDataforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord{
-//
-//    [_service getDataforName:name andCord:(CLLocationCoordinate2D)cord andComplition:^(NSArray *data) {
-//        [_mapView addAnnotations:data];
-//    }];
-//}
 
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
     NSLog(@"regionWillChangeAnimated");
-//    _mapRegion = mapView.region;
 }
 
 - (void)mapViewWillStartLoadingMap:(MKMapView *)mapView{

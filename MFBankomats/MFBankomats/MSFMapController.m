@@ -11,8 +11,9 @@
 #import <MapKit/MapKit.h>
 #import "MFBMapViewDelegate.h"
 #import "MFBGestureRecognizer.h"
+#import "MFBAnnotation.h"
 
-@interface MSFMapController ()<CLLocationManagerDelegate, UIGestureRecognizerDelegate>
+@interface MSFMapController ()<CLLocationManagerDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate>
 
 @property(nonatomic, strong) CLLocationManager* locationManager;
 @property(nonatomic, strong) MKMapView* mapView;
@@ -42,15 +43,14 @@
     
     self.mapView = [[MKMapView alloc] init];
     self.mapView.showsUserLocation = YES;
+    //MFBMapViewDelegate *mapViewDelegate = [[MFBMapViewDelegate alloc] init];
+    //self.mapView.delegate = mapViewDelegate;
+    self.mapView.delegate = self;
     
     _currentCord.longitude = 37.609218;
     _currentCord.latitude = 55.7522200;
     
     [self.view addSubview:self.mapView];
-    
-    MFBMapViewDelegate *mapViewDelegate = [MFBMapViewDelegate new];
-    self.mapView.delegate = mapViewDelegate;
-    
     [self initConstraints];
 
     float spanX = 0.5f;
@@ -60,14 +60,15 @@
     _region.span.latitudeDelta = spanX;
     _region.span.longitudeDelta = spanY;
     
-    //self.searchButton.hidden = YES;
     [self.mapView setRegion:_region animated:NO];
     
     MFBGetDataFromGoogle *service = [MFBGetDataFromGoogle new];
     
-    _tapInterceptor = [[MFBGestureRecognizer alloc] init];
+    [service getDataforName:@"sberbank" andCord:_region.center andComplition:^(NSArray *data) {
+        [self.mapView addAnnotations:data];
+    }];
     
-  
+    _tapInterceptor = [[MFBGestureRecognizer alloc] init];
     __weak typeof(self)weakSelf = self;
     _tapInterceptor.touchesEndCallback = ^(NSSet *touches, UIEvent *event) {
         __strong typeof(self)self = weakSelf;
@@ -85,19 +86,9 @@
             }];
     };
     [self.mapView addGestureRecognizer:_tapInterceptor];
-}
-    
-
--(void)initViews
-{
-    self.mapView = [[MKMapView alloc] init];
-    self.mapView.showsUserLocation = YES;
-    
-    _currentCord.longitude = 37.609218;
-    _currentCord.latitude = 55.7522200;
-    [self.view addSubview:self.mapView];
     
 }
+    
 
 -(void)initConstraints
 {
@@ -113,20 +104,44 @@
 }
 
 
--(void)addAllPins
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    [_mapView addAnnotations:_annotations];
+    // If it's the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
     
+    // Handle any custom annotations.
+    if ([annotation isKindOfClass:[MFBAnnotation class]])
+    {
+        MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"MyAnnotation"];
+        if (!pinView)
+        {
+            MFBAnnotation *myLocation = (MFBAnnotation*) annotation;
+            pinView = myLocation.annotationView;
+        }
+        else {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
+    return nil;
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
-    CLLocation* location = [locations lastObject];
-    NSDate* eventDate = location.timestamp;
-    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (fabs(howRecent) < 15.0){
-        _currentCord.longitude = location.coordinate.longitude;
-        _currentCord.latitude = location.coordinate.latitude;
-    };
-}
-
+//-(MKPinAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+//    if ([annotation isKindOfClass:[MFBAnnotation class]])
+//    {
+//        MFBAnnotation *myLocation = (MFBAnnotation*) annotation;
+//        
+//        MKPinAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MyAnnotation"];
+//        
+//        if(annotationView == nil){
+//            annotationView = myLocation.annotationView;
+//        }
+//        else
+//            annotationView.annotation = annotation;
+//        return annotationView;
+//    }
+//    else
+//        return nil;
+//}
 @end;
