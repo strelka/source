@@ -12,6 +12,8 @@
 		921BC8CE1EBF65D100B004D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 921BC8CD1EBF65D100B004D2 /* AppDelegate.m */; };
 		921BC8D11EBF65D100B004D2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921BC8D01EBF65D100B004D2 /* ViewController.m */; };
 		921BC8D61EBF65D100B004D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 921BC8D51EBF65D100B004D2 /* Assets.xcassets */; };
+		924F674A1EC1A6E4004885FB /* MFBMapViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 924F67491EC1A6E4004885FB /* MFBMapViewDelegate.m */; };
+		924F67501EC1D515004885FB /* MFBGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 924F674F1EC1D515004885FB /* MFBGestureRecognizer.m */; };
 		92BE90871EC05D610047C689 /* MSFMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BE90861EC05D610047C689 /* MSFMapController.m */; };
 		92BE90891EC05E480047C689 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BE90881EC05E480047C689 /* MapKit.framework */; };
 		92BE908B1EC06CA30047C689 /* place.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92BE908A1EC06CA30047C689 /* place.plist */; };
@@ -31,6 +33,10 @@
 		921BC8D01EBF65D100B004D2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		921BC8D51EBF65D100B004D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		921BC8DA1EBF65D100B004D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		924F67481EC1A6E4004885FB /* MFBMapViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFBMapViewDelegate.h; sourceTree = "<group>"; };
+		924F67491EC1A6E4004885FB /* MFBMapViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFBMapViewDelegate.m; sourceTree = "<group>"; };
+		924F674E1EC1D515004885FB /* MFBGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFBGestureRecognizer.h; sourceTree = "<group>"; };
+		924F674F1EC1D515004885FB /* MFBGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFBGestureRecognizer.m; sourceTree = "<group>"; };
 		92BE90851EC05D610047C689 /* MSFMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMapController.h; sourceTree = "<group>"; };
 		92BE90861EC05D610047C689 /* MSFMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMapController.m; sourceTree = "<group>"; };
 		92BE90881EC05E480047C689 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -66,6 +72,8 @@
 		921BC8BD1EBF65D100B004D2 = {
 			isa = PBXGroup;
 			children = (
+				924F674E1EC1D515004885FB /* MFBGestureRecognizer.h */,
+				924F674F1EC1D515004885FB /* MFBGestureRecognizer.m */,
 				921BC8C81EBF65D100B004D2 /* MFBankomats */,
 				921BC8C71EBF65D100B004D2 /* Products */,
 				CC1A09543294A9EE0B935B4F /* Pods */,
@@ -138,6 +146,8 @@
 			children = (
 				92BE90851EC05D610047C689 /* MSFMapController.h */,
 				92BE90861EC05D610047C689 /* MSFMapController.m */,
+				924F67481EC1A6E4004885FB /* MFBMapViewDelegate.h */,
+				924F67491EC1A6E4004885FB /* MFBMapViewDelegate.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -276,7 +286,9 @@
 				92C7BD091EC10F3400B8731B /* MFBAnnotation.m in Sources */,
 				921BC8D11EBF65D100B004D2 /* ViewController.m in Sources */,
 				92BE90871EC05D610047C689 /* MSFMapController.m in Sources */,
+				924F674A1EC1A6E4004885FB /* MFBMapViewDelegate.m in Sources */,
 				921BC8CE1EBF65D100B004D2 /* AppDelegate.m in Sources */,
+				924F67501EC1D515004885FB /* MFBGestureRecognizer.m in Sources */,
 				921BC8CB1EBF65D100B004D2 /* main.m in Sources */,
 				92BE90961EC0C4440047C689 /* MFBGetDataFromGoogle.m in Sources */,
 			);

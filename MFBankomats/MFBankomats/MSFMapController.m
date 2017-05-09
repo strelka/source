@@ -9,14 +9,17 @@
 #import "MSFMapController.h"
 #import "MFBGetDataFromGoogle.h"
 #import <MapKit/MapKit.h>
-#import "MFBAnnotation.h"
+#import "MFBMapViewDelegate.h"
+#import "MFBGestureRecognizer.h"
 
-@interface MSFMapController ()<MKMapViewDelegate, CLLocationManagerDelegate>
+@interface MSFMapController ()<CLLocationManagerDelegate, UIGestureRecognizerDelegate>
 
 @property(nonatomic, strong) CLLocationManager* locationManager;
 @property(nonatomic, strong) MKMapView* mapView;
 @property(nonatomic) CLLocationCoordinate2D currentCord;
 @property(nonatomic, strong) NSArray* annotations;
+@property(nonatomic) MKCoordinateRegion region;
+@property(nonatomic, strong) MFBGestureRecognizer* tapInterceptor;
 
 @end
 
@@ -36,36 +39,64 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    [self initViews];
-    MFBGetDataFromGoogle *service = [MFBGetDataFromGoogle new];
+    
+    self.mapView = [[MKMapView alloc] init];
+    self.mapView.showsUserLocation = YES;
+    
+    _currentCord.longitude = 37.609218;
+    _currentCord.latitude = 55.7522200;
+    
+    [self.view addSubview:self.mapView];
+    
+    MFBMapViewDelegate *mapViewDelegate = [MFBMapViewDelegate new];
+    self.mapView.delegate = mapViewDelegate;
+    
     [self initConstraints];
 
-    [service getDataFromGoogleforName:@"sberbank" andCord:_currentCord andComplition:^(NSArray *data) {
-        _annotations = data;
-        [self addAllPins];
-    }];
+    float spanX = 0.5f;
+    float spanY = 0.5f;
+    _region.center.latitude = _currentCord.latitude;
+    _region.center.longitude = _currentCord.longitude;
+    _region.span.latitudeDelta = spanX;
+    _region.span.longitudeDelta = spanY;
     
+    //self.searchButton.hidden = YES;
+    [self.mapView setRegion:_region animated:NO];
     
-    //[self addAllPins];
+    MFBGetDataFromGoogle *service = [MFBGetDataFromGoogle new];
+    
+    _tapInterceptor = [[MFBGestureRecognizer alloc] init];
+    
+    _tapInterceptor.touchesEndCallback = ^(NSSet *touches, UIEvent *event) {
+        MKCoordinateRegion newRegion;
+        newRegion.center = self.mapView.region.center;
+        newRegion.span = self.mapView.region.span;
+        
+        if ((fabs(_region.span.latitudeDelta - newRegion.span.latitudeDelta) > 0.01)
+              ||(fabs(_region.span.longitudeDelta - newRegion.span.longitudeDelta) > 0.01))
+            
+            NSLog(@"change!");
+            NSLog(@"%f-%f",newRegion.center.longitude, newRegion.center.latitude);
+            [service getDataforName:@"sberbank" andCord:newRegion.center andComplition:^(NSArray *data) {
+                [_mapView addAnnotations:data];
+            }];
+        
+            //[mapViewDelegate loadDataforName:@"sberbank" andCord:newRegion.center];
+            //[self.mapView setRegion:newRegion];
+    };
+    [self.mapView addGestureRecognizer:_tapInterceptor];
 }
+    
 
 -(void)initViews
 {
     self.mapView = [[MKMapView alloc] init];
-    self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
     
-    //
     _currentCord.longitude = 37.609218;
     _currentCord.latitude = 55.7522200;
-    
-//    MKCoordinateRegion region = self.mapView.region;
-//    region.center = CLLocationCoordinate2DMake(_currentCord.latitude, _currentCord.longitude);
-//    region.span.longitudeDelta /= 1.0; // Bigger the value, closer the map view
-//    region.span.latitudeDelta /= 1.0;
-//    [self.mapView setRegion:region animated:NO]; // Choose if you want animate or not
     [self.view addSubview:self.mapView];
+    
 }
 
 -(void)initConstraints
@@ -88,28 +119,6 @@
     
 }
 
-//-(void)addPinWithTitle:(NSString *)title AndCoordinate:(NSString *)strCoordinate
-//{
-//    MKPointAnnotation *mapPin = [[MKPointAnnotation alloc] init];
-//    
-//    // clear out any white space
-//    strCoordinate = [strCoordinate stringByReplacingOccurrencesOfString:@" " withString:@""];
-//    
-//    // convert string into actual latitude and longitude values
-//    NSArray *components = [strCoordinate componentsSeparatedByString:@","];
-//    
-//    double latitude = [components[0] doubleValue];
-//    double longitude = [components[1] doubleValue];
-//    
-//    // setup the map pin with all data and add to map view
-//    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-//    
-//    mapPin.title = title;
-//    mapPin.coordinate = coordinate;
-//    
-//    [self.mapView addAnnotation:mapPin];
-//}
-
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     CLLocation* location = [locations lastObject];
     NSDate* eventDate = location.timestamp;
@@ -118,24 +127,6 @@
         _currentCord.longitude = location.coordinate.longitude;
         _currentCord.latitude = location.coordinate.latitude;
     };
-}
-
--(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
-    if ([annotation isKindOfClass:[MFBAnnotation class]])
-    {
-        MFBAnnotation *myLocation = (MFBAnnotation*) annotation;
-        
-        MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MyAnnotation"];
-        
-        if(annotationView == nil)
-            annotationView = myLocation.annotationView;
-        else
-            annotationView.annotation = annotation;
-        return annotationView;
-    }
-    else
-        return nil;
-
 }
 
 @end;

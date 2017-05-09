@@ -10,5 +10,5 @@
 #import <MapKit/MapKit.h>
 
 @interface MFBGetDataFromGoogle : NSObject
--(void) getDataFromGoogleforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord andComplition:(void(^)(NSArray* data)) block;
+-(void) getDataforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord andComplition:(void(^)(NSArray* data)) block;
 @end

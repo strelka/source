@@ -19,8 +19,7 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
 @end
 
 @implementation MFBGetDataFromGoogle
--(void) getDataFromGoogleforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord andComplition:(void(^)(NSArray* data)) block{
-    
+m  
     MFBAnnotation* (^createPlace)(NSDictionary *json);
     
     createPlace = ^MFBAnnotation*(NSDictionary* json){
@@ -32,12 +31,12 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
         CLLocationCoordinate2D placeCord;
         placeCord.latitude = [lat doubleValue];
         placeCord.longitude = [lng doubleValue];
-        MFBAnnotation *annotation = [[MFBAnnotation alloc] initWithTitle:@"1" location:placeCord];
+        MFBAnnotation *annotation = [[MFBAnnotation alloc] initWithTitle:text location:placeCord];
         return annotation;
     };
     
     NSString *urlstrMain = @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-    NSString *urlparam = @"location=55.752220, 37.609218&radius=5000&type=atm&keyword=sberbank&key=AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
+    NSString *urlparam = [[NSString alloc] initWithFormat:@"location=%f, %f&radius=5000&type=atm&keyword=sberbank&key=AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY", cord.latitude, cord.longitude ];
     
     urlparam = [urlparam stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
