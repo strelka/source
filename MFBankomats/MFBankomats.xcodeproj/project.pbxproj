@@ -22,6 +22,7 @@
 		92BE908B1EC06CA30047C689 /* place.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92BE908A1EC06CA30047C689 /* place.plist */; };
 		92BE90961EC0C4440047C689 /* MFBGetDataFromGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BE90951EC0C4440047C689 /* MFBGetDataFromGoogle.m */; };
 		92C7BD091EC10F3400B8731B /* MFBAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7BD081EC10F3400B8731B /* MFBAnnotation.m */; };
+		92CAC3ED1EC43A7F00C6616C /* MFBRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CAC3EC1EC43A7F00C6616C /* MFBRouteViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,8 @@
 		92BE90951EC0C4440047C689 /* MFBGetDataFromGoogle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFBGetDataFromGoogle.m; sourceTree = "<group>"; };
 		92C7BD071EC10F3400B8731B /* MFBAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFBAnnotation.h; sourceTree = "<group>"; };
 		92C7BD081EC10F3400B8731B /* MFBAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFBAnnotation.m; sourceTree = "<group>"; };
+		92CAC3EB1EC43A7F00C6616C /* MFBRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFBRouteViewController.h; sourceTree = "<group>"; };
+		92CAC3EC1EC43A7F00C6616C /* MFBRouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFBRouteViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +166,8 @@
 				9258C1FC1EC27E7500C7498A /* MFBTabBarController.m */,
 				9258C1FE1EC283FC00C7498A /* MFBTableViewController.h */,
 				9258C1FF1EC283FC00C7498A /* MFBTableViewController.m */,
+				92CAC3EB1EC43A7F00C6616C /* MFBRouteViewController.h */,
+				92CAC3EC1EC43A7F00C6616C /* MFBRouteViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 				9258C1FD1EC27E7500C7498A /* MFBTabBarController.m in Sources */,
 				92BE90871EC05D610047C689 /* MFBMapController.m in Sources */,
 				924F674A1EC1A6E4004885FB /* MFBMapViewDelegate.m in Sources */,
+				92CAC3ED1EC43A7F00C6616C /* MFBRouteViewController.m in Sources */,
 				9258C2001EC283FC00C7498A /* MFBTableViewController.m in Sources */,
 				921BC8CE1EBF65D100B004D2 /* AppDelegate.m in Sources */,
 				924F67501EC1D515004885FB /* MFBGestureRecognizer.m in Sources */,

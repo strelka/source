@@ -7,6 +7,7 @@
 //
 
 #import "MFBAnnotation.h"
+#import "MFBRouteViewController.h"
 
 @implementation MFBAnnotation
 
@@ -62,6 +63,25 @@
     annotationView.enabled = YES;
     annotationView.canShowCallout = YES;
     annotationView.pinTintColor = _color;
+    
+    UIButton *drawRouteBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    
+    drawRouteBtn.tag = 1;
+    infoBtn.tag = 2;
+    
+    annotationView.rightCalloutAccessoryView = drawRouteBtn;
+    annotationView.leftCalloutAccessoryView = infoBtn;
+    
     return annotationView;
 }
+
+//-(void)drawRoute{
+//    MFBRouteViewController *rvc = [MFBRouteViewController new];
+//    CLLocationCoordinate2D destinationCoords = _coordinate;
+//    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:destinationCoords addressDictionary:nil];
+//    MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
+//    rvc.destination = destination;
+//    
+//}
 @end

@@ -22,10 +22,14 @@
     MFBMapController *mapController = [[MFBMapController alloc] init];
     MFBTableViewController *poiList = [[MFBTableViewController alloc] init];
     
+    UINavigationController *nav = [UINavigationController new];
+    nav.viewControllers = @[mapController];
+    
     NSMutableArray *tabViewControllers = [[NSMutableArray alloc] init];
-    [tabViewControllers addObject:mapController];
+    
+    [tabViewControllers addObject:nav];
     [tabViewControllers addObject:poiList];
-        
+    
     [self setViewControllers:tabViewControllers];
         //can't set this until after its added to the tab bar
     

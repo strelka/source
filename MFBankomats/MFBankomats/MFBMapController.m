@@ -13,6 +13,7 @@
 #import "MFBGestureRecognizer.h"
 #import "MFBTableViewController.h"
 #import "MFBAnnotation.h"
+#import "MFBRouteViewController.h"
 
 @interface MFBMapController ()<CLLocationManagerDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate>
 
@@ -103,7 +104,7 @@
                 
             }];
     };
-    [self.mapView addGestureRecognizer:_tapInterceptor];
+    //[self.mapView addGestureRecognizer:_tapInterceptor];
     
 }
     
@@ -140,8 +141,23 @@
         else {
             pinView.annotation = annotation;
         }
+        
         return pinView;
     }
     return nil;
+}
+
+-(void)mapView:(MKMapView *)mapView annotationView:(nonnull MKAnnotationView *)view calloutAccessoryControlTapped:(nonnull UIControl *)control
+{
+    if ([control tag] == 1){
+        MFBRouteViewController *rvc = [MFBRouteViewController new];
+        
+        CLLocationCoordinate2D destinationCoords = view.annotation.coordinate;
+        MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:destinationCoords addressDictionary:nil];
+        MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
+        rvc.destination = destination;
+        rvc.current = mapView.userLocation.location.coordinate;
+        [self.navigationController pushViewController:rvc animated:YES];
+    }
 }
 @end;
