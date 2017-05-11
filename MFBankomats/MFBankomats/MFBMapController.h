@@ -7,6 +7,10 @@
 //
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
+@class poiAtmList;
+@class MFBAnnotation;
 
 @interface MFBMapController : UIViewController
+@property(nonatomic, strong) poiAtmList* poiList;
+@property(nonatomic, strong) MFBAnnotation* selectedPoi;
 @end

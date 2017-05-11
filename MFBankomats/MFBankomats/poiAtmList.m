@@ -7,7 +7,24 @@
 //
 
 #import "poiAtmList.h"
-
+#import "MFBAnnotation.h"
 @implementation poiAtmList
+-(instancetype) init{
+    self = [super init];
+    _poi = [NSMutableSet new];
+    return self;
+}
+
+-(void)addPoiObject:(MFBAnnotation *)object{
+    [_poi addObject:object];
+}
+
+-(NSUInteger)countOfPoi{
+    return [_poi count];
+}
+
+-(NSSet*)getPoiSet{
+    return self.poi;
+}
 
 @end

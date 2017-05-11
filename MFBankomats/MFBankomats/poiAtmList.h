@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+@class MFBAnnotation;
 
 @interface poiAtmList : NSObject
+@property (nonatomic, strong) NSMutableSet *poi;
+-(NSUInteger)countOfPoi;
+-(void)addPoiObject:(MFBAnnotation *)object;
+-(NSSet*)getPoiSet;
+
 
 @end

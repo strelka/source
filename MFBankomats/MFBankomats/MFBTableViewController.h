@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class poiAtmList;
+@class MFBAnnotation;
 
 @interface MFBTableViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
-@property(nonatomic, strong) NSArray* poiArray;
+@property(nonatomic, strong) poiAtmList* poiList;
+@property(nonatomic, strong) MFBAnnotation* selectedPoi;
+
 @end

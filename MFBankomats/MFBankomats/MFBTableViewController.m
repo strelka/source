@@ -8,52 +8,70 @@
 
 #import "MFBTableViewController.h"
 #import <Masonry/Masonry.h>
+#import "poiAtmList.h"
+#import "MFBAnnotation.h"
 
 @interface MFBTableViewController ()
-
+@property (nonatomic, strong) NSArray* poiArray;
+@property (nonatomic, strong) UITableView* tableView;
 @end
 
 @implementation MFBTableViewController
 
+//-(void)viewWillAppear:(BOOL)animated{
+//    [self viewWillAppear:YES];
+//    _poiArray = [_poiList.poi allObjects];
+//}
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+
+    if (self.tableView){
+        NSLog(@"-->%lu", (unsigned long)[_poiList countOfPoi]);
+        _poiArray  = [[_poiList getPoiSet] allObjects];
+        [self.tableView reloadData];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _poiArray = [NSArray new];
-    
+    _poiArray  = [[NSArray alloc] initWithArray:[[_poiList getPoiSet] allObjects]];
+
     self.view.backgroundColor = [UIColor whiteColor];
     UIView *headerView = [UIView new];
     headerView.backgroundColor = [UIColor lightGrayColor];
     
-    UILabel *title = [UILabel new];
+    //UILabel *title = [UILabel new];
     //title.text = @"@%", [poiAtm count];
     
-    UITableView *tableView = [UITableView new];
-    tableView.delegate = self;
-    tableView.dataSource = self;
+    _tableView = [UITableView new];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
     
-    [headerView addSubview:title];
-    [self.view addSubview:headerView];
-    [self.view addSubview:tableView];
+//    [headerView addSubview:title];
+//    [self.view addSubview:headerView];
+    [self.view addSubview:_tableView];
     
-    [title mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(headerView.mas_centerX);
-        make.centerY.equalTo(headerView.mas_centerY);
-    }];
+//    [title mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(headerView.mas_centerX);
+//        make.centerY.equalTo(headerView.mas_centerY);
+//    }];
+//    
+//    [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.view.mas_top);
+//        make.left.equalTo(self.view.mas_left);
+//        make.right.equalTo(self.view.mas_right);
+//        make.height.equalTo(@100);
+//    }];
     
-    [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_top);
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top).with.offset(50);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.height.equalTo(@100);
+        make.bottom.equalTo(self.view.mas_bottom);
     }];
     
-    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(headerView.mas_bottom);
-        make.left.equalTo(self.view.mas_left);
-        make.right.equalTo(self.view.mas_right);
-    }];
+    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"TableItem"];
 
-    
 }
 
 
@@ -68,16 +86,31 @@
     return [_poiArray count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString *TableIdentifier = @"TableItem";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier forIndexPath:indexPath];
+    MFBAnnotation *annotation = _poiArray[indexPath.row];
+    if (cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TableIdentifier];
+    }
+    
+    cell.textLabel.text = annotation.title;
     
     // Configure the cell...
     
     return cell;
 }
-*/
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    MFBAnnotation *tmppoi = _poiArray[indexPath.row];
+    _selectedPoi.coordinate = tmppoi.coordinate;
+    _selectedPoi.title = tmppoi.title;
+    _selectedPoi.color = [UIColor magentaColor];
+    [self.tabBarController setSelectedIndex:0];
+
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

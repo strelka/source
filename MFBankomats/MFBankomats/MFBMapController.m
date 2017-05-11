@@ -14,42 +14,66 @@
 #import "MFBTableViewController.h"
 #import "MFBAnnotation.h"
 #import "MFBRouteViewController.h"
+#import "poiAtmList.h"
 
-@interface MFBMapController ()<CLLocationManagerDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate>
+@interface MFBMapController ()<CLLocationManagerDelegate, MKMapViewDelegate>
 
 @property(nonatomic, strong) CLLocationManager* locationManager;
 @property(nonatomic, strong) id service;
-//@property(nonatomic, strong) MFBGestureRecognizer* tapInterceptor;
 
 @property(nonatomic, strong) MKMapView* mapView;
 @property(nonatomic) CLLocationCoordinate2D currentCord;
 @property(nonatomic) MKCoordinateRegion region;
-@property(nonatomic, strong) NSMutableSet* poiAtm;
 @end
 
 @implementation MFBMapController
 
+-(instancetype) init{
+    self = [super init];
+    if (self){
+        _locationManager = [CLLocationManager new];
+        //_locationManager.
+        if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [_locationManager requestWhenInUseAuthorization];
+        };
+        
+    }
+    return self;
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    
+    if (self.mapView){
+        if (nil !=[_selectedPoi title]){
+            [self.mapView addAnnotation:_selectedPoi.annotationView.annotation];
+            _region = MKCoordinateRegionMakeWithDistance(_selectedPoi.coordinate, 1000, 1000);
+            [_mapView setRegion:_region animated:YES];
+      //   _selectedPoi = nil;
+        }
+    }
+}
 -(void)viewDidLoad {
     [super viewDidLoad];
     
     self.mapView = [[MKMapView alloc] init];
     self.mapView.showsUserLocation = YES;
-    _poiAtm = [NSMutableSet new];
+    
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+   // _locationManager.startUpdatingLocation()
     
     //????????????
     //MFBMapViewDelegate *mapViewDelegate = [[MFBMapViewDelegate alloc] init];
     //self.mapView.delegate = mapViewDelegate;
     
-    
-//    MyViewController *myVc = (MyViewController*) [[(UINavigationController*)[[self.tabviewController viewControllers] objectAtIndex:2] viewControllers] objectAtIndex:0];
-//    [myVc setPropertyName:propertyValue];
-//    
     self.mapView.delegate = self;
     
-    _currentCord.longitude = 37.609218;
-    _currentCord.latitude = 55.7522200;
+    NSLog(@"%f", self.locationManager.location.coordinate.latitude);
     
-    _region = MKCoordinateRegionMakeWithDistance(_currentCord, 20000, 20000);
+    _currentCord = self.locationManager.location.coordinate;
+    _region = MKCoordinateRegionMakeWithDistance(_currentCord, 2000, 2000);
+    
     [_mapView setRegion:_region animated:YES];
 
     [self.view addSubview:self.mapView];
@@ -58,12 +82,17 @@
     
     [_service getDataforName:@"sberbank" andCord:_region.center andComplition:^(NSMutableSet *data) {
         for (MFBAnnotation *item in data){
-            [_poiAtm addObject:item];
+            [self.poiList addPoiObject:item];
+            //[self.poiList.poi addObject:item];
             [self.mapView addAnnotation:item];
         }
         [[[[[self tabBarController] tabBar] items]
-          objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([_mapView.annotations count])]];
+          objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([_poiList countOfPoi])]];
+        
+        NSLog(@"%lu", (unsigned long)[_poiList countOfPoi]);
+
     }];
+    
 }
     
 
@@ -110,6 +139,9 @@
     if ([control tag] == 1){
         MFBRouteViewController *rvc = [MFBRouteViewController new];
         rvc.destination = view;
+        _selectedPoi.coordinate = view.annotation.coordinate;
+        _selectedPoi.title = view.annotation.title;
+        
         rvc.current = mapView.userLocation.location.coordinate;
         [self.navigationController pushViewController:rvc animated:YES];
     }
@@ -133,18 +165,18 @@
     
         [_service getDataforName:@"sberbank" andCord:newRegion.center andComplition:^(NSMutableSet *data) {
             if (data){
-                [data minusSet:self.poiAtm];
+                [data minusSet:self.poiList.poi];
                 
                 for (MFBAnnotation *item in data){
-                    [self.poiAtm addObject:item];
+                    [self.poiList.poi addObject:item];
                     [self.mapView addAnnotation:item];
                 }
                 [[[[[self tabBarController] tabBar] items]
-                  objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([self.mapView.annotations count])]];
+                  objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([_poiList countOfPoi])]];
             }
             
         }];
-
-    
 }
+
+
 @end;
