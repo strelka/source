@@ -11,11 +11,11 @@
 @interface MFBAnnotation : NSObject<MKAnnotation>
 @property(nonatomic) CLLocationCoordinate2D coordinate;
 @property(copy, nonatomic) NSString *title;
-@property(nonatomic) UIColor* isOpen;
+@property(copy, nonatomic) UIColor *color;
 
--(void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
--(instancetype) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)cord andOpen:(int)isOpen;
 -(MKPinAnnotationView *)annotationView;
+-(instancetype) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)cord;
+-(instancetype) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)cord andisOpen:(int)isOpen;
 
 
 @end

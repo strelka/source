@@ -8,6 +8,5 @@
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
 
-@interface MSFMapController : UIViewController
-
+@interface MFBMapController : UIViewController
 @end

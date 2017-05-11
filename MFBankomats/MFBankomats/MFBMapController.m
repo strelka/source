@@ -6,45 +6,42 @@
 //  Copyright © 2017 Julia Sharaeva. All rights reserved.
 //
 
-#import "MSFMapController.h"
+#import "MFBMapController.h"
 #import "MFBGetDataFromGoogle.h"
 #import <MapKit/MapKit.h>
 #import "MFBMapViewDelegate.h"
 #import "MFBGestureRecognizer.h"
+#import "MFBTableViewController.h"
 #import "MFBAnnotation.h"
 
-@interface MSFMapController ()<CLLocationManagerDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate>
+@interface MFBMapController ()<CLLocationManagerDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate>
 
 @property(nonatomic, strong) CLLocationManager* locationManager;
-@property(nonatomic, strong) MKMapView* mapView;
-@property(nonatomic) CLLocationCoordinate2D currentCord;
-@property(nonatomic, strong) NSArray* annotations;
-@property(nonatomic) MKCoordinateRegion region;
 @property(nonatomic, strong) MFBGestureRecognizer* tapInterceptor;
 
+@property(nonatomic, strong) MKMapView* mapView;
+@property(nonatomic) CLLocationCoordinate2D currentCord;
+@property(nonatomic) MKCoordinateRegion region;
+@property(nonatomic, strong) NSMutableSet* poiAtm;
 @end
 
-@implementation MSFMapController
-
--(instancetype) init{
-    self = [super init];
-    if (self){
-        _locationManager = [CLLocationManager new];
-        if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-            [_locationManager requestWhenInUseAuthorization];
-        };
-    }
-    return self;
-}
-
+@implementation MFBMapController
 
 -(void)viewDidLoad {
     [super viewDidLoad];
     
     self.mapView = [[MKMapView alloc] init];
     self.mapView.showsUserLocation = YES;
+    _poiAtm = [NSMutableSet new];
+    
+    //????????????
     //MFBMapViewDelegate *mapViewDelegate = [[MFBMapViewDelegate alloc] init];
     //self.mapView.delegate = mapViewDelegate;
+    
+    
+//    MyViewController *myVc = (MyViewController*) [[(UINavigationController*)[[self.tabviewController viewControllers] objectAtIndex:2] viewControllers] objectAtIndex:0];
+//    [myVc setPropertyName:propertyValue];
+//    
     self.mapView.delegate = self;
     
     _currentCord.longitude = 37.609218;
@@ -64,8 +61,18 @@
     
     MFBGetDataFromGoogle *service = [MFBGetDataFromGoogle new];
     
-    [service getDataforName:@"sberbank" andCord:_region.center andComplition:^(NSArray *data) {
-        [self.mapView addAnnotations:data];
+    
+    [service getDataforName:@"sberbank" andCord:_region.center andComplition:^(NSMutableSet *data) {
+        //NSMutableSet *tmpset = [[NSMutableSet alloc] initWithSet:_poiAtm copyItems:YES];
+        //[data minusSet:_poiAtm];
+        for (MFBAnnotation *item in data){
+            [_poiAtm addObject:item];
+            [self.mapView addAnnotation:item];
+        }
+        
+        [[[[[self tabBarController] tabBar] items]
+          objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([_mapView.annotations count])]];
+        
     }];
     
     _tapInterceptor = [[MFBGestureRecognizer alloc] init];
@@ -79,10 +86,21 @@
         if ((fabs(_region.span.latitudeDelta - newRegion.span.latitudeDelta) > 0.01)
               ||(fabs(_region.span.longitudeDelta - newRegion.span.longitudeDelta) > 0.01))
             
-            NSLog(@"change!");
-            NSLog(@"%f-%f",newRegion.center.longitude, newRegion.center.latitude);
-            [service getDataforName:@"sberbank" andCord:newRegion.center andComplition:^(NSArray *data) {
-                [self.mapView addAnnotations:data];
+            //NSLog(@"change!");
+            //NSLog(@"%f-%f",newRegion.center.longitude, newRegion.center.latitude);
+            [service getDataforName:@"sberbank" andCord:newRegion.center andComplition:^(NSMutableSet *data) {
+                if (data){
+                    //NSMutableSet *tmpset = [[NSMutableSet alloc] initWithSet:data];
+                    [data minusSet:self.poiAtm];
+                
+                    for (MFBAnnotation *item in data){
+                        [self.poiAtm addObject:item];
+                        [self.mapView addAnnotation:item];
+                    }
+                    [[[[[self tabBarController] tabBar] items]
+                      objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([self.mapView.annotations count])]];
+                }
+                
             }];
     };
     [self.mapView addGestureRecognizer:_tapInterceptor];

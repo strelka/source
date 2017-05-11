@@ -19,7 +19,7 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
 
 @implementation MFBGetDataFromGoogle
 
--(void) getDataforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord andComplition:(void(^)(NSArray* data)) block{
+-(void) getDataforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord andComplition:(void(^)(NSMutableSet* data)) block{
 
     MFBAnnotation* (^createPlace)(NSDictionary *json);
     
@@ -32,21 +32,14 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
         placeCord.latitude = [location[@"lat"] doubleValue];
         placeCord.longitude = [location[@"lng"] doubleValue];
         //[newAnnotation setCoordinate:placeCord];
-        
         int isOpen;
         if (nil == json[@"opening_hours"])
-            //newAnnotation.isOpen = 0;
-            isOpen = 0;
+           isOpen = 0;
         else
-            //newAnnotation.isOpen = (([json[@"opening_hours"][@"open_now"] caseInsensitiveCompare:@"false"]) == NSOrderedSame)? -1:1;
-            if (json[@"opening_hours"][@"open_now"])
-                //newAnnotation.isOpen = -1;
-                isOpen = -1;
-            else
-                //newAnnotation.isOpen = 1;
-                isOpen = 1;
+            isOpen = (json[@"opening_hours"][@"open_now"])? 1: -1;
         
-        MFBAnnotation* newAnnotation = [[MFBAnnotation alloc] initWithName:json[@"vicinity"] andCoordinate:placeCord andOpen:isOpen];
+        MFBAnnotation* newAnnotation = [[MFBAnnotation alloc] initWithName:json[@"vicinity"] andCoordinate:placeCord andisOpen:isOpen];
+        
         return newAnnotation;
     };
     
@@ -62,7 +55,7 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
     [[session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSError* jsonError;
-        NSMutableArray *_resultRecords = [NSMutableArray new];
+        NSMutableSet *_resultRecords = [NSMutableSet new];
         if (data){
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             NSDictionary *jsonResults = [json objectForKey:@"results"];

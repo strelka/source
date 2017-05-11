@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MSFMapController.h"
+#import "MFBTabBarController.h"
 //@import GooglePlaces;
 
 @interface AppDelegate ()
@@ -21,10 +21,11 @@
     //[GMSPlacesClient provideAPIKey:@"AIzaSyBv3nZHMZur08JlmyzQpJZfDsbnVRLE-Wg"];
     
     UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    MSFMapController *vc = [MSFMapController new];
+    
+    MFBTabBarController *tab = [MFBTabBarController new];
     
     
-    window.rootViewController = vc;
+    window.rootViewController = tab;
     self.window = window;
     [window makeKeyAndVisible];
     

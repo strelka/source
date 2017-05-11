@@ -14,36 +14,54 @@
     _coordinate = newCoordinate;
 }
 
--(instancetype) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)cord andOpen:(int)isOpen{
+-(instancetype) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)cord andisOpen:(int)isOpen{
     self = [super init];
     if (self){
         _coordinate = cord;
         _title = name;
-        
-        if (isOpen == 0)  _isOpen = [UIColor grayColor];
-        if (isOpen == -1) _isOpen = [UIColor redColor];
-        if (isOpen == 1) _isOpen = [UIColor greenColor];
+        if (isOpen == 0) _color = [UIColor lightGrayColor];
+        if (isOpen == 1) _color = [UIColor greenColor];
+        if (isOpen == -1) _color = [UIColor redColor];
         
     }
     return self;
 }
 
+
+-(instancetype) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)cord{
+    self = [super init];
+    if (self){
+        _coordinate = cord;
+        _title = name;
+    }
+    return self;
+}
+
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[MFBAnnotation class]]) {
+        if ((self.coordinate.latitude == [(MFBAnnotation *)object coordinate].latitude)&&
+            (self.coordinate.longitude == [(MFBAnnotation*) object coordinate].longitude)&&
+            ([self.title isEqualToString:[(MFBAnnotation*) object title]])
+            )
+        return YES;
+    }
+    return NO;
+}
+
+- (NSUInteger)hash {
+    NSString *hashstring = [[NSString alloc] initWithFormat:@"%f%f%@", self.coordinate.latitude,
+                                                                       self.coordinate.longitude,
+                                                                       self.title];
+    return [hashstring hash];
+}
+    
 -(MKPinAnnotationView *)annotationView
 {
     MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"MyAnnotation"];
     
     annotationView.enabled = YES;
     annotationView.canShowCallout = YES;
-    
-    //annotationView.pinTintColor = self.isOpen;
-    //annotationView.image = [UIImage imageNamed:@"ico"];
-//    if (self.isOpen == 0)
-//        annotationView.pinTintColor = [UIColor grayColor];
-//    else if (self.isOpen == 1)
-//        annotationView.pinTintColor = [UIColor greenColor];
-//    else
-//        annotationView.pinTintColor = [UIColor redColor];
-        
+    annotationView.pinTintColor = _color;
     return annotationView;
 }
 @end
