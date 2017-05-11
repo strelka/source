@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MFBAnnotation;
 
 @interface MFBRouteViewController : UIViewController
 @property(nonatomic) CLLocationCoordinate2D current;
-@property(strong, nonatomic) MKMapItem *destination;
+@property(strong, nonatomic) MKAnnotationView *destination;
 @end

@@ -18,7 +18,8 @@
 @interface MFBMapController ()<CLLocationManagerDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate>
 
 @property(nonatomic, strong) CLLocationManager* locationManager;
-@property(nonatomic, strong) MFBGestureRecognizer* tapInterceptor;
+@property(nonatomic, strong) id service;
+//@property(nonatomic, strong) MFBGestureRecognizer* tapInterceptor;
 
 @property(nonatomic, strong) MKMapView* mapView;
 @property(nonatomic) CLLocationCoordinate2D currentCord;
@@ -48,64 +49,21 @@
     _currentCord.longitude = 37.609218;
     _currentCord.latitude = 55.7522200;
     
+    _region = MKCoordinateRegionMakeWithDistance(_currentCord, 20000, 20000);
+    [_mapView setRegion:_region animated:YES];
+
     [self.view addSubview:self.mapView];
     [self initConstraints];
-
-    float spanX = 0.5f;
-    float spanY = 0.5f;
-    _region.center.latitude = _currentCord.latitude;
-    _region.center.longitude = _currentCord.longitude;
-    _region.span.latitudeDelta = spanX;
-    _region.span.longitudeDelta = spanY;
+    _service = [MFBGetDataFromGoogle new];
     
-    [self.mapView setRegion:_region animated:NO];
-    
-    MFBGetDataFromGoogle *service = [MFBGetDataFromGoogle new];
-    
-    
-    [service getDataforName:@"sberbank" andCord:_region.center andComplition:^(NSMutableSet *data) {
-        //NSMutableSet *tmpset = [[NSMutableSet alloc] initWithSet:_poiAtm copyItems:YES];
-        //[data minusSet:_poiAtm];
+    [_service getDataforName:@"sberbank" andCord:_region.center andComplition:^(NSMutableSet *data) {
         for (MFBAnnotation *item in data){
             [_poiAtm addObject:item];
             [self.mapView addAnnotation:item];
         }
-        
         [[[[[self tabBarController] tabBar] items]
           objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([_mapView.annotations count])]];
-        
     }];
-    
-    _tapInterceptor = [[MFBGestureRecognizer alloc] init];
-    __weak typeof(self)weakSelf = self;
-    _tapInterceptor.touchesEndCallback = ^(NSSet *touches, UIEvent *event) {
-        __strong typeof(self)self = weakSelf;
-        MKCoordinateRegion newRegion;
-        newRegion.center = self.mapView.region.center;
-        newRegion.span = self.mapView.region.span;
-        
-        if ((fabs(_region.span.latitudeDelta - newRegion.span.latitudeDelta) > 0.01)
-              ||(fabs(_region.span.longitudeDelta - newRegion.span.longitudeDelta) > 0.01))
-            
-            //NSLog(@"change!");
-            //NSLog(@"%f-%f",newRegion.center.longitude, newRegion.center.latitude);
-            [service getDataforName:@"sberbank" andCord:newRegion.center andComplition:^(NSMutableSet *data) {
-                if (data){
-                    //NSMutableSet *tmpset = [[NSMutableSet alloc] initWithSet:data];
-                    [data minusSet:self.poiAtm];
-                
-                    for (MFBAnnotation *item in data){
-                        [self.poiAtm addObject:item];
-                        [self.mapView addAnnotation:item];
-                    }
-                    [[[[[self tabBarController] tabBar] items]
-                      objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([self.mapView.annotations count])]];
-                }
-                
-            }];
-    };
-    //[self.mapView addGestureRecognizer:_tapInterceptor];
-    
 }
     
 
@@ -151,13 +109,42 @@
 {
     if ([control tag] == 1){
         MFBRouteViewController *rvc = [MFBRouteViewController new];
-        
-        CLLocationCoordinate2D destinationCoords = view.annotation.coordinate;
-        MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:destinationCoords addressDictionary:nil];
-        MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
-        rvc.destination = destination;
+        rvc.destination = view;
         rvc.current = mapView.userLocation.location.coordinate;
         [self.navigationController pushViewController:rvc animated:YES];
     }
+}
+
+-(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    
+    NSLog(@"regionDidChangeAnimated");
+    
+    MKCoordinateRegion newRegion;
+    newRegion.center = self.mapView.region.center;
+    newRegion.span = self.mapView.region.span;
+    
+    if ((fabs(_region.span.latitudeDelta - newRegion.span.latitudeDelta) > 0.01)
+        ||(fabs(_region.span.longitudeDelta - newRegion.span.longitudeDelta) > 0.01))
+        
+        NSLog(@"change!");
+        _region = newRegion;
+    
+        NSLog(@"%f-%f",newRegion.center.longitude, newRegion.center.latitude);
+    
+        [_service getDataforName:@"sberbank" andCord:newRegion.center andComplition:^(NSMutableSet *data) {
+            if (data){
+                [data minusSet:self.poiAtm];
+                
+                for (MFBAnnotation *item in data){
+                    [self.poiAtm addObject:item];
+                    [self.mapView addAnnotation:item];
+                }
+                [[[[[self tabBarController] tabBar] items]
+                  objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([self.mapView.annotations count])]];
+            }
+            
+        }];
+
+    
 }
 @end;

@@ -21,6 +21,7 @@
     _routeMap.delegate = self;
     [self.view addSubview:_routeMap];
     [self initConstraints];
+    [_routeMap addAnnotation:_destination.annotation];
     
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(_current, 20000, 20000);
     [_routeMap setRegion:region animated:YES];
@@ -45,15 +46,20 @@
 {
     MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
     request.source = [MKMapItem mapItemForCurrentLocation];
-    request.destination = _destination;
+    
+    CLLocationCoordinate2D destinationCoords = _destination.annotation.coordinate;
+    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:destinationCoords addressDictionary:nil];
+    MKMapItem *miDestination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
+    
+    request.destination = miDestination;
     request.requestsAlternateRoutes = NO;
     MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
     [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse * _Nullable response, NSError * _Nullable error) {
-            if (error){
+    if (error){
             
-            }else{
-                [self showRoute:response];
-            }
+    }else{
+            [self showRoute:response];
+    }
     }];
 }
 
@@ -64,7 +70,7 @@
         
         for (MKRouteStep *step in route.steps)
         {
-            NSLog(@"%@", step.instructions);
+            NSLog(@"%@,%f", step.instructions, step.distance);
         }
     }
 }

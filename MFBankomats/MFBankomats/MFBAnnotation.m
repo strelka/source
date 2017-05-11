@@ -76,12 +76,4 @@
     return annotationView;
 }
 
-//-(void)drawRoute{
-//    MFBRouteViewController *rvc = [MFBRouteViewController new];
-//    CLLocationCoordinate2D destinationCoords = _coordinate;
-//    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:destinationCoords addressDictionary:nil];
-//    MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
-//    rvc.destination = destination;
-//    
-//}
 @end
