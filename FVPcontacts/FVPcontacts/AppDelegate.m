@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "FVPNavigationController.h"
+#import "FVPViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    FVPNavigationController *nav = [[FVPNavigationController alloc] init];
+    FVPViewController *vc = [[FVPViewController alloc] init];
+    
+    nav.viewControllers = @[vc];
+    
+    window.rootViewController = nav;
+    self.window = window;
+    [_window makeKeyAndVisible];
     return YES;
 }
 

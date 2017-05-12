@@ -7,21 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		926154671EC63AD40021367A /* FVPVkLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926154661EC63AD40021367A /* FVPVkLoginViewController.m */; };
 		926174AE1EC5E04B001ECF18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 926174AD1EC5E04B001ECF18 /* main.m */; };
 		926174B11EC5E04B001ECF18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 926174B01EC5E04B001ECF18 /* AppDelegate.m */; };
-		926174B41EC5E04B001ECF18 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926174B31EC5E04B001ECF18 /* ViewController.m */; };
 		926174B91EC5E04B001ECF18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 926174B81EC5E04B001ECF18 /* Assets.xcassets */; };
+		927D42771EC5E3230030D2CC /* FVPGetDataFromVK.m in Sources */ = {isa = PBXBuildFile; fileRef = 927D42761EC5E3230030D2CC /* FVPGetDataFromVK.m */; };
+		927D427A1EC5E3C00030D2CC /* FVPGetFataFromFB.m in Sources */ = {isa = PBXBuildFile; fileRef = 927D42791EC5E3C00030D2CC /* FVPGetFataFromFB.m */; };
+		927D427D1EC5E3E10030D2CC /* FVPGetDataFromPhoneBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 927D427C1EC5E3E10030D2CC /* FVPGetDataFromPhoneBook.m */; };
+		927D42801EC5E3FD0030D2CC /* FVPContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 927D427F1EC5E3FD0030D2CC /* FVPContact.m */; };
+		927D42841EC5E4450030D2CC /* FVPContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 927D42831EC5E4450030D2CC /* FVPContactCell.m */; };
+		927D42871EC5E4BB0030D2CC /* FVPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927D42861EC5E4BB0030D2CC /* FVPViewController.m */; };
+		927D428A1EC5E8000030D2CC /* FVPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927D42891EC5E8000030D2CC /* FVPNavigationController.m */; };
+		A99AA3B89D86296ADF64478C /* libPods-FVPcontacts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BDEF23B093AD2339A8CEF4 /* libPods-FVPcontacts.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43BDEF23B093AD2339A8CEF4 /* libPods-FVPcontacts.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FVPcontacts.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60968647E06FA1C9E2F93A05 /* Pods-FVPcontacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FVPcontacts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FVPcontacts/Pods-FVPcontacts.debug.xcconfig"; sourceTree = "<group>"; };
+		91C3FAE2C00283C597522F1B /* Pods-FVPcontacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FVPcontacts.release.xcconfig"; path = "Pods/Target Support Files/Pods-FVPcontacts/Pods-FVPcontacts.release.xcconfig"; sourceTree = "<group>"; };
+		926154651EC63AD40021367A /* FVPVkLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVPVkLoginViewController.h; sourceTree = "<group>"; };
+		926154661EC63AD40021367A /* FVPVkLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVPVkLoginViewController.m; sourceTree = "<group>"; };
 		926174A91EC5E04A001ECF18 /* FVPcontacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FVPcontacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		926174AD1EC5E04B001ECF18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		926174AF1EC5E04B001ECF18 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		926174B01EC5E04B001ECF18 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		926174B21EC5E04B001ECF18 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		926174B31EC5E04B001ECF18 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		926174B81EC5E04B001ECF18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		926174BD1EC5E04B001ECF18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		927D42751EC5E3230030D2CC /* FVPGetDataFromVK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVPGetDataFromVK.h; sourceTree = "<group>"; };
+		927D42761EC5E3230030D2CC /* FVPGetDataFromVK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVPGetDataFromVK.m; sourceTree = "<group>"; };
+		927D42781EC5E3C00030D2CC /* FVPGetFataFromFB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVPGetFataFromFB.h; sourceTree = "<group>"; };
+		927D42791EC5E3C00030D2CC /* FVPGetFataFromFB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVPGetFataFromFB.m; sourceTree = "<group>"; };
+		927D427B1EC5E3E10030D2CC /* FVPGetDataFromPhoneBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVPGetDataFromPhoneBook.h; sourceTree = "<group>"; };
+		927D427C1EC5E3E10030D2CC /* FVPGetDataFromPhoneBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVPGetDataFromPhoneBook.m; sourceTree = "<group>"; };
+		927D427E1EC5E3FD0030D2CC /* FVPContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVPContact.h; sourceTree = "<group>"; };
+		927D427F1EC5E3FD0030D2CC /* FVPContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVPContact.m; sourceTree = "<group>"; };
+		927D42821EC5E4450030D2CC /* FVPContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVPContactCell.h; sourceTree = "<group>"; };
+		927D42831EC5E4450030D2CC /* FVPContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVPContactCell.m; sourceTree = "<group>"; };
+		927D42851EC5E4BB0030D2CC /* FVPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVPViewController.h; sourceTree = "<group>"; };
+		927D42861EC5E4BB0030D2CC /* FVPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVPViewController.m; sourceTree = "<group>"; };
+		927D42881EC5E8000030D2CC /* FVPNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVPNavigationController.h; sourceTree = "<group>"; };
+		927D42891EC5E8000030D2CC /* FVPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVPNavigationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A99AA3B89D86296ADF64478C /* libPods-FVPcontacts.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,8 +64,14 @@
 		926174A01EC5E04A001ECF18 = {
 			isa = PBXGroup;
 			children = (
+				927D42811EC5E41F0030D2CC /* View */,
+				927D42741EC5E2C80030D2CC /* Controller */,
+				927D42731EC5E2BA0030D2CC /* Model */,
+				927D42721EC5E2B00030D2CC /* Service */,
 				926174AB1EC5E04A001ECF18 /* FVPcontacts */,
 				926174AA1EC5E04A001ECF18 /* Products */,
+				D78BCC3E635737EC03661FB7 /* Pods */,
+				C42591BB9CD611C0F4169950 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,8 +88,6 @@
 			children = (
 				926174AF1EC5E04B001ECF18 /* AppDelegate.h */,
 				926174B01EC5E04B001ECF18 /* AppDelegate.m */,
-				926174B21EC5E04B001ECF18 /* ViewController.h */,
-				926174B31EC5E04B001ECF18 /* ViewController.m */,
 				926174B81EC5E04B001ECF18 /* Assets.xcassets */,
 				926174BD1EC5E04B001ECF18 /* Info.plist */,
 				926174AC1EC5E04B001ECF18 /* Supporting Files */,
@@ -73,6 +103,67 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		927D42721EC5E2B00030D2CC /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				927D42751EC5E3230030D2CC /* FVPGetDataFromVK.h */,
+				927D42761EC5E3230030D2CC /* FVPGetDataFromVK.m */,
+				927D42781EC5E3C00030D2CC /* FVPGetFataFromFB.h */,
+				927D42791EC5E3C00030D2CC /* FVPGetFataFromFB.m */,
+				927D427B1EC5E3E10030D2CC /* FVPGetDataFromPhoneBook.h */,
+				927D427C1EC5E3E10030D2CC /* FVPGetDataFromPhoneBook.m */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		927D42731EC5E2BA0030D2CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				927D427E1EC5E3FD0030D2CC /* FVPContact.h */,
+				927D427F1EC5E3FD0030D2CC /* FVPContact.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		927D42741EC5E2C80030D2CC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				927D42851EC5E4BB0030D2CC /* FVPViewController.h */,
+				927D42861EC5E4BB0030D2CC /* FVPViewController.m */,
+				927D42881EC5E8000030D2CC /* FVPNavigationController.h */,
+				927D42891EC5E8000030D2CC /* FVPNavigationController.m */,
+				926154651EC63AD40021367A /* FVPVkLoginViewController.h */,
+				926154661EC63AD40021367A /* FVPVkLoginViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		927D42811EC5E41F0030D2CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				927D42821EC5E4450030D2CC /* FVPContactCell.h */,
+				927D42831EC5E4450030D2CC /* FVPContactCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C42591BB9CD611C0F4169950 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				43BDEF23B093AD2339A8CEF4 /* libPods-FVPcontacts.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D78BCC3E635737EC03661FB7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				60968647E06FA1C9E2F93A05 /* Pods-FVPcontacts.debug.xcconfig */,
+				91C3FAE2C00283C597522F1B /* Pods-FVPcontacts.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +171,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 926174C01EC5E04B001ECF18 /* Build configuration list for PBXNativeTarget "FVPcontacts" */;
 			buildPhases = (
+				6FC1A9DD154FD3A2796C7747 /* [CP] Check Pods Manifest.lock */,
 				926174A51EC5E04A001ECF18 /* Sources */,
 				926174A61EC5E04A001ECF18 /* Frameworks */,
 				926174A71EC5E04A001ECF18 /* Resources */,
+				73563F3FBC0338892212C820 /* [CP] Embed Pods Frameworks */,
+				820AD1A6FC28484D0AA89649 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -138,14 +232,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6FC1A9DD154FD3A2796C7747 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		73563F3FBC0338892212C820 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FVPcontacts/Pods-FVPcontacts-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		820AD1A6FC28484D0AA89649 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FVPcontacts/Pods-FVPcontacts-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		926174A51EC5E04A001ECF18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				926174B41EC5E04B001ECF18 /* ViewController.m in Sources */,
+				926154671EC63AD40021367A /* FVPVkLoginViewController.m in Sources */,
+				927D428A1EC5E8000030D2CC /* FVPNavigationController.m in Sources */,
+				927D42771EC5E3230030D2CC /* FVPGetDataFromVK.m in Sources */,
+				927D42871EC5E4BB0030D2CC /* FVPViewController.m in Sources */,
+				927D427A1EC5E3C00030D2CC /* FVPGetFataFromFB.m in Sources */,
 				926174B11EC5E04B001ECF18 /* AppDelegate.m in Sources */,
+				927D42841EC5E4450030D2CC /* FVPContactCell.m in Sources */,
+				927D42801EC5E3FD0030D2CC /* FVPContact.m in Sources */,
 				926174AE1EC5E04B001ECF18 /* main.m in Sources */,
+				927D427D1EC5E3E10030D2CC /* FVPGetDataFromPhoneBook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +393,7 @@
 		};
 		926174C11EC5E04B001ECF18 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60968647E06FA1C9E2F93A05 /* Pods-FVPcontacts.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = P85JQ5XGQC;
@@ -257,6 +407,7 @@
 		};
 		926174C21EC5E04B001ECF18 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91C3FAE2C00283C597522F1B /* Pods-FVPcontacts.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = P85JQ5XGQC;
@@ -287,6 +438,7 @@
 				926174C21EC5E04B001ECF18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
