@@ -9,5 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface FVPContact : NSObject
+@property(nonatomic, strong) NSString* firstName;
+@property(nonatomic, strong) NSString* lastName;
+
+//@property(nonatomic, strong) NSString* phone;
+//@property(nonatomic, strong) NSURL* imageUrl;
 
 @end

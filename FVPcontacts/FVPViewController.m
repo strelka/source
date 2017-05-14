@@ -7,6 +7,10 @@
 //
 
 #import "FVPViewController.h"
+#import "FVPVkLoginViewController.h"
+#import "FVPGetDataFromVK.h"
+#import "FVPContact.h"
+
 #import <Masonry/Masonry.h>
 
 @interface FVPViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -14,6 +18,10 @@
 @property (strong, nonatomic) UIView *headerView;
 @property (strong, nonatomic) UIView *footerView;
 @property (strong, nonatomic) UISegmentedControl *segmentControl;
+
+@property(strong, nonatomic) NSArray *contacts;
+
+@property (strong, nonatomic) id service;
 @end
 
 @implementation FVPViewController
@@ -28,6 +36,7 @@
     _tableView = [UITableView new];
     _footerView = [UIView new];
     _segmentControl = [[UISegmentedControl alloc] initWithItems:@[@"VK", @"FB", @"Phone"]];
+    [_segmentControl addTarget:self action:@selector(serviceChange:) forControlEvents:UIControlEventValueChanged];
     
     [self.view addSubview:_headerView];
     [self.view addSubview:_tableView];
@@ -43,6 +52,15 @@
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    
+    _contacts = [[NSArray alloc] init];
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    if (_segmentControl.selectedSegmentIndex == 0) {
+        [self loadVkData];
+    }
 }
 
 
@@ -78,11 +96,15 @@
     
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return [_contacts count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    
+    FVPContact *contact = _contacts[indexPath.row];
+    cell.textLabel.text = contact.firstName;
+    
     return cell;
 }
 
@@ -93,5 +115,23 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+- (void)serviceChange:(UISegmentedControl *)segment{
+    if (segment.selectedSegmentIndex == 0) {
+        [self loadVkData];
+    }
+}
 
+- (void) loadVkData{
+    if (nil == [[NSUserDefaults standardUserDefaults] objectForKey:@"VKAccessToken"]){
+        FVPVkLoginViewController  *loginVk = [[FVPVkLoginViewController alloc] init];
+        [self presentViewController:loginVk animated:YES completion:nil];
+    }
+    _service = [FVPGetDataFromVK new];
+    [_service getDataAndDoSuccessBlock:^(NSArray *data){
+        _contacts = data;
+        [_tableView reloadData];
+    }];
+    
+
+}
 @end

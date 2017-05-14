@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FVPGetDataFromVK : NSObject
-
+@interface FVPGetDataFromVK : NSObject<NSURLSessionDataDelegate>
+- (void)getDataAndDoSuccessBlock:(void(^)(NSArray *)) successBlock;
 @end
