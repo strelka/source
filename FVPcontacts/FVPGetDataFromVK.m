@@ -24,7 +24,7 @@
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"VKAccessToken"];
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"VKAccessUserId"];
     NSString *urlString = @"https://api.vk.com/method/friends.get?";
-    NSString *urlParametres = [[NSString alloc] initWithFormat:@"friends.get?user_id=%@&fields=nickname,contacts,photo_100,phone&%@", userId, accessToken];
+    NSString *urlParametres = [[NSString alloc] initWithFormat:@"user_id=%@&fields=nickname,contacts,photo_100,phone&%@", userId, accessToken];
     urlParametres = [urlParametres stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSString* webStringURL = [urlString stringByAppendingString:urlParametres];
     NSURL* urlData = [NSURL URLWithString:webStringURL];

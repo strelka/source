@@ -37,6 +37,7 @@
     _footerView = [UIView new];
     _segmentControl = [[UISegmentedControl alloc] initWithItems:@[@"VK", @"FB", @"Phone"]];
     [_segmentControl addTarget:self action:@selector(serviceChange:) forControlEvents:UIControlEventValueChanged];
+    [_segmentControl setSelectedSegmentIndex:0];
     
     [self.view addSubview:_headerView];
     [self.view addSubview:_tableView];
@@ -92,8 +93,6 @@
         make.right.equalTo(self.view);
         make.bottom.equalTo(self.mas_bottomLayoutGuideTop).with.offset(-60);
     }];
-
-    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_contacts count];
@@ -103,7 +102,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     
     FVPContact *contact = _contacts[indexPath.row];
-    cell.textLabel.text = contact.firstName;
+    cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ %@", contact.firstName, contact.lastName];
     
     return cell;
 }
