@@ -10,6 +10,8 @@
 
 @interface Spoon : NSObject
 @property (atomic, strong) NSLock *lock;
+@property (nonatomic, strong) NSString *name;
+- (instancetype) initWithName: (NSString *) name;
 - (void) up;
 - (void) down;
 @end

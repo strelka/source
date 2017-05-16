@@ -13,27 +13,34 @@
 
 - (instancetype) initWithRightSpoon:(Spoon*) rightSpoon AndLeftSpoon:(Spoon*) leftSpoon{
     self = [super init];
-    if (self){
-        _leftSpoon = leftSpoon;
-        _rightSpoon = rightSpoon;
-    }
+    _rightSpoon = rightSpoon;
+    _leftSpoon = leftSpoon;
     return self;
 }
 
 
 -(void) main{
     [_leftSpoon up];
-    NSLog(@"left spoon for %@ lock", self.name);
+    NSLog(@" %@ lock", _leftSpoon.name);
+
     [_rightSpoon up];
-    NSLog(@"right spoon for %@ lock", self.name);
-    [NSThread sleepForTimeInterval:2];
+    NSLog(@" %@ lock", _rightSpoon.name);
+    
+    int j = 0;
+    for (int i = 0; i < 1000000; i++){
+        j++;
+    }
     NSLog(@"%@ - eating!", self.name);
+    
+    for (int i = 0; i < 1000000; i++){
+        j++;
+    }
     _isFull = YES;
     
     [_leftSpoon down];
+    NSLog(@"%@ unlock", _leftSpoon.name);
     [_rightSpoon down];
-    NSLog(@"left spoon for %@ anlock", self.name);
-    NSLog(@"right spoon for %@ anlock", self.name);
+    NSLog(@"%@ unlock", _rightSpoon.name);
 
 
 }

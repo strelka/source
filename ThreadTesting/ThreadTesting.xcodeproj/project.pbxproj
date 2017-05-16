@@ -10,6 +10,7 @@
 		926154751EC75F610021367A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 926154741EC75F610021367A /* main.m */; };
 		9261547D1EC75F810021367A /* Philosopher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9261547C1EC75F810021367A /* Philosopher.m */; };
 		926154801EC75FBB0021367A /* Spoon.m in Sources */ = {isa = PBXBuildFile; fileRef = 9261547F1EC75FBB0021367A /* Spoon.m */; };
+		926154831EC7A8130021367A /* PhilosopherObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 926154821EC7A8120021367A /* PhilosopherObj.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		9261547C1EC75F810021367A /* Philosopher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Philosopher.m; sourceTree = "<group>"; };
 		9261547E1EC75FBB0021367A /* Spoon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spoon.h; sourceTree = "<group>"; };
 		9261547F1EC75FBB0021367A /* Spoon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spoon.m; sourceTree = "<group>"; };
+		926154811EC7A8120021367A /* PhilosopherObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhilosopherObj.h; sourceTree = "<group>"; };
+		926154821EC7A8120021367A /* PhilosopherObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhilosopherObj.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,8 @@
 				9261547C1EC75F810021367A /* Philosopher.m */,
 				9261547E1EC75FBB0021367A /* Spoon.h */,
 				9261547F1EC75FBB0021367A /* Spoon.m */,
+				926154811EC7A8120021367A /* PhilosopherObj.h */,
+				926154821EC7A8120021367A /* PhilosopherObj.m */,
 			);
 			path = ThreadTesting;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 				926154801EC75FBB0021367A /* Spoon.m in Sources */,
 				926154751EC75F610021367A /* main.m in Sources */,
 				9261547D1EC75F810021367A /* Philosopher.m in Sources */,
+				926154831EC7A8130021367A /* PhilosopherObj.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
