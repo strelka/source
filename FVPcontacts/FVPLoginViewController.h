@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FVPVkLoginViewController : UIViewController
+@interface FVPLoginViewController : UIViewController
 
 @end

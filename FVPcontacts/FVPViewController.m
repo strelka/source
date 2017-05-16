@@ -13,6 +13,10 @@
 
 #import <Masonry/Masonry.h>
 
+
+NSString *vkAuth = @"https://oauth.vk.com/authorize?client_id=5932466&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends&response_type=token&v=5.64&state=123456";
+
+
 @interface FVPViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIView *headerView;
@@ -122,7 +126,9 @@
 
 - (void) loadVkData{
     if (nil == [[NSUserDefaults standardUserDefaults] objectForKey:@"VKAccessToken"]){
-        FVPVkLoginViewController  *loginVk = [[FVPVkLoginViewController alloc] init];
+        NSString *vkAuth = @"https://oauth.vk.com/authorize?client_id=5932466&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends&response_type=token&v=5.64&state=123456";
+
+        FVPViewController  *loginVk = [[FVPViewController alloc] initWith:];
         [self presentViewController:loginVk animated:YES completion:nil];
     }
     _service = [FVPGetDataFromVK new];

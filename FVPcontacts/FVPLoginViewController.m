@@ -6,14 +6,18 @@
 //  Copyright © 2017 Julia Sharaeva. All rights reserved.
 //
 
-#import "FVPVkLoginViewController.h"
-const NSString *_appID = @"6007858";
+#import "FVPLoginViewController.h"
+const NSString *vk_appID = @"6007858";
 
-@interface FVPVkLoginViewController ()<UIWebViewDelegate>
+
+const 
+@interface FVPLoginViewController ()<UIWebViewDelegate>
 @property(strong, nonatomic) UIWebView *vkWebView;
+
+@property(strong, nonatomic) NSString *url;
 @end
 
-@implementation FVPVkLoginViewController
+@implementation FVPLoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,19 +34,6 @@ const NSString *_appID = @"6007858";
         NSURLRequest *nsurlRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
         [_vkWebView loadRequest:nsurlRequest];
     }
-}
-
-// The completion handler, if provided, will be invoked after the dismissed controller's viewDidDisappear: callback is invoked.
-
--(BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
- navigationType:(UIWebViewNavigationType)navigationType
-{
-    NSURL *url = [request URL];
-    if ([[url absoluteString] isEqualToString:@"http://api.vk.com/blank.html#error=access_denied&error_reason=user_denied&error_description=User%20denied%20your%20request"]){
-        return NO;
-    }
-    NSLog(@"Request: %@", [url absoluteString]);
-    return YES;
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{

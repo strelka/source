@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		926154671EC63AD40021367A /* FVPVkLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926154661EC63AD40021367A /* FVPVkLoginViewController.m */; };
+		926154671EC63AD40021367A /* FVPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926154661EC63AD40021367A /* FVPLoginViewController.m */; };
 		926174AE1EC5E04B001ECF18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 926174AD1EC5E04B001ECF18 /* main.m */; };
 		926174B11EC5E04B001ECF18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 926174B01EC5E04B001ECF18 /* AppDelegate.m */; };
 		926174B91EC5E04B001ECF18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 926174B81EC5E04B001ECF18 /* Assets.xcassets */; };
@@ -25,8 +25,8 @@
 		43BDEF23B093AD2339A8CEF4 /* libPods-FVPcontacts.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FVPcontacts.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60968647E06FA1C9E2F93A05 /* Pods-FVPcontacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FVPcontacts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FVPcontacts/Pods-FVPcontacts.debug.xcconfig"; sourceTree = "<group>"; };
 		91C3FAE2C00283C597522F1B /* Pods-FVPcontacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FVPcontacts.release.xcconfig"; path = "Pods/Target Support Files/Pods-FVPcontacts/Pods-FVPcontacts.release.xcconfig"; sourceTree = "<group>"; };
-		926154651EC63AD40021367A /* FVPVkLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVPVkLoginViewController.h; sourceTree = "<group>"; };
-		926154661EC63AD40021367A /* FVPVkLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVPVkLoginViewController.m; sourceTree = "<group>"; };
+		926154651EC63AD40021367A /* FVPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVPLoginViewController.h; sourceTree = "<group>"; };
+		926154661EC63AD40021367A /* FVPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVPLoginViewController.m; sourceTree = "<group>"; };
 		926174A91EC5E04A001ECF18 /* FVPcontacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FVPcontacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		926174AD1EC5E04B001ECF18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		926174AF1EC5E04B001ECF18 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -132,8 +132,8 @@
 				927D42861EC5E4BB0030D2CC /* FVPViewController.m */,
 				927D42881EC5E8000030D2CC /* FVPNavigationController.h */,
 				927D42891EC5E8000030D2CC /* FVPNavigationController.m */,
-				926154651EC63AD40021367A /* FVPVkLoginViewController.h */,
-				926154661EC63AD40021367A /* FVPVkLoginViewController.m */,
+				926154651EC63AD40021367A /* FVPLoginViewController.h */,
+				926154661EC63AD40021367A /* FVPLoginViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -285,7 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				926154671EC63AD40021367A /* FVPVkLoginViewController.m in Sources */,
+				926154671EC63AD40021367A /* FVPLoginViewController.m in Sources */,
 				927D428A1EC5E8000030D2CC /* FVPNavigationController.m in Sources */,
 				927D42771EC5E3230030D2CC /* FVPGetDataFromVK.m in Sources */,
 				927D42871EC5E4BB0030D2CC /* FVPViewController.m in Sources */,
