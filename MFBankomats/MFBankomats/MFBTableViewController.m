@@ -95,9 +95,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TableIdentifier];
     }
     
-    cell.textLabel.text = annotation.title;
+    cell.textLabel.font = [UIFont systemFontOfSize:8];
     
-    // Configure the cell...
+    NSString *tl = [[NSString alloc] initWithFormat:@"%@[auto: %f][walk: %f]", annotation.title, annotation.carDistance, annotation.walkingDistance];
+    cell.textLabel.text = tl;
     
     return cell;
 }

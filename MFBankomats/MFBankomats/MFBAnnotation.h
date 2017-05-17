@@ -12,11 +12,14 @@
 @property(nonatomic) CLLocationCoordinate2D coordinate;
 @property(copy, nonatomic) NSString *title;
 @property(copy, nonatomic) UIColor *color;
-@property(nonatomic) double distance;
+
+@property(nonatomic) double carDistance;
+@property(nonatomic) double walkingDistance;
+
 
 -(MKPinAnnotationView *)annotationView;
--(instancetype) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)cord;
 -(instancetype) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)cord andisOpen:(int)isOpen;
+- (void) getDistanceToThePoint:(CLLocation*)pointA inBackgroundQueue:(dispatch_queue_t) queue;
 
 
 @end

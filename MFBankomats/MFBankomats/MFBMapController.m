@@ -89,11 +89,20 @@
     [self initConstraints];
     _service = [MFBGetDataFromGoogle new];
     
+    dispatch_queue_t aQueue = dispatch_queue_create("ru.js.distance", DISPATCH_QUEUE_CONCURRENT);
     [_service getDataforName:@"sberbank" andCord:_region.center andComplition:^(NSMutableSet *data) {
         for (MFBAnnotation *item in data){
             [self.poiList addPoiObject:item];
             [self.mapView addAnnotation:item];
         }
+        
+        NSArray *poiArray = [[NSArray alloc] initWithArray:[[self.poiList getPoiSet] allObjects]];
+        dispatch_apply([poiArray count], aQueue, ^(size_t i) {
+            MFBAnnotation *newA = poiArray[i];
+            [newA getDistanceToThePoint:_mapView.userLocation.location inBackgroundQueue:aQueue];
+        });
+        
+        
         [[[[[self tabBarController] tabBar] items]
           objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([_poiList countOfPoi])]];
         
@@ -224,6 +233,15 @@
                     [self.poiList.poi addObject:item];
                     [self.mapView addAnnotation:item];
                 }
+                
+                dispatch_queue_t aQueue = dispatch_queue_create("ru.js.distance", DISPATCH_QUEUE_CONCURRENT);
+                
+                NSArray *poiArray = [[NSArray alloc] initWithArray:[[self.poiList getPoiSet] allObjects]];
+                dispatch_apply([poiArray count], aQueue, ^(size_t i) {
+                    MFBAnnotation *newA = poiArray[i];
+                    [newA getDistanceToThePoint:_mapView.userLocation.location inBackgroundQueue:aQueue];
+                });
+                
                 [[[[[self tabBarController] tabBar] items]
                   objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([_poiList countOfPoi])]];
             }
