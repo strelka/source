@@ -11,9 +11,6 @@
 #import "MFBAnnotation.h"
 
 const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
-
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=55.75370903771494,37.61981338262558&radius=50000&type=atm&keyword=sberbank&key=AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY
-
 @interface MFBGetDataFromGoogle ()<NSURLSessionDataDelegate>
 @end
 

@@ -9,8 +9,8 @@
 #import "MFBMapController.h"
 #import "MFBGetDataFromGoogle.h"
 #import <MapKit/MapKit.h>
+#import <Masonry/Masonry.h>
 #import "MFBMapViewDelegate.h"
-#import "MFBGestureRecognizer.h"
 #import "MFBTableViewController.h"
 #import "MFBAnnotation.h"
 #import "MFBRouteViewController.h"
@@ -24,6 +24,11 @@
 @property(nonatomic, strong) MKMapView* mapView;
 @property(nonatomic) CLLocationCoordinate2D currentCord;
 @property(nonatomic) MKCoordinateRegion region;
+
+@property(nonatomic, strong) UIButton *btnZoomIn;
+@property(nonatomic, strong) UIButton *btnZoomOut;
+@property(nonatomic, strong) UIButton *btnCurrentLocation;
+
 @end
 
 @implementation MFBMapController
@@ -32,7 +37,6 @@
     self = [super init];
     if (self){
         _locationManager = [CLLocationManager new];
-        //_locationManager.
         if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
             [_locationManager requestWhenInUseAuthorization];
         };
@@ -49,7 +53,6 @@
             [self.mapView addAnnotation:_selectedPoi.annotationView.annotation];
             _region = MKCoordinateRegionMakeWithDistance(_selectedPoi.coordinate, 1000, 1000);
             [_mapView setRegion:_region animated:YES];
-      //   _selectedPoi = nil;
         }
     }
 }
@@ -61,14 +64,9 @@
     
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-   // _locationManager.startUpdatingLocation()
-    
-    //????????????
-    //MFBMapViewDelegate *mapViewDelegate = [[MFBMapViewDelegate alloc] init];
-    //self.mapView.delegate = mapViewDelegate;
+    [_locationManager startUpdatingLocation];
     
     self.mapView.delegate = self;
-    
     NSLog(@"%f", self.locationManager.location.coordinate.latitude);
     
     _currentCord = self.locationManager.location.coordinate;
@@ -77,13 +75,23 @@
     [_mapView setRegion:_region animated:YES];
 
     [self.view addSubview:self.mapView];
+    
+    self.btnZoomIn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [_mapView addSubview:_btnZoomIn];
+    
+    self.btnZoomOut = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    [_mapView addSubview:_btnZoomOut];
+    
+    self.btnCurrentLocation = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [_mapView addSubview:_btnCurrentLocation];
+    
+    
     [self initConstraints];
     _service = [MFBGetDataFromGoogle new];
     
     [_service getDataforName:@"sberbank" andCord:_region.center andComplition:^(NSMutableSet *data) {
         for (MFBAnnotation *item in data){
             [self.poiList addPoiObject:item];
-            //[self.poiList.poi addObject:item];
             [self.mapView addAnnotation:item];
         }
         [[[[[self tabBarController] tabBar] items]
@@ -93,20 +101,65 @@
 
     }];
     
-}
+    [_btnZoomIn addTarget:self action:@selector(zoomInButton) forControlEvents:UIControlEventTouchDown];
+    [_btnZoomOut addTarget:self action:@selector(zoomOutButton) forControlEvents:UIControlEventTouchDown];
+    [_btnCurrentLocation addTarget:self action:@selector(setCurrentUsersLocation) forControlEvents:UIControlEventTouchDown];
     
+    [_mapView setShowsScale:YES];
+    [_mapView setShowsUserLocation:YES];
+
+}
+
+- (void)zoomInButton{
+    NSLog(@"ZoomIn");
+    MKCoordinateRegion newregion;
+    newregion.center = _region.center;
+    newregion.span.latitudeDelta = _region.span.latitudeDelta/2;
+    newregion.span.longitudeDelta = _region.span.longitudeDelta/2;
+    [_mapView setRegion:newregion];
+}
+
+- (void)zoomOutButton{
+    NSLog(@"ZoomOut");
+    MKCoordinateRegion newregion;
+    newregion.center = _region.center;
+    newregion.span.latitudeDelta = _region.span.latitudeDelta*2;
+    newregion.span.longitudeDelta = _region.span.longitudeDelta*2;
+    [_mapView setRegion:newregion];
+}
+
+- (void) setCurrentUsersLocation{
+    NSLog(@"currentLocation");
+    MKCoordinateRegion newregion;
+    newregion.span.latitudeDelta = _region.span.latitudeDelta;
+    newregion.span.longitudeDelta = _region.span.longitudeDelta;
+    newregion.center = self.locationManager.location.coordinate;
+    [_mapView setRegion:newregion];
+
+}
 
 -(void)initConstraints
 {
     self.mapView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    id views = @{
-                 @"mapView": self.mapView
-                 };
+    [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[mapView]|" options:0 metrics:nil views:views]];
+    [self.btnZoomOut mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.mas_bottomLayoutGuideTop).with.offset(-40);
+        make.left.equalTo(self.view.mas_left).with.offset(10);
+    }];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[mapView]|" options:0 metrics:nil views:views]];
+    [self.btnZoomIn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.mas_bottomLayoutGuideTop).with.offset(-80);
+        make.left.equalTo(self.view.mas_left).with.offset(10);
+    }];
+    
+    [self.btnCurrentLocation mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_bottomLayoutGuideTop).with.offset(-140);
+        make.left.equalTo(self.view.mas_left).with.offset(10);
+    }];
 }
 
 
