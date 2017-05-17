@@ -20,9 +20,9 @@
     if (self){
         _coordinate = cord;
         _title = name;
-        if (isOpen == 0) _color = [UIColor lightGrayColor];
+        if (isOpen == -1) _color = [UIColor lightGrayColor];
         if (isOpen == 1) _color = [UIColor greenColor];
-        if (isOpen == -1) _color = [UIColor redColor];
+        if (isOpen == 0) _color = [UIColor redColor];
         
     }
     return self;

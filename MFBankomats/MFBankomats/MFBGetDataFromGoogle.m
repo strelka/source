@@ -21,19 +21,15 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
     MFBAnnotation* (^createPlace)(NSDictionary *json);
     
     createPlace = ^MFBAnnotation*(NSDictionary* json){
-        //MFBAnnotation *newAnnotation = [MFBAnnotation new];
-        //newAnnotation.title = (nil == json[@"vicinity"])? @"???":json[@"vicinity"];
-        
         NSDictionary *location = json[@"geometry"][@"location"];
         CLLocationCoordinate2D placeCord;
         placeCord.latitude = [location[@"lat"] doubleValue];
         placeCord.longitude = [location[@"lng"] doubleValue];
-        //[newAnnotation setCoordinate:placeCord];
         int isOpen;
         if (nil == json[@"opening_hours"])
-           isOpen = 0;
+           isOpen = -1;
         else
-            isOpen = (json[@"opening_hours"][@"open_now"])? 1: -1;
+            isOpen = ([json[@"opening_hours"][@"open_now"] boolValue] == YES)? 1:0;
         
         MFBAnnotation* newAnnotation = [[MFBAnnotation alloc] initWithName:json[@"vicinity"] andCoordinate:placeCord andisOpen:isOpen];
         

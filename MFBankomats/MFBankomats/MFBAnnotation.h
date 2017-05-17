@@ -12,6 +12,7 @@
 @property(nonatomic) CLLocationCoordinate2D coordinate;
 @property(copy, nonatomic) NSString *title;
 @property(copy, nonatomic) UIColor *color;
+@property(nonatomic) double distance;
 
 -(MKPinAnnotationView *)annotationView;
 -(instancetype) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)cord;
