@@ -13,4 +13,8 @@
 @interface MFBMapController : UIViewController
 @property(nonatomic, strong) poiAtmList* poiList;
 @property(nonatomic, strong) MFBAnnotation* selectedPoi;
+
+@property(nonatomic, strong) CLLocationManager *locationManager;
+
+-(instancetype) initWithLocationManager:(CLLocationManager*)locationManager;
 @end

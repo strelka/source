@@ -22,9 +22,8 @@
     
     UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
-    MFBTabBarController *tab = [MFBTabBarController new];
     
-    
+    MFBTabBarController *tab = [[MFBTabBarController alloc] init];
     window.rootViewController = tab;
     self.window = window;
     [window makeKeyAndVisible];

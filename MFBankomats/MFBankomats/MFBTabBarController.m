@@ -12,7 +12,7 @@
 #import "poiAtmList.h"
 #import "MFBAnnotation.h"
 
-@interface MFBTabBarController ()<UITabBarControllerDelegate>
+@interface MFBTabBarController ()<UITabBarControllerDelegate, CLLocationManagerDelegate>
 @property (nonatomic, strong) poiAtmList* poi;
 @property (nonatomic, strong) MFBAnnotation* selectedPoi;
 @end
@@ -22,12 +22,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _locationManager = [CLLocationManager new];
+    if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [_locationManager requestWhenInUseAuthorization];
+    };
+    
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [_locationManager startUpdatingLocation];
+    
     self.delegate = self;
     self.poi = [poiAtmList new];
     self.selectedPoi = [MFBAnnotation new];
     
-    MFBMapController *mapController = [[MFBMapController alloc] init];
-    MFBTableViewController *tableController = [[MFBTableViewController alloc] init];
+    MFBMapController *mapController = [[MFBMapController alloc] initWithLocationManager:_locationManager];
+    MFBTableViewController *tableController = [[MFBTableViewController alloc] initWithLocationManager:_locationManager];
     
     UINavigationController *nav = [UINavigationController new];
     nav.viewControllers = @[mapController];

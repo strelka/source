@@ -8,20 +8,26 @@
 
 #import "MFBTableViewController.h"
 #import <Masonry/Masonry.h>
+
+#import "MFBGetDataFromGoogle.h"
 #import "poiAtmList.h"
 #import "MFBAnnotation.h"
 
 @interface MFBTableViewController ()
 @property (nonatomic, strong) NSArray* poiArray;
 @property (nonatomic, strong) UITableView* tableView;
+@property (nonatomic, strong) id service;
 @end
 
 @implementation MFBTableViewController
+-(instancetype) initWithLocationManager:(CLLocationManager*)locationManager{
+    self = [super init];
+    if (self){
+        _locationManager = locationManager;
+    } 
+    return self;
+}
 
-//-(void)viewWillAppear:(BOOL)animated{
-//    [self viewWillAppear:YES];
-//    _poiArray = [_poiList.poi allObjects];
-//}
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
 
@@ -29,39 +35,34 @@
         NSLog(@"-->%lu", (unsigned long)[_poiList countOfPoi]);
         _poiArray  = [[_poiList getPoiSet] allObjects];
         [self.tableView reloadData];
+        
+        dispatch_queue_t queue = dispatch_queue_create("ru.js.distance", DISPATCH_QUEUE_CONCURRENT);
+
+        dispatch_async(queue, ^{
+            [_service getDistanceFromPoint:_locationManager.location ToPoints:_poiArray andComplition:^{
+                NSLog(@"reload");
+                [_tableView reloadData];
+            }];
+        });
+        
     }
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     _poiArray  = [[NSArray alloc] initWithArray:[[_poiList getPoiSet] allObjects]];
-
     self.view.backgroundColor = [UIColor whiteColor];
     UIView *headerView = [UIView new];
     headerView.backgroundColor = [UIColor lightGrayColor];
-    
-    //UILabel *title = [UILabel new];
-    //title.text = @"@%", [poiAtm count];
     
     _tableView = [UITableView new];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-//    [headerView addSubview:title];
-//    [self.view addSubview:headerView];
+    _service  = [MFBGetDataFromGoogle new];
+
     [self.view addSubview:_tableView];
-    
-//    [title mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(headerView.mas_centerX);
-//        make.centerY.equalTo(headerView.mas_centerY);
-//    }];
-//    
-//    [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.view.mas_top);
-//        make.left.equalTo(self.view.mas_left);
-//        make.right.equalTo(self.view.mas_right);
-//        make.height.equalTo(@100);
-//    }];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).with.offset(50);
@@ -112,48 +113,4 @@
     [self.tabBarController setSelectedIndex:0];
 
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

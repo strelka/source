@@ -19,7 +19,5 @@
 
 -(MKPinAnnotationView *)annotationView;
 -(instancetype) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)cord andisOpen:(int)isOpen;
-- (void) getDistanceToThePoint:(CLLocation*)pointA inBackgroundQueue:(dispatch_queue_t) queue;
-
 
 @end

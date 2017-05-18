@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+@class MFBAnnotation;
+
 @interface MFBGetDataFromGoogle : NSObject
--(void) getDataforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord andComplition:(void(^)(NSMutableSet* data)) block;
+- (void) getDataforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord andComplition:(void(^)(NSMutableSet* data)) block;
+- (void) getDistanceFromPoint:(CLLocation*)pointA ToPoints:(NSArray<MFBAnnotation*>*)points andComplition:(void(^)()) block;
 @end

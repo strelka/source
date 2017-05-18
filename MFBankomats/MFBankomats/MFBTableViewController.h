@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 @class poiAtmList;
 @class MFBAnnotation;
+@class CLLocationManager;
 
 @interface MFBTableViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic, strong) poiAtmList* poiList;
 @property(nonatomic, strong) MFBAnnotation* selectedPoi;
 
+@property(nonatomic, strong) CLLocationManager *locationManager;
+
+-(instancetype) initWithLocationManager:(CLLocationManager*)locationManager;
 @end
