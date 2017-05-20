@@ -118,9 +118,9 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
     NSLog(@"task %lu: finished!", taskIndx);
     NSError *error;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    NSDictionary *dic = json[@"routes"];
-        
-    _points[taskIndx].carDistance = [json[@"routes"][@"legs"][@"distance"][@"value"] doubleValue];
+    
+    NSString *txt = [self getDistanceFromJson:json];
+    _points[taskIndx].carDistance = txt;
     
     _finishedTaskCount += 1;
     if ([_taskArray count] == _finishedTaskCount){
@@ -129,10 +129,12 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
     
 }
 
-- (void) parseJson:(NSDictionary*)json{
-    NSArray *routes = json[@"routes"][@"legs"][@"distance"];
-    
-    
+- (NSString *) getDistanceFromJson:(NSDictionary*)json{
+    NSArray *dic = json[@"routes"];
+    NSArray *legs = dic[0][@"legs"];
+    NSDictionary *distance = legs[0][@"distance"];
+    NSString *txt = distance[@"text"];
+    return txt;
 }
 
 
