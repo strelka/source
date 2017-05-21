@@ -27,7 +27,7 @@
     };
     
     NSMutableArray *resultRecords = [NSMutableArray new];
-    NSString *urlstr = [[NSString alloc] initWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&text=%@&api_key=c55f5a419863413f77af53764f86bd66&format=json&nojsoncallback=1" , name];
+    NSString *urlstr = [[NSString alloc] initWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&text=%@&per_page=100&api_key=c55f5a419863413f77af53764f86bd66&format=json&nojsoncallback=1" , name];
     NSURL *url = [NSURL URLWithString:urlstr];
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
@@ -51,6 +51,5 @@
     }] resume];
     
 }
-
 
 @end

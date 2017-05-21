@@ -7,18 +7,52 @@
 //
 
 #import "SPFCustomCell.h"
+#import <Masonry/Masonry.h>
+
+NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
+
+@interface SPFCustomCell()
+@property (nonatomic, strong) UIImageView *cellImageView;
+@end
 
 @implementation SPFCustomCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
+    if (self){
+        [self createSubviews];
+    }
+    return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void) createSubviews{
+    
+    _cellImageView = [UIImageView new];
+    _progressBar = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    [_progressBar setProgress:0.1];
+    
+    [self addSubview:_cellImageView];
+    [self addSubview:_progressBar];
+    
+    [_cellImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
+    }];
+    [_progressBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+    }];
+    
+}
 
-    // Configure the view for the selected state
+- (void) setImgOnImgView:(UIImage*)img{
+    _cellImageView.image = img;
+}
+
+- (void) setProgressInProgressBar:(float)progress{
+    [_progressBar setProgress:progress];
 }
 
 @end

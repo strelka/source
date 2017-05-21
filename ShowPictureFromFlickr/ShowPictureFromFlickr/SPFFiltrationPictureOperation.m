@@ -25,25 +25,21 @@
     if (_photoRecord.recordState != Downloaded){
         return;
     }
-    
     UIImage *filteredImage = [self applyFilterForImage:self.photoRecord.image];
     if (filteredImage) {
         self.photoRecord.image = filteredImage;
         self.photoRecord.recordState = Filtered;
-
     }
 }
 
 - (UIImage *)applyFilterForImage:(UIImage*)image{
     CIImage *ciiImage = [[CIImage alloc] initWithImage:image];
     if (self.isCancelled) return nil;
-    CIContext *context = [[CIContext alloc] initWithOptions:nil];
     CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone"
                                   keysAndValues:kCIInputImageKey, ciiImage, @"inputIntensity", @0.8, nil];
     CIImage *outputImage = [filter outputImage];
     if (self.isCancelled) return nil;
     UIImage *newImage = [UIImage imageWithCIImage:outputImage];
     return newImage;
-    
 }
 @end

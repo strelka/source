@@ -9,7 +9,9 @@
 @class SPFPicture;
 #import <Foundation/Foundation.h>
 
-@interface SPFDownloadingPictureOperation : NSOperation
+@interface SPFDownloadingPictureOperation : NSOperation<NSURLSessionDelegate>
 @property(strong, nonatomic) SPFPicture* photoRecord;
-- (instancetype) initWithSPFPicture:(SPFPicture*)pic;
+@property(nonatomic, copy) void(^updateProgressBarBlock)();
+
+- (instancetype) initWithSPFPicture:(SPFPicture*)pic andComplition:(void(^)()) block;
 @end

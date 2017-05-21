@@ -6,15 +6,15 @@
 //  Copyright © 2017 Julia Sharaeva. All rights reserved.
 //
 
-#import "SPFViewController.h"
-
 #import <Masonry/Masonry.h>
+
 #import "SPFPicture.h"
+#import "SPFViewController.h"
 #import "SPFPendingOperations.h"
 #import "SPFGetListOfPicturesFromFlickr.h"
-
 #import "SPFDownloadingPictureOperation.h"
 #import "SPFFiltrationPictureOperation.h"
+#import "SPFCustomCell.h"
 
 
 @interface SPFViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
@@ -67,7 +67,7 @@
         make.bottom.equalTo(self.view.mas_bottom);
     }];
     
-    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
+    [_tableView registerClass:[SPFCustomCell class] forCellReuseIdentifier:@"SPFCellIdentifier"];
 
 }
 
@@ -80,11 +80,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier: @"CellIdentifier" forIndexPath:indexPath];
+    UITableViewCell *cell = (SPFCustomCell *)[tableView dequeueReusableCellWithIdentifier: @"SPFCellIdentifier" forIndexPath:indexPath];
     
-//    if (cell == nil) {
-//        cell = [[SISTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SISCellIdentifier];
-//    }
+    if (cell == nil) {
+        cell = [[SPFCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SPFCellIdentifier"];
+    }
     UIActivityIndicatorView *indicator;
     if (nil == cell.accessoryView){
         indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -92,7 +92,10 @@
     }
     
     SPFPicture *photo = _records[indexPath.row];
-    cell.imageView.image = photo.image;
+    
+    [(SPFCustomCell*)cell setImgOnImgView:photo.image];
+    [(SPFCustomCell*)cell setProgressInProgressBar:photo.downloadedPart];
+
     if (photo.recordState == Filtered){
         [indicator stopAnimating];
     }
@@ -103,10 +106,9 @@
         [indicator startAnimating];
     }
     
-    if ((!tableView.isDragging)&&(!tableView.decelerating)){
-        [self startOPerationsForPhotoRecord:photo byIndex:indexPath];
-        
-    }
+//    if (!tableView.isDragging){
+      [self startOPerationsForPhotoRecord:photo byIndex:indexPath];
+//    }
     return cell;
 }
 
@@ -118,7 +120,6 @@
         case Downloaded:
             [self startFiltrationForPhoto:pic byIndex:indexPass];
             break;
-            
         default:
             NSLog(@"do nothing");
             break;
@@ -130,12 +131,16 @@
     if (_operation.downloadsInProgress[indexPass]){
         return;
     }
-    SPFDownloadingPictureOperation *downloader = [[SPFDownloadingPictureOperation alloc] initWithSPFPicture:pic];
-    downloader.completionBlock = ^{
-        if (downloader.isCancelled) return;
+    SPFDownloadingPictureOperation *downloader = [[SPFDownloadingPictureOperation alloc] initWithSPFPicture:pic andComplition:^(){
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.operation.downloadsInProgress removeObjectForKey:indexPass];
             [self.tableView reloadRowsAtIndexPaths:@[indexPass] withRowAnimation:UITableViewRowAnimationFade];
+        });
+    }];
+    
+    downloader.updateProgressBarBlock = ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[self.tableView cellForRowAtIndexPath:indexPass] setProgressInProgressBar:pic.downloadedPart];
         });
     };
     
@@ -150,8 +155,10 @@
     }
     
     SPFFiltrationPictureOperation *filterer = [[SPFFiltrationPictureOperation alloc] initWithSPFPicture:pic];
+    __weak SPFFiltrationPictureOperation *weakFilterer = filterer;
     filterer.completionBlock = ^{
-        if (filterer.isCancelled) return;
+        __strong SPFFiltrationPictureOperation *strongFilterer = weakFilterer;
+        if (strongFilterer.isCancelled) return;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.operation.filtrationInProgress removeObjectForKey:indexPass];
             [self.tableView reloadRowsAtIndexPaths:@[indexPass] withRowAnimation:UITableViewRowAnimationFade];
@@ -171,7 +178,7 @@
     NSString *searchText = searchBar.text;
     searchText = [searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     _service = [SPFGetListOfPicturesFromFlickr new];
-    [_service getPicturesListByName:@"Cat" WithComplitionBlock:^(NSArray *data) {
+    [_service getPicturesListByName:searchText WithComplitionBlock:^(NSArray *data) {
         _records = data;
         [_tableView reloadData];
     }];

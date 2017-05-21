@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, spfRecordState){
 @property (nonatomic, strong) NSURL *imgURL;
 @property (nonatomic) spfRecordState recordState;
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic) float downloadedPart;
 
 - (instancetype) initWithUrl:(NSURL*)url;
 

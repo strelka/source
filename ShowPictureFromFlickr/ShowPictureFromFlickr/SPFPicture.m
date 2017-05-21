@@ -15,6 +15,7 @@
     if (self){
         _recordState = New;
         _imgURL = url;
+        _downloadedPart = 0.0;
     }
     return self;
 }
