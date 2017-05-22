@@ -27,11 +27,16 @@
 @end
 
 @implementation SPFViewController
+{
+    BOOL loadingNewPage;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     _searchObject = [[NSMutableDictionary alloc] initWithObjects:@[@1, @""] forKeys:@[@"page", @"textForSearch"]];
+    loadingNewPage = NO;
+    
     _operation = [SPFPendingOperations new];
     
     UIView *searchView = [[UIView alloc] init];
@@ -178,6 +183,8 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    
+    [self.view endEditing:YES];
     NSString *searchText = searchBar.text;
     searchText = [searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
@@ -189,21 +196,31 @@
     }];
 }
 
-- (void) tableView:(UITableView *)tableView willDisplayCell:(nonnull UITableViewCell *)cell forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    //if ([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
-    if ([indexPath row] == [_records count] - 1){
-        
-        long currentPage = [_searchObject[@"page"] integerValue];
-        [_searchObject setValue:@(currentPage + 1) forKey:@"page"];
-        [_service getPicturesListByParam:_searchObject WithComplitionBlock:^(NSArray *data) {
-            NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithArray:_records];
-            [tmpArray addObjectsFromArray:data];
-            _records = [tmpArray copy];
-            tmpArray = nil;
-            [_tableView reloadData];
-        }];
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if (!loadingNewPage){
+        CGPoint offset = scrollView.contentOffset;
+        CGRect bounds = scrollView.bounds;
+        CGSize size = scrollView.contentSize;
+        UIEdgeInsets inset = scrollView.contentInset;
+        float y = offset.y + bounds.size.height - inset.bottom;
+        float h = size.height;
+    
+        float reload_distance = 40;
+        if(y > h + reload_distance) {
+            loadingNewPage = YES;
+            long currentPage = [_searchObject[@"page"] integerValue];
+            [_searchObject setValue:@(currentPage + 1) forKey:@"page"];
+            [_service getPicturesListByParam:_searchObject WithComplitionBlock:^(NSArray *data) {
+                NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithArray:_records];
+                [tmpArray addObjectsFromArray:data];
+                _records = [tmpArray copy];
+                tmpArray = nil;
+                loadingNewPage = NO;
+                [_tableView reloadData];
+            }];
+        }
     }
-
 }
 
 - (void)didReceiveMemoryWarning {
