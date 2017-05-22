@@ -11,7 +11,7 @@
 @implementation SPFGetListOfPicturesFromFlickr
 
 
-- (void) getPicturesListByName:(NSString*)name WithComplitionBlock:(void(^)(NSArray *data)) block{
+- (void) getPicturesListByParam:(NSDictionary*)param WithComplitionBlock:(void(^)(NSArray *data)) block{
     
     SPFPicture*(^createPicture)(NSDictionary *json);
     createPicture = ^SPFPicture*(NSDictionary* json){
@@ -27,7 +27,8 @@
     };
     
     NSMutableArray *resultRecords = [NSMutableArray new];
-    NSString *urlstr = [[NSString alloc] initWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&text=%@&per_page=100&api_key=c55f5a419863413f77af53764f86bd66&format=json&nojsoncallback=1" , name];
+    NSString *urlstr = [[NSString alloc] initWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&text=%@&page=%@&per_page=20&api_key=c55f5a419863413f77af53764f86bd66&format=json&nojsoncallback=1" , param[@"textForSearch"],
+                                                                                                                                         param[@"page"]];
     NSURL *url = [NSURL URLWithString:urlstr];
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];

@@ -18,6 +18,8 @@
 
 
 @interface SPFViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+
+@property (nonatomic, strong) NSMutableDictionary *searchObject;
 @property (nonatomic, strong) NSArray<SPFPicture*> *records;
 @property (nonatomic, strong) SPFPendingOperations *operation;
 @property (nonatomic, strong) id service;
@@ -29,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _searchObject = [[NSMutableDictionary alloc] initWithObjects:@[@1, @""] forKeys:@[@"page", @"textForSearch"]];
     _operation = [SPFPendingOperations new];
     
     UIView *searchView = [[UIView alloc] init];
@@ -177,11 +180,30 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSString *searchText = searchBar.text;
     searchText = [searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    
+    [_searchObject setValue:searchText forKey:@"textForSearch"];
     _service = [SPFGetListOfPicturesFromFlickr new];
-    [_service getPicturesListByName:searchText WithComplitionBlock:^(NSArray *data) {
+    [_service getPicturesListByParam:_searchObject WithComplitionBlock:^(NSArray *data) {
         _records = data;
         [_tableView reloadData];
     }];
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayCell:(nonnull UITableViewCell *)cell forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    //if ([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
+    if ([indexPath row] == [_records count] - 1){
+        
+        long currentPage = [_searchObject[@"page"] integerValue];
+        [_searchObject setValue:@(currentPage + 1) forKey:@"page"];
+        [_service getPicturesListByParam:_searchObject WithComplitionBlock:^(NSArray *data) {
+            NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithArray:_records];
+            [tmpArray addObjectsFromArray:data];
+            _records = [tmpArray copy];
+            tmpArray = nil;
+            [_tableView reloadData];
+        }];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {

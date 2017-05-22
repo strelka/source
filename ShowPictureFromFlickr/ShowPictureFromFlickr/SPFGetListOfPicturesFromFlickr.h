@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface SPFGetListOfPicturesFromFlickr : NSObject
-- (void) getPicturesListByName:(NSString*)name WithComplitionBlock:(void(^)(NSArray* data)) block;
+- (void) getPicturesListByParam:(NSDictionary*)param WithComplitionBlock:(void(^)(NSArray *data)) block;
 @end
