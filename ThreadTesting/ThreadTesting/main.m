@@ -23,7 +23,7 @@ int main(int argc, const char * argv[]) {
         Spoon *rightSpoon;
         Spoon *prevSpoon;
 
-        int philosophersCount = 3;
+        int philosophersCount = 4;
         
        for (int i = 0; i < philosophersCount; i ++){
             

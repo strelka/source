@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SPFCustomCell : UITableViewCell
-@property (nonatomic, strong) UIProgressView *progressBar;
 
-- (void) setImgOnImgView:(UIImage*)img;
-- (void) setProgressInProgressBar:(float)progress;
+@interface SPFCustomCell : UITableViewCell
+@property (nonatomic, strong) NSURL *imgURL;
+@property (nonatomic, strong) UIProgressView *progressBar;
+@property (nonatomic, strong) UIImage *cellImage;
+
+- (void) setImageToImageView;
 @end

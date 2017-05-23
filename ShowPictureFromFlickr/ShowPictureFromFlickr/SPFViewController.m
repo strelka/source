@@ -76,7 +76,7 @@
     }];
     
     [_tableView registerClass:[SPFCustomCell class] forCellReuseIdentifier:@"SPFCellIdentifier"];
-
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -101,27 +101,41 @@
     
     SPFPicture *photo = _records[indexPath.row];
     
-    [(SPFCustomCell*)cell setImgOnImgView:photo.image];
-    [(SPFCustomCell*)cell setProgressInProgressBar:photo.downloadedPart];
+    [photo correctPictureState];
+    
+    if (photo.imageState == Filtered){
+        [(SPFCustomCell*)cell setCellImage:[photo getFilteredImageFromCacheByUrl]];
+        [[(SPFCustomCell*)cell progressBar ] setProgress:1];
 
-    if (photo.recordState == Filtered){
-        [indicator stopAnimating];
     }
-    else if (photo.recordState ==  Failed){
-        [indicator stopAnimating];
+    if (photo.imageState == Downloaded){
+        [(SPFCustomCell*)cell setCellImage:[photo getImageFromCacheByUrl]];
+        [[(SPFCustomCell*)cell progressBar ] setProgress:1];
     }
-    else if ((photo.recordState == New) || (photo.recordState == Downloaded)){
-        [indicator startAnimating];
+    if (photo.imageState == New){
+        [(SPFCustomCell*)cell setCellImage:nil];
+        [[(SPFCustomCell*)cell progressBar ] setProgress:0];
     }
     
-//    if (!tableView.isDragging){
-      [self startOPerationsForPhotoRecord:photo byIndex:indexPath];
-//    }
+    [(SPFCustomCell*) cell setImageToImageView];
+    
+    if (photo.imageState == Filtered){
+        [indicator stopAnimating];
+    }
+    else if (photo.imageState ==  Failed){
+        [indicator stopAnimating];
+    }
+    else if ((photo.imageState == New) || (photo.imageState == Downloaded)){
+        [indicator startAnimating];
+    }
+    //    if (!tableView.isDragging){
+    [self startOPerationsForPhotoRecord:photo byIndex:indexPath];
+    //    }
     return cell;
 }
 
 - (void) startOPerationsForPhotoRecord:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPass{
-    switch (pic.recordState) {
+    switch (pic.imageState) {
         case New:
             [self startDownLoadForPhoto:pic byIndex:indexPass];
             break;
@@ -148,7 +162,7 @@
     
     downloader.updateProgressBarBlock = ^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[self.tableView cellForRowAtIndexPath:indexPass] setProgressInProgressBar:pic.downloadedPart];
+            [[[self.tableView cellForRowAtIndexPath:indexPass] progressBar] setProgress:pic.loadedPart];
         });
     };
     
@@ -205,7 +219,7 @@
         UIEdgeInsets inset = scrollView.contentInset;
         float y = offset.y + bounds.size.height - inset.bottom;
         float h = size.height;
-    
+        
         float reload_distance = 40;
         if(y > h + reload_distance) {
             loadingNewPage = YES;

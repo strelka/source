@@ -22,13 +22,14 @@
 - (void) main{
     if (self.isCancelled) return;
     
-    if (_photoRecord.recordState != Downloaded){
+    if (_photoRecord.imageState != Downloaded){
         return;
     }
-    UIImage *filteredImage = [self applyFilterForImage:self.photoRecord.image];
+    
+    UIImage *filteredImage = [self applyFilterForImage:[_photoRecord getImageFromCacheByUrl]];
     if (filteredImage) {
-        self.photoRecord.image = filteredImage;
-        self.photoRecord.recordState = Filtered;
+        self.photoRecord.imageState = Filtered;
+        [_photoRecord cachingFiltererPicture:filteredImage];
     }
 }
 

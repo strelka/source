@@ -28,6 +28,8 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
 - (void) createSubviews{
     
     _cellImageView = [UIImageView new];
+    _cellImage = [UIImage new];
+    
     _progressBar = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     [_progressBar setProgress:0.1];
     
@@ -47,12 +49,7 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
     
 }
 
-- (void) setImgOnImgView:(UIImage*)img{
-    _cellImageView.image = img;
+- (void) setImageToImageView{
+    self.imageView.image = _cellImage;
 }
-
-- (void) setProgressInProgressBar:(float)progress{
-    [_progressBar setProgress:progress];
-}
-
 @end

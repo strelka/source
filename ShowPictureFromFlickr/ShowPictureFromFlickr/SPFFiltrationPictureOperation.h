@@ -7,9 +7,10 @@
 //
 @class SPFPicture;
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface SPFFiltrationPictureOperation : NSOperation
 @property(strong, nonatomic) SPFPicture *photoRecord;
-- (instancetype) initWithSPFPicture:(SPFPicture*)pic;
 
+- (instancetype) initWithSPFPicture:(SPFPicture*)pic;
 @end

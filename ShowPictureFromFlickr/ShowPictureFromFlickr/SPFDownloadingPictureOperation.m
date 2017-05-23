@@ -36,8 +36,8 @@
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location{
     if (self.isCancelled) return;
     NSData *imageData = [NSData dataWithContentsOfURL:location];
-    self.photoRecord.image = [[UIImage alloc] initWithData:imageData];
-    self.photoRecord.recordState = Downloaded;
+    [_photoRecord cachingPicture:[[UIImage alloc] initWithData:imageData]];
+    self.photoRecord.imageState = Downloaded;
     self.successBlock();
 }
 
@@ -46,7 +46,7 @@
  totalBytesWritten:(int64_t)totalBytesWritten
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite{
     NSLog(@"%lld, %lld, %lld" , bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
-    self.photoRecord.downloadedPart = (double)totalBytesWritten /  (double)totalBytesExpectedToWrite;
+    self.photoRecord.loadedPart = (double)totalBytesWritten /  (double)totalBytesExpectedToWrite;
     self.updateProgressBarBlock();
 }
 

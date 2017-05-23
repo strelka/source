@@ -7,16 +7,50 @@
 //
 
 #import "SPFPicture.h"
-
+#import "NSCacheSingleton.h"
 @implementation SPFPicture
 
 - (instancetype) initWithUrl:(NSURL*)url{
     self = [super init];
     if (self){
-        _recordState = New;
         _imgURL = url;
-        _downloadedPart = 0.0;
+        _imageState = New;
     }
     return self;
 }
+
+- (void) correctPictureState{
+    if (_imageState == Filtered){
+        if (nil == [self getFilteredImageFromCacheByUrl]){
+            _imageState = Downloaded;
+        }
+    }
+    if (_imageState == Downloaded){
+        if (nil == [self getImageFromCacheByUrl]){
+            _imageState = New;
+        }
+    }
+}
+
+- (void) cachingPicture:(UIImage*)image{
+    NSString *urlString = [[NSString alloc] initWithFormat:@"%@", _imgURL];
+    [[NSCacheSingleton sharedCache].imageCache setObject:image forKey:urlString];
+    }
+
+- (void) cachingFiltererPicture:(UIImage*)image{
+    NSString *filterString = [[NSString alloc] initWithFormat:@"filterer%@", _imgURL];
+    [[NSCacheSingleton sharedCache].imageCache setObject:image forKey:filterString];
+    
+}
+
+- (UIImage*) getImageFromCacheByUrl{
+    NSString *urlString = [[NSString alloc] initWithFormat:@"%@", _imgURL];
+    return [[NSCacheSingleton sharedCache].imageCache objectForKey:urlString];
+}
+
+- (UIImage*) getFilteredImageFromCacheByUrl{
+    NSString *filterString = [[NSString alloc] initWithFormat:@"filterer%@", _imgURL];
+    return [[NSCacheSingleton sharedCache].imageCache objectForKey:filterString];
+}
+                    
 @end
