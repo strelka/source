@@ -13,14 +13,14 @@
 - (NSOperationQueue *)downloadQueue{
     self.downloadQueue = [[NSOperationQueue alloc] init];
     _downloadQueue.name = @"Download queue";
-    _downloadQueue.maxConcurrentOperationCount = 1;
+    _downloadQueue.maxConcurrentOperationCount = 3;
     return _downloadQueue;
 }
 
 - (NSOperationQueue *)filtrationQueue{
     self.filtrationQueue = [[NSOperationQueue alloc] init];
     _filtrationQueue.name = @"Image Filtration Queue";
-    _filtrationQueue.maxConcurrentOperationCount = 1;
+    _filtrationQueue.maxConcurrentOperationCount = 3;
     return _filtrationQueue;
 }
 @end

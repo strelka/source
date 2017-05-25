@@ -80,7 +80,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"%lu", (unsigned long)[_records count]);
+   // NSLog(@"%lu", (unsigned long)[_records count]);
     return [_records count];
 }
 
@@ -100,22 +100,26 @@
     }
     
     SPFPicture *photo = _records[indexPath.row];
-    
-    [photo correctPictureState];
-    
-    if (photo.imageState == Filtered){
-        [(SPFCustomCell*)cell setCellImage:[photo getFilteredImageFromCacheByUrl]];
-        [[(SPFCustomCell*)cell progressBar ] setProgress:1];
+    [(SPFCustomCell*)cell setCellImage:[photo getFilteredImageFromCacheByUrl]];
 
-    }
-    if (photo.imageState == Downloaded){
-        [(SPFCustomCell*)cell setCellImage:[photo getImageFromCacheByUrl]];
-        [[(SPFCustomCell*)cell progressBar ] setProgress:1];
-    }
-    if (photo.imageState == New){
-        [(SPFCustomCell*)cell setCellImage:nil];
-        [[(SPFCustomCell*)cell progressBar ] setProgress:0];
-    }
+    
+//    if (!(_operation.downloadsInProgress[indexPath]||_operation.filtrationInProgress[indexPath])){
+//        [photo correctPictureState];
+//    
+//        if (photo.imageState == Filtered){
+//            [(SPFCustomCell*)cell setCellImage:[photo getFilteredImageFromCacheByUrl]];
+//        //[[(SPFCustomCell*)cell progressBar ] setProgress:1];
+//
+//        }
+//        if (photo.imageState == Downloaded){
+//            [(SPFCustomCell*)cell setCellImage:[photo getImageFromCacheByUrl]];
+//        //[[(SPFCustomCell*)cell progressBar ] setProgress:1];
+//        }
+//        if (photo.imageState == New){
+//            [(SPFCustomCell*)cell setCellImage:nil];
+//            //[[(SPFCustomCell*)cell progressBar ] setProgress:0];
+//        }
+//    }
     
     [(SPFCustomCell*) cell setImageToImageView];
     
@@ -128,7 +132,6 @@
     else if ((photo.imageState == New) || (photo.imageState == Downloaded)){
         [indicator startAnimating];
     }
-    //    if (!tableView.isDragging){
     [self startOPerationsForPhotoRecord:photo byIndex:indexPath];
     //    }
     return cell;
@@ -143,7 +146,7 @@
             [self startFiltrationForPhoto:pic byIndex:indexPass];
             break;
         default:
-            NSLog(@"do nothing");
+           // NSLog(@"do nothing");
             break;
     }
 }
@@ -153,6 +156,11 @@
     if (_operation.downloadsInProgress[indexPass]){
         return;
     }
+    [pic correctPictureState];
+    if (New != pic.imageState){
+        return;
+    }
+    
     SPFDownloadingPictureOperation *downloader = [[SPFDownloadingPictureOperation alloc] initWithSPFPicture:pic andComplition:^(){
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.operation.downloadsInProgress removeObjectForKey:indexPass];
@@ -166,6 +174,7 @@
         });
     };
     
+    
     _operation.downloadsInProgress[indexPass] = downloader;
     [_operation.downloadQueue addOperation:downloader];
 }
@@ -176,6 +185,10 @@
         return;
     }
     
+    [pic correctPictureState];
+    if (Downloaded != pic.imageState){
+        return;
+    }
     SPFFiltrationPictureOperation *filterer = [[SPFFiltrationPictureOperation alloc] initWithSPFPicture:pic];
     __weak SPFFiltrationPictureOperation *weakFilterer = filterer;
     filterer.completionBlock = ^{
