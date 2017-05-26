@@ -109,8 +109,7 @@
 
 -(NSNumber*) trendsVolume:(NSString*) hashtag{
     
-    
-    return;
+    return 0;
 }
 #pragma mark - Core Data stack
 

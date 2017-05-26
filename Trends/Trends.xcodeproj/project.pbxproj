@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9263D74D1EAB513B00275DF0 /* myInstagramConsoleVcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263D74C1EAB513A00275DF0 /* myInstagramConsoleVcViewController.m */; };
+		92B58A411ED8B603009E470D /* getThrendsFromYouTube.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A401ED8B603009E470D /* getThrendsFromYouTube.m */; };
+		92B58A451ED8C15D009E470D /* TRNPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A441ED8C15D009E470D /* TRNPlayerViewController.m */; };
+		92B58A481ED8C18D009E470D /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A471ED8C18D009E470D /* YTPlayerView.m */; };
+		92B58A4B1ED8C3F0009E470D /* TRNYouTubeTrendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A4A1ED8C3F0009E470D /* TRNYouTubeTrendsController.m */; };
 		92C362891EA771AB006D3BC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C362881EA771AB006D3BC7 /* main.m */; };
 		92C3628C1EA771AB006D3BC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C3628B1EA771AB006D3BC7 /* AppDelegate.m */; };
 		92C3628F1EA771AB006D3BC7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C3628E1EA771AB006D3BC7 /* ViewController.m */; };
@@ -39,6 +43,15 @@
 /* Begin PBXFileReference section */
 		9263D74B1EAB513A00275DF0 /* myInstagramConsoleVcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = myInstagramConsoleVcViewController.h; path = ../myInstagramConsoleVcViewController.h; sourceTree = "<group>"; };
 		9263D74C1EAB513A00275DF0 /* myInstagramConsoleVcViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = myInstagramConsoleVcViewController.m; path = ../myInstagramConsoleVcViewController.m; sourceTree = "<group>"; };
+		92B58A3F1ED8B603009E470D /* getThrendsFromYouTube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getThrendsFromYouTube.h; sourceTree = "<group>"; };
+		92B58A401ED8B603009E470D /* getThrendsFromYouTube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = getThrendsFromYouTube.m; sourceTree = "<group>"; };
+		92B58A421ED8B648009E470D /* DownloadThrendsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadThrendsProtocol.h; sourceTree = "<group>"; };
+		92B58A431ED8C15D009E470D /* TRNPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNPlayerViewController.h; sourceTree = "<group>"; };
+		92B58A441ED8C15D009E470D /* TRNPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNPlayerViewController.m; sourceTree = "<group>"; };
+		92B58A461ED8C18D009E470D /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
+		92B58A471ED8C18D009E470D /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
+		92B58A491ED8C3F0009E470D /* TRNYouTubeTrendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNYouTubeTrendsController.h; sourceTree = "<group>"; };
+		92B58A4A1ED8C3F0009E470D /* TRNYouTubeTrendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNYouTubeTrendsController.m; sourceTree = "<group>"; };
 		92C362841EA771AB006D3BC7 /* Trends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C362881EA771AB006D3BC7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		92C3628A1EA771AB006D3BC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,6 +118,8 @@
 		92C362861EA771AB006D3BC7 /* Trends */ = {
 			isa = PBXGroup;
 			children = (
+				92B58A461ED8C18D009E470D /* YTPlayerView.h */,
+				92B58A471ED8C18D009E470D /* YTPlayerView.m */,
 				9263D74B1EAB513A00275DF0 /* myInstagramConsoleVcViewController.h */,
 				9263D74C1EAB513A00275DF0 /* myInstagramConsoleVcViewController.m */,
 				92C3628A1EA771AB006D3BC7 /* AppDelegate.h */,
@@ -117,6 +132,13 @@
 				92C3629B1EA771AB006D3BC7 /* Info.plist */,
 				92C362931EA771AB006D3BC7 /* Trends.xcdatamodeld */,
 				92C362871EA771AB006D3BC7 /* Supporting Files */,
+				92B58A3F1ED8B603009E470D /* getThrendsFromYouTube.h */,
+				92B58A401ED8B603009E470D /* getThrendsFromYouTube.m */,
+				92B58A421ED8B648009E470D /* DownloadThrendsProtocol.h */,
+				92B58A431ED8C15D009E470D /* TRNPlayerViewController.h */,
+				92B58A441ED8C15D009E470D /* TRNPlayerViewController.m */,
+				92B58A491ED8C3F0009E470D /* TRNYouTubeTrendsController.h */,
+				92B58A4A1ED8C3F0009E470D /* TRNYouTubeTrendsController.m */,
 			);
 			path = Trends;
 			sourceTree = "<group>";
@@ -271,10 +293,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				92C3628F1EA771AB006D3BC7 /* ViewController.m in Sources */,
+				92B58A4B1ED8C3F0009E470D /* TRNYouTubeTrendsController.m in Sources */,
 				92C3628C1EA771AB006D3BC7 /* AppDelegate.m in Sources */,
 				92C362891EA771AB006D3BC7 /* main.m in Sources */,
 				9263D74D1EAB513B00275DF0 /* myInstagramConsoleVcViewController.m in Sources */,
+				92B58A451ED8C15D009E470D /* TRNPlayerViewController.m in Sources */,
 				92C362951EA771AB006D3BC7 /* Trends.xcdatamodeld in Sources */,
+				92B58A481ED8C18D009E470D /* YTPlayerView.m in Sources */,
+				92B58A411ED8B603009E470D /* getThrendsFromYouTube.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
