@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "FirstViewController.h"
+#import "SPFViewController.h"
 #import "SecondViewController.h"
 
 @interface AppDelegate ()
@@ -21,7 +21,7 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     UITabBarController *tab = [[UITabBarController alloc] init];
     
-    FirstViewController *fc = [FirstViewController new];
+    SPFViewController *fc = [SPFViewController new];
     
     UINavigationController *nav = [UINavigationController new];
     //rgba 250 250 250, 0.9
