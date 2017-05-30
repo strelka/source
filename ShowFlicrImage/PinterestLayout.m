@@ -96,9 +96,9 @@ static const NSInteger unionSize = 20;
         int maxRow = 0;
         for (idx = 0; idx < itemCount; idx++) {
             
-            isLarge = (idx % 4 == 0)?YES:NO;
-            
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
+            
+            isLarge = [self.delegate isLargeItemInIndexPath:indexPath];
             
             CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
             NSMutableDictionary *newrate = [[NSMutableDictionary alloc] init];
@@ -190,7 +190,7 @@ static const NSInteger unionSize = 20;
         return CGSizeZero;
     }
     CGSize contentSize = self.collectionView.bounds.size;
-    contentSize.height = _lastRow * 200;
+    contentSize.height = _lastRow * (contentSize.width/3);
     return contentSize;
 }
 

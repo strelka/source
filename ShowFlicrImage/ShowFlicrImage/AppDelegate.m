@@ -26,20 +26,15 @@
     UINavigationController *nav = [UINavigationController new];
     //rgba 250 250 250, 0.9
     nav.view.backgroundColor = [[UIColor alloc] initWithRed:250.0f/255.0f green:250.0f/255.0f blue:250.0f/255.0f alpha:0.9];
+    fc.view.backgroundColor = [[UIColor alloc] initWithRed:250.0f/255.0f green:250.0f/255.0f blue:250.0f/255.0f alpha:0.9];
+    
     nav.viewControllers = @[fc];
     SecondViewController *sc = [SecondViewController new];
+    sc.view.backgroundColor = [[UIColor alloc] initWithRed:250.0f/255.0f green:250.0f/255.0f blue:250.0f/255.0f alpha:0.9];
     tab.viewControllers = @[nav, sc];
     
     tab.tabBar.backgroundColor = [UIColor greenColor];
-    //.view.backgroundColor = [UIColor clearColor];
-    
-//    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-//    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-//    blurEffectView.frame = self.view.bounds;
-//    blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    
-//    [self.view addSubview:blurEffectView];
-//    
+ 
     window.rootViewController = tab;
     self.window = window;
     [window makeKeyAndVisible];

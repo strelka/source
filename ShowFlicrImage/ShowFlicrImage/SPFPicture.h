@@ -18,7 +18,6 @@ typedef NS_ENUM(NSInteger, spfImageState){
 
 @interface SPFPicture : NSObject
 
-@property (nonatomic, strong) NSString *filterName;
 @property (nonatomic, strong) NSURL *imgURL;
 
 @property (nonatomic, strong) NSString *idImg;
@@ -26,19 +25,11 @@ typedef NS_ENUM(NSInteger, spfImageState){
 
 @property (nonatomic) spfImageState imageState;
 
-@property (nonatomic) float loadedPart;
-
-
 - (instancetype) initWithUrl:(NSURL*)url;
 
 - (void) correctPictureState;
 
 - (UIImage*) getImageFromCacheByUrl;
-- (UIImage*) getFilteredImageFromCacheByUrl;
 
 - (void) cachingPicture:(UIImage*)image;
-- (void) cachingFiltererPicture:(UIImage*)image;
-
-
-
 @end

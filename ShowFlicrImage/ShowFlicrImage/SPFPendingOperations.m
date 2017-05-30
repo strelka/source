@@ -23,4 +23,13 @@
     _filtrationQueue.maxConcurrentOperationCount = 3;
     return _filtrationQueue;
 }
+
+
+- (NSOperationQueue *)getListQueue{
+    self.getListImageQueue = [[NSOperationQueue alloc] init];
+    _getListImageQueue.name = @"Image List Queue";
+    _getListImageQueue.maxConcurrentOperationCount = 1;
+    return _getListImageQueue;
+}
+
 @end

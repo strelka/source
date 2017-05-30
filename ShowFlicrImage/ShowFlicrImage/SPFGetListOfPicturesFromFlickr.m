@@ -11,7 +11,7 @@
 @implementation SPFGetListOfPicturesFromFlickr
 
 
-- (void) getPicturesListByParam:(NSDictionary*)param WithComplitionBlock:(void(^)(NSArray *data)) block{
+- (void) getPicturesListWi:(NSDictionary*)param WithComplitionBlock:(void(^)(NSArray *data)) block{
     
     SPFPicture*(^createPicture)(NSDictionary *json);
     createPicture = ^SPFPicture*(NSDictionary* json){
@@ -43,8 +43,6 @@
                 for (NSDictionary* recordItem in jsonRecords){
                     [resultRecords addObject:createPicture(recordItem)];
                 }
-                
-                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     block(resultRecords);
                 });

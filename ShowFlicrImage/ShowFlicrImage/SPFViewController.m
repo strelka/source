@@ -14,6 +14,9 @@
 #import "SPFGetListOfPicturesFromFlickr.h"
 #import "SPFDownloadingPictureOperation.h"
 #import "SPFFiltrationPictureOperation.h"
+#import "SPFGetListOfPicturesOperation.h"
+#import "SPFDispetcherOperation.h"
+
 #import "SPFCustomCell.h"
 
 #import "PinterestLayout.h"
@@ -34,6 +37,8 @@
 
 @property (nonatomic, strong) NSArray *cellSizes;
 @property (nonatomic, strong) NSArray *colors;
+
+@property(nonatomic, strong) NSString *searchText;
 
 @end
 
@@ -57,7 +62,6 @@
     [super viewDidLoad];
     
     _size = self.view.bounds.size;
-    
     _searchObject = [[NSMutableDictionary alloc] initWithObjects:@[@1, @""] forKeys:@[@"page", @"textForSearch"]];
     loadingNewPage = NO;
     
@@ -68,7 +72,9 @@
     _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:_layout];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    [_collectionView registerClass:[UICollectionViewCell class]
+    _collectionView.backgroundColor = [UIColor whiteColor];
+    
+    [_collectionView registerClass:[SPFCustomCell class]
         forCellWithReuseIdentifier:@"SPFCellIdentifier"];
     
     [self.view addSubview:_collectionView];
@@ -115,21 +121,75 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    SPFCustomCell *cell =
-    (SPFCustomCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"SPFCellIdentifier" forIndexPath:indexPath];
-    cell.backgroundColor = self.colors[indexPath.item % 4];
-    //cell.imageView.image = [UIImage imageNamed:self.cats[indexPath.item % 4]];
+    
+    SPFCustomCell *cell = (SPFCustomCell *)[collectionView dequeueReusableCellWithReuseIdentifier: @"SPFCellIdentifier" forIndexPath:indexPath];
+    cell.label.text = [[NSString alloc] initWithFormat:@"%d",_records[indexPath.item].countLikes];
+    
+    SPFPicture *photo = _records[indexPath.item];
+    cell.imageView.image = [photo getImageFromCacheByUrl];
+    
+    if (!(_operation.downloadsInProgress[indexPath])){
+        [photo correctPictureState];
+    }
+        
+    [self startOPerationsForPhotoRecord:photo byIndex:indexPath];
+        
+        
+//    if ((photo.imageState == New){
+//        [indicator startAnimating];
+//    }
+//    else if (photo.imageState == Downloaded){
+//        [indicator startAnimating];
+//        }
+//    }
+        
+
+        
+    //        if (photo.imageState == Downloaded){
+    //            [(SPFCustomCell*)cell setCellImage:[photo getImageFromCacheByUrl]];
+    //        //[[(SPFCustomCell*)cell progressBar ] setProgress:1];
+    //        }
+    //        if (photo.imageState == New){
+    //            [(SPFCustomCell*)cell setCellImage:nil];
+    //            //[[(SPFCustomCell*)cell progressBar ] setProgress:0];
+    //        }
+    //    }
+    
+    //    [(SPFCustomCell*) cell setImageToImageView];
+    //
+    //    if (photo.imageState == Filtered){
+    //        [indicator stopAnimating];
+    //    }
+    //    else if (photo.imageState ==  Failed){
+    //        [indicator stopAnimating];
+    //    }
+    //    else if ((photo.imageState == New) || (photo.imageState == Downloaded)){
+    //        [indicator startAnimating];
+    //    }
+    //    [self startOPerationsForPhotoRecord:photo byIndex:indexPath];
+    //    //    }
+    //    return cell;
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.cellSizes[indexPath.item % 4] CGSizeValue];
+- (BOOL) isLargeItemInIndexPath:(NSIndexPath*)index{
+
+    if (_records[index.item].countLikes >=100){
+        return YES;
+    }
+    else return NO;
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//   // NSLog(@"%lu", (unsigned long)[_records count]);
-//    return [_records count];
-//}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGSize size;
+    double width_step = self.collectionView.bounds.size.width/3;
+    if (_records[indexPath.item].countLikes >=100){
+        size = CGSizeMake(width_step*2, width_step*2);
+    } else{
+        size = CGSizeMake(width_step, width_step);
+    }
+    return size;
+}
 
 
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -184,47 +244,32 @@
 //    return cell;
 //}
 
-//- (void) startOPerationsForPhotoRecord:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPass{
-//    switch (pic.imageState) {
-//        case New:
-//            [self startDownLoadForPhoto:pic byIndex:indexPass];
-//            break;
-//        case Downloaded:
-//            [self startFiltrationForPhoto:pic byIndex:indexPass];
-//            break;
-//        default:
-//           // NSLog(@"do nothing");
-//            break;
-//    }
-//}
+- (void) startOPerationsForPhotoRecord:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPass{
+    switch (pic.imageState) {
+        case New:
+            [self startDownLoadForPhoto:pic byIndex:indexPass];
+            break;
+        default:
+           // NSLog(@"do nothing");
+            break;
+    }
+}
 
-//- (void) startDownLoadForPhoto:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPass{
-//    
-//    if (_operation.downloadsInProgress[indexPass]){
-//        return;
-//    }
-//    [pic correctPictureState];
-//    if (New != pic.imageState){
-//        return;
-//    }
-//    
-//    SPFDownloadingPictureOperation *downloader = [[SPFDownloadingPictureOperation alloc] initWithSPFPicture:pic andComplition:^(){
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.operation.downloadsInProgress removeObjectForKey:indexPass];
-//            [self.tableView reloadRowsAtIndexPaths:@[indexPass] withRowAnimation:UITableViewRowAnimationFade];
-//        });
-//    }];
-//    
-//    downloader.updateProgressBarBlock = ^{
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [[[self.tableView cellForRowAtIndexPath:indexPass] progressBar] setProgress:pic.loadedPart];
-//        });
-//    };
-//    
-//    
-//    _operation.downloadsInProgress[indexPass] = downloader;
-//    [_operation.downloadQueue addOperation:downloader];
-//}
+- (void) startDownLoadForPhoto:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPass{
+    
+    if (_operation.downloadsInProgress[indexPass]){
+        return;
+    }
+    SPFDownloadingPictureOperation *downloader = [[SPFDownloadingPictureOperation alloc] initWithSPFPicture:pic andComplition:^(){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.operation.downloadsInProgress removeObjectForKey:indexPass];
+            [self.collectionView reloadItemsAtIndexPaths:@[indexPass]];
+        });
+    }];
+    
+    _operation.downloadsInProgress[indexPass] = downloader;
+    [_operation.downloadQueue addOperation:downloader];
+}
 //
 //- (void) startFiltrationForPhoto:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPass{
 //    
@@ -258,16 +303,35 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
-    [self.view endEditing:YES];
-    NSString *searchText = searchBar.text;
-    searchText = [searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSLog(@"searchBarSearchButtonClicked");
+    NSString *newText = searchBar.text;
     
-    [_searchObject setValue:searchText forKey:@"textForSearch"];
-    _service = [SPFGetListOfPicturesFromFlickr new];
-    [_service getPicturesListByParam:_searchObject WithComplitionBlock:^(NSArray *data) {
-        _records = data;
-        [_collectionView reloadData];
-    }];
+    if(![self.searchText isEqualToString:newText]){
+        self.searchText = [[NSString alloc] initWithString:newText];
+        [self.view endEditing:YES];
+        newText = [newText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        [self startGetListOfPictures:newText andPage:1];
+    }
+}
+
+- (void) startGetListOfPictures:(NSString*)searchText andPage:(int)page{
+    NSLog(@"startGetList %@", searchText);
+    
+    SPFGetListOfPicturesOperation *downloader = [[SPFGetListOfPicturesOperation alloc] initWithSearch:searchText andPage:1];
+//    
+    downloader.pictures = [[NSMutableArray alloc] init];
+    [_operation.downloadQueue addOperation:downloader];
+////    
+    SPFDispetcherOperation *dispetcher = [[SPFDispetcherOperation alloc] initWithPictures:downloader.pictures];
+    dispetcher.completionBlock = ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _records = downloader.pictures;
+            [_collectionView reloadData];
+        });
+    };
+    
+    [dispetcher addDependency:downloader];
+    [_operation.downloadQueue addOperation:dispetcher];
 }
 
 //- (void) scrollViewDidScroll:(UIScrollView *)scrollView{

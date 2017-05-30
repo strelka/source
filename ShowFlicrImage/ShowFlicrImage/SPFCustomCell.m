@@ -16,9 +16,20 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
     if (!_imageView) {
         _imageView = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
         _imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        _imageView.contentMode = UIViewContentModeScaleAspectFit;
+        //_imageView.contentMode = UIViewContentModeScaleToFill;
     }
     return _imageView;
+}
+
+- (UILabel*) label{
+    if (!_label){
+        _label = [[UILabel alloc] initWithFrame:self.contentView.bounds];
+        _label.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _label.contentMode = UIViewContentModeScaleAspectFit;
+        [self.contentView addSubview:self.label];
+    }
+    return _label;
+
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -26,6 +37,11 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
         [self.contentView addSubview:self.imageView];
     }
     return self;
+}
+
+-(void)prepareForReuse {
+    [super prepareForReuse];
+    self.imageView.image = nil; //and etc.
 }
 
 @end

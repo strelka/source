@@ -17,6 +17,9 @@
 		922452451EDB00A60020BCB0 /* SPFPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9224523C1EDB00A60020BCB0 /* SPFPicture.m */; };
 		922452461EDB00A60020BCB0 /* SPFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9224523E1EDB00A60020BCB0 /* SPFViewController.m */; };
 		9224524A1EDB38430020BCB0 /* PinterestLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 922452491EDB38430020BCB0 /* PinterestLayout.m */; };
+		922452561EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 922452551EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.m */; };
+		922452591EDCB6CE0020BCB0 /* SPFGetFavoriteCountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 922452581EDCB6CE0020BCB0 /* SPFGetFavoriteCountOperation.m */; };
+		9224525C1EDCC6F40020BCB0 /* SPFDispetcherOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9224525B1EDCC6F40020BCB0 /* SPFDispetcherOperation.m */; };
 		92B58A5D1EDA0796009E470D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A5C1EDA0796009E470D /* main.m */; };
 		92B58A601EDA0796009E470D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A5F1EDA0796009E470D /* AppDelegate.m */; };
 		92B58A661EDA0796009E470D /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A651EDA0796009E470D /* SecondViewController.m */; };
@@ -44,6 +47,12 @@
 		9224523E1EDB00A60020BCB0 /* SPFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFViewController.m; sourceTree = "<group>"; };
 		922452481EDB38430020BCB0 /* PinterestLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinterestLayout.h; sourceTree = "<group>"; };
 		922452491EDB38430020BCB0 /* PinterestLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinterestLayout.m; sourceTree = "<group>"; };
+		922452541EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFGetListOfPicturesOperation.h; sourceTree = "<group>"; };
+		922452551EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFGetListOfPicturesOperation.m; sourceTree = "<group>"; };
+		922452571EDCB6CE0020BCB0 /* SPFGetFavoriteCountOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFGetFavoriteCountOperation.h; sourceTree = "<group>"; };
+		922452581EDCB6CE0020BCB0 /* SPFGetFavoriteCountOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFGetFavoriteCountOperation.m; sourceTree = "<group>"; };
+		9224525A1EDCC6F40020BCB0 /* SPFDispetcherOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFDispetcherOperation.h; sourceTree = "<group>"; };
+		9224525B1EDCC6F40020BCB0 /* SPFDispetcherOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFDispetcherOperation.m; sourceTree = "<group>"; };
 		92B58A581EDA0796009E470D /* ShowFlicrImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowFlicrImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B58A5C1EDA0796009E470D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		92B58A5E1EDA0796009E470D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -121,6 +130,12 @@
 				92B58A6A1EDA0796009E470D /* Assets.xcassets */,
 				92B58A6F1EDA0796009E470D /* Info.plist */,
 				92B58A5B1EDA0796009E470D /* Supporting Files */,
+				922452541EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.h */,
+				922452551EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.m */,
+				922452571EDCB6CE0020BCB0 /* SPFGetFavoriteCountOperation.h */,
+				922452581EDCB6CE0020BCB0 /* SPFGetFavoriteCountOperation.m */,
+				9224525A1EDCC6F40020BCB0 /* SPFDispetcherOperation.h */,
+				9224525B1EDCC6F40020BCB0 /* SPFDispetcherOperation.m */,
 			);
 			path = ShowFlicrImage;
 			sourceTree = "<group>";
@@ -263,13 +278,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				922452561EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.m in Sources */,
 				92B58A661EDA0796009E470D /* SecondViewController.m in Sources */,
 				9224523F1EDB00A60020BCB0 /* NSCacheSingleton.m in Sources */,
 				922452401EDB00A60020BCB0 /* SPFCustomCell.m in Sources */,
 				922452431EDB00A60020BCB0 /* SPFGetListOfPicturesFromFlickr.m in Sources */,
 				922452451EDB00A60020BCB0 /* SPFPicture.m in Sources */,
+				9224525C1EDCC6F40020BCB0 /* SPFDispetcherOperation.m in Sources */,
 				92B58A601EDA0796009E470D /* AppDelegate.m in Sources */,
 				922452421EDB00A60020BCB0 /* SPFFiltrationPictureOperation.m in Sources */,
+				922452591EDCB6CE0020BCB0 /* SPFGetFavoriteCountOperation.m in Sources */,
 				922452441EDB00A60020BCB0 /* SPFPendingOperations.m in Sources */,
 				9224524A1EDB38430020BCB0 /* PinterestLayout.m in Sources */,
 				922452411EDB00A60020BCB0 /* SPFDownloadingPictureOperation.m in Sources */,
