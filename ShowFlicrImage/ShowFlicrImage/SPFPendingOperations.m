@@ -17,19 +17,18 @@
     return _downloadQueue;
 }
 
-- (NSOperationQueue *)filtrationQueue{
-    self.filtrationQueue = [[NSOperationQueue alloc] init];
-    _filtrationQueue.name = @"Image Filtration Queue";
-    _filtrationQueue.maxConcurrentOperationCount = 3;
-    return _filtrationQueue;
-}
-
-
 - (NSOperationQueue *)getListQueue{
     self.getListImageQueue = [[NSOperationQueue alloc] init];
     _getListImageQueue.name = @"Image List Queue";
-    _getListImageQueue.maxConcurrentOperationCount = 1;
+    _getListImageQueue.maxConcurrentOperationCount = 3;
     return _getListImageQueue;
+}
+
+- (NSOperationQueue *)getDetailInformationQueue{
+    self.detailInfoQueue = [[NSOperationQueue alloc] init];
+    _detailInfoQueue.name = @"Image Detail Information Queue";
+    _detailInfoQueue.maxConcurrentOperationCount = 3;
+    return _detailInfoQueue;
 }
 
 @end

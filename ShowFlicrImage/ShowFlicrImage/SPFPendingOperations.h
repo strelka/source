@@ -13,5 +13,5 @@
 @property (strong, nonatomic) NSMutableDictionary<NSIndexPath*,NSOperation*> * filtrationInProgress;
 @property (strong, nonatomic) NSOperationQueue *getListImageQueue;
 @property (strong, nonatomic) NSOperationQueue *downloadQueue;
-@property (strong, nonatomic) NSOperationQueue *filtrationQueue;
+@property (strong, nonatomic) NSOperationQueue *detailInfoQueue;
 @end
