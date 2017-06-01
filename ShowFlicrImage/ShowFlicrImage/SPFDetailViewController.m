@@ -11,15 +11,30 @@
 #import <Masonry/Masonry.h>
 
 #import "SPFDetailView.h"
+#import "SPFTopNavigationView.h"
 
-@interface SPFDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface SPFDetailViewController ()
 @property (nonatomic, strong) SPFPicture *picture;
 @property (nonatomic, strong) UIImageView *imgView;
 @property (nonatomic, strong) SPFDetailView *detailView;
+@property (nonatomic, strong) SPFTopNavigationView *topNavView;
+
 
 @end
 
 @implementation SPFDetailViewController
+
+//- (void)addBackButtonWithImageName:(NSString *)imageName {
+//    // init your custom button, or your custom view
+//    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    backButton.frame = CGRectMake(0, 0, 40, 22); // custom frame
+//    [backButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//    
+////    // set left barButtonItem with custom view
+//    self.navigationItem.titleView = [SPFTopNavigationView new];
+////}
+
 
 - (instancetype) initWithPicture:(SPFPicture*)pic{
     self = [super init];
@@ -35,13 +50,27 @@
     _detailView = [[SPFDetailView alloc] init];
 
     _imgView.backgroundColor = [UIColor yellowColor];
-    _detailView.backgroundColor = [UIColor blueColor];
     
     [self.view addSubview:_imgView];
     [self.view addSubview:_detailView];
     
-    [self initConstraints];
     
+    _topNavView = [[SPFTopNavigationView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 32)];
+    //_topNavView.backgroundColor = [UIColor magentaColor];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_topNavView];
+    [self initConstraints];
+//    NSLog(@"start");
+//    [self dumpAllFonts];
+//    NSLog(@"end");
+    
+}
+
+- (void) dumpAllFonts {
+    for (NSString *familyName in [UIFont familyNames]) {
+        for (NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
+            NSLog(@"%@", fontName);
+        }
+    }
 }
 
 - (void) initConstraints{
@@ -58,21 +87,13 @@
         make.right.equalTo(self.view.mas_right);
         make.top.equalTo(self.mas_topLayoutGuideBottom);
     }];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
-    return cell;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
+    
+//    [_topNavView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(_detailView.mas_right);
+//        make.left.equalTo(_detailView.mas_left);
+//        make.bottom.equalTo(self.mas_topLayoutGuideBottom);
+//        make.top.equalTo(self.mas_topLayoutGuideTop);
+//    }];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UIKit/UIFont.h>
 
 @interface SPFDetailView : UIView
 

@@ -53,7 +53,8 @@
     if (self){
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Лента"
                                                         image:[[UIImage imageNamed:@"icFeed"] imageWithRenderingMode:UIImageRenderingModeAutomatic]
-                                                selectedImage:[[UIImage imageNamed:@"icFeed"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
+                                                selectedImage:[[UIImage imageNamed:@"icFeed"] imageWithRenderingMode: UIImageRenderingModeAutomatic]];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     }
     return self;
 }

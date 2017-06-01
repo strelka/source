@@ -25,6 +25,7 @@
 		922452651EDF311F0020BCB0 /* SPFCustomCellImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 922452641EDF311F0020BCB0 /* SPFCustomCellImage.m */; };
 		922452681EDF4D000020BCB0 /* SPFDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922452671EDF4D000020BCB0 /* SPFDetailView.m */; };
 		9224526E1EDF55210020BCB0 /* NSFont+SPFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9224526D1EDF55210020BCB0 /* NSFont+SPFAdditions.m */; };
+		92ABCA7B1EE014DF00C2F52B /* SPFTopNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA7A1EE014DF00C2F52B /* SPFTopNavigationView.m */; };
 		92B58A5D1EDA0796009E470D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A5C1EDA0796009E470D /* main.m */; };
 		92B58A601EDA0796009E470D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A5F1EDA0796009E470D /* AppDelegate.m */; };
 		92B58A661EDA0796009E470D /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A651EDA0796009E470D /* SecondViewController.m */; };
@@ -68,6 +69,8 @@
 		922452671EDF4D000020BCB0 /* SPFDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFDetailView.m; sourceTree = "<group>"; };
 		9224526C1EDF55210020BCB0 /* NSFont+SPFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFont+SPFAdditions.h"; sourceTree = "<group>"; };
 		9224526D1EDF55210020BCB0 /* NSFont+SPFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFont+SPFAdditions.m"; sourceTree = "<group>"; };
+		92ABCA791EE014DF00C2F52B /* SPFTopNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFTopNavigationView.h; sourceTree = "<group>"; };
+		92ABCA7A1EE014DF00C2F52B /* SPFTopNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFTopNavigationView.m; sourceTree = "<group>"; };
 		92B58A581EDA0796009E470D /* ShowFlicrImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowFlicrImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B58A5C1EDA0796009E470D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		92B58A5E1EDA0796009E470D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -102,6 +105,8 @@
 		92B58A4F1EDA0796009E470D = {
 			isa = PBXGroup;
 			children = (
+				92ABCA791EE014DF00C2F52B /* SPFTopNavigationView.h */,
+				92ABCA7A1EE014DF00C2F52B /* SPFTopNavigationView.m */,
 				9224526C1EDF55210020BCB0 /* NSFont+SPFAdditions.h */,
 				9224526D1EDF55210020BCB0 /* NSFont+SPFAdditions.m */,
 				922452661EDF4D000020BCB0 /* SPFDetailView.h */,
@@ -319,6 +324,7 @@
 				922452441EDB00A60020BCB0 /* SPFPendingOperations.m in Sources */,
 				9224524A1EDB38430020BCB0 /* PinterestLayout.m in Sources */,
 				922452411EDB00A60020BCB0 /* SPFDownloadingPictureOperation.m in Sources */,
+				92ABCA7B1EE014DF00C2F52B /* SPFTopNavigationView.m in Sources */,
 				922452461EDB00A60020BCB0 /* SPFViewController.m in Sources */,
 				92B58A5D1EDA0796009E470D /* main.m in Sources */,
 				9224525F1EDF0B730020BCB0 /* SPFDetailViewController.m in Sources */,
