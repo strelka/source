@@ -7,23 +7,29 @@
 //
 
 #import "SPFDownloadingPictureOperation.h"
-#import "SPFPicture.h"
+#import "NSURL+Caching.h"
+
 @interface SPFDownloadingPictureOperation()
 @property(nonatomic, copy) void(^successBlock)();
+@property(nonatomic, strong) NSURL *url;
 @end
 @implementation SPFDownloadingPictureOperation
 
-- (instancetype) initWithSPFPicture:(SPFPicture*)pic andComplition:(void(^)()) block{
+- (instancetype) initWithUrl:(NSURL*)url andComplition:(void(^)()) block{
     self = [super init];
     if (self){
-        _photoRecord = pic;
         _successBlock = block;
+        _url = url;
     }
     return self;
 }
 
 - (void) main{
-    [self startTaskGetImageFromURL:_photoRecord.imgURL];
+    if (![_url getImageFromCache]){
+        [self startTaskGetImageFromURL:_url];
+    } else {
+        self.successBlock();
+    }
 }
 
 - (void) startTaskGetImageFromURL:(NSURL*)url{
@@ -36,8 +42,7 @@
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location{
     if (self.isCancelled) return;
     NSData *imageData = [NSData dataWithContentsOfURL:location];
-    [_photoRecord cachingPicture:[[UIImage alloc] initWithData:imageData]];
-    self.photoRecord.imageState = Downloaded;
+    [_url cachingImage:[[UIImage alloc] initWithData:imageData]];
     self.successBlock();
 }
 

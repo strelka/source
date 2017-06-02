@@ -8,6 +8,7 @@
 
 #import "SPFDetailView.h"
 #import <Masonry/Masonry.h>
+#import "UIColor+SPFColors.h"
 
 @interface SPFDetailView()
 @property(nonatomic, strong) UIView *descView;
@@ -26,6 +27,7 @@
 
 - (instancetype) init{
     self = [super init];
+    self.backgroundColor = [UIColor SPFBackgroundColor];
     if (self){
         [self addSubview:self.descView];
         
@@ -37,6 +39,7 @@
         [_likeView addSubview:self.likeLabel];
         [_likeView addSubview:self.commentImgView];
         [_likeView addSubview:self.commentLabel];
+        [self addSubview:self.commentTableView];
         
         [self initConstraints];
     }
@@ -75,7 +78,7 @@
     if (!likeLabel){
         likeLabel = [[UILabel alloc] init];
         likeLabel.font = [UIFont systemFontOfSize:14];
-        likeLabel.textColor = [UIColor colorWithRed:170.0/255.0 green:170.0/255.0 blue:170.0/255.0 alpha:1];
+        likeLabel.textColor = [UIColor SPFFontColor];
         likeLabel.textAlignment = NSTextAlignmentLeft;
         likeLabel.text = @"123 лайка";
     }
@@ -86,7 +89,7 @@
     if (!commentLabel){
         commentLabel = [[UILabel alloc] init];
         commentLabel.font = [UIFont systemFontOfSize:14];
-        commentLabel.textColor = [UIColor colorWithRed:170.0/255.0 green:170.0/255.0 blue:170.0/255.0 alpha:1];
+        commentLabel.textColor = [UIColor SPFFontColor];
         commentLabel.textAlignment = NSTextAlignmentLeft;
         commentLabel.text = @"10 комментариев";
     }
@@ -99,13 +102,23 @@
         _descLabel = [[UILabel alloc] init];
         _descLabel.lineBreakMode = NSLineBreakByWordWrapping;
         _descLabel.font = [UIFont systemFontOfSize:14];
-        _descLabel.textColor = [UIColor colorWithRed:170.0/255.0 green:170.0/255.0 blue:170.0/255.0 alpha:1];
+        _descLabel.textColor = [UIColor SPFFontColor];
         _descLabel.numberOfLines = 0;
         [_descLabel sizeToFit];
         _descLabel.text = @"Описание или название этой очень крутой фотки снятой в режиме HDR.";
         _descLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _descLabel;
+}
+
+- (UITableView*)commentTableView{
+    if (!_commentTableView){
+        _commentTableView = [[UITableView alloc] init];
+        _commentTableView.rowHeight = 60;
+        _commentTableView.backgroundView.backgroundColor = [UIColor clearColor];
+        _commentTableView.backgroundColor = [UIColor clearColor];
+    }
+    return _commentTableView;
 }
 
 
@@ -159,6 +172,12 @@
         make.width.equalTo(@119);
     }];
     
+    [_commentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_likeView.mas_bottom);
+        make.bottom.equalTo(self.mas_bottom);
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+    }];
     
 }
 @end

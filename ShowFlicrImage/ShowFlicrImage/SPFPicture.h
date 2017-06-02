@@ -19,7 +19,6 @@ typedef NS_ENUM(NSInteger, spfImageState){
 @interface SPFPicture : NSObject
 
 @property (nonatomic, strong) NSURL *imgURL;
-
 @property (nonatomic, strong) NSString *idImg;
 @property (nonatomic) int countLikes;
 
@@ -28,8 +27,4 @@ typedef NS_ENUM(NSInteger, spfImageState){
 - (instancetype) initWithUrl:(NSURL*)url;
 
 - (void) correctPictureState;
-
-- (UIImage*) getImageFromCacheByUrl;
-
-- (void) cachingPicture:(UIImage*)image;
 @end

@@ -10,5 +10,5 @@
 #import <UIKit/UIFont.h>
 
 @interface SPFDetailView : UIView
-
+@property(nonatomic, strong) UITableView *commentTableView;
 @end

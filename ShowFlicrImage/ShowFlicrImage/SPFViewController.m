@@ -11,16 +11,14 @@
 #import "SPFPicture.h"
 #import "SPFViewController.h"
 #import "SPFPendingOperations.h"
-#import "SPFGetListOfPicturesFromFlickr.h"
 #import "SPFDownloadingPictureOperation.h"
-#import "SPFFiltrationPictureOperation.h"
 #import "SPFGetListOfPicturesOperation.h"
-#import "SPFDispetcherOperation.h"
 
 #import "SPFCustomCell.h"
 #import "SPFDetailViewController.h"
 
 #import "PinterestLayout.h"
+#import "NSURL+Caching.h"
 
 #define CELL_INENTIFIER = @"cell"
 
@@ -105,10 +103,12 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     SPFCustomCell *cell = (SPFCustomCell *)[collectionView dequeueReusableCellWithReuseIdentifier: @"SPFCellIdentifier" forIndexPath:indexPath];
-    cell.label.text = [[NSString alloc] initWithFormat:@"%d",_records[indexPath.item].countLikes];
-    
     SPFPicture *photo = _records[indexPath.item];
-    cell.imageView.image = [photo getImageFromCacheByUrl];
+    
+    UIImage *tmpImg = [photo.imgURL getImageFromCache];
+    cell.imageView.image = tmpImg;
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    cell.imageView.clipsToBounds = YES;
     
     if (!(_operation.downloadsInProgress[indexPath])){
         [photo correctPictureState];
@@ -155,8 +155,10 @@
     if (_operation.downloadsInProgress[indexPass]){
         return;
     }
-    SPFDownloadingPictureOperation *downloader = [[SPFDownloadingPictureOperation alloc] initWithSPFPicture:pic andComplition:^(){
+    
+    SPFDownloadingPictureOperation *downloader = [[SPFDownloadingPictureOperation alloc] initWithUrl:pic.imgURL andComplition:^{
         dispatch_async(dispatch_get_main_queue(), ^{
+            pic.imageState = Downloaded;
             [self.operation.downloadsInProgress removeObjectForKey:indexPass];
             [self.collectionView reloadItemsAtIndexPaths:@[indexPass]];
         });
@@ -196,17 +198,6 @@
     };
     
     [_operation.downloadQueue addOperation:downloader];
-
-//    SPFDispetcherOperation *dispetcher = [[SPFDispetcherOperation alloc] initWithPictures:downloader.pictures];
-//    dispetcher.completionBlock = ^{
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            _records = downloader.pictures;
-//            [_collectionView reloadData];
-//        });
-//    };
-//    
-//    [dispetcher addDependency:downloader];
-//    [_operation.downloadQueue addOperation:dispetcher];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

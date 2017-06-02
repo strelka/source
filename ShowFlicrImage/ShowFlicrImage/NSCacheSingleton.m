@@ -7,7 +7,7 @@
 //
 
 #import "NSCacheSingleton.h"
-
+#import <UIKit/UIKit.h>
 
 @implementation NSCacheSingleton
 + (instancetype) sharedCache{

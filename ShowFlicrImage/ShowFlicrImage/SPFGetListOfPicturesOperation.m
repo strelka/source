@@ -12,11 +12,8 @@
 @property(nonatomic, strong) NSString* text4Search;
 @property(nonatomic) int page;
 @property(nonatomic, strong) NSURL* url;
-@property(nonatomic)dispatch_semaphore_t semaphore;
-
-
-
 @end
+
 @implementation SPFGetListOfPicturesOperation
 - (instancetype) initWithSearch:(NSString*)text andPage:(int)page{
     self = [super init];
@@ -47,10 +44,10 @@
     SPFPicture*(^createPicture)(NSDictionary *json);
     createPicture = ^SPFPicture*(NSDictionary* json){
         
-        NSString *rec = [[NSString alloc] initWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_m.jpg", json[@"farm"],
-                         json[@"server"],
-                         json[@"id"],
-                         json[@"secret"]];
+        NSString *rec = [[NSString alloc] initWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_m.jpg",   json[@"farm"],
+            json[@"server"],
+            json[@"id"],
+            json[@"secret"]];
         NSString *url = [rec stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         SPFPicture *record = [[SPFPicture alloc] initWithUrl:[[NSURL alloc]initWithString:url]];
         record.idImg = json[@"id"];
@@ -68,8 +65,6 @@
         self.completionBlock();
     }
 }
-
-
 
 - (NSURL*) createURL{
     NSString *urlstr = @"https://api.flickr.com/services/rest/?";

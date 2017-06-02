@@ -7,7 +7,8 @@
 //
 
 #import "SPFPicture.h"
-#import "NSCacheSingleton.h"
+#import "NSURL+Caching.h"
+
 @implementation SPFPicture
 
 - (instancetype) initWithUrl:(NSURL*)url{
@@ -22,24 +23,12 @@
 
 - (void) correctPictureState{
     if (_imageState == Downloaded){
-        if (nil == [self getImageFromCacheByUrl]){
+        if (nil == [_imgURL getImageFromCache]){
             _imageState = New;
             NSLog(@"not filtered image in cache %@", _imgURL);
         } else{
             NSLog(@"get image from cache %@", _imgURL);
         }
     }
-}
-
-- (void) cachingPicture:(UIImage*)image{
-    NSString *urlString = [[NSString alloc] initWithFormat:@"%@", _imgURL];
-    [[NSCacheSingleton sharedCache].imageCache setObject:image forKey:urlString];
-    NSLog(@"caching %@", _imgURL);
-    }
-
-- (UIImage*) getImageFromCacheByUrl{
-    NSString *urlString = [[NSString alloc] initWithFormat:@"%@", _imgURL];
-    return [[NSCacheSingleton sharedCache].imageCache objectForKey:urlString];
-}
-                    
+}                   
 @end

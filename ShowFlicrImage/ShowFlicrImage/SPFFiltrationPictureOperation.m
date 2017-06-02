@@ -26,11 +26,11 @@
         return;
     }
     
-    UIImage *filteredImage = [self applyFilterForImage:[_photoRecord getImageFromCacheByUrl]];
-    if (filteredImage) {
-        self.photoRecord.imageState = Filtered;
-        //[_photoRecord cachingFiltererPicture:filteredImage];
-    }
+    //UIImage *filteredImage = [self applyFilterForImage:[_photoRecord getImageFromCacheByUrl]];
+//    if (filteredImage) {
+//        self.photoRecord.imageState = Filtered;
+//        //[_photoRecord cachingFiltererPicture:filteredImage];
+//    }
 }
 
 - (UIImage *)applyFilterForImage:(UIImage*)image{
