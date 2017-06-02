@@ -16,7 +16,6 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
     if (!_imageView) {
         _imageView = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
         _imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        //_imageView.contentMode = UIViewContentModeScaleToFill;
     }
     return _imageView;
 }

@@ -24,18 +24,6 @@
 
 @implementation SPFDetailViewController
 
-//- (void)addBackButtonWithImageName:(NSString *)imageName {
-//    // init your custom button, or your custom view
-//    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    backButton.frame = CGRectMake(0, 0, 40, 22); // custom frame
-//    [backButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-//    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    
-////    // set left barButtonItem with custom view
-//    self.navigationItem.titleView = [SPFTopNavigationView new];
-////}
-
-
 - (instancetype) initWithPicture:(SPFPicture*)pic{
     self = [super init];
     if (self){
@@ -48,29 +36,19 @@
     [super viewDidLoad];
     _imgView = [[UIImageView alloc] init];
     _detailView = [[SPFDetailView alloc] init];
-
     _imgView.backgroundColor = [UIColor yellowColor];
-    
     [self.view addSubview:_imgView];
     [self.view addSubview:_detailView];
     
-    
     _topNavView = [[SPFTopNavigationView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 32)];
-    //_topNavView.backgroundColor = [UIColor magentaColor];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_topNavView];
-    [self initConstraints];
-//    NSLog(@"start");
-//    [self dumpAllFonts];
-//    NSLog(@"end");
     
-}
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_topNavView];
 
-- (void) dumpAllFonts {
-    for (NSString *familyName in [UIFont familyNames]) {
-        for (NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
-            NSLog(@"%@", fontName);
-        }
-    }
+    self.navigationItem.leftItemsSupplementBackButton = YES;
+    
+    _imgView.image = [_picture  getImageFromCacheByUrl];
+    [self initConstraints];
+
 }
 
 - (void) initConstraints{
@@ -88,12 +66,6 @@
         make.top.equalTo(self.mas_topLayoutGuideBottom);
     }];
     
-//    [_topNavView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.equalTo(_detailView.mas_right);
-//        make.left.equalTo(_detailView.mas_left);
-//        make.bottom.equalTo(self.mas_topLayoutGuideBottom);
-//        make.top.equalTo(self.mas_topLayoutGuideTop);
-//    }];
 }
 
 @end

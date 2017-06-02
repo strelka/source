@@ -24,7 +24,6 @@
 		922452621EDF26540020BCB0 /* SPFGetDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 922452611EDF26540020BCB0 /* SPFGetDetailInfo.m */; };
 		922452651EDF311F0020BCB0 /* SPFCustomCellImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 922452641EDF311F0020BCB0 /* SPFCustomCellImage.m */; };
 		922452681EDF4D000020BCB0 /* SPFDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922452671EDF4D000020BCB0 /* SPFDetailView.m */; };
-		9224526E1EDF55210020BCB0 /* NSFont+SPFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9224526D1EDF55210020BCB0 /* NSFont+SPFAdditions.m */; };
 		92ABCA7B1EE014DF00C2F52B /* SPFTopNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA7A1EE014DF00C2F52B /* SPFTopNavigationView.m */; };
 		92B58A5D1EDA0796009E470D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A5C1EDA0796009E470D /* main.m */; };
 		92B58A601EDA0796009E470D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A5F1EDA0796009E470D /* AppDelegate.m */; };
@@ -37,46 +36,44 @@
 		803E13CDC74E31FFFA27B8FE /* libPods-ShowFlicrImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShowFlicrImage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9224522F1EDB00A60020BCB0 /* NSCacheSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCacheSingleton.h; sourceTree = "<group>"; };
 		922452301EDB00A60020BCB0 /* NSCacheSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCacheSingleton.m; sourceTree = "<group>"; };
-		922452311EDB00A60020BCB0 /* SPFCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFCustomCell.h; sourceTree = "<group>"; };
-		922452321EDB00A60020BCB0 /* SPFCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFCustomCell.m; sourceTree = "<group>"; };
-		922452331EDB00A60020BCB0 /* SPFDownloadingPictureOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFDownloadingPictureOperation.h; sourceTree = "<group>"; };
-		922452341EDB00A60020BCB0 /* SPFDownloadingPictureOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFDownloadingPictureOperation.m; sourceTree = "<group>"; };
+		922452311EDB00A60020BCB0 /* SPFCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPFCustomCell.h; path = ShowFlicrImage/SPFCustomCell.h; sourceTree = "<group>"; };
+		922452321EDB00A60020BCB0 /* SPFCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPFCustomCell.m; path = ShowFlicrImage/SPFCustomCell.m; sourceTree = "<group>"; };
+		922452331EDB00A60020BCB0 /* SPFDownloadingPictureOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPFDownloadingPictureOperation.h; path = ShowFlicrImage/SPFDownloadingPictureOperation.h; sourceTree = "<group>"; };
+		922452341EDB00A60020BCB0 /* SPFDownloadingPictureOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPFDownloadingPictureOperation.m; path = ShowFlicrImage/SPFDownloadingPictureOperation.m; sourceTree = "<group>"; };
 		922452351EDB00A60020BCB0 /* SPFFiltrationPictureOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFFiltrationPictureOperation.h; sourceTree = "<group>"; };
 		922452361EDB00A60020BCB0 /* SPFFiltrationPictureOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFFiltrationPictureOperation.m; sourceTree = "<group>"; };
-		922452371EDB00A60020BCB0 /* SPFGetListOfPicturesFromFlickr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFGetListOfPicturesFromFlickr.h; sourceTree = "<group>"; };
-		922452381EDB00A60020BCB0 /* SPFGetListOfPicturesFromFlickr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFGetListOfPicturesFromFlickr.m; sourceTree = "<group>"; };
-		922452391EDB00A60020BCB0 /* SPFPendingOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFPendingOperations.h; sourceTree = "<group>"; };
-		9224523A1EDB00A60020BCB0 /* SPFPendingOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFPendingOperations.m; sourceTree = "<group>"; };
-		9224523B1EDB00A60020BCB0 /* SPFPicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFPicture.h; sourceTree = "<group>"; };
-		9224523C1EDB00A60020BCB0 /* SPFPicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFPicture.m; sourceTree = "<group>"; };
-		9224523D1EDB00A60020BCB0 /* SPFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFViewController.h; sourceTree = "<group>"; };
-		9224523E1EDB00A60020BCB0 /* SPFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFViewController.m; sourceTree = "<group>"; };
+		922452371EDB00A60020BCB0 /* SPFGetListOfPicturesFromFlickr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPFGetListOfPicturesFromFlickr.h; path = ShowFlicrImage/SPFGetListOfPicturesFromFlickr.h; sourceTree = "<group>"; };
+		922452381EDB00A60020BCB0 /* SPFGetListOfPicturesFromFlickr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPFGetListOfPicturesFromFlickr.m; path = ShowFlicrImage/SPFGetListOfPicturesFromFlickr.m; sourceTree = "<group>"; };
+		922452391EDB00A60020BCB0 /* SPFPendingOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPFPendingOperations.h; path = ShowFlicrImage/SPFPendingOperations.h; sourceTree = "<group>"; };
+		9224523A1EDB00A60020BCB0 /* SPFPendingOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPFPendingOperations.m; path = ShowFlicrImage/SPFPendingOperations.m; sourceTree = "<group>"; };
+		9224523B1EDB00A60020BCB0 /* SPFPicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPFPicture.h; path = ShowFlicrImage/SPFPicture.h; sourceTree = "<group>"; };
+		9224523C1EDB00A60020BCB0 /* SPFPicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPFPicture.m; path = ShowFlicrImage/SPFPicture.m; sourceTree = "<group>"; };
+		9224523D1EDB00A60020BCB0 /* SPFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPFViewController.h; path = ShowFlicrImage/SPFViewController.h; sourceTree = "<group>"; };
+		9224523E1EDB00A60020BCB0 /* SPFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPFViewController.m; path = ShowFlicrImage/SPFViewController.m; sourceTree = "<group>"; };
 		922452481EDB38430020BCB0 /* PinterestLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinterestLayout.h; sourceTree = "<group>"; };
 		922452491EDB38430020BCB0 /* PinterestLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinterestLayout.m; sourceTree = "<group>"; };
-		922452541EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFGetListOfPicturesOperation.h; sourceTree = "<group>"; };
-		922452551EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFGetListOfPicturesOperation.m; sourceTree = "<group>"; };
+		922452541EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPFGetListOfPicturesOperation.h; path = ShowFlicrImage/SPFGetListOfPicturesOperation.h; sourceTree = "<group>"; };
+		922452551EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPFGetListOfPicturesOperation.m; path = ShowFlicrImage/SPFGetListOfPicturesOperation.m; sourceTree = "<group>"; };
 		922452571EDCB6CE0020BCB0 /* SPFGetFavoriteCountOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFGetFavoriteCountOperation.h; sourceTree = "<group>"; };
 		922452581EDCB6CE0020BCB0 /* SPFGetFavoriteCountOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFGetFavoriteCountOperation.m; sourceTree = "<group>"; };
-		9224525A1EDCC6F40020BCB0 /* SPFDispetcherOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFDispetcherOperation.h; sourceTree = "<group>"; };
-		9224525B1EDCC6F40020BCB0 /* SPFDispetcherOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFDispetcherOperation.m; sourceTree = "<group>"; };
-		9224525D1EDF0B730020BCB0 /* SPFDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFDetailViewController.h; sourceTree = "<group>"; };
-		9224525E1EDF0B730020BCB0 /* SPFDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFDetailViewController.m; sourceTree = "<group>"; };
+		9224525A1EDCC6F40020BCB0 /* SPFDispetcherOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPFDispetcherOperation.h; path = ShowFlicrImage/SPFDispetcherOperation.h; sourceTree = "<group>"; };
+		9224525B1EDCC6F40020BCB0 /* SPFDispetcherOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPFDispetcherOperation.m; path = ShowFlicrImage/SPFDispetcherOperation.m; sourceTree = "<group>"; };
+		9224525D1EDF0B730020BCB0 /* SPFDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPFDetailViewController.h; path = ShowFlicrImage/SPFDetailViewController.h; sourceTree = "<group>"; };
+		9224525E1EDF0B730020BCB0 /* SPFDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPFDetailViewController.m; path = ShowFlicrImage/SPFDetailViewController.m; sourceTree = "<group>"; };
 		922452601EDF26540020BCB0 /* SPFGetDetailInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFGetDetailInfo.h; sourceTree = "<group>"; };
 		922452611EDF26540020BCB0 /* SPFGetDetailInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFGetDetailInfo.m; sourceTree = "<group>"; };
 		922452631EDF311F0020BCB0 /* SPFCustomCellImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFCustomCellImage.h; sourceTree = "<group>"; };
 		922452641EDF311F0020BCB0 /* SPFCustomCellImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFCustomCellImage.m; sourceTree = "<group>"; };
 		922452661EDF4D000020BCB0 /* SPFDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFDetailView.h; sourceTree = "<group>"; };
 		922452671EDF4D000020BCB0 /* SPFDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFDetailView.m; sourceTree = "<group>"; };
-		9224526C1EDF55210020BCB0 /* NSFont+SPFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFont+SPFAdditions.h"; sourceTree = "<group>"; };
-		9224526D1EDF55210020BCB0 /* NSFont+SPFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFont+SPFAdditions.m"; sourceTree = "<group>"; };
 		92ABCA791EE014DF00C2F52B /* SPFTopNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFTopNavigationView.h; sourceTree = "<group>"; };
 		92ABCA7A1EE014DF00C2F52B /* SPFTopNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFTopNavigationView.m; sourceTree = "<group>"; };
 		92B58A581EDA0796009E470D /* ShowFlicrImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowFlicrImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B58A5C1EDA0796009E470D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		92B58A5E1EDA0796009E470D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		92B58A5F1EDA0796009E470D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		92B58A641EDA0796009E470D /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		92B58A651EDA0796009E470D /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		92B58A641EDA0796009E470D /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SecondViewController.h; path = ShowFlicrImage/SecondViewController.h; sourceTree = "<group>"; };
+		92B58A651EDA0796009E470D /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SecondViewController.m; path = ShowFlicrImage/SecondViewController.m; sourceTree = "<group>"; };
 		92B58A6A1EDA0796009E470D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92B58A6F1EDA0796009E470D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		962C6D784626745EDE5082D3 /* Pods-ShowFlicrImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowFlicrImage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShowFlicrImage/Pods-ShowFlicrImage.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,21 +99,71 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		92ABCA7D1EE1377E00C2F52B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				922452311EDB00A60020BCB0 /* SPFCustomCell.h */,
+				922452321EDB00A60020BCB0 /* SPFCustomCell.m */,
+				922452481EDB38430020BCB0 /* PinterestLayout.h */,
+				922452491EDB38430020BCB0 /* PinterestLayout.m */,
+				922452661EDF4D000020BCB0 /* SPFDetailView.h */,
+				922452671EDF4D000020BCB0 /* SPFDetailView.m */,
+				92ABCA791EE014DF00C2F52B /* SPFTopNavigationView.h */,
+				92ABCA7A1EE014DF00C2F52B /* SPFTopNavigationView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		92ABCA7E1EE137C900C2F52B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9224523D1EDB00A60020BCB0 /* SPFViewController.h */,
+				9224523E1EDB00A60020BCB0 /* SPFViewController.m */,
+				92B58A641EDA0796009E470D /* SecondViewController.h */,
+				92B58A651EDA0796009E470D /* SecondViewController.m */,
+				9224525D1EDF0B730020BCB0 /* SPFDetailViewController.h */,
+				9224525E1EDF0B730020BCB0 /* SPFDetailViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		92ABCA801EE1385A00C2F52B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9224523B1EDB00A60020BCB0 /* SPFPicture.h */,
+				9224523C1EDB00A60020BCB0 /* SPFPicture.m */,
+				922452631EDF311F0020BCB0 /* SPFCustomCellImage.h */,
+				922452641EDF311F0020BCB0 /* SPFCustomCellImage.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		92ABCA811EE138FA00C2F52B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				922452371EDB00A60020BCB0 /* SPFGetListOfPicturesFromFlickr.h */,
+				922452381EDB00A60020BCB0 /* SPFGetListOfPicturesFromFlickr.m */,
+				922452331EDB00A60020BCB0 /* SPFDownloadingPictureOperation.h */,
+				922452341EDB00A60020BCB0 /* SPFDownloadingPictureOperation.m */,
+				922452391EDB00A60020BCB0 /* SPFPendingOperations.h */,
+				9224523A1EDB00A60020BCB0 /* SPFPendingOperations.m */,
+				922452541EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.h */,
+				922452551EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.m */,
+				9224525A1EDCC6F40020BCB0 /* SPFDispetcherOperation.h */,
+				9224525B1EDCC6F40020BCB0 /* SPFDispetcherOperation.m */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
 		92B58A4F1EDA0796009E470D = {
 			isa = PBXGroup;
 			children = (
-				92ABCA791EE014DF00C2F52B /* SPFTopNavigationView.h */,
-				92ABCA7A1EE014DF00C2F52B /* SPFTopNavigationView.m */,
-				9224526C1EDF55210020BCB0 /* NSFont+SPFAdditions.h */,
-				9224526D1EDF55210020BCB0 /* NSFont+SPFAdditions.m */,
-				922452661EDF4D000020BCB0 /* SPFDetailView.h */,
-				922452671EDF4D000020BCB0 /* SPFDetailView.m */,
-				922452631EDF311F0020BCB0 /* SPFCustomCellImage.h */,
-				922452641EDF311F0020BCB0 /* SPFCustomCellImage.m */,
+				92ABCA811EE138FA00C2F52B /* Service */,
+				92ABCA801EE1385A00C2F52B /* Model */,
+				92ABCA7E1EE137C900C2F52B /* Controller */,
+				92ABCA7D1EE1377E00C2F52B /* View */,
 				922452601EDF26540020BCB0 /* SPFGetDetailInfo.h */,
 				922452611EDF26540020BCB0 /* SPFGetDetailInfo.m */,
-				922452481EDB38430020BCB0 /* PinterestLayout.h */,
-				922452491EDB38430020BCB0 /* PinterestLayout.m */,
 				92B58A5A1EDA0796009E470D /* ShowFlicrImage */,
 				92B58A591EDA0796009E470D /* Products */,
 				9D73C6BCB3C3544123FD44AF /* Pods */,
@@ -137,35 +184,15 @@
 			children = (
 				9224522F1EDB00A60020BCB0 /* NSCacheSingleton.h */,
 				922452301EDB00A60020BCB0 /* NSCacheSingleton.m */,
-				922452311EDB00A60020BCB0 /* SPFCustomCell.h */,
-				922452321EDB00A60020BCB0 /* SPFCustomCell.m */,
-				922452331EDB00A60020BCB0 /* SPFDownloadingPictureOperation.h */,
-				922452341EDB00A60020BCB0 /* SPFDownloadingPictureOperation.m */,
 				922452351EDB00A60020BCB0 /* SPFFiltrationPictureOperation.h */,
 				922452361EDB00A60020BCB0 /* SPFFiltrationPictureOperation.m */,
-				922452371EDB00A60020BCB0 /* SPFGetListOfPicturesFromFlickr.h */,
-				922452381EDB00A60020BCB0 /* SPFGetListOfPicturesFromFlickr.m */,
-				922452391EDB00A60020BCB0 /* SPFPendingOperations.h */,
-				9224523A1EDB00A60020BCB0 /* SPFPendingOperations.m */,
-				9224523B1EDB00A60020BCB0 /* SPFPicture.h */,
-				9224523C1EDB00A60020BCB0 /* SPFPicture.m */,
-				9224523D1EDB00A60020BCB0 /* SPFViewController.h */,
-				9224523E1EDB00A60020BCB0 /* SPFViewController.m */,
 				92B58A5E1EDA0796009E470D /* AppDelegate.h */,
 				92B58A5F1EDA0796009E470D /* AppDelegate.m */,
-				92B58A641EDA0796009E470D /* SecondViewController.h */,
-				92B58A651EDA0796009E470D /* SecondViewController.m */,
 				92B58A6A1EDA0796009E470D /* Assets.xcassets */,
 				92B58A6F1EDA0796009E470D /* Info.plist */,
 				92B58A5B1EDA0796009E470D /* Supporting Files */,
-				922452541EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.h */,
-				922452551EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.m */,
 				922452571EDCB6CE0020BCB0 /* SPFGetFavoriteCountOperation.h */,
 				922452581EDCB6CE0020BCB0 /* SPFGetFavoriteCountOperation.m */,
-				9224525A1EDCC6F40020BCB0 /* SPFDispetcherOperation.h */,
-				9224525B1EDCC6F40020BCB0 /* SPFDispetcherOperation.m */,
-				9224525D1EDF0B730020BCB0 /* SPFDetailViewController.h */,
-				9224525E1EDF0B730020BCB0 /* SPFDetailViewController.m */,
 			);
 			path = ShowFlicrImage;
 			sourceTree = "<group>";
@@ -328,7 +355,6 @@
 				922452461EDB00A60020BCB0 /* SPFViewController.m in Sources */,
 				92B58A5D1EDA0796009E470D /* main.m in Sources */,
 				9224525F1EDF0B730020BCB0 /* SPFDetailViewController.m in Sources */,
-				9224526E1EDF55210020BCB0 /* NSFont+SPFAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

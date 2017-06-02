@@ -28,12 +28,10 @@
 }
 
 - (void) main {
-    _semaphore = dispatch_semaphore_create(0);
     if (self.isCancelled) return;
     _url = [self createURL];
     [[self createDataTask] resume];
     if (self.isCancelled) return;
-    dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
 }
 
 - (NSURLSessionDataTask*) createDataTask{
@@ -41,7 +39,6 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];    
     NSURLSessionDataTask *task = [session dataTaskWithURL:_url];
     return task;
-    
 }
 
 -(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
@@ -68,8 +65,8 @@
         for (NSDictionary* recordItem in jsonRecords){
             [_pictures addObject:createPicture(recordItem)];
         }
+        self.completionBlock();
     }
-    dispatch_semaphore_signal(_semaphore);
 }
 
 

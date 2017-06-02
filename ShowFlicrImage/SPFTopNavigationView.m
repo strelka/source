@@ -1,4 +1,3 @@
-//
 //  SPFTopNavigationView.m
 //  ShowFlicrImage
 //
@@ -72,7 +71,7 @@
     [avatarImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@32);
         make.width.equalTo(@32);
-        make.left.equalTo(self.mas_left).with.offset(15);
+        make.left.equalTo(self.mas_left);
         make.top.equalTo(self.mas_top);
     }];
     

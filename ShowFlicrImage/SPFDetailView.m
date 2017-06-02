@@ -7,7 +7,6 @@
 //
 
 #import "SPFDetailView.h"
-#import "NSFont+SPFAdditions.h"
 #import <Masonry/Masonry.h>
 
 @interface SPFDetailView()

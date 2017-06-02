@@ -121,7 +121,7 @@
 
 - (BOOL) isLargeItemInIndexPath:(NSIndexPath*)index{
 
-    if (_records[index.item].countLikes >=200){
+    if (index.item % 4 == 0){
         return YES;
     }
     else return NO;
@@ -175,6 +175,7 @@
         self.searchText = [[NSString alloc] initWithString:newText];
         [self.view endEditing:YES];
         newText = [newText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        
         [self startGetListOfPictures:newText andPage:1];
     }
 }
@@ -185,18 +186,27 @@
     SPFGetListOfPicturesOperation *downloader = [[SPFGetListOfPicturesOperation alloc] initWithSearch:searchText andPage:1];
     
     downloader.pictures = [[NSMutableArray alloc] init];
-    [_operation.downloadQueue addOperation:downloader];
-
-    SPFDispetcherOperation *dispetcher = [[SPFDispetcherOperation alloc] initWithPictures:downloader.pictures];
-    dispetcher.completionBlock = ^{
+    
+    downloader.completionBlock = ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             _records = downloader.pictures;
             [_collectionView reloadData];
-        });
+            });
+
     };
     
-    [dispetcher addDependency:downloader];
-    [_operation.downloadQueue addOperation:dispetcher];
+    [_operation.downloadQueue addOperation:downloader];
+
+//    SPFDispetcherOperation *dispetcher = [[SPFDispetcherOperation alloc] initWithPictures:downloader.pictures];
+//    dispetcher.completionBlock = ^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            _records = downloader.pictures;
+//            [_collectionView reloadData];
+//        });
+//    };
+//    
+//    [dispetcher addDependency:downloader];
+//    [_operation.downloadQueue addOperation:dispetcher];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
