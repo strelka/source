@@ -80,7 +80,7 @@
         likeLabel.font = [UIFont systemFontOfSize:14];
         likeLabel.textColor = [UIColor SPFFontColor];
         likeLabel.textAlignment = NSTextAlignmentLeft;
-        likeLabel.text = @"123 лайка";
+        //likeLabel.text = @"123 лайка";
     }
     return likeLabel;
 }
@@ -91,7 +91,7 @@
         commentLabel.font = [UIFont systemFontOfSize:14];
         commentLabel.textColor = [UIColor SPFFontColor];
         commentLabel.textAlignment = NSTextAlignmentLeft;
-        commentLabel.text = @"10 комментариев";
+        //commentLabel.text = @"10 комментариев";
     }
     return commentLabel;
 }
@@ -105,7 +105,7 @@
         _descLabel.textColor = [UIColor SPFFontColor];
         _descLabel.numberOfLines = 0;
         [_descLabel sizeToFit];
-        _descLabel.text = @"Описание или название этой очень крутой фотки снятой в режиме HDR.";
+        //_descLabel.text = @"Описание или название этой очень крутой фотки снятой в режиме HDR.";
         _descLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _descLabel;

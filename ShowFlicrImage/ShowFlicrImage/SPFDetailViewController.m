@@ -9,6 +9,7 @@
 #import "SPFDetailViewController.h"
 #import "SPFPicture.h"
 #import "SPFComment.h"
+#import "SPFUser.h"
 
 #import "SPFCommentCell.h"
 
@@ -19,6 +20,7 @@
 #import "NSURL+Caching.h"
 
 #import "SPFGetCommentsOperation.h"
+#import "SPFGetDetailsOperation.h"
 #import "SPFPendingOperations.h"
 #import "SPFDownloadingPictureOperation.h"
 
@@ -69,6 +71,7 @@
     [self.view addSubview:_imgView];
     [self.view addSubview:_detailView];
     [self getCommentsForImage];
+    [self getDetailsForImage];
     [self initConstraints];
 }
 
@@ -88,7 +91,22 @@
     }];
 }
 
+- (void) getDetailsForImage{
+    _operations = [[SPFPendingOperations alloc] init];
+    
+    SPFGetDetailsOperation *getDetailsOperation = [[SPFGetDetailsOperation alloc]
+                                                   initDetailsForImage:_picture
+                                                         AndComplition:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_topNavView setAuthor:_picture.owner.userName AndLocation:_picture.locality];
+            //[_detailView.]
+        });
+    }];
+                                                   
+    [_operations.downloadQueue addOperation:getDetailsOperation];
 
+
+}
 - (void) getCommentsForImage {
     _operations = [[SPFPendingOperations alloc] init];
     
@@ -122,20 +140,18 @@
     SPFComment *comment = _comments[indexPath.row];
     
     [(SPFCommentCell*)cell commentLabel].text = comment.content;
-    [(SPFCommentCell*)cell authorLabel].text = comment.authorName;
+    [(SPFCommentCell*)cell authorLabel].text = comment.author.userName;
     
     
-    UIImage *tmpImage = [comment.avatarUrl getImageFromCache]; //[UIImage imageNamed:@"defaultAv"];
-
+    UIImage *tmpImage = [comment.author.avatarImgUrl getImageFromCache];
     [(SPFCommentCell*)cell imageView].image = tmpImage;
-    //[(SPFCommentCell*)cell imageView].contentMode = UIViewContentModeScaleAspectFill;
     [(SPFCommentCell*)cell imageView].layer.cornerRadius = 24;
     [(SPFCommentCell*)cell imageView].layer.masksToBounds = YES;
     [(SPFCommentCell*)cell imageView].contentMode = UIViewContentModeScaleAspectFill;
     [(SPFCommentCell*)cell imageView].clipsToBounds = YES;
         
      if (nil == cell.imageView.image){
-        [self getAvatarForCommentWithURL:comment.avatarUrl byIndex:indexPath];
+        [self getAvatarForCommentWithURL:comment.author.avatarImgUrl byIndex:indexPath];
     }
     
     return cell;

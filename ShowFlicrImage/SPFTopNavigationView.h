@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SPFTopNavigationView : UIView
-
+- (void) setAuthor:(NSString*)author AndLocation:(NSString*)location;
 @end

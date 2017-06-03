@@ -8,6 +8,7 @@
 
 #import "SPFGetCommentsOperation.h"
 #import "SPFComment.h"
+#import "SPFUser.h"
 
 @interface SPFGetCommentsOperation()
 @property (nonatomic, strong) NSString *imgId;
@@ -35,7 +36,9 @@
     
     SPFComment*(^createComment)(NSDictionary *json);
     createComment = ^SPFComment*(NSDictionary* json){
+        SPFUser *user = [[SPFUser alloc] init];
         SPFComment *record = [[SPFComment alloc] init];
+        
         NSString *rec = [[NSString alloc] initWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg",
                          json[@"iconfarm"],
                          json[@"iconserver"],
@@ -43,9 +46,11 @@
         
         NSString *url = [rec stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         
-        record.authorName = json[@"authorname"];
+        user.userName = json[@"authorname"];
+        user.avatarImgUrl = [[NSURL alloc] initWithString:url];
+        
         record.content = json[@"_content"];
-        record.avatarUrl = [[NSURL alloc] initWithString:url];
+        record.author = user;
         return record;
     };
 

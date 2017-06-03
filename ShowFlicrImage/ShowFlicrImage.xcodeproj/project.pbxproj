@@ -29,6 +29,8 @@
 		92ABCA8A1EE150F100C2F52B /* NSURL+Caching.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA891EE150F100C2F52B /* NSURL+Caching.m */; };
 		92ABCA8D1EE164CC00C2F52B /* SPFGetCommentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA8C1EE164CC00C2F52B /* SPFGetCommentsOperation.m */; };
 		92ABCA901EE16A9E00C2F52B /* SPFComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA8F1EE16A9E00C2F52B /* SPFComment.m */; };
+		92ABCA931EE1FE2800C2F52B /* SPFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA921EE1FE2800C2F52B /* SPFUser.m */; };
+		92ABCA961EE2052800C2F52B /* SPFGetDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA951EE2052800C2F52B /* SPFGetDetailsOperation.m */; };
 		92B58A5D1EDA0796009E470D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A5C1EDA0796009E470D /* main.m */; };
 		92B58A601EDA0796009E470D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A5F1EDA0796009E470D /* AppDelegate.m */; };
 		92B58A661EDA0796009E470D /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A651EDA0796009E470D /* SecondViewController.m */; };
@@ -80,6 +82,10 @@
 		92ABCA8C1EE164CC00C2F52B /* SPFGetCommentsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFGetCommentsOperation.m; sourceTree = "<group>"; };
 		92ABCA8E1EE16A9E00C2F52B /* SPFComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFComment.h; sourceTree = "<group>"; };
 		92ABCA8F1EE16A9E00C2F52B /* SPFComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFComment.m; sourceTree = "<group>"; };
+		92ABCA911EE1FE2800C2F52B /* SPFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFUser.h; sourceTree = "<group>"; };
+		92ABCA921EE1FE2800C2F52B /* SPFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFUser.m; sourceTree = "<group>"; };
+		92ABCA941EE2052800C2F52B /* SPFGetDetailsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFGetDetailsOperation.h; sourceTree = "<group>"; };
+		92ABCA951EE2052800C2F52B /* SPFGetDetailsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFGetDetailsOperation.m; sourceTree = "<group>"; };
 		92B58A581EDA0796009E470D /* ShowFlicrImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowFlicrImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B58A5C1EDA0796009E470D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		92B58A5E1EDA0796009E470D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -114,6 +120,10 @@
 		92ABCA7D1EE1377E00C2F52B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				922452631EDF311F0020BCB0 /* SPFCustomCellImage.h */,
+				922452641EDF311F0020BCB0 /* SPFCustomCellImage.m */,
+				92ABCA821EE1413600C2F52B /* SPFCommentCell.h */,
+				92ABCA831EE1413600C2F52B /* SPFCommentCell.m */,
 				922452311EDB00A60020BCB0 /* SPFCustomCell.h */,
 				922452321EDB00A60020BCB0 /* SPFCustomCell.m */,
 				922452481EDB38430020BCB0 /* PinterestLayout.h */,
@@ -144,12 +154,10 @@
 			children = (
 				9224523B1EDB00A60020BCB0 /* SPFPicture.h */,
 				9224523C1EDB00A60020BCB0 /* SPFPicture.m */,
-				922452631EDF311F0020BCB0 /* SPFCustomCellImage.h */,
-				922452641EDF311F0020BCB0 /* SPFCustomCellImage.m */,
-				92ABCA821EE1413600C2F52B /* SPFCommentCell.h */,
-				92ABCA831EE1413600C2F52B /* SPFCommentCell.m */,
 				92ABCA8E1EE16A9E00C2F52B /* SPFComment.h */,
 				92ABCA8F1EE16A9E00C2F52B /* SPFComment.m */,
+				92ABCA911EE1FE2800C2F52B /* SPFUser.h */,
+				92ABCA921EE1FE2800C2F52B /* SPFUser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -167,6 +175,8 @@
 				9224525B1EDCC6F40020BCB0 /* SPFDispetcherOperation.m */,
 				92ABCA8B1EE164CC00C2F52B /* SPFGetCommentsOperation.h */,
 				92ABCA8C1EE164CC00C2F52B /* SPFGetCommentsOperation.m */,
+				92ABCA941EE2052800C2F52B /* SPFGetDetailsOperation.h */,
+				92ABCA951EE2052800C2F52B /* SPFGetDetailsOperation.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -366,7 +376,9 @@
 				9224525C1EDCC6F40020BCB0 /* SPFDispetcherOperation.m in Sources */,
 				922452621EDF26540020BCB0 /* SPFGetDetailInfo.m in Sources */,
 				92B58A601EDA0796009E470D /* AppDelegate.m in Sources */,
+				92ABCA961EE2052800C2F52B /* SPFGetDetailsOperation.m in Sources */,
 				922452421EDB00A60020BCB0 /* SPFFiltrationPictureOperation.m in Sources */,
+				92ABCA931EE1FE2800C2F52B /* SPFUser.m in Sources */,
 				92ABCA841EE1413600C2F52B /* SPFCommentCell.m in Sources */,
 				922452681EDF4D000020BCB0 /* SPFDetailView.m in Sources */,
 				92ABCA8D1EE164CC00C2F52B /* SPFGetCommentsOperation.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  SPFComment.h
+//  SPFImgOwner.h
 //  ShowFlicrImage
 //
 //  Created by Jullia Sharaeva on 02.06.17.
@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-@class SPFUser;
 
-@interface SPFComment : NSObject
-@property (nonatomic, strong) SPFUser *author;
-@property (nonatomic, strong) NSString *content;
+@interface SPFUser : NSObject
+@property(nonatomic, strong) NSString *userName;
+@property(nonatomic, strong) NSURL *avatarImgUrl;
+
+
+
 @end

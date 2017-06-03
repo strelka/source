@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+@class SPFUser;
 
 typedef NS_ENUM(NSInteger, spfImageState){
     New = 1,
@@ -20,7 +21,13 @@ typedef NS_ENUM(NSInteger, spfImageState){
 
 @property (nonatomic, strong) NSURL *imgURL;
 @property (nonatomic, strong) NSString *idImg;
+@property (nonatomic, strong) SPFUser *owner;
+@property (nonatomic, strong) NSString *desc;
+@property (nonatomic, strong) NSString *locality;
 @property (nonatomic) int countLikes;
+@property (nonatomic) long countViews;
+@property (nonatomic) int countComments;
+
 
 @property (nonatomic) spfImageState imageState;
 

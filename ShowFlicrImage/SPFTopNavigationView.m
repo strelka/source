@@ -42,7 +42,7 @@
         authorLabel.font = [UIFont systemFontOfSize:14];
         authorLabel.textColor = [UIColor blackColor];
         authorLabel.textAlignment = NSTextAlignmentLeft;
-        authorLabel.text = @"sarahannloreth";
+        //authorLabel.text = @"sarahannloreth";
     }
     return authorLabel;
 }
@@ -53,7 +53,7 @@
         geoLabel.font = [UIFont systemFontOfSize:13];
         geoLabel.textColor = [UIColor colorWithRed:170.0/255.0 green:170.0/255.0 blue:170.0/255.0 alpha:1];
         geoLabel.textAlignment = NSTextAlignmentLeft;
-        geoLabel.text = @"Kauai, Hawaii";
+        //geoLabel.text = @"Kauai, Hawaii";
     }
     return geoLabel;
 }
@@ -96,6 +96,10 @@
         make.bottom.equalTo(self.mas_bottom);
     }];
 
+}
+- (void) setAuthor:(NSString*)author AndLocation:(NSString*)location{
+    authorLabel.text = author;
+    geoLabel.text = location;
 }
 
 @end
