@@ -10,4 +10,5 @@
 
 @interface SPFTopNavigationView : UIView
 - (void) setAuthor:(NSString*)author AndLocation:(NSString*)location;
+- (void) setAvatarImage:(UIImage*)image;
 @end

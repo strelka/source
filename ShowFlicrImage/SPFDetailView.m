@@ -12,7 +12,6 @@
 
 @interface SPFDetailView()
 @property(nonatomic, strong) UIView *descView;
-@property(nonatomic, strong) UILabel *descLabel;
 @property(nonatomic, strong) UIView *likeView;
 
 @end
@@ -21,8 +20,7 @@
 {
     UIButton *likeBtn;
     UIImageView  *commentImgView;
-    UILabel  *likeLabel;
-    UILabel  *commentLabel;
+    
 }
 
 - (instancetype) init{
@@ -75,25 +73,23 @@
 }
 
 - (UILabel*)likeLabel{
-    if (!likeLabel){
-        likeLabel = [[UILabel alloc] init];
-        likeLabel.font = [UIFont systemFontOfSize:14];
-        likeLabel.textColor = [UIColor SPFFontColor];
-        likeLabel.textAlignment = NSTextAlignmentLeft;
-        //likeLabel.text = @"123 лайка";
+    if (!_likeLabel){
+        _likeLabel = [[UILabel alloc] init];
+        _likeLabel.font = [UIFont systemFontOfSize:14];
+        _likeLabel.textColor = [UIColor SPFFontColor];
+        _likeLabel.textAlignment = NSTextAlignmentLeft;
     }
-    return likeLabel;
+    return _likeLabel;
 }
 
 - (UILabel*)commentLabel{
-    if (!commentLabel){
-        commentLabel = [[UILabel alloc] init];
-        commentLabel.font = [UIFont systemFontOfSize:14];
-        commentLabel.textColor = [UIColor SPFFontColor];
-        commentLabel.textAlignment = NSTextAlignmentLeft;
-        //commentLabel.text = @"10 комментариев";
+    if (!_commentLabel){
+        _commentLabel = [[UILabel alloc] init];
+        _commentLabel.font = [UIFont systemFontOfSize:14];
+        _commentLabel.textColor = [UIColor SPFFontColor];
+        _commentLabel.textAlignment = NSTextAlignmentLeft;
     }
-    return commentLabel;
+    return _commentLabel;
 }
 
 
@@ -105,7 +101,6 @@
         _descLabel.textColor = [UIColor SPFFontColor];
         _descLabel.numberOfLines = 0;
         [_descLabel sizeToFit];
-        //_descLabel.text = @"Описание или название этой очень крутой фотки снятой в режиме HDR.";
         _descLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _descLabel;
@@ -151,7 +146,7 @@
         make.centerY.equalTo(_likeView.mas_centerY);
     }];
     
-    [likeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_likeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).with.offset(39);
         make.centerY.equalTo(_likeView.mas_centerY);
         make.height.equalTo(@17);
@@ -165,7 +160,7 @@
         make.width.equalTo(@18);
     }];
     
-    [commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).with.offset(146.3);
         make.centerY.equalTo(_likeView.mas_centerY);
         make.height.equalTo(@17);

@@ -13,11 +13,12 @@
 @interface SPFGetDetailsOperation()
 @property (nonatomic, strong) SPFPicture *picture;
 @property (nonatomic, copy) void(^successBlock)();
+
+//@property (nonatomic) dispatch_semaphore_t sem;
 @end;
 
 @implementation SPFGetDetailsOperation
-- (instancetype) initDetailsForImage:(SPFPicture*)picture
-                         AndComplition:(void(^)()) block{
+- (instancetype) initDetailsForImage:(SPFPicture*)picture AndComplition:(void(^)()) block{
     self = [super init];
     if (self){
         _picture = picture;
@@ -27,9 +28,11 @@
 }
 
 - (void) main{
+    //_sem = dispatch_semaphore_create(0);
     if (self.isCancelled) return;
     [[self createDataTask] resume];
     if (self.isCancelled) return;
+    //dispatch_semaphore_wait(_sem, DISPATCH_TIME_FOREVER);
 }
 
 - (NSURLSessionDataTask*) createDataTask{
@@ -43,10 +46,10 @@
             if (detailRecord){
                 [self parseOwner:detailRecord[@"owner"]];
                 [self parseDetails:detailRecord];
-                [self parseLocation:detailRecord[@"location"]];
             }
         }
         _successBlock();
+        //dispatch_semaphore_signal(_sem);
     }];
     
     return task;
@@ -61,25 +64,21 @@
     NSString *url = [rec stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     SPFUser *author = [[SPFUser alloc] init];
+    
     author.avatarImgUrl = [[NSURL alloc] initWithString:url];
-    author.userName = json[@"nsid"];
+    NSLog(@"-->> %@", url);
+    author.userName = json[@"username"];
+    author.userLocation = json[@"location"];
+    
     _picture.owner = author;
+
 }
 
 - (void) parseDetails:(NSDictionary*) json{
     _picture.desc = json[@"description"][@"_content"];
+    NSLog(@"-->> %@", _picture.desc);
     _picture.countViews = [json[@"views"] intValue];
     _picture.countComments = [json[@"comments"][@"_content"] intValue];
-}
-
-- (void) parseLocation:(NSDictionary*) json{
-    NSMutableArray *adress = [[NSMutableArray alloc] init];
-    [adress addObject:json[@"locality"][@"_content"]];
-    [adress addObject:json[@"region"][@"_content"]];
-    [adress addObject:json[@"country"][@"_content"]];
-    
-    NSString *strAddres = [adress componentsJoinedByString:@","];
-    _picture.locality = strAddres;
 }
 
 - (NSURL*) createURL{

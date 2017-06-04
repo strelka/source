@@ -11,4 +11,8 @@
 
 @interface SPFDetailView : UIView
 @property(nonatomic, strong) UITableView *commentTableView;
+@property(nonatomic, strong) UILabel *descLabel;
+@property(nonatomic, strong) UILabel  *likeLabel;
+@property(nonatomic, strong) UILabel  *commentLabel;
+
 @end

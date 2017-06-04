@@ -31,6 +31,7 @@
 		92ABCA901EE16A9E00C2F52B /* SPFComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA8F1EE16A9E00C2F52B /* SPFComment.m */; };
 		92ABCA931EE1FE2800C2F52B /* SPFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA921EE1FE2800C2F52B /* SPFUser.m */; };
 		92ABCA961EE2052800C2F52B /* SPFGetDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA951EE2052800C2F52B /* SPFGetDetailsOperation.m */; };
+		92ABCA9C1EE414BD00C2F52B /* SPFPinchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA9B1EE414BD00C2F52B /* SPFPinchViewController.m */; };
 		92B58A5D1EDA0796009E470D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A5C1EDA0796009E470D /* main.m */; };
 		92B58A601EDA0796009E470D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A5F1EDA0796009E470D /* AppDelegate.m */; };
 		92B58A661EDA0796009E470D /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A651EDA0796009E470D /* SecondViewController.m */; };
@@ -86,6 +87,8 @@
 		92ABCA921EE1FE2800C2F52B /* SPFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFUser.m; sourceTree = "<group>"; };
 		92ABCA941EE2052800C2F52B /* SPFGetDetailsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFGetDetailsOperation.h; sourceTree = "<group>"; };
 		92ABCA951EE2052800C2F52B /* SPFGetDetailsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFGetDetailsOperation.m; sourceTree = "<group>"; };
+		92ABCA9A1EE414BD00C2F52B /* SPFPinchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFPinchViewController.h; sourceTree = "<group>"; };
+		92ABCA9B1EE414BD00C2F52B /* SPFPinchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFPinchViewController.m; sourceTree = "<group>"; };
 		92B58A581EDA0796009E470D /* ShowFlicrImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowFlicrImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B58A5C1EDA0796009E470D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		92B58A5E1EDA0796009E470D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				92B58A651EDA0796009E470D /* SecondViewController.m */,
 				9224525D1EDF0B730020BCB0 /* SPFDetailViewController.h */,
 				9224525E1EDF0B730020BCB0 /* SPFDetailViewController.m */,
+				92ABCA9A1EE414BD00C2F52B /* SPFPinchViewController.h */,
+				92ABCA9B1EE414BD00C2F52B /* SPFPinchViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 				92ABCA871EE14A3700C2F52B /* UIColor+SPFColors.m in Sources */,
 				922452561EDCAB6E0020BCB0 /* SPFGetListOfPicturesOperation.m in Sources */,
 				92B58A661EDA0796009E470D /* SecondViewController.m in Sources */,
+				92ABCA9C1EE414BD00C2F52B /* SPFPinchViewController.m in Sources */,
 				92ABCA901EE16A9E00C2F52B /* SPFComment.m in Sources */,
 				9224523F1EDB00A60020BCB0 /* NSCacheSingleton.m in Sources */,
 				922452401EDB00A60020BCB0 /* SPFCustomCell.m in Sources */,

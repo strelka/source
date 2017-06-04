@@ -6,6 +6,7 @@
 //
 
 #import "SPFTopNavigationView.h"
+#import "UIColor+SPFColors.h"
 #import <Masonry/Masonry.h>
 
 @implementation SPFTopNavigationView{
@@ -29,9 +30,6 @@
 - (UIImageView *) avatarImg{
     if (!avatarImg){
         avatarImg = [[UIImageView alloc] init];
-        avatarImg.layer.cornerRadius = 16;
-        avatarImg.clipsToBounds = YES;
-        avatarImg.backgroundColor = [UIColor blueColor];
     }
     return avatarImg;
 }
@@ -42,7 +40,6 @@
         authorLabel.font = [UIFont systemFontOfSize:14];
         authorLabel.textColor = [UIColor blackColor];
         authorLabel.textAlignment = NSTextAlignmentLeft;
-        //authorLabel.text = @"sarahannloreth";
     }
     return authorLabel;
 }
@@ -51,9 +48,8 @@
     if (!geoLabel){
         geoLabel = [[UILabel alloc] init];
         geoLabel.font = [UIFont systemFontOfSize:13];
-        geoLabel.textColor = [UIColor colorWithRed:170.0/255.0 green:170.0/255.0 blue:170.0/255.0 alpha:1];
+        geoLabel.textColor = [UIColor SPFFontColor];
         geoLabel.textAlignment = NSTextAlignmentLeft;
-        //geoLabel.text = @"Kauai, Hawaii";
     }
     return geoLabel;
 }
@@ -83,7 +79,7 @@
     }];
     
     [geoImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@10);
+        make.height.equalTo(@15);
         make.width.equalTo(@8);
         make.left.equalTo(avatarImg.mas_right).with.offset(16);
         make.bottom.equalTo(self.mas_bottom);
@@ -100,6 +96,12 @@
 - (void) setAuthor:(NSString*)author AndLocation:(NSString*)location{
     authorLabel.text = author;
     geoLabel.text = location;
+}
+
+- (void) setAvatarImage:(UIImage*)image{
+    avatarImg.image  = image;
+    avatarImg.layer.cornerRadius = 16;
+    avatarImg.clipsToBounds = YES;
 }
 
 @end

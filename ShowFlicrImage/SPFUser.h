@@ -11,7 +11,5 @@
 @interface SPFUser : NSObject
 @property(nonatomic, strong) NSString *userName;
 @property(nonatomic, strong) NSURL *avatarImgUrl;
-
-
-
+@property(nonatomic, strong) NSString *userLocation;
 @end

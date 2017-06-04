@@ -11,8 +11,6 @@
 
 @interface SPFGetDetailsOperation : NSOperation
 
-- (instancetype) initDetailsForImage:(SPFPicture*)picture
-                       AndComplition:(void(^)()) block;
-
+- (instancetype) initDetailsForImage:(SPFPicture*)picture AndComplition:(void(^)()) block;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "SPFDetailViewController.h"
+#import "SPFPinchViewController.h"
 #import "SPFPicture.h"
 #import "SPFComment.h"
 #import "SPFUser.h"
@@ -56,6 +57,9 @@
     _imgView.contentMode = UIViewContentModeScaleAspectFill;
     _imgView.clipsToBounds = YES;
     
+    _imgView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *singleTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showModalController)];
+    [_imgView addGestureRecognizer:singleTap];
     
     _detailView = [[SPFDetailView alloc] init];
     _tableView = _detailView.commentTableView;
@@ -65,8 +69,15 @@
     [_tableView registerClass:[SPFCommentCell class] forCellReuseIdentifier:@"SPFCellCommentIdentifier"];
     
     _topNavView = [[SPFTopNavigationView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 32)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_topNavView];
-    self.navigationItem.leftItemsSupplementBackButton = YES;
+    
+    //self.navigationController.navigationBar.backItem.b
+    
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_topNavView];
+//    
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:
+                                              @"" style:UIBarButtonItemStylePlain target:nil action:nil];
+//    self.navigationItem.leftItemsSupplementBackButton = YES;
     
     [self.view addSubview:_imgView];
     [self.view addSubview:_detailView];
@@ -94,16 +105,31 @@
 - (void) getDetailsForImage{
     _operations = [[SPFPendingOperations alloc] init];
     
-    SPFGetDetailsOperation *getDetailsOperation = [[SPFGetDetailsOperation alloc]
-                                                   initDetailsForImage:_picture
-                                                         AndComplition:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_topNavView setAuthor:_picture.owner.userName AndLocation:_picture.locality];
-            //[_detailView.]
-        });
+    SPFGetDetailsOperation *getDetailsOperation = [[SPFGetDetailsOperation alloc] initDetailsForImage:_picture AndComplition:^(){
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [_topNavView setAuthor:_picture.owner.userName AndLocation:_picture.owner.userLocation];
+             _detailView.descLabel.text = _picture.desc;
+             _detailView.likeLabel.text = [[NSString alloc] initWithFormat:@"%ld", _picture.countViews];
+             _detailView.commentLabel.text = [[NSString alloc] initWithFormat:@"%d", _picture.countComments];
+            
+             if (nil == _picture.owner.avatarImgUrl){
+                [_topNavView setAvatarImage:[UIImage imageNamed:@"flickr-logo"]];
+             } else {
+                NSData * imageData = [[NSData alloc] initWithContentsOfURL: _picture.owner.avatarImgUrl];
+                [_topNavView setAvatarImage:[UIImage imageWithData:imageData]];
+             }
+         });
     }];
-                                                   
     [_operations.downloadQueue addOperation:getDetailsOperation];
+    
+//    SPFDownloadingPictureOperation *downloader = [[SPFDownloadingPictureOperation alloc] initWithUrl:_picture.owner.avatarImgUrl andComplition:^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [_topNavView setAvatarImage:[_picture.owner.avatarImgUrl getImageFromCache]];
+//        });
+//    }];
+//    
+//    [downloader addDependency:getDetailsOperation];
+//    [_operations.downloadQueue addOperation:downloader];
 
 
 }
@@ -151,9 +177,12 @@
     [(SPFCommentCell*)cell imageView].clipsToBounds = YES;
         
      if (nil == cell.imageView.image){
-        [self getAvatarForCommentWithURL:comment.author.avatarImgUrl byIndex:indexPath];
+         if (nil == comment.author.avatarImgUrl){
+             cell.imageView.image = [UIImage imageNamed:@"flickr-logo"];
+         } else {
+             [self getAvatarForCommentWithURL:comment.author.avatarImgUrl byIndex:indexPath];
+         }
     }
-    
     return cell;
 }
 
@@ -161,5 +190,17 @@
     return MIN(3, [_comments count]);
 }
 
+- (void) showModalController{
+    
+    SPFPinchViewController *modalViewController = [[SPFPinchViewController alloc] initWithImage:[_picture.imgURL getImageFromCache]];
+
+    modalViewController.providesPresentationContextTransitionStyle = YES;
+        modalViewController.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0  alpha:0.5];
+    modalViewController.view.opaque = YES;
+    modalViewController.definesPresentationContext = YES;
+    [modalViewController setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+    
+    [self.navigationController presentViewController:modalViewController animated:NO completion:nil];
+}
 
 @end
