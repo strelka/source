@@ -12,6 +12,7 @@
 		92B58A451ED8C15D009E470D /* TRNPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A441ED8C15D009E470D /* TRNPlayerViewController.m */; };
 		92B58A481ED8C18D009E470D /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A471ED8C18D009E470D /* YTPlayerView.m */; };
 		92B58A4B1ED8C3F0009E470D /* TRNYouTubeTrendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A4A1ED8C3F0009E470D /* TRNYouTubeTrendsController.m */; };
+		92B58A4E1ED8C9D5009E470D /* TRNVideoCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A4D1ED8C9D5009E470D /* TRNVideoCustomCell.m */; };
 		92C362891EA771AB006D3BC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C362881EA771AB006D3BC7 /* main.m */; };
 		92C3628C1EA771AB006D3BC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C3628B1EA771AB006D3BC7 /* AppDelegate.m */; };
 		92C3628F1EA771AB006D3BC7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C3628E1EA771AB006D3BC7 /* ViewController.m */; };
@@ -52,6 +53,8 @@
 		92B58A471ED8C18D009E470D /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
 		92B58A491ED8C3F0009E470D /* TRNYouTubeTrendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNYouTubeTrendsController.h; sourceTree = "<group>"; };
 		92B58A4A1ED8C3F0009E470D /* TRNYouTubeTrendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNYouTubeTrendsController.m; sourceTree = "<group>"; };
+		92B58A4C1ED8C9D5009E470D /* TRNVideoCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNVideoCustomCell.h; sourceTree = "<group>"; };
+		92B58A4D1ED8C9D5009E470D /* TRNVideoCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNVideoCustomCell.m; sourceTree = "<group>"; };
 		92C362841EA771AB006D3BC7 /* Trends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C362881EA771AB006D3BC7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		92C3628A1EA771AB006D3BC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				92B58A441ED8C15D009E470D /* TRNPlayerViewController.m */,
 				92B58A491ED8C3F0009E470D /* TRNYouTubeTrendsController.h */,
 				92B58A4A1ED8C3F0009E470D /* TRNYouTubeTrendsController.m */,
+				92B58A4C1ED8C9D5009E470D /* TRNVideoCustomCell.h */,
+				92B58A4D1ED8C9D5009E470D /* TRNVideoCustomCell.m */,
 			);
 			path = Trends;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				9263D74D1EAB513B00275DF0 /* myInstagramConsoleVcViewController.m in Sources */,
 				92B58A451ED8C15D009E470D /* TRNPlayerViewController.m in Sources */,
 				92C362951EA771AB006D3BC7 /* Trends.xcdatamodeld in Sources */,
+				92B58A4E1ED8C9D5009E470D /* TRNVideoCustomCell.m in Sources */,
 				92B58A481ED8C18D009E470D /* YTPlayerView.m in Sources */,
 				92B58A411ED8B603009E470D /* getThrendsFromYouTube.m in Sources */,
 			);

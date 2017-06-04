@@ -170,13 +170,14 @@
     
     
     UIImage *tmpImage = [comment.author.avatarImgUrl getImageFromCache];
+    
     [(SPFCommentCell*)cell imageView].image = tmpImage;
     [(SPFCommentCell*)cell imageView].layer.cornerRadius = 24;
     [(SPFCommentCell*)cell imageView].layer.masksToBounds = YES;
     [(SPFCommentCell*)cell imageView].contentMode = UIViewContentModeScaleAspectFill;
     [(SPFCommentCell*)cell imageView].clipsToBounds = YES;
         
-     if (nil == cell.imageView.image){
+     if (nil == [(SPFCommentCell*)cell imageView].image){
          if (nil == comment.author.avatarImgUrl){
              cell.imageView.image = [UIImage imageNamed:@"flickr-logo"];
          } else {

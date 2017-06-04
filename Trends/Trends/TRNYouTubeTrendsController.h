@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TRNYouTubeTrendsController : UIViewController
+@interface TRNYouTubeTrendsController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

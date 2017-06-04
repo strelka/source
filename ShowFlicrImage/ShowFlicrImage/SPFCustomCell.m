@@ -20,20 +20,19 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
     return _imageView;
 }
 
-- (UILabel*) label{
-    if (!_label){
-        _label = [[UILabel alloc] initWithFrame:self.contentView.bounds];
-        _label.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        _label.contentMode = UIViewContentModeScaleAspectFit;
-        [self.contentView addSubview:self.label];
+- (UIActivityIndicatorView *) spinner{
+    if (!_spinner){
+        _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [_spinner startAnimating];
     }
-    return _label;
-
+    return _spinner;
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self.contentView addSubview:self.imageView];
+        [self.contentView addSubview:self.spinner];
+        _spinner.center = self.contentView.center;
     }
     return self;
 }
@@ -41,6 +40,7 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
 -(void)prepareForReuse {
     [super prepareForReuse];
     self.imageView.image = nil; //and etc.
+    [_spinner startAnimating];
 }
 
 @end

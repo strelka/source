@@ -8,6 +8,7 @@
 
 #import <Masonry/Masonry.h>
 
+
 #import "SPFPicture.h"
 #import "SPFViewController.h"
 #import "SPFPendingOperations.h"
@@ -105,17 +106,25 @@
     SPFCustomCell *cell = (SPFCustomCell *)[collectionView dequeueReusableCellWithReuseIdentifier: @"SPFCellIdentifier" forIndexPath:indexPath];
     SPFPicture *photo = _records[indexPath.item];
     
-    UIImage *tmpImg = [photo.imgURL getImageFromCache];
-    cell.imageView.image = tmpImg;
-    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    cell.imageView.clipsToBounds = YES;
-    
     if (!(_operation.downloadsInProgress[indexPath])){
         [photo correctPictureState];
     }
+    
+    if (photo.imageState == New){
+        [self startOPerationsForPhotoRecord:photo byIndex:indexPath];
+    } else {
+        [cell.spinner stopAnimating];
+        UIImage *tmpImg = [photo.imgURL getImageFromCache];
+        UIGraphicsBeginImageContext(CGSizeMake( cell.frame.size.width, cell.frame.size.height));
+        [tmpImg drawInRect: CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+        UIImage *small = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
         
-    [self startOPerationsForPhotoRecord:photo byIndex:indexPath];
-        
+        UIImageView *cellImageView = [[UIImageView alloc] initWithImage:small];
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.clipsToBounds = YES;
+        [cell.contentView addSubview:cellImageView];
+    }
     return cell;
 }
 
@@ -213,6 +222,19 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
++ (UIImage *) imageWithView:(UIView *)view
+{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return img;
 }
 
 @end
