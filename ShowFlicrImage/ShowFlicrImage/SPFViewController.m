@@ -112,9 +112,11 @@
     
     if (photo.imageState == New){
         [self startOPerationsForPhotoRecord:photo byIndex:indexPath];
+        
     } else {
-        [cell.spinner stopAnimating];
         UIImage *tmpImg = [photo.imgURL getImageFromCache];
+        tmpImg = [photo imageByCroppingImage:tmpImg];
+        
         UIGraphicsBeginImageContext(CGSizeMake( cell.frame.size.width, cell.frame.size.height));
         [tmpImg drawInRect: CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
         UIImage *small = UIGraphicsGetImageFromCurrentImageContext();

@@ -44,7 +44,7 @@
     SPFPicture*(^createPicture)(NSDictionary *json);
     createPicture = ^SPFPicture*(NSDictionary* json){
         
-        NSString *rec = [[NSString alloc] initWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_m.jpg",   json[@"farm"],
+        NSString *rec = [[NSString alloc] initWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",   json[@"farm"],
             json[@"server"],
             json[@"id"],
             json[@"secret"]];
