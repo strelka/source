@@ -23,6 +23,7 @@
 		922452621EDF26540020BCB0 /* SPFGetDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 922452611EDF26540020BCB0 /* SPFGetDetailInfo.m */; };
 		922452651EDF311F0020BCB0 /* SPFCustomCellImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 922452641EDF311F0020BCB0 /* SPFCustomCellImage.m */; };
 		922452681EDF4D000020BCB0 /* SPFDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922452671EDF4D000020BCB0 /* SPFDetailView.m */; };
+		9242F98F1EE57021007FA9A8 /* UIImage+CroppingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9242F98E1EE57021007FA9A8 /* UIImage+CroppingImage.m */; };
 		92ABCA7B1EE014DF00C2F52B /* SPFTopNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA7A1EE014DF00C2F52B /* SPFTopNavigationView.m */; };
 		92ABCA841EE1413600C2F52B /* SPFCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA831EE1413600C2F52B /* SPFCommentCell.m */; };
 		92ABCA871EE14A3700C2F52B /* UIColor+SPFColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCA861EE14A3700C2F52B /* UIColor+SPFColors.m */; };
@@ -71,6 +72,8 @@
 		922452641EDF311F0020BCB0 /* SPFCustomCellImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFCustomCellImage.m; sourceTree = "<group>"; };
 		922452661EDF4D000020BCB0 /* SPFDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFDetailView.h; sourceTree = "<group>"; };
 		922452671EDF4D000020BCB0 /* SPFDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFDetailView.m; sourceTree = "<group>"; };
+		9242F98D1EE57021007FA9A8 /* UIImage+CroppingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CroppingImage.h"; sourceTree = "<group>"; };
+		9242F98E1EE57021007FA9A8 /* UIImage+CroppingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CroppingImage.m"; sourceTree = "<group>"; };
 		92ABCA791EE014DF00C2F52B /* SPFTopNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFTopNavigationView.h; sourceTree = "<group>"; };
 		92ABCA7A1EE014DF00C2F52B /* SPFTopNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFTopNavigationView.m; sourceTree = "<group>"; };
 		92ABCA821EE1413600C2F52B /* SPFCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFCommentCell.h; sourceTree = "<group>"; };
@@ -189,6 +192,8 @@
 		92B58A4F1EDA0796009E470D = {
 			isa = PBXGroup;
 			children = (
+				9242F98D1EE57021007FA9A8 /* UIImage+CroppingImage.h */,
+				9242F98E1EE57021007FA9A8 /* UIImage+CroppingImage.m */,
 				92ABCA881EE150F100C2F52B /* NSURL+Caching.h */,
 				92ABCA891EE150F100C2F52B /* NSURL+Caching.m */,
 				92ABCA851EE14A3700C2F52B /* UIColor+SPFColors.h */,
@@ -397,6 +402,7 @@
 				922452461EDB00A60020BCB0 /* SPFViewController.m in Sources */,
 				92B58A5D1EDA0796009E470D /* main.m in Sources */,
 				9224525F1EDF0B730020BCB0 /* SPFDetailViewController.m in Sources */,
+				9242F98F1EE57021007FA9A8 /* UIImage+CroppingImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

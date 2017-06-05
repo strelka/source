@@ -20,6 +20,7 @@
 
 #import "PinterestLayout.h"
 #import "NSURL+Caching.h"
+#import "UIImage+CroppingImage.h"
 
 #define CELL_INENTIFIER = @"cell"
 
@@ -115,7 +116,7 @@
         
     } else {
         UIImage *tmpImg = [photo.imgURL getImageFromCache];
-        tmpImg = [photo imageByCroppingImage:tmpImg];
+        tmpImg = [tmpImg imageByCroppingImage];
         
         UIGraphicsBeginImageContext(CGSizeMake( cell.frame.size.width, cell.frame.size.height));
         [tmpImg drawInRect: CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];

@@ -32,6 +32,5 @@ typedef NS_ENUM(NSInteger, spfImageState){
 @property (nonatomic) spfImageState imageState;
 
 - (instancetype) initWithUrl:(NSURL*)url;
-- (UIImage *)imageByCroppingImage:(UIImage *)image;
 - (void) correctPictureState;
 @end
