@@ -45,7 +45,6 @@
         make.height.equalTo(@60);
         make.bottom.equalTo(searchView.mas_bottom);
     }];
-    [searchBar setBackgroundColor:[UIColor magentaColor]];
     
     _tableView = [[UITableView alloc] init];
     _tableView.delegate = self;
@@ -53,8 +52,8 @@
     [self.view addSubview:_tableView];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(searchView.mas_left);
-        make.right.equalTo(searchView.mas_right);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
         make.top.equalTo(searchView.mas_bottom);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
@@ -86,24 +85,27 @@
     cell.artist.text = record.artistName;
     cell.collection.text = record.collectionCensoredName;
     cell.track.text = record.trackName;
-   // cell.price.text = [NSString stringWithFormat:@"%@", record.trackPrice];
+    //cell.price.text = record.trackPrice;
     
     cell.imgUrl = record.artworkUrl;
     NSURL *imgUrl = record.artworkUrl;
-    cell.imageView.image = [UIImage imageNamed:@"default.png"];
+    
     NSMutableDictionary *imgDict = [_records objectAtIndex:[indexPath row]];
-    if ([imgDict valueForKey:@"actualImage"]){
-        cell.imageView.image = [imgDict valueForKey:@"actualImage"];
-        }
-    else {
+    UIImage *tmpImg = [imgDict valueForKey:@"actualImage"];
+    
+    if (nil == tmpImg){
         [_service getImageFromItunes: imgUrl andComplition:^(NSURL *currentUrl, NSData *data) {
             if (cell.imgUrl == currentUrl){
                 [imgDict setValue:[UIImage imageWithData:data] forKey:@"actualImage"];
-                cell.imageView.image = [imgDict valueForKey:@"actualImage"];
-                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
             }
         }];
     }
+    
+    cell.imageView.image = tmpImg;
+    cell.imageView.contentMode = UIViewContentModeScaleToFill;
+    cell.imageView.clipsToBounds = YES;
+    
     return cell;
 }
 
@@ -118,6 +120,7 @@
     _service = [SISGetInfoFromItunes new];
     [_service getDataFromItunes:searchText andComplition:^(NSArray *data){
         _records = data;
+        NSLog(@"reloadData");
         [_tableView reloadData];
     }];
 }

@@ -18,6 +18,4 @@ extern NSString *const SISCellIdentifier;
 @property(nonatomic, strong) UILabel* track;
 @property(nonatomic, strong) UILabel* collection;
 @property(nonatomic, strong) UILabel* price;
-@property(nonatomic, strong) UIImageView* imView;
-
 @end

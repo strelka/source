@@ -29,70 +29,122 @@ NSString *const SISCellIdentifier = @"SISCellIdentifier";
     _artist = [UILabel new];
     _track = [UILabel new];
     _collection = [UILabel new];
-    //_price = [UILabel new];
-    _imView = [[UIImageView alloc] init];
-    _imView.contentMode = UIViewContentModeScaleAspectFit;
-    _imView.clipsToBounds = YES;
-    double cellheight = 60;
+    _price = [UILabel new];
     
-    [self addSubview:_imView];
+    UIImageView *artistIco = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mic"]];
+    
+    UIImageView *songIco = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"song"]];
+    
+    UIImageView *collectIco = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cddrive"]];
+    
+    
+    //UIImage *artistIco = [UIImage imageNamed:@"mic"];
+    //UIImage *artistIco = [UIImage imageNamed:@"mic"];
+
+    
+    _price.text = @"22";
+    
+    //_imView = [[UIImageView alloc] init];
+//    _imView.contentMode = UIViewContentModeScaleAspectFit;
+//    _imView.clipsToBounds = YES;
+    
+    [self addSubview:artistIco];
+    [self addSubview:songIco];
+    [self addSubview:collectIco];
+    
     [self addSubview:_artist];
     [self addSubview:_track];
     [self addSubview:_collection];
     [self addSubview:_price];
     
-//    [_price setFont:[UIFont boldSystemFontOfSize:8]];
-//    [_price setTextAlignment:NSTextAlignmentCenter];
-//    [_price setTextColor:[UIColor blackColor]];
-//    [_price setBackgroundColor:[UIColor lightGrayColor]];
-//    [_price setTransform:CGAffineTransformMakeRotation(M_PI_2)];
+    [_price setFont:[UIFont boldSystemFontOfSize:8]];
+    [_price setTextAlignment:NSTextAlignmentCenter];
+    [_price setTextColor:[UIColor blackColor]];
+    [_price setBackgroundColor:[UIColor lightGrayColor]];
+    [_price setTransform:CGAffineTransformMakeRotation(M_PI_2)];
     
     
-    [_track setFont:[UIFont boldSystemFontOfSize:10]];
-    [_track setTextColor:[UIColor darkTextColor]];
+    [_track setFont:[UIFont boldSystemFontOfSize:14]];
+    [_track setTextColor:[UIColor darkGrayColor]];
     
-    [_artist setFont:[UIFont boldSystemFontOfSize:8]];
-    [_artist setTextColor:[UIColor darkTextColor]];
+    [_artist setFont:[UIFont boldSystemFontOfSize:13]];
+    [_artist setTextColor:[UIColor lightGrayColor]];
     
-    [_collection setFont:[UIFont boldSystemFontOfSize:8]];
-    [_collection setTextColor:[UIColor darkTextColor]];
+    [_collection setFont:[UIFont boldSystemFontOfSize:14]];
+    [_collection setTextColor:[UIColor darkGrayColor]];
     
     
 //    [_price mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(self.mas_right).with.offset(20);
+//        make.height.equalTo(@20);
+//        make.width.equalTo(@60);
+//
 //        make.bottom.equalTo(self.mas_right);
 //        make.right.equalTo(self.mas_top);
 //        make.left.equalTo(self.mas_bottom);
 //        make.height.equalTo(@(cellheight));
 //        make.width.equalTo(@(20));
-//    }];
-//    
-    [_imView mas_makeConstraints:^(MASConstraintMaker *make) {
+ //   }];
+    
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
-        make.height.equalTo(@60).priorityHigh();
-        make.width.equalTo(@60).priorityHigh();
         make.left.equalTo(self.mas_left);
+        make.height.equalTo(self.mas_height);
+        make.width.equalTo(self.mas_height);
     }];
     
     [_track mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
-        make.height.equalTo(@(cellheight/3));
-        make.left.equalTo(self.mas_left).with.offset(100);
+        make.height.equalTo(@(18));
+        make.left.equalTo(self.imageView.mas_right).with.offset(25);
         make.right.equalTo(self.mas_right);
     }];
     
+    
     [_artist mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_track.mas_bottom);
-        make.left.equalTo(self.mas_left).with.offset(100);
+        make.left.equalTo(self.imageView.mas_right).with.offset(25);
         make.right.equalTo(self.mas_right);
-        make.height.equalTo(@(cellheight/3));
-        
+        make.height.equalTo(@(18));
     }];
+    
     [_collection mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_artist.mas_bottom);
-        make.height.equalTo(@(cellheight/3));
-        make.bottom.equalTo(self.mas_bottom);
-        make.left.equalTo(self.mas_left).with.offset(100);
+        make.height.equalTo(@(18));
+        make.left.equalTo(self.imageView.mas_right).with.offset(25);
         make.right.equalTo(self.mas_right);
     }];
+    
+    [artistIco mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.imageView.mas_right).with.offset(5);
+        make.height.equalTo(@16);
+        make.width.equalTo(@16);
+        
+        make.centerY.equalTo(_artist.mas_centerY);
+    }];
+    
+    [collectIco mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.imageView.mas_right).with.offset(5);
+        make.height.equalTo(@16);
+        make.width.equalTo(@16);
+        
+        make.centerY.equalTo(_collection.mas_centerY);
+    }];
+    
+    [songIco mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.imageView.mas_right).with.offset(5);
+        make.height.equalTo(@16);
+        make.width.equalTo(@16);
+        
+        make.centerY.equalTo(_track.mas_centerY);
+    }];
 }
+- (void) prepareForReuse{
+   self.imageView.image = nil;
+    _track.text = @"";
+    _artist.text = @"";
+    _collection.text = @"";
+}
+
+
 @end
