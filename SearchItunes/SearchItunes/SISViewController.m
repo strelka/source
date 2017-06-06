@@ -31,10 +31,12 @@
     [searchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.top.equalTo(self.view.mas_top);
-        make.height.equalTo(@100); }];
+        make.top.equalTo(self.mas_topLayoutGuideTop);
+        make.height.equalTo(@70); }];
     
-    [searchView setBackgroundColor:[UIColor magentaColor]];
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    searchView.backgroundColor = [UIColor lightGrayColor];
+    
     
     UISearchBar *searchBar = [[UISearchBar alloc] init];
     searchBar.delegate = self;
@@ -70,7 +72,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"%lu", (unsigned long)[_records count]);
+    //NSLog(@"%lu", (unsigned long)[_records count]);
     return [_records count];
 }
 
@@ -87,7 +89,7 @@
     cell.artist.text = record.artistName;
     cell.collection.text = record.collectionCensoredName;
     cell.track.text = record.trackName;
-    //cell.price.text = record.trackPrice;
+    cell.price.text = [[NSString alloc] initWithFormat:@"%@", record.trackPrice ];
     
     cell.imgUrl = record.artworkUrl;
     NSURL *imgUrl = record.artworkUrl;

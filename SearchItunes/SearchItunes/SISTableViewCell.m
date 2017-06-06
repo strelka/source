@@ -38,12 +38,13 @@ NSString *const SISCellIdentifier = @"SISCellIdentifier";
     
     UIImageView *collectIco = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cddrive"]];
     
+    UIImageView *moneyIco = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"money"]];
     
-    _price.text = @"22";
     
     [self addSubview:artistIco];
     [self addSubview:songIco];
     [self addSubview:collectIco];
+    [self addSubview:moneyIco];
     [self addSubview:_imgView];
     
     [self addSubview:_artist];
@@ -51,11 +52,9 @@ NSString *const SISCellIdentifier = @"SISCellIdentifier";
     [self addSubview:_collection];
     [self addSubview:_price];
     
-    [_price setFont:[UIFont boldSystemFontOfSize:8]];
+    [_price setFont:[UIFont boldSystemFontOfSize:14]];
     [_price setTextAlignment:NSTextAlignmentCenter];
-    [_price setTextColor:[UIColor blackColor]];
-    [_price setBackgroundColor:[UIColor lightGrayColor]];
-    [_price setTransform:CGAffineTransformMakeRotation(M_PI_2)];
+    [_price setTextColor:[UIColor darkGrayColor]];
     
     
     [_track setFont:[UIFont boldSystemFontOfSize:14]];
@@ -67,18 +66,21 @@ NSString *const SISCellIdentifier = @"SISCellIdentifier";
     [_collection setFont:[UIFont boldSystemFontOfSize:14]];
     [_collection setTextColor:[UIColor darkGrayColor]];
     
+    [moneyIco mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right);
+        make.height.equalTo(@30);
+        make.width.equalTo(@30);
+        
+        make.bottom.equalTo(_artist.mas_centerY);
+    }];
     
-//    [_price mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.equalTo(self.mas_right).with.offset(20);
-//        make.height.equalTo(@20);
-//        make.width.equalTo(@60);
-//
-//        make.bottom.equalTo(self.mas_right);
-//        make.right.equalTo(self.mas_top);
-//        make.left.equalTo(self.mas_bottom);
-//        make.height.equalTo(@(cellheight));
-//        make.width.equalTo(@(20));
- //   }];
+    [_price mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right);
+        make.bottom.equalTo(self.mas_bottom);
+        make.top.equalTo(self.mas_centerY);
+        make.centerX.equalTo(moneyIco.mas_centerX);
+    }];
+    
     
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
@@ -91,14 +93,14 @@ NSString *const SISCellIdentifier = @"SISCellIdentifier";
         make.top.equalTo(self.mas_top);
         make.height.equalTo(@(18));
         make.left.equalTo(self.imgView.mas_right).with.offset(25);
-        make.right.equalTo(self.mas_right);
+        make.right.equalTo(self.mas_right).with.offset(-35);
     }];
     
     
     [_artist mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_track.mas_bottom);
         make.left.equalTo(self.imgView.mas_right).with.offset(25);
-        make.right.equalTo(self.mas_right);
+        make.right.equalTo(self.mas_right).with.offset(-35);
         make.height.equalTo(@(18));
     }];
     
@@ -106,7 +108,7 @@ NSString *const SISCellIdentifier = @"SISCellIdentifier";
         make.top.equalTo(_artist.mas_bottom);
         make.height.equalTo(@(18));
         make.left.equalTo(self.imgView.mas_right).with.offset(25);
-        make.right.equalTo(self.mas_right);
+        make.right.equalTo(self.mas_right).with.offset(-35);
     }];
     
     [artistIco mas_makeConstraints:^(MASConstraintMaker *make) {

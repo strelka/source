@@ -21,6 +21,7 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
     SISViewController *vk = [SISViewController new];
+    vk.view.backgroundColor = [UIColor lightGrayColor];
     window.rootViewController = vk;
     
     self.window = window;
