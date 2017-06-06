@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (CroppingImage)
-
+- (UIImage*) cropBySqrSize;
 @end

@@ -12,6 +12,8 @@
 #import "SISTableViewCell.h"
 #import "SISComposition.h"
 
+#import "UIImage+CroppingImage.h"
+
 @interface SISViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (nonatomic, strong) NSArray* records;
 @property (nonatomic, strong) id service;
@@ -100,12 +102,20 @@
                 [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
             }
         }];
-    }
+    } else {
     
-    cell.imageView.image = tmpImg;
-    cell.imageView.contentMode = UIViewContentModeScaleToFill;
-    cell.imageView.clipsToBounds = YES;
-    
+        tmpImg = [tmpImg cropBySqrSize];
+        CGSize imgViewSize = cell.imgView.bounds.size;
+        
+        UIGraphicsBeginImageContext(CGSizeMake( imgViewSize.width, imgViewSize.height));
+        [tmpImg drawInRect: CGRectMake(0, 0, imgViewSize.width, imgViewSize.height)];
+        UIImage *small = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        cell.imgView.image = small;
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.clipsToBounds = YES;
+        }
     return cell;
 }
 
