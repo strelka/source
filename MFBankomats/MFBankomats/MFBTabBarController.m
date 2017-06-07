@@ -50,10 +50,22 @@
         //can't set this until after its added to the tab bar
     
     
-    mapController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemTopRated tag:1];
+   // mapController.tabBarItem = [[UITabBarItem alloc] initWi:UITabBarSystemItemTopRated tag:1];
+    mapController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Карта"
+                                                    image:[[UIImage imageNamed:@"map"] imageWithRenderingMode:UIImageRenderingModeAutomatic]
+                                            selectedImage:[[UIImage imageNamed:@"map"] imageWithRenderingMode: UIImageRenderingModeAutomatic]];
+    mapController.tabBarItem.tag = 1;
+    
     mapController.poiList = _poi;
     mapController.selectedPoi = _selectedPoi;
-    tableController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
+    
+    //tableController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
+    tableController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Список"
+                                                             image:[[UIImage imageNamed:@"atm"] imageWithRenderingMode:UIImageRenderingModeAutomatic]
+                                                     selectedImage:[[UIImage imageNamed:@"atm"] imageWithRenderingMode: UIImageRenderingModeAutomatic]];
+    tableController.tabBarItem.tag = 2;
+    
+    
     tableController.poiList = _poi;
     tableController.selectedPoi = _selectedPoi;
     }

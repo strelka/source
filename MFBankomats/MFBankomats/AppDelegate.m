@@ -18,11 +18,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //[GMSPlacesClient provideAPIKey:@"AIzaSyBv3nZHMZur08JlmyzQpJZfDsbnVRLE-Wg"];
-    
     UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    
-    
     MFBTabBarController *tab = [[MFBTabBarController alloc] init];
     window.rootViewController = tab;
     self.window = window;

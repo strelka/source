@@ -44,7 +44,7 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
     };
     
     NSString *urlstrMain = @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-    NSString *urlparam = [[NSString alloc] initWithFormat:@"location=%f, %f&radius=2000&type=atm&keyword=sberbank&key=AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY", cord.latitude, cord.longitude ];
+    NSString *urlparam = [[NSString alloc] initWithFormat:@"location=%f, %f&radius=1000&type=atm&keyword=sberbank&key=AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY", cord.latitude, cord.longitude ];
     
     urlparam = [urlparam stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
@@ -120,7 +120,7 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     
     NSString *txt = [self getDistanceFromJson:json];
-    _points[taskIndx].carDistance = txt;
+    //_points[taskIndx].carDistance = txt;
     
     _finishedTaskCount += 1;
     if ([_taskArray count] == _finishedTaskCount){

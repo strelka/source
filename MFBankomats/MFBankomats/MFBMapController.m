@@ -59,19 +59,22 @@
     self.mapView.delegate = self;
     
     _currentCord = self.locationManager.location.coordinate;
-    _region = MKCoordinateRegionMakeWithDistance(_currentCord, 2000, 2000);
+    _region = MKCoordinateRegionMakeWithDistance(_currentCord, 1000, 1000);
     
     [_mapView setRegion:_region animated:YES];
 
     [self.view addSubview:self.mapView];
     
-    self.btnZoomIn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    self.btnZoomIn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.btnZoomIn setImage:[UIImage imageNamed:@"inBtn"] forState:UIControlStateNormal];
     [_mapView addSubview:_btnZoomIn];
     
-    self.btnZoomOut = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    self.btnZoomOut = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.btnZoomOut setImage:[UIImage imageNamed:@"outBtn"] forState:UIControlStateNormal];
     [_mapView addSubview:_btnZoomOut];
     
-    self.btnCurrentLocation = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    self.btnCurrentLocation = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.btnCurrentLocation setImage:[UIImage imageNamed:@"currentLoc"] forState:UIControlStateNormal];
     [_mapView addSubview:_btnCurrentLocation];
     
     
