@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		9242F9921EE6D08A007FA9A8 /* UIImage+CroppingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9242F9911EE6D08A007FA9A8 /* UIImage+CroppingImage.m */; };
+		9242F9941EE74FF8007FA9A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9242F9931EE74FF8007FA9A8 /* Assets.xcassets */; };
 		9245A5791EBE1D1C0032E7B2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9245A5781EBE1D1C0032E7B2 /* Default-568h@2x.png */; };
 		925EABAD1EBBD60C00836E53 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 925EABAC1EBBD60C00836E53 /* main.m */; };
 		925EABB01EBBD60C00836E53 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 925EABAF1EBBD60C00836E53 /* AppDelegate.m */; };
 		925EABB31EBBD60C00836E53 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925EABB21EBBD60C00836E53 /* ViewController.m */; };
-		925EABB81EBBD60C00836E53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 925EABB71EBBD60C00836E53 /* Assets.xcassets */; };
 		925EABC51EBBD8BA00836E53 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925EABC31EBBD70800836E53 /* Masonry.framework */; };
 		925EABC61EBBD8BA00836E53 /* Masonry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 925EABC31EBBD70800836E53 /* Masonry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		925EABCD1EBBD99800836E53 /* SISTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 925EABCC1EBBD99800836E53 /* SISTableViewCell.m */; };
@@ -38,6 +38,7 @@
 /* Begin PBXFileReference section */
 		9242F9901EE6D08A007FA9A8 /* UIImage+CroppingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CroppingImage.h"; sourceTree = "<group>"; };
 		9242F9911EE6D08A007FA9A8 /* UIImage+CroppingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CroppingImage.m"; sourceTree = "<group>"; };
+		9242F9931EE74FF8007FA9A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = SearchItunes/Assets.xcassets; sourceTree = "<group>"; };
 		9245A5781EBE1D1C0032E7B2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		925EABA81EBBD60C00836E53 /* SearchItunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchItunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		925EABAC1EBBD60C00836E53 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		925EABAF1EBBD60C00836E53 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		925EABB11EBBD60C00836E53 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		925EABB21EBBD60C00836E53 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		925EABB71EBBD60C00836E53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		925EABBC1EBBD60C00836E53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		925EABC31EBBD70800836E53 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
 		925EABCB1EBBD99800836E53 /* SISTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISTableViewCell.h; sourceTree = "<group>"; };
@@ -73,6 +73,7 @@
 		925EAB9F1EBBD60B00836E53 = {
 			isa = PBXGroup;
 			children = (
+				9242F9931EE74FF8007FA9A8 /* Assets.xcassets */,
 				9242F9901EE6D08A007FA9A8 /* UIImage+CroppingImage.h */,
 				9242F9911EE6D08A007FA9A8 /* UIImage+CroppingImage.m */,
 				9245A5781EBE1D1C0032E7B2 /* Default-568h@2x.png */,
@@ -101,7 +102,6 @@
 				925EABAF1EBBD60C00836E53 /* AppDelegate.m */,
 				925EABB11EBBD60C00836E53 /* ViewController.h */,
 				925EABB21EBBD60C00836E53 /* ViewController.m */,
-				925EABB71EBBD60C00836E53 /* Assets.xcassets */,
 				925EABBC1EBBD60C00836E53 /* Info.plist */,
 				925EABAB1EBBD60C00836E53 /* Supporting Files */,
 			);
@@ -219,7 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				925EABB81EBBD60C00836E53 /* Assets.xcassets in Resources */,
+				9242F9941EE74FF8007FA9A8 /* Assets.xcassets in Resources */,
 				9245A5791EBE1D1C0032E7B2 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -46,7 +46,7 @@
     [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(searchView.mas_left);
         make.right.equalTo(searchView.mas_right);
-        make.height.equalTo(@60);
+        make.height.equalTo(@70);
         make.bottom.equalTo(searchView.mas_bottom);
     }];
     
