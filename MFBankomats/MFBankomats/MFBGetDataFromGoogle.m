@@ -23,7 +23,7 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
     NSArray<MFBAnnotation*> *_points;
 }
 
--(void) getDataforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord andComplition:(void(^)(NSMutableSet* data)) block{
+-(void) getDataforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord andComplition:(void(^)(NSMutableArray* data)) block{
 
     MFBAnnotation* (^createPlace)(NSDictionary *json);
     
@@ -55,7 +55,10 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
     [[session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSError* jsonError;
-        NSMutableSet *_resultRecords = [NSMutableSet new];
+        if (jsonError){
+            NSLog(@"%@", jsonError);
+        }
+        NSMutableArray *_resultRecords = [NSMutableArray new];
         if (data){
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             NSDictionary *jsonResults = [json objectForKey:@"results"];

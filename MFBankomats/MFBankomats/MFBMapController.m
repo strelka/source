@@ -81,17 +81,8 @@
     [self initConstraints];
     _service = [MFBGetDataFromGoogle new];
     
-    [_service getDataforName:@"sberbank" andCord:_region.center andComplition:^(NSMutableSet *data) {
-        for (MFBAnnotation *item in data){
-            [self.poiList addPoiObject:item];
-            [self.mapView addAnnotation:item];
-        }
-        
-        [[[[[self tabBarController] tabBar] items]
-          objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([_poiList countOfPoi])]];
-        
-        NSLog(@"%lu", (unsigned long)[_poiList countOfPoi]);
-
+    [_service getDataforName:@"sberbank" andCord:_region.center andComplition:^(NSMutableArray *data) {
+        [self.mapView addAnnotations:data];
     }];
     
     [_btnZoomIn addTarget:self action:@selector(zoomInButton) forControlEvents:UIControlEventTouchDown];
@@ -158,11 +149,9 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    // If it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
-    // Handle any custom annotations.
     if ([annotation isKindOfClass:[MFBAnnotation class]])
     {
         MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"MyAnnotation"];
@@ -201,26 +190,21 @@
     newRegion.center = self.mapView.region.center;
     newRegion.span = self.mapView.region.span;
     
-    if ((fabs(_region.span.latitudeDelta - newRegion.span.latitudeDelta) > 0.01)
-        ||(fabs(_region.span.longitudeDelta - newRegion.span.longitudeDelta) > 0.01))
+    if ((fabs(_region.span.latitudeDelta - newRegion.span.latitudeDelta) > 0.05)
+        ||(fabs(_region.span.longitudeDelta - newRegion.span.longitudeDelta) > 0.05))
         
         NSLog(@"change!");
         _region = newRegion;
     
         NSLog(@"%f-%f",newRegion.center.longitude, newRegion.center.latitude);
     
-        [_service getDataforName:@"sberbank" andCord:newRegion.center andComplition:^(NSMutableSet *data) {
+        [_service getDataforName:@"sberbank" andCord:newRegion.center andComplition:^(NSMutableArray *data) {
             if (data){
-                [data minusSet:self.poiList.poi];
-                
-                for (MFBAnnotation *item in data){
-                    [self.poiList.poi addObject:item];
-                    [self.mapView addAnnotation:item];
-                }
-                [[[[[self tabBarController] tabBar] items]
-                  objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%@",  @([_poiList countOfPoi])]];
+                NSMutableArray *pins = [[NSMutableArray alloc] initWithArray:[mapView annotations]];
+                [mapView removeAnnotations:pins];
+                pins = nil;
+                [mapView addAnnotations:data];
             }
-            
         }];
 }
 
