@@ -6,40 +6,32 @@
 //  Copyright © 2017 Julia Sharaeva. All rights reserved.
 //
 #import <MapKit/MapKit.h>
-#import "MFBRouteViewController.h"
+#import <Masonry/Masonry.h>
+#import "MFBMapView.h"
 
-@interface MFBRouteViewController ()<MKMapViewDelegate>
-@property(strong, nonatomic) MKMapView *routeMap;
+#import "MFBRouteViewController.h"
+#import "MFBMapViewDelegate.h"
+
+@interface MFBRouteViewController ()<MFBMapViewDelegate, MKMapViewDelegate>
+@property (nonatomic, strong) MKMapView *routeMap;
 @end
 
 @implementation MFBRouteViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _routeMap = [[MKMapView alloc] init];
-    _routeMap.showsUserLocation = YES;
+    
+    MFBMapView *mfbView  = [[MFBMapView alloc] initWithFrame:self.view.frame];
+    mfbView.delegate = self;
+    _routeMap = mfbView.mapView;
     _routeMap.delegate = self;
-    [self.view addSubview:_routeMap];
-    [self initConstraints];
-    [_routeMap addAnnotation:_destination.annotation];
     
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(_current, 20000, 20000);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(_current, 1000, 1000);
     [_routeMap setRegion:region animated:YES];
+    [self.view addSubview:mfbView];
+    
+    [_routeMap addAnnotation:_destination.annotation];
     [self getDirections];
-    // Do any additional setup after loading the view.
-}
-
--(void)initConstraints
-{
-    _routeMap.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    id views = @{
-                 @"mapView": _routeMap
-                 };
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[mapView]|" options:0 metrics:nil views:views]];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[mapView]|" options:0 metrics:nil views:views]];
 }
 
 -(void) getDirections
@@ -55,9 +47,9 @@
     request.requestsAlternateRoutes = NO;
     MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
     [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse * _Nullable response, NSError * _Nullable error) {
-    if (error){
-            
-    }else{
+    if (error) {
+    }
+    else {
             [self showRoute:response];
     }
     }];
@@ -68,8 +60,7 @@
     for (MKRoute *route in response.routes){
         [_routeMap addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
         
-        for (MKRouteStep *step in route.steps)
-        {
+        for (MKRouteStep *step in route.steps){
             NSLog(@"%@,%f", step.instructions, step.distance);
         }
     }
@@ -87,4 +78,28 @@
     renderer.lineWidth = 5.0;
     return renderer;
 }
+
+- (void)zoomInButton{
+    NSLog(@"ZoomIn");
+    MKCoordinateRegion region = _routeMap.region;
+    region.span.latitudeDelta /=2;
+    region.span.longitudeDelta /=2;
+    [_routeMap setRegion:region];
+}
+
+- (void)zoomOutButton{
+    NSLog(@"ZoomOut");
+    MKCoordinateRegion region = _routeMap.region;
+    region.span.latitudeDelta *=2;
+    region.span.longitudeDelta *=2;
+    [_routeMap setRegion:region];
+}
+
+- (void) setCurrentUsersLocation{
+    NSLog(@"currentLocation");
+    MKCoordinateRegion region = _routeMap.region;
+    region.center = _current;
+    [_routeMap setRegion:region];
+}
+
 @end

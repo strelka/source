@@ -10,10 +10,9 @@
 #import <Masonry/Masonry.h>
 
 #import "MFBGetDataFromGoogle.h"
-#import "poiAtmList.h"
 #import "MFBAnnotation.h"
 
-#import "MFBMapTableController.h"
+#import "MFBMapTableDelegate.h"
 
 @interface MFBTableViewController ()
 @property (nonatomic, strong) NSArray* poiArray;

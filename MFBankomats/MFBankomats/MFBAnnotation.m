@@ -28,23 +28,6 @@
     return self;
 }
 
-- (BOOL)isEqual:(id)object {
-    if ([object isKindOfClass:[MFBAnnotation class]]) {
-        if ((self.coordinate.latitude == [(MFBAnnotation *)object coordinate].latitude)&&
-            (self.coordinate.longitude == [(MFBAnnotation*) object coordinate].longitude)&&
-            ([self.title isEqualToString:[(MFBAnnotation*) object title]])
-            )
-        return YES;
-    }
-    return NO;
-}
-
-- (NSUInteger)hash {
-    NSString *hashstring = [[NSString alloc] initWithFormat:@"%f%f%@", self.coordinate.latitude,
-                                                                       self.coordinate.longitude,
-                                                                       self.title];
-    return [hashstring hash];
-}
     
 -(MKPinAnnotationView *)annotationView
 {

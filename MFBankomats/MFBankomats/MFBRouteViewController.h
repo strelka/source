@@ -6,10 +6,12 @@
 //  Copyright © 2017 Julia Sharaeva. All rights reserved.
 //
 
+#import "MFBMapController.h"
 #import <UIKit/UIKit.h>
 @class MFBAnnotation;
 
-@interface MFBRouteViewController : UIViewController
+@interface MFBRouteViewController : MFBMapController
 @property(nonatomic) CLLocationCoordinate2D current;
-@property(strong, nonatomic) MKAnnotationView *destination;
+@property(nonatomic, strong) MKAnnotationView *destination;
+
 @end

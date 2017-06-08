@@ -12,9 +12,6 @@
 
 @interface MFBMapController : UIViewController
 
-@property(nonatomic, weak) NSArray* poiList;
-@property(nonatomic, strong) MFBAnnotation* selectedPoi;
-
 - (instancetype) initWithDelegate:(id)mapDelegate;
 
 @end
