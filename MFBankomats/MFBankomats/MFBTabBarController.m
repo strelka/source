@@ -9,12 +9,15 @@
 #import "MFBTabBarController.h"
 #import "MFBMapController.h"
 #import "MFBTableViewController.h"
+
+#import "MFBMapTableController.h"
+
 #import "poiAtmList.h"
 #import "MFBAnnotation.h"
 
-@interface MFBTabBarController ()<UITabBarControllerDelegate, CLLocationManagerDelegate>
-@property (nonatomic, strong) poiAtmList* poi;
-@property (nonatomic, strong) MFBAnnotation* selectedPoi;
+@interface MFBTabBarController ()<UITabBarControllerDelegate>
+@property (nonatomic, strong) MFBMapTableController *mapTableDelegate;
+@property (nonatomic, strong) UINavigationController *navController;
 @end
 
 @implementation MFBTabBarController
@@ -22,43 +25,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _locationManager = [CLLocationManager new];
-    if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [_locationManager requestWhenInUseAuthorization];
-    };
     
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [_locationManager startUpdatingLocation];
+    _navController = [UINavigationController new];
     
     self.delegate = self;
-    self.poi = [poiAtmList new];
-    self.selectedPoi = [MFBAnnotation new];
+    _mapTableDelegate = [[MFBMapTableController alloc] initWithNavigationController:_navController];
     
-    MFBMapController *mapController = [[MFBMapController alloc] initWithLocationManager:_locationManager];
-    MFBTableViewController *tableController = [[MFBTableViewController alloc] initWithLocationManager:_locationManager];
+//    _poiList = [NSArray new];
+//    self.selectedPoi = [MFBAnnotation new];
     
-    UINavigationController *nav = [UINavigationController new];
-    nav.viewControllers = @[mapController];
+    MFBMapController *mapController = [[MFBMapController alloc] initWithDelegate:_mapTableDelegate];
+    MFBTableViewController *tableController = [[MFBTableViewController alloc] initWithDelegate:_mapTableDelegate];
     
-    NSMutableArray *tabViewControllers = [[NSMutableArray alloc] init];
+    _navController.viewControllers = @[mapController];
     
-    [tabViewControllers addObject:nav];
-    [tabViewControllers addObject:tableController];
+    [self setViewControllers:@[_navController, tableController]];
     
-    [self setViewControllers:tabViewControllers];
-        //can't set this until after its added to the tab bar
-    
-    
-   // mapController.tabBarItem = [[UITabBarItem alloc] initWi:UITabBarSystemItemTopRated tag:1];
     mapController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Карта"
                                                     image:[[UIImage imageNamed:@"map"] imageWithRenderingMode:UIImageRenderingModeAutomatic]
                                             selectedImage:[[UIImage imageNamed:@"map"] imageWithRenderingMode: UIImageRenderingModeAutomatic]];
-    mapController.tabBarItem.tag = 1;
-    
-    mapController.poiList = _poi;
-    mapController.selectedPoi = _selectedPoi;
-    
+//    mapController.tabBarItem.tag = 1;
+//    
+//    mapController.poiList = _poiList;
+//    mapController.selectedPoi = _selectedPoi;
+//    
     //tableController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
     tableController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Список"
                                                              image:[[UIImage imageNamed:@"atm"] imageWithRenderingMode:UIImageRenderingModeAutomatic]
@@ -66,8 +56,8 @@
     tableController.tabBarItem.tag = 2;
     
     
-    tableController.poiList = _poi;
-    tableController.selectedPoi = _selectedPoi;
+//    tableController.poiList = _poiList;
+//    tableController.selectedPoi = _selectedPoi;
     }
 
 - (void)didReceiveMemoryWarning {
@@ -77,7 +67,7 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController NS_AVAILABLE_IOS(3_0)
 {
-    NSLog(@"%@", _selectedPoi.title);
+    //NSLog(@"%@", _selectedPoi.title);
     return YES;
 }
 @end

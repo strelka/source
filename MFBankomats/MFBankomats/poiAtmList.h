@@ -10,7 +10,7 @@
 @class MFBAnnotation;
 
 @interface poiAtmList : NSObject
-@property (nonatomic, strong) NSMutableSet *poi;
+@property (nonatomic, strong) NSMutableArray *poi;
 -(NSUInteger)countOfPoi;
 -(void)addPoiObject:(MFBAnnotation *)object;
 -(NSSet*)getPoiSet;

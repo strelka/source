@@ -11,10 +11,10 @@
 @class MFBAnnotation;
 
 @interface MFBMapController : UIViewController
-@property(nonatomic, strong) poiAtmList* poiList;
+
+@property(nonatomic, weak) NSArray* poiList;
 @property(nonatomic, strong) MFBAnnotation* selectedPoi;
 
-@property(nonatomic, strong) CLLocationManager *locationManager;
+- (instancetype) initWithDelegate:(id)mapDelegate;
 
--(instancetype) initWithLocationManager:(CLLocationManager*)locationManager;
 @end

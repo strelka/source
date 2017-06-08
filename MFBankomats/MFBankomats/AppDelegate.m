@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MFBTabBarController.h"
+#import <MapKit/MapKit.h>
+
 //@import GooglePlaces;
 
 @interface AppDelegate ()
@@ -19,8 +21,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    _locationManager = [CLLocationManager new];
+    if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [_locationManager requestWhenInUseAuthorization];
+    };
+    
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [_locationManager startUpdatingLocation];
+    
+    
     MFBTabBarController *tab = [[MFBTabBarController alloc] init];
     window.rootViewController = tab;
+    
+    
     self.window = window;
     [window makeKeyAndVisible];
     

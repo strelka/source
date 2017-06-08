@@ -13,55 +13,65 @@
 #import "poiAtmList.h"
 #import "MFBAnnotation.h"
 
+#import "MFBMapTableController.h"
+
 @interface MFBTableViewController ()
 @property (nonatomic, strong) NSArray* poiArray;
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) id service;
+
+@property (nonatomic, weak) id tableDelegate;
 @end
 
 @implementation MFBTableViewController
--(instancetype) initWithLocationManager:(CLLocationManager*)locationManager{
+
+- (instancetype) initWithDelegate:(id)tableDelegate{
     self = [super init];
-    if (self){
-        _locationManager = locationManager;
-    } 
+    if (self) {
+        _tableDelegate = tableDelegate;
+    }
     return self;
 }
 
--(void) viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:YES];
+//-(instancetype) initWithLocationManager:(CLLocationManager*)locationManager{
+//    self = [super init];
+//    if (self){
+//        _locationManager = locationManager;
+//    } 
+//    return self;
+//}
 
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    
     if (self.tableView){
-        NSLog(@"-->%lu", (unsigned long)[_poiList countOfPoi]);
-        _poiArray  = [[_poiList getPoiSet] allObjects];
+        //NSLog(@"-->%lu", (unsigned long)[_poiList count]);
         [self.tableView reloadData];
-        
-        dispatch_queue_t queue = dispatch_queue_create("ru.js.distance", DISPATCH_QUEUE_CONCURRENT);
-
-        dispatch_async(queue, ^{
-            [_service getDistanceFromPoint:_locationManager.location ToPoints:_poiArray andComplition:^{
-                NSLog(@"reload");
-                [_tableView reloadData];
-            }];
-        });
-        
     }
+    
+//        dispatch_queue_t queue = dispatch_queue_create("ru.js.distance", DISPATCH_QUEUE_CONCURRENT);
+//
+//        dispatch_async(queue, ^{
+//            [_service getDistanceFromPoint:_locationManager.location ToPoints:_poiArray andComplition:^{
+//                NSLog(@"reload");
+//                [_tableView reloadData];
+//            }];
+//        });
+//        
+//    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _poiArray  = [[NSArray alloc] initWithArray:[[_poiList getPoiSet] allObjects]];
     self.view.backgroundColor = [UIColor whiteColor];
     UIView *headerView = [UIView new];
     headerView.backgroundColor = [UIColor lightGrayColor];
     
     _tableView = [UITableView new];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
+    _tableView.delegate = _tableDelegate;
+    _tableView.dataSource = _tableDelegate;
     
-    _service  = [MFBGetDataFromGoogle new];
-
     [self.view addSubview:_tableView];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -81,36 +91,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_poiArray count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *TableIdentifier = @"TableItem";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier forIndexPath:indexPath];
-    MFBAnnotation *annotation = _poiArray[indexPath.row];
-    if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TableIdentifier];
-    }
-    
-    cell.textLabel.font = [UIFont systemFontOfSize:8];
-    
-    NSString *tl = [[NSString alloc] initWithFormat:@"%@[auto: %f][walk: %f]", annotation.title, annotation.carDistance, annotation.walkingDistance];
-    cell.textLabel.text = tl;
-    
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    MFBAnnotation *tmppoi = _poiArray[indexPath.row];
-    _selectedPoi.coordinate = tmppoi.coordinate;
-    _selectedPoi.title = tmppoi.title;
-    _selectedPoi.color = [UIColor magentaColor];
-    [self.tabBarController setSelectedIndex:0];
-
-}
+//
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    MFBAnnotation *tmppoi = _poiArray[indexPath.row];
+//    _selectedPoi.coordinate = tmppoi.coordinate;
+//    _selectedPoi.title = tmppoi.title;
+//    _selectedPoi.color = [UIColor magentaColor];
+//    [self.tabBarController setSelectedIndex:0];
+//}
 @end

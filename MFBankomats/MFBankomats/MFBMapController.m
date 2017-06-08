@@ -1,4 +1,4 @@
-//
+ //
 //  MSFMapController.m
 //  MFBankomats
 //
@@ -6,19 +6,16 @@
 //  Copyright © 2017 Julia Sharaeva. All rights reserved.
 //
 
-#import "MFBMapController.h"
-#import "MFBGetDataFromGoogle.h"
 #import <MapKit/MapKit.h>
 #import <Masonry/Masonry.h>
-#import "MFBMapViewDelegate.h"
+#import "MFBMapController.h"
 #import "MFBTableViewController.h"
+
 #import "MFBAnnotation.h"
-#import "MFBRouteViewController.h"
-#import "poiAtmList.h"
 
-@interface MFBMapController ()<MKMapViewDelegate>
+#import "MFBMapTableController.h"
 
-@property(nonatomic, strong) id service;
+@interface MFBMapController ()
 
 @property(nonatomic, strong) MKMapView* mapView;
 @property(nonatomic) CLLocationCoordinate2D currentCord;
@@ -28,39 +25,44 @@
 @property(nonatomic, strong) UIButton *btnZoomOut;
 @property(nonatomic, strong) UIButton *btnCurrentLocation;
 
+@property(nonatomic, strong) CLLocationManager *locationManager;
+
+@property(nonatomic, weak) id mapDelegate;
+
 @end
 
 @implementation MFBMapController
 
--(instancetype) initWithLocationManager:(CLLocationManager*)locationManager{
+- (instancetype) initWithDelegate:(id)mapDelegate{
     self = [super init];
-    if (self){
-        _locationManager = locationManager;
+    if (self) {
+        _mapDelegate = mapDelegate;
     }
     return self;
 }
 
--(void) viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:YES];
-    
-    if (self.mapView){
-        if (nil !=[_selectedPoi title]){
-            [self.mapView addAnnotation:_selectedPoi.annotationView.annotation];
-            _region = MKCoordinateRegionMakeWithDistance(_selectedPoi.coordinate, 1000, 1000);
-            [_mapView setRegion:_region animated:YES];
-        }
-    }
-}
+//-(void) viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:YES];
+//    
+//    if (self.mapView){
+//        if (nil !=[_selectedPoi title]){
+//            [self.mapView addAnnotation:_selectedPoi.annotationView.annotation];
+//            _region = MKCoordinateRegionMakeWithDistance(_selectedPoi.coordinate, 1000, 1000);
+//            [_mapView setRegion:_region animated:YES];
+//        }
+//    }
+//}
+
+
 -(void)viewDidLoad {
     [super viewDidLoad];
     
     self.mapView = [[MKMapView alloc] init];
     self.mapView.showsUserLocation = YES;
-    self.mapView.delegate = self;
+    self.mapView.delegate = _mapDelegate;
     
-    _currentCord = self.locationManager.location.coordinate;
+    _currentCord = [_mapDelegate getCurrentUserCoordinate];
     _region = MKCoordinateRegionMakeWithDistance(_currentCord, 1000, 1000);
-    
     [_mapView setRegion:_region animated:YES];
 
     [self.view addSubview:self.mapView];
@@ -79,11 +81,6 @@
     
     
     [self initConstraints];
-    _service = [MFBGetDataFromGoogle new];
-    
-    [_service getDataforName:@"sberbank" andCord:_region.center andComplition:^(NSMutableArray *data) {
-        [self.mapView addAnnotations:data];
-    }];
     
     [_btnZoomIn addTarget:self action:@selector(zoomInButton) forControlEvents:UIControlEventTouchDown];
     [_btnZoomOut addTarget:self action:@selector(zoomOutButton) forControlEvents:UIControlEventTouchDown];
@@ -96,29 +93,22 @@
 
 - (void)zoomInButton{
     NSLog(@"ZoomIn");
-    MKCoordinateRegion newregion;
-    newregion.center = _region.center;
-    newregion.span.latitudeDelta = _region.span.latitudeDelta/2;
-    newregion.span.longitudeDelta = _region.span.longitudeDelta/2;
-    [_mapView setRegion:newregion];
+    _region.span.latitudeDelta /=2;
+    _region.span.longitudeDelta /=2;
+    [_mapView setRegion:_region];
 }
 
 - (void)zoomOutButton{
     NSLog(@"ZoomOut");
-    MKCoordinateRegion newregion;
-    newregion.center = _region.center;
-    newregion.span.latitudeDelta = _region.span.latitudeDelta*2;
-    newregion.span.longitudeDelta = _region.span.longitudeDelta*2;
-    [_mapView setRegion:newregion];
+    _region.span.latitudeDelta *=2;
+    _region.span.longitudeDelta *=2;
+    [_mapView setRegion:_region];
 }
 
 - (void) setCurrentUsersLocation{
     NSLog(@"currentLocation");
-    MKCoordinateRegion newregion;
-    newregion.span.latitudeDelta = _region.span.latitudeDelta;
-    newregion.span.longitudeDelta = _region.span.longitudeDelta;
-    newregion.center = self.locationManager.location.coordinate;
-    [_mapView setRegion:newregion];
+    _region.center = [_mapDelegate getCurrentUserCoordinate];
+    [_mapView setRegion:_region];
 
 }
 
@@ -147,66 +137,7 @@
 }
 
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
-{
-    if ([annotation isKindOfClass:[MKUserLocation class]])
-        return nil;
-    
-    if ([annotation isKindOfClass:[MFBAnnotation class]])
-    {
-        MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"MyAnnotation"];
-        if (!pinView)
-        {
-            MFBAnnotation *myLocation = (MFBAnnotation*) annotation;
-            pinView = myLocation.annotationView;
-        }
-        else {
-            pinView.annotation = annotation;
-        }
-        
-        return pinView;
-    }
-    return nil;
-}
 
--(void)mapView:(MKMapView *)mapView annotationView:(nonnull MKAnnotationView *)view calloutAccessoryControlTapped:(nonnull UIControl *)control
-{
-    if ([control tag] == 1){
-        MFBRouteViewController *rvc = [MFBRouteViewController new];
-        rvc.destination = view;
-        _selectedPoi.coordinate = view.annotation.coordinate;
-        _selectedPoi.title = view.annotation.title;
-        
-        rvc.current = mapView.userLocation.location.coordinate;
-        [self.navigationController pushViewController:rvc animated:YES];
-    }
-}
-
--(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
-    
-    NSLog(@"regionDidChangeAnimated");
-    
-    MKCoordinateRegion newRegion;
-    newRegion.center = self.mapView.region.center;
-    newRegion.span = self.mapView.region.span;
-    
-    if ((fabs(_region.span.latitudeDelta - newRegion.span.latitudeDelta) > 0.05)
-        ||(fabs(_region.span.longitudeDelta - newRegion.span.longitudeDelta) > 0.05))
-        
-        NSLog(@"change!");
-        _region = newRegion;
-    
-        NSLog(@"%f-%f",newRegion.center.longitude, newRegion.center.latitude);
-    
-        [_service getDataforName:@"sberbank" andCord:newRegion.center andComplition:^(NSMutableArray *data) {
-            if (data){
-                NSMutableArray *pins = [[NSMutableArray alloc] initWithArray:[mapView annotations]];
-                [mapView removeAnnotations:pins];
-                pins = nil;
-                [mapView addAnnotations:data];
-            }
-        }];
-}
 
 
 @end;

@@ -11,7 +11,7 @@
 @implementation poiAtmList
 -(instancetype) init{
     self = [super init];
-    _poi = [NSMutableSet new];
+    _poi = [NSMutableArray new];
     return self;
 }
 
@@ -23,7 +23,7 @@
     return [_poi count];
 }
 
--(NSSet*)getPoiSet{
+-(NSArray*)getPoiSet{
     return self.poi;
 }
 
