@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3125C56A8771E44D0A2F2752 /* libPods-MFBankomats.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC6DD90D4595C94C76210AC /* libPods-MFBankomats.a */; };
+		3125C56A8771E44D0A2F2752 /* libPods-MFBankomats.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC6DD90D4595C94C76210AC /* libPods-MFBankomats.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		921BC8CB1EBF65D100B004D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 921BC8CA1EBF65D100B004D2 /* main.m */; };
 		921BC8CE1EBF65D100B004D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 921BC8CD1EBF65D100B004D2 /* AppDelegate.m */; };
 		921BC8D61EBF65D100B004D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 921BC8D51EBF65D100B004D2 /* Assets.xcassets */; };
@@ -16,7 +16,6 @@
 		9258C1FD1EC27E7500C7498A /* MFBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9258C1FC1EC27E7500C7498A /* MFBTabBarController.m */; };
 		9258C2001EC283FC00C7498A /* MFBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9258C1FF1EC283FC00C7498A /* MFBTableViewController.m */; };
 		92BE90871EC05D610047C689 /* MFBMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BE90861EC05D610047C689 /* MFBMapController.m */; };
-		92BE908B1EC06CA30047C689 /* place.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92BE908A1EC06CA30047C689 /* place.plist */; };
 		92BE90961EC0C4440047C689 /* MFBGetDataFromGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BE90951EC0C4440047C689 /* MFBGetDataFromGoogle.m */; };
 		92C7BD091EC10F3400B8731B /* MFBAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7BD081EC10F3400B8731B /* MFBAnnotation.m */; };
 		92CAC3ED1EC43A7F00C6616C /* MFBRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CAC3EC1EC43A7F00C6616C /* MFBRouteViewController.m */; };
@@ -43,7 +42,6 @@
 		9258C1FF1EC283FC00C7498A /* MFBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFBTableViewController.m; sourceTree = "<group>"; };
 		92BE90851EC05D610047C689 /* MFBMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFBMapController.h; sourceTree = "<group>"; };
 		92BE90861EC05D610047C689 /* MFBMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFBMapController.m; sourceTree = "<group>"; };
-		92BE908A1EC06CA30047C689 /* place.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = place.plist; sourceTree = "<group>"; };
 		92BE90941EC0C4440047C689 /* MFBGetDataFromGoogle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFBGetDataFromGoogle.h; sourceTree = "<group>"; };
 		92BE90951EC0C4440047C689 /* MFBGetDataFromGoogle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFBGetDataFromGoogle.m; sourceTree = "<group>"; };
 		92C7BD071EC10F3400B8731B /* MFBAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFBAnnotation.h; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 				921BC8D51EBF65D100B004D2 /* Assets.xcassets */,
 				921BC8DA1EBF65D100B004D2 /* Info.plist */,
 				921BC8C91EBF65D100B004D2 /* Supporting Files */,
-				92BE908A1EC06CA30047C689 /* place.plist */,
 			);
 			path = MFBankomats;
 			sourceTree = "<group>";
@@ -180,8 +177,8 @@
 				921BC8C21EBF65D100B004D2 /* Sources */,
 				921BC8C31EBF65D100B004D2 /* Frameworks */,
 				921BC8C41EBF65D100B004D2 /* Resources */,
-				BC1EF89F99F11496266F8C3D /* [CP] Embed Pods Frameworks */,
-				41B7F8BEA222C98A89680FBE /* [CP] Copy Pods Resources */,
+				2174C6755E7FF2480A1E60AB /* [CP] Embed Pods Frameworks */,
+				AB21BB6057BC952154BD4DCF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -236,7 +233,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92BE908B1EC06CA30047C689 /* place.plist in Resources */,
 				921BC8D61EBF65D100B004D2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,22 +240,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		41B7F8BEA222C98A89680FBE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MFBankomats/Pods-MFBankomats-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BC1EF89F99F11496266F8C3D /* [CP] Embed Pods Frameworks */ = {
+		2174C6755E7FF2480A1E60AB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -272,6 +253,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MFBankomats/Pods-MFBankomats-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB21BB6057BC952154BD4DCF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MFBankomats/Pods-MFBankomats-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EAA5A9FEE301AE8A3D717AF7 /* [CP] Check Pods Manifest.lock */ = {

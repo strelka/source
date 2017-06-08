@@ -1,18 +1,6 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## GoogleMaps
-
-Copyright 2017 Google
-
-## GooglePlacePicker
-
-Copyright 2017 Google
-
-## GooglePlaces
-
-Copyright 2017 Google
-
 ## Masonry
 
 Copyright (c) 2011-2012 Masonry Team - https://github.com/Masonry

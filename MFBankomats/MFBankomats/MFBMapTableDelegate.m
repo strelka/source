@@ -38,27 +38,28 @@
     return _locationManager.location.coordinate;
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
-{
+
+- (MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+    
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
-    
-    if ([annotation isKindOfClass:[MFBAnnotation class]])
-    {
-        MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"MyAnnotation"];
-        if (!pinView)
-        {
-            MFBAnnotation *myLocation = (MFBAnnotation*) annotation;
-            pinView = myLocation.annotationView;
-        }
-        else {
-            pinView.annotation = annotation;
-        }
+
+    if ([annotation isKindOfClass:[MFBAnnotation class]]) {
+        MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"PinView"];
+        if (!pinView) {
+                MFBAnnotation *myLocation = (MFBAnnotation*) annotation;
+                pinView = myLocation.annotationView;
+            } else {
+                pinView.annotation = annotation;
+            }
         
+        MFBAnnotation *mfbannotation = (MFBAnnotation*)annotation;
+        pinView.pinTintColor = mfbannotation.color;
         return pinView;
     }
     return nil;
 }
+
 
 -(void)mapView:(MKMapView *)mapView annotationView:(nonnull MKAnnotationView *)view calloutAccessoryControlTapped:(nonnull UIControl *)control
 {

@@ -31,11 +31,11 @@
     
 -(MKPinAnnotationView *)annotationView
 {
-    MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"MyAnnotation"];
+    MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"PinView"];
     
     annotationView.enabled = YES;
     annotationView.canShowCallout = YES;
-    annotationView.pinTintColor = _color;
+    //annotationView.pinTintColor = _color;
     
     UIButton *drawRouteBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
     UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
