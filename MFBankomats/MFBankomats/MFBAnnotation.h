@@ -9,15 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 @interface MFBAnnotation : NSObject<MKAnnotation>
-@property(nonatomic) CLLocationCoordinate2D coordinate;
-@property(copy, nonatomic) NSString *title;
-@property(copy, nonatomic) UIColor *color;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic) int isOpen;
 
-@property(nonatomic) double carDistance;
-@property(nonatomic) double walkingDistance;
+@property (nonatomic, strong) NSString* carDistance;
+@property (nonatomic, strong) NSString* walkingDistance;
 
 
--(MKPinAnnotationView *)annotationView;
--(instancetype) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)cord andisOpen:(int)isOpen;
+- (MKPinAnnotationView *)annotationView;
+- (instancetype) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)cord andisOpen:(int)isOpen;
 
+- (UIColor*) getColorForAnnotation;
 @end

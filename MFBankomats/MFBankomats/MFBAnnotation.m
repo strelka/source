@@ -21,13 +21,19 @@
     if (self){
         _coordinate = cord;
         _title = name;
-        if (isOpen == -1) _color = [UIColor lightGrayColor];
-        if (isOpen == 1) _color = [UIColor greenColor];
-        if (isOpen == 0) _color = [UIColor redColor];
+        _isOpen = isOpen;
     }
     return self;
 }
 
+- (UIColor*) getColorForAnnotation{
+    UIColor *color;
+    if (_isOpen == -1) color = [UIColor lightGrayColor];
+    if (_isOpen ==  1) color = [UIColor greenColor];
+    if (_isOpen ==  0) color = [UIColor redColor];
+    
+    return color;
+}
     
 -(MKPinAnnotationView *)annotationView
 {

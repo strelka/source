@@ -8,9 +8,11 @@
 
 //#import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+@class MFBAnnotation;
 
 @interface MFBMapTableDelegate : NSObject
-- (instancetype) initWithNavigationController:(UINavigationController*)nav;
+@property (nonatomic, strong) NSMutableArray<MFBAnnotation*> *poiArray;
 
+- (instancetype) initWithNavigationController:(UINavigationController*)nav;
 - (CLLocationCoordinate2D) getCurrentUserCoordinate;
 @end

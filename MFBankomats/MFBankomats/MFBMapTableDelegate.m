@@ -15,12 +15,13 @@
 #import "MFBGetDataFromGoogle.h"
 
 #import "AppDelegate.h"
+#import "MFBCustomAtmCell.h"
 
 @interface MFBMapTableDelegate () <MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic) MKCoordinateRegion region;
-@property (nonatomic) NSArray<MFBAnnotation*> *poiArray;
 @property (nonatomic, weak) UINavigationController *nav;
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) id service;
 @end
 
 @implementation MFBMapTableDelegate
@@ -29,7 +30,8 @@
     if (self){
         _nav = nav;
         _locationManager = ((AppDelegate *)[UIApplication sharedApplication].delegate).locationManager;
-        _poiArray = [NSArray new];
+        _poiArray = [NSMutableArray new];
+        _service = [MFBGetDataFromGoogle new];
     }
     return self;
 }
@@ -54,7 +56,9 @@
             }
         
         MFBAnnotation *mfbannotation = (MFBAnnotation*)annotation;
-        pinView.pinTintColor = mfbannotation.color;
+        [_poiArray addObject:mfbannotation];
+        
+        pinView.pinTintColor = [mfbannotation getColorForAnnotation];
         return pinView;
     }
     return nil;
@@ -96,8 +100,6 @@
                 [mapView removeAnnotations:pins];
                 pins = nil;
                 [mapView addAnnotations:data];
-                _poiArray = [mapView annotations];
-                
             }
         }];
     //}
@@ -105,19 +107,46 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *TableIdentifier = @"TableItem";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier forIndexPath:indexPath];
+    
+    MFBCustomAtmCell *cell = (MFBCustomAtmCell*)[tableView dequeueReusableCellWithIdentifier:@"TableItem" forIndexPath:indexPath];
     MFBAnnotation *annotation = _poiArray[indexPath.row];
+    
     if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TableIdentifier];
+        cell = [[MFBCustomAtmCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TableItem"];
     }
     
-    cell.textLabel.font = [UIFont systemFontOfSize:8];
+    MFBCustomAtmCell *mfbcell = (MFBCustomAtmCell*)cell;
+    mfbcell.address.text = annotation.title;
+    mfbcell.autoDistance.text = annotation.carDistance;
+    mfbcell.walkDistance.text = annotation.walkingDistance;
     
-    NSString *tl = [[NSString alloc] initWithFormat:@"%@", annotation.title];
-    cell.textLabel.text = tl;
+    [mfbcell setAtmIcoFor:annotation.isOpen];
     
-    return cell;
+    if (nil == annotation.walkingDistance) {
+    [_service getDistanceFromPoint:[self getCurrentUserCoordinate]
+                               ToPoint:annotation.coordinate
+                               andMode:@"walking"
+                         andComplition:^(NSString* distance){                               
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   annotation.walkingDistance = distance;
+                                   [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                               });
+                            }];
+    }
+    
+    if (nil == annotation.carDistance){
+    [_service getDistanceFromPoint:[self getCurrentUserCoordinate]
+                               ToPoint:annotation.coordinate
+                               andMode:@"driving"
+                         andComplition:^(NSString* distance){
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       annotation.carDistance = distance;
+                                       [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                                   });
+                               }];
+    }
+    
+    return mfbcell;
 }
 
 
@@ -126,4 +155,7 @@
 }
 
 
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    MFBAnnotation *mfbcell = _poiArray[indexPath.row];
+//}
 @end

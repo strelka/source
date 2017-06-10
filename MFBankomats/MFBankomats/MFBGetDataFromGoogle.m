@@ -13,16 +13,12 @@
 const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
 
 @interface MFBGetDataFromGoogle ()<NSURLSessionDataDelegate>
-@property (strong, nonatomic) NSMutableArray *taskArray;
-@property(nonatomic, copy) void(^successBlock)();
+@property(nonatomic, copy) void(^successBlock)(NSString *distance);
 
 @end
 
-@implementation MFBGetDataFromGoogle{
-    int _finishedTaskCount;
-    NSArray<MFBAnnotation*> *_points;
-}
-
+@implementation MFBGetDataFromGoogle
+ 
 -(void) getDataforName:(NSString*)name andCord:(CLLocationCoordinate2D)cord andComplition:(void(^)(NSMutableArray* data)) block{
 
     MFBAnnotation* (^createPlace)(NSDictionary *json);
@@ -77,33 +73,32 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
     
 }
 
-- (void) getDistanceFromPoint:(CLLocation*)pointA ToPoints:(NSArray<MFBAnnotation*>*)points andComplition:(void(^)()) block{
+- (void) getDistanceFromPoint:(CLLocationCoordinate2D)pointA
+                      ToPoint:(CLLocationCoordinate2D)pointB
+                      andMode:(NSString*)mode
+                andComplition:(void(^)()) block{
+    
     self.successBlock = block;
-    _points = points;
-    _finishedTaskCount = 0;
     NSString *urlstrMain = @"https://maps.googleapis.com/maps/api/directions/json?";
     NSURLSession *dataSession = [self createDataSession];
     
-    for (MFBAnnotation *item in points){
-        NSString *urlparam = [[NSString alloc] initWithFormat:@"origin=%f,%f&destination=%f,%f&key=%@",pointA.coordinate.latitude,
-                              pointA.coordinate.longitude,
-                              item.coordinate.latitude,
-                              item.coordinate.longitude,
-                              apiKey];
+    NSString *urlparam = [[NSString alloc] initWithFormat:@"mode=%@&origin=%f,%f&destination=%f,%f&key=%@",
+                           mode,
+                           pointA.latitude,
+                           pointA.longitude,
+                           pointB.latitude,
+                           pointB.longitude,
+                           apiKey];
         
-        urlparam = [urlparam stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-        NSString* webStringURL = [urlstrMain stringByAppendingString:urlparam];
-        NSURL* url = [NSURL URLWithString:webStringURL];
-        
-        [self createDataTaskWithSession:dataSession AndUrl:url];
-        
+     urlparam = [urlparam stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+     NSString* webStringURL = [urlstrMain stringByAppendingString:urlparam];
+     NSURL* url = [NSURL URLWithString:webStringURL];
+     [self createDataTaskWithSession:dataSession AndUrl:url];
     }
-    
-}
+
 
 - (NSURLSession*) createDataSession{
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    _taskArray = [[NSMutableArray alloc] init];
     sessionConfig.timeoutIntervalForRequest=0;
     sessionConfig.timeoutIntervalForResource=0;
     NSURLSession *dataSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
@@ -112,24 +107,16 @@ const NSString * apiKey = @"AIzaSyBH1bZKSO75vNGvYTpBalunA7WYt09U4uY";
 
 - (void) createDataTaskWithSession:(NSURLSession*)session AndUrl:(NSURL*)url{
     NSURLSessionDataTask *sessionDataTask = [session dataTaskWithURL:url];
-    [_taskArray addObject:sessionDataTask];
     [sessionDataTask resume];
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data{
-    unsigned long taskIndx = [_taskArray indexOfObject:dataTask];
-    NSLog(@"task %lu: finished!", taskIndx);
     NSError *error;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     
-    NSString *txt = [self getDistanceFromJson:json];
-    //_points[taskIndx].carDistance = txt;
-    
-    _finishedTaskCount += 1;
-    if ([_taskArray count] == _finishedTaskCount){
-        dispatch_async(dispatch_get_main_queue(), self.successBlock);
-    }
-    
+    NSString *distance = [self getDistanceFromJson:json];
+
+    self.successBlock(distance);
 }
 
 - (NSString *) getDistanceFromJson:(NSDictionary*)json{

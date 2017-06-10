@@ -13,11 +13,12 @@
 #import "MFBAnnotation.h"
 
 #import "MFBMapTableDelegate.h"
-
+#import "MFBCustomAtmCell.h"
 @interface MFBTableViewController ()
 @property (nonatomic, strong) NSArray* poiArray;
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) id service;
+@property (nonatomic, strong) dispatch_queue_t queue;
 
 @property (nonatomic, weak) id tableDelegate;
 @end
@@ -32,33 +33,40 @@
     return self;
 }
 
-//-(instancetype) initWithLocationManager:(CLLocationManager*)locationManager{
-//    self = [super init];
-//    if (self){
-//        _locationManager = locationManager;
-//    } 
-//    return self;
-//}
 
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
-    
+    _poiArray = [_tableDelegate poiArray];
     if (self.tableView){
-        //NSLog(@"-->%lu", (unsigned long)[_poiList count]);
         [self.tableView reloadData];
     }
     
-//        dispatch_queue_t queue = dispatch_queue_create("ru.js.distance", DISPATCH_QUEUE_CONCURRENT);
+//    dispatch_queue_t queue1 = dispatch_queue_create("ru.js.distance", DISPATCH_QUEUE_CONCURRENT);
 //
-//        dispatch_async(queue, ^{
-//            [_service getDistanceFromPoint:_locationManager.location ToPoints:_poiArray andComplition:^{
-//                NSLog(@"reload");
-//                [_tableView reloadData];
-//            }];
-//        });
-//        
-//    }
+//    dispatch_async(queue1, ^{
+//        [_service getDistanceFromPoint:[_tableDelegate getCurrentUserCoordinate]
+//                              ToPoints:_poiArray
+//                               andMode:@"driving"
+//                         andComplition:^() {
+//                             dispatch_async(dispatch_get_main_queue(), ^{
+//                                 [_tableView reloadData];
+//                             });
+//        }];
+//    });
+//    
+//    dispatch_queue_t queue2 = dispatch_queue_create("ru.js.distance", DISPATCH_QUEUE_CONCURRENT);
+//    dispatch_async(queue2, ^{
+//        [_service getDistanceFromPoint:[_tableDelegate getCurrentUserCoordinate]
+//                              ToPoints:_poiArray
+//                               andMode:@"walking"
+//                         andComplition:^() {
+//                             dispatch_async(dispatch_get_main_queue(), ^{
+//                                 [_tableView reloadData];
+//                             });
+//                         }];
+//                 });
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -80,7 +88,8 @@
         make.bottom.equalTo(self.view.mas_bottom);
     }];
     
-    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"TableItem"];
+    _service = [[MFBGetDataFromGoogle alloc] init];
+    [_tableView registerClass:[MFBCustomAtmCell class] forCellReuseIdentifier:@"TableItem"];
 
 }
 
@@ -92,12 +101,6 @@
 
 
 //
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    MFBAnnotation *tmppoi = _poiArray[indexPath.row];
-//    _selectedPoi.coordinate = tmppoi.coordinate;
-//    _selectedPoi.title = tmppoi.title;
-//    _selectedPoi.color = [UIColor magentaColor];
-//    [self.tabBarController setSelectedIndex:0];
-//}
+
+
 @end

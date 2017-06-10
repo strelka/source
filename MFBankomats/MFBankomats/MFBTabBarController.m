@@ -14,7 +14,7 @@
 
 #import "MFBAnnotation.h"
 
-@interface MFBTabBarController ()<UITabBarControllerDelegate>
+@interface MFBTabBarController ()
 @property (nonatomic, strong) MFBMapTableDelegate *mapTableDelegate;
 @property (nonatomic, strong) UINavigationController *navController;
 @end
@@ -27,7 +27,6 @@
     
     _navController = [UINavigationController new];
     
-    self.delegate = self;
     _mapTableDelegate = [[MFBMapTableDelegate alloc] initWithNavigationController:_navController];
     
     MFBMapController *mapController = [[MFBMapController alloc] initWithDelegate:_mapTableDelegate];
@@ -49,11 +48,5 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController NS_AVAILABLE_IOS(3_0)
-{
-    //NSLog(@"%@", _selectedPoi.title);
-    return YES;
 }
 @end
