@@ -10,6 +10,7 @@
 #import "FVPContact.h"
 
 @implementation FVPGetDataFromVK
+
 - (void)getDataAndDoSuccessBlock:(void(^)(NSArray *data)) successBlock{
     
     FVPContact*(^createContact)(NSDictionary *json);
@@ -17,6 +18,7 @@
         FVPContact *newContact = [FVPContact new];
         newContact.firstName = json[@"first_name"];
         newContact.lastName = json[@"last_name"];
+        newContact.imageUrl = [NSURL URLWithString:json[@"photo_100"]];
         return newContact;
     };
 

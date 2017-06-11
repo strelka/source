@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface FVPContact : NSObject
 @property(nonatomic, strong) NSString* firstName;
 @property(nonatomic, strong) NSString* lastName;
 
-//@property(nonatomic, strong) NSString* phone;
-//@property(nonatomic, strong) NSURL* imageUrl;
+@property(nonatomic, strong) NSURL* imageUrl;
+@property(nonatomic, strong) UIImage *avatarImg;
 
 @end

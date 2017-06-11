@@ -7,34 +7,64 @@
 //
 
 #import "FVPLoginViewController.h"
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 const NSString *vk_appID = @"6007858";
 
 
 const 
-@interface FVPLoginViewController ()<UIWebViewDelegate>
+@interface FVPLoginViewController ()<UIWebViewDelegate, FBSDKLoginButtonDelegate>
 @property(strong, nonatomic) UIWebView *vkWebView;
 
 @property(strong, nonatomic) NSString *url;
 @end
 
 @implementation FVPLoginViewController
+- (instancetype) initWithConnectingString:(NSString*)connUrl{
+    self = [super init];
+    if (self){
+        _url = connUrl;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (!_vkWebView){
-        self.vkWebView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-        _vkWebView.delegate = self;
-        _vkWebView.scalesPageToFit = YES;
-        [self.view addSubview:_vkWebView];
+    if ([_url  isEqual: @"fbAuth"]){
+        if (![FBSDKAccessToken currentAccessToken]) {
+            self.view.backgroundColor = [UIColor whiteColor];
+            FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+            loginButton.center = self.view.center;
+            loginButton.delegate = self;
+            loginButton.readPermissions = @[@"user_relationships", @"read_custom_friendlists", @"user_friends"];
+            
+            [self.view addSubview:loginButton];
+        } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    } else {
+        if (!_vkWebView){
+            self.vkWebView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+            _vkWebView.delegate = self;
+            _vkWebView.scalesPageToFit = YES;
+            [self.view addSubview:_vkWebView];
         
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         
-        NSString*url=@"https://oauth.vk.com/authorize?client_id=5932466&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends&response_type=token&v=5.64&state=123456";
-        NSURLRequest *nsurlRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-        [_vkWebView loadRequest:nsurlRequest];
+            NSURLRequest *nsurlRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:_url]];
+            [_vkWebView loadRequest:nsurlRequest];
+        }
     }
 }
+
+- (void)loginButton:(FBSDKLoginButton *)loginButton
+didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
+                error:(NSError *)error{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     

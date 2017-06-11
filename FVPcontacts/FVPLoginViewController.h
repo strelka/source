@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FVPLoginViewController : UIViewController
-
+- (instancetype) initWithConnectingString:(NSString*)connUrl;
 @end

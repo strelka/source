@@ -7,14 +7,21 @@
 //
 
 #import "FVPViewController.h"
-#import "FVPVkLoginViewController.h"
+#import "FVPDetailsViewController.h"
+
 #import "FVPGetDataFromVK.h"
+#import "FVPGetFataFromFB.h"
+#import "FVPGetDataFromPhoneBook.h"
+
 #import "FVPContact.h"
-
+#import "FVPContactCell.h"
+#import "FVPLoginViewController.h"
 #import <Masonry/Masonry.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
-
-NSString *vkAuth = @"https://oauth.vk.com/authorize?client_id=5932466&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends&response_type=token&v=5.64&state=123456";
+#import "FVPPendingOperation.h"
+#import "FVPGetImageByURL.h"
 
 
 @interface FVPViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -23,7 +30,8 @@ NSString *vkAuth = @"https://oauth.vk.com/authorize?client_id=5932466&display=pa
 @property (strong, nonatomic) UIView *footerView;
 @property (strong, nonatomic) UISegmentedControl *segmentControl;
 
-@property(strong, nonatomic) NSArray *contacts;
+@property (strong, nonatomic) NSArray *contacts;
+@property (strong, nonatomic) FVPPendingOperation *operations;
 
 @property (strong, nonatomic) id service;
 @end
@@ -54,20 +62,29 @@ NSString *vkAuth = @"https://oauth.vk.com/authorize?client_id=5932466&display=pa
     _segmentControl.tintColor = buttonColor;
     
     [self initConstraint];
-    
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    
     _contacts = [[NSArray alloc] init];
+    
+    _operations = [[FVPPendingOperation alloc] init];
+    [_tableView registerClass:[FVPContactCell class] forCellReuseIdentifier:@"tableCell"];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    _contacts = @[];
+    [_tableView reloadData];
+    
     if (_segmentControl.selectedSegmentIndex == 0) {
         [self loadVkData];
     }
+    if (_segmentControl.selectedSegmentIndex == 1){
+        [self loadFBData];
+    }
+    if (_segmentControl.selectedSegmentIndex == 2){
+        [self loadPhoneData];
+    }
 }
-
 
 - (void) initConstraint{
     [_headerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -103,16 +120,53 @@ NSString *vkAuth = @"https://oauth.vk.com/authorize?client_id=5932466&display=pa
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    
+    UITableViewCell *cell = (FVPContactCell*)[tableView dequeueReusableCellWithIdentifier:@"tableCell" forIndexPath:indexPath];
+    
+    if (cell == nil){
+        cell = [[FVPContactCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"tableCell"];
+    }
     
     FVPContact *contact = _contacts[indexPath.row];
-    cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ %@", contact.firstName, contact.lastName];
+    FVPContactCell *fvpCell = (FVPContactCell*)cell;
     
-    return cell;
+    fvpCell.fioLabel.text = [[NSString alloc] initWithFormat:@"%@ %@", contact.firstName, contact.lastName];
+
+    UIImage *imgAvt = contact.avatarImg;
+    if (nil == imgAvt){
+        [self startDownLoadForPhoto:contact byIndex:indexPath];
+    } else {
+        fvpCell.imgView.image = imgAvt;
+        fvpCell.imgView.layer.cornerRadius = 15;
+        fvpCell.imgView.layer.masksToBounds = YES;
+        fvpCell.imgView.contentMode = UIViewContentModeScaleAspectFill;
+        fvpCell.imgView.clipsToBounds = YES;
+    }
+    return fvpCell;
+}
+
+- (void) startDownLoadForPhoto:(FVPContact*)contact byIndex:(NSIndexPath*)indexPass{
+    
+    if (_operations.downloadsInProgress[indexPass]){
+        return;
+    }
+    
+    FVPGetImageByURL *downloader = [[FVPGetImageByURL alloc] initWithUrl:contact.imageUrl andComplitionBlock:^(NSData *data) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            contact.avatarImg = [UIImage imageWithData:data];
+            [self.operations.downloadsInProgress removeObjectForKey:indexPass];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPass]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+        });
+    }];
+    _operations.downloadsInProgress[indexPass] = downloader;
+    [_operations.downloadQueue addOperation:downloader];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    FVPContact *contact = _contacts[indexPath.row];
+    FVPDetailsViewController *vcd = [[FVPDetailsViewController alloc] initWith:contact];
+    [self.navigationController pushViewController:vcd animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -121,14 +175,44 @@ NSString *vkAuth = @"https://oauth.vk.com/authorize?client_id=5932466&display=pa
 - (void)serviceChange:(UISegmentedControl *)segment{
     if (segment.selectedSegmentIndex == 0) {
         [self loadVkData];
+    } else if (segment.selectedSegmentIndex == 1){
+        [self loadFBData];
+    } else if (segment.selectedSegmentIndex == 2){
+        [self loadPhoneData];
     }
+}
+
+- (void) loadFBData{
+    if (![FBSDKAccessToken currentAccessToken]) {
+        FVPLoginViewController *loginVk = [[FVPLoginViewController alloc] initWithConnectingString: @"fbAuth"];
+        [self presentViewController:loginVk animated:YES completion:nil];
+    }
+    _service = [FVPGetFataFromFB new];
+    [_service getDataAndDoSuccessBlock:^(NSArray *data){
+        _contacts = data;
+        [_tableView reloadData];
+    }];
+    
+}
+
+- (void) loadPhoneData{
+//    if (![FBSDKAccessToken currentAccessToken]) {
+//        FVPLoginViewController *loginVk = [[FVPLoginViewController alloc] initWithConnectingString: @"fbAuth"];
+//        [self presentViewController:loginVk animated:YES completion:nil];
+//    }
+    _service = [FVPGetDataFromPhoneBook new];
+    [_service getDataAndDoSuccessBlock:^(NSArray *data){
+        _contacts = data;
+        [_tableView reloadData];
+    }];
+    
 }
 
 - (void) loadVkData{
     if (nil == [[NSUserDefaults standardUserDefaults] objectForKey:@"VKAccessToken"]){
         NSString *vkAuth = @"https://oauth.vk.com/authorize?client_id=5932466&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends&response_type=token&v=5.64&state=123456";
 
-        FVPViewController  *loginVk = [[FVPViewController alloc] initWith:];
+        FVPLoginViewController *loginVk = [[FVPLoginViewController alloc] initWithConnectingString: vkAuth];
         [self presentViewController:loginVk animated:YES completion:nil];
     }
     _service = [FVPGetDataFromVK new];
@@ -136,7 +220,7 @@ NSString *vkAuth = @"https://oauth.vk.com/authorize?client_id=5932466&display=pa
         _contacts = data;
         [_tableView reloadData];
     }];
-    
-
 }
+
+
 @end
