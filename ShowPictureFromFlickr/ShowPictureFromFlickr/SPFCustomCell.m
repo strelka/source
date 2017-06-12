@@ -7,12 +7,15 @@
 //
 
 #import "SPFCustomCell.h"
+#import "UIImage+CroppingImage.h"
 #import <Masonry/Masonry.h>
 
 NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
 
 @interface SPFCustomCell()
 @property (nonatomic, strong) UIImageView *cellImageView;
+@property (nonatomic, strong) UIImageView *cellBorderView;
+
 @end
 
 @implementation SPFCustomCell
@@ -28,12 +31,16 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
 - (void) createSubviews{
     
     _cellImageView = [UIImageView new];
+    //_cellBorderView = [UIImageView new];
     _cellImage = [UIImage new];
+    
+    //_cellBorderView.image = [UIImage imageNamed:@"vintagePhotoFrame"];
     
     _progressBar = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     [_progressBar setProgress:0.1];
     
     [self addSubview:_cellImageView];
+    [self addSubview:_cellBorderView];
     [self addSubview:_progressBar];
     
     [_cellImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -42,6 +49,14 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
         make.top.equalTo(self.mas_top);
         make.bottom.equalTo(self.mas_bottom);
     }];
+    
+//    [_cellBorderView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.mas_left);
+//        make.right.equalTo(self.mas_right);
+//        make.top.equalTo(self.mas_top);
+//        make.bottom.equalTo(self.mas_bottom);
+//    }];
+    
     [_progressBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
@@ -50,6 +65,11 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
 }
 
 - (void) setImageToImageView{
-    self.imageView.image = _cellImage;
+    self.cellImageView.image = _cellImage;
+    self.cellImageView.contentMode = UIViewContentModeScaleAspectFit;
+
+    //self.cellImageView.contentMode = UIViewContentModeScaleAspectFill;
+    //self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.cellImageView.clipsToBounds = YES;
 }
 @end

@@ -5,7 +5,6 @@
 //  Created by Jullia Sharaeva on 20.05.17.
 //  Copyright © 2017 Julia Sharaeva. All rights reserved.
 //
-
 #import <Masonry/Masonry.h>
 
 #import "SPFPicture.h"
@@ -80,10 +79,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-   // NSLog(@"%lu", (unsigned long)[_records count]);
+    // NSLog(@"%lu", (unsigned long)[_records count]);
     return [_records count];
 }
 
+//- (UITableView *)tableView willDisplayCell:(nonnull UITableViewCell *)cell forRowAtIndexPath:(nonnull NSIndexPath *)indexPath:(NSIndexPath *){
+//    
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -100,26 +102,23 @@
     }
     
     SPFPicture *photo = _records[indexPath.row];
-    [(SPFCustomCell*)cell setCellImage:[photo getFilteredImageFromCacheByUrl]];
-
     
-//    if (!(_operation.downloadsInProgress[indexPath]||_operation.filtrationInProgress[indexPath])){
-//        [photo correctPictureState];
-//    
-//        if (photo.imageState == Filtered){
-//            [(SPFCustomCell*)cell setCellImage:[photo getFilteredImageFromCacheByUrl]];
-//        //[[(SPFCustomCell*)cell progressBar ] setProgress:1];
-//
-//        }
-//        if (photo.imageState == Downloaded){
-//            [(SPFCustomCell*)cell setCellImage:[photo getImageFromCacheByUrl]];
-//        //[[(SPFCustomCell*)cell progressBar ] setProgress:1];
-//        }
-//        if (photo.imageState == New){
-//            [(SPFCustomCell*)cell setCellImage:nil];
-//            //[[(SPFCustomCell*)cell progressBar ] setProgress:0];
-//        }
-//    }
+    if (!(_operation.downloadsInProgress[indexPath]||_operation.filtrationInProgress[indexPath])){
+        [photo correctPictureState];
+    
+        if (photo.imageState == Filtered){
+            [(SPFCustomCell*)cell setCellImage:[photo getFilteredImageFromCacheByUrl]];
+            [[(SPFCustomCell*)cell progressBar ] setProgress:1];
+        }
+        if (photo.imageState == Downloaded){
+            [(SPFCustomCell*)cell setCellImage:[photo getImageFromCacheByUrl]];
+            [[(SPFCustomCell*)cell progressBar ] setProgress:1];
+        }
+        if (photo.imageState == New){
+            [(SPFCustomCell*)cell setCellImage:nil];
+            [[(SPFCustomCell*)cell progressBar ] setProgress:0];
+        }
+    }
     
     [(SPFCustomCell*) cell setImageToImageView];
     
@@ -132,8 +131,9 @@
     else if ((photo.imageState == New) || (photo.imageState == Downloaded)){
         [indicator startAnimating];
     }
+    
     [self startOPerationsForPhotoRecord:photo byIndex:indexPath];
-    //    }
+
     return cell;
 }
 
@@ -146,7 +146,6 @@
             [self startFiltrationForPhoto:pic byIndex:indexPass];
             break;
         default:
-           // NSLog(@"do nothing");
             break;
     }
 }
@@ -156,7 +155,7 @@
     if (_operation.downloadsInProgress[indexPass]){
         return;
     }
-    [pic correctPictureState];
+    
     if (New != pic.imageState){
         return;
     }
@@ -177,6 +176,7 @@
     
     _operation.downloadsInProgress[indexPass] = downloader;
     [_operation.downloadQueue addOperation:downloader];
+    //downloader.cancelled
 }
 
 - (void) startFiltrationForPhoto:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPass{
@@ -206,7 +206,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.tableView.bounds.size.height/3;
+    return 400;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -249,6 +249,20 @@
         }
     }
 }
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    NSLog(@"scrollViewDidEndDragging");
+}
+
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    NSLog(@"scrollViewDidEndDecelerating");
+    
+    NSArray *visCells = [_tableView indexPathsForVisibleRows];
+    [_operation.downloadsInProgress[visCells[0]] cancel];
+    NSLog(@"ff");
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -11,8 +11,9 @@
 #import <UIKit/UIKit.h>
 
 @interface SPFDownloadingPictureOperation : NSOperation<NSURLSessionDelegate>
-@property(nonatomic, strong) SPFPicture *photoRecord;
-@property(nonatomic, copy) void(^updateProgressBarBlock)();
+@property (nonatomic, strong) SPFPicture *photoRecord;
+@property (nonatomic)BOOL isPaused;
+@property (nonatomic, copy) void(^updateProgressBarBlock)();
 
 - (instancetype) initWithSPFPicture:(SPFPicture*)pic andComplition:(void(^)()) block;
 @end

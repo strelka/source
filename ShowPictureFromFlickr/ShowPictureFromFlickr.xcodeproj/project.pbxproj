@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		258515AE4E0F020A9986FA3D /* libPods-ShowPictureFromFlickr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ECB20E1F81B0C18F2EC3306 /* libPods-ShowPictureFromFlickr.a */; };
+		9234E3551EEE919A00386607 /* UIImage+CroppingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9234E3541EEE919A00386607 /* UIImage+CroppingImage.m */; };
 		92D75B441ED43FD700644651 /* NSCacheSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D75B431ED43FD700644651 /* NSCacheSingleton.m */; };
 		92FF94821ED07C03009BC2E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF94811ED07C03009BC2E1 /* main.m */; };
 		92FF94851ED07C03009BC2E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF94841ED07C03009BC2E1 /* AppDelegate.m */; };
@@ -25,6 +26,8 @@
 		1ECB20E1F81B0C18F2EC3306 /* libPods-ShowPictureFromFlickr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShowPictureFromFlickr.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2814285FF585569ABA694C86 /* Pods-ShowPictureFromFlickr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowPictureFromFlickr.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShowPictureFromFlickr/Pods-ShowPictureFromFlickr.release.xcconfig"; sourceTree = "<group>"; };
 		36FB02D87528649E1DCE0186 /* Pods-ShowPictureFromFlickr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowPictureFromFlickr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShowPictureFromFlickr/Pods-ShowPictureFromFlickr.debug.xcconfig"; sourceTree = "<group>"; };
+		9234E3531EEE919A00386607 /* UIImage+CroppingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CroppingImage.h"; sourceTree = "<group>"; };
+		9234E3541EEE919A00386607 /* UIImage+CroppingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CroppingImage.m"; sourceTree = "<group>"; };
 		92D75B421ED43FD700644651 /* NSCacheSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCacheSingleton.h; sourceTree = "<group>"; };
 		92D75B431ED43FD700644651 /* NSCacheSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCacheSingleton.m; sourceTree = "<group>"; };
 		92FF947D1ED07C03009BC2E1 /* ShowPictureFromFlickr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowPictureFromFlickr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +76,8 @@
 		92FF94741ED07C03009BC2E1 = {
 			isa = PBXGroup;
 			children = (
+				9234E3531EEE919A00386607 /* UIImage+CroppingImage.h */,
+				9234E3541EEE919A00386607 /* UIImage+CroppingImage.m */,
 				92D75B421ED43FD700644651 /* NSCacheSingleton.h */,
 				92D75B431ED43FD700644651 /* NSCacheSingleton.m */,
 				92FF947F1ED07C03009BC2E1 /* ShowPictureFromFlickr */,
@@ -259,6 +264,7 @@
 				92FF94A21ED07ED3009BC2E1 /* SPFViewController.m in Sources */,
 				92FF949C1ED07C8E009BC2E1 /* SPFDownloadingPictureOperation.m in Sources */,
 				92FF94A81ED085C6009BC2E1 /* SPFPicture.m in Sources */,
+				9234E3551EEE919A00386607 /* UIImage+CroppingImage.m in Sources */,
 				92FF94821ED07C03009BC2E1 /* main.m in Sources */,
 				92FF94AB1ED0DA82009BC2E1 /* SPFPendingOperations.m in Sources */,
 				92FF94B11ED1812D009BC2E1 /* SPFGetListOfPicturesFromFlickr.m in Sources */,
