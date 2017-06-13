@@ -9,8 +9,8 @@
 #import "SPFPicture.h"
 @interface SPFDownloadingPictureOperation()
 @property (nonatomic, copy) void(^successBlock)();
-@property (nonatomic, strong) NSURLSessionDownloadTask *task;
 @property (nonatomic, strong) NSData *resumeData;
+@property (nonatomic, strong) NSURLSessionDownloadTask *task;
 @end
 @implementation SPFDownloadingPictureOperation
 
@@ -26,14 +26,32 @@
 
 - (void) main{
     if (self.isCancelled) return;
-    [self startTaskGetImageFromURL:_photoRecord.imgURL];
+    if (!(_photoRecord.imageState == Paused)){
+        [self startTaskGetImageFromURL:_photoRecord.imgURL];
+    } else {
+        [self startTaskGetImageFromResumeData];
+    }
 }
 
 - (void) pause{
-    _isPaused = YES;
-    [_task cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
-        _resumeData = resumeData;
-    }];
+    NSLog(@"%@", self);
+    
+    if (_photoRecord.loadedPart != 0){
+        _photoRecord.imageState = Paused;
+        _isPaused = YES;
+        [self cancel];
+        [_task cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
+            _resumeData = [[NSData alloc] initWithData:resumeData];
+        }];
+    }
+}
+
+- (instancetype) resume{
+    SPFDownloadingPictureOperation *newOper = [[SPFDownloadingPictureOperation alloc] initWithSPFPicture:self.photoRecord
+                                                                                           andComplition:self.successBlock];
+    newOper.updateProgressBarBlock = self.updateProgressBarBlock;
+    newOper.resumeData = _resumeData;
+    return newOper;
 }
 
 //- (void)
@@ -41,6 +59,13 @@
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
     _task = [downloadSession downloadTaskWithURL:url];
+    [_task resume];
+}
+
+- (void) startTaskGetImageFromResumeData{
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
+    _task = [downloadSession downloadTaskWithResumeData:_resumeData];
     [_task resume];
 }
 

@@ -87,6 +87,19 @@
 //    
 //}
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    SPFDownloadingPictureOperation *oper = (SPFDownloadingPictureOperation *)_operation.downloadsInProgress[indexPath];
+    if (oper.isPaused == NO){
+        [oper pause];
+    } else {
+        SPFDownloadingPictureOperation *newOper = [oper resume];
+        _operation.downloadsInProgress[indexPath] = newOper;
+        [_operation.downloadQueue addOperation:newOper];
+    }
+
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
@@ -102,6 +115,11 @@
     }
     
     SPFPicture *photo = _records[indexPath.row];
+    
+    if (photo.imageState == Paused){
+        [(SPFCustomCell*)cell setCellImage:nil];
+        [[(SPFCustomCell*)cell progressBar ] setProgress:photo.loadedPart];
+    }
     
     if (!(_operation.downloadsInProgress[indexPath]||_operation.filtrationInProgress[indexPath])){
         [photo correctPictureState];
@@ -128,7 +146,7 @@
     else if (photo.imageState ==  Failed){
         [indicator stopAnimating];
     }
-    else if ((photo.imageState == New) || (photo.imageState == Downloaded)){
+    else if ((photo.imageState == New) || (photo.imageState == Downloaded) || (photo.imageState == Paused)){
         [indicator startAnimating];
     }
     
@@ -176,7 +194,6 @@
     
     _operation.downloadsInProgress[indexPass] = downloader;
     [_operation.downloadQueue addOperation:downloader];
-    //downloader.cancelled
 }
 
 - (void) startFiltrationForPhoto:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPass{
@@ -250,6 +267,14 @@
     }
 }
 
+- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    NSLog(@"scrollViewWillBeginDragging");
+}
+
+- (void) scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    NSLog(@"scrollViewWillBeginDecelerating");
+}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     NSLog(@"scrollViewDidEndDragging");
 }
@@ -262,6 +287,7 @@
     NSLog(@"ff");
     
 }
+
 
 
 - (void)didReceiveMemoryWarning {

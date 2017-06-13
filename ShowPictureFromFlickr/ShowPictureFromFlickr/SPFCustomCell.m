@@ -32,9 +32,6 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
     
     _cellImageView = [UIImageView new];
     _cellImage = [UIImage new];
-    
-    //_cellBorderView.image = [UIImage imageNamed:@"vintagePhotoFrame"];
-    
     _progressBar = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     [_progressBar setProgress:0.1];
     
@@ -62,5 +59,9 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
     self.cellImageView.image = img;
     self.cellImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.cellImageView.clipsToBounds = YES;
+}
+
+- (void) prepareForReuse{
+    self.cellImageView.image = nil;
 }
 @end

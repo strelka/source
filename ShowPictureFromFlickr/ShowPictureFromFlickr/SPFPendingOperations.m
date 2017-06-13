@@ -10,6 +10,16 @@
 
 @implementation SPFPendingOperations
 
+- (instancetype) init{
+    self = [super init];
+    if (self){
+        _downloadsInProgress = [[NSMutableDictionary alloc] init];
+        _filtrationInProgress = [[NSMutableDictionary alloc] init];
+    
+    }
+    return self;
+
+}
 - (NSOperationQueue *)downloadQueue{
     self.downloadQueue = [[NSOperationQueue alloc] init];
     _downloadQueue.name = @"Download queue";

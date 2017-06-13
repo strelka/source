@@ -13,7 +13,8 @@ typedef NS_ENUM(NSInteger, spfImageState){
     New = 1,
     Downloaded = 2,
     Filtered = 3,
-    Failed = 4
+    Failed = 4,
+    Paused = 5
 };
 
 @interface SPFPicture : NSObject
