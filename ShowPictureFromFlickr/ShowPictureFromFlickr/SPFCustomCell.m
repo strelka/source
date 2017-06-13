@@ -31,7 +31,6 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
 - (void) createSubviews{
     
     _cellImageView = [UIImageView new];
-    //_cellBorderView = [UIImageView new];
     _cellImage = [UIImage new];
     
     //_cellBorderView.image = [UIImage imageNamed:@"vintagePhotoFrame"];
@@ -50,13 +49,6 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
         make.bottom.equalTo(self.mas_bottom);
     }];
     
-//    [_cellBorderView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.mas_left);
-//        make.right.equalTo(self.mas_right);
-//        make.top.equalTo(self.mas_top);
-//        make.bottom.equalTo(self.mas_bottom);
-//    }];
-    
     [_progressBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
@@ -65,11 +57,10 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
 }
 
 - (void) setImageToImageView{
-    self.cellImageView.image = _cellImage;
+    
+    UIImage *img = [_cellImage croppingImageByFrame:self.frame];
+    self.cellImageView.image = img;
     self.cellImageView.contentMode = UIViewContentModeScaleAspectFit;
-
-    //self.cellImageView.contentMode = UIViewContentModeScaleAspectFill;
-    //self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.cellImageView.clipsToBounds = YES;
 }
 @end

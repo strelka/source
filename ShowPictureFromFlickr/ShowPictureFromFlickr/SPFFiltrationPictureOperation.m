@@ -34,13 +34,19 @@
 }
 
 - (UIImage *)applyFilterForImage:(UIImage*)image{
-    CIImage *ciiImage = [[CIImage alloc] initWithImage:image];
+    
+    NSData *imgData = UIImagePNGRepresentation(image);
+    CIImage *ciiImage = [[CIImage alloc] initWithData:imgData];
     if (self.isCancelled) return nil;
+    CIContext *context = [[CIContext alloc] initWithOptions:nil];
     CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone"
                                   keysAndValues:kCIInputImageKey, ciiImage, @"inputIntensity", @0.8, nil];
-    CIImage *outputImage = [filter outputImage];
+    CIImage *outCiiImage = [filter outputImage];
+    
     if (self.isCancelled) return nil;
-    UIImage *newImage = [UIImage imageWithCIImage:outputImage];
-    return newImage;
+    CGImageRef cgiImageRef = [context createCGImage:outCiiImage fromRect:outCiiImage.extent];
+    UIImage *outImage = [[UIImage alloc] initWithCGImage:cgiImageRef];
+    
+    return outImage;
 }
 @end

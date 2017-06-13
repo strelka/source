@@ -10,7 +10,10 @@
 
 @interface SPFPendingOperations : NSObject
 @property (strong, nonatomic) NSMutableDictionary<NSIndexPath*,NSOperation*> *downloadsInProgress;
-@property (strong, nonatomic) NSMutableDictionary<NSIndexPath*,NSOperation*> * filtrationInProgress;
+@property (strong, nonatomic) NSMutableDictionary<NSIndexPath*,NSOperation*> *filtrationInProgress;
+
+@property (strong, nonatomic) NSMutableDictionary<NSIndexPath*,NSData*> *resumeData;
+
 @property (strong, nonatomic) NSOperationQueue *downloadQueue;
 @property (strong, nonatomic) NSOperationQueue *filtrationQueue;
 @end

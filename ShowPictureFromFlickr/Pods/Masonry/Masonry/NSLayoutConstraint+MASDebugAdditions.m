@@ -101,7 +101,7 @@
     if ([obj respondsToSelector:@selector(mas_key)] && [obj mas_key]) {
         return [NSString stringWithFormat:@"%@:%@", [obj class], [obj mas_key]];
     }
-    return [NSString stringWithFormat:@"%@:%p", [obj class], obj];
+    return [NSString stringWithFormat:@"%@:%@", [obj class], obj];
 }
 
 - (NSString *)description {

@@ -5,7 +5,6 @@
 //  Created by Jullia Sharaeva on 20.05.17.
 //  Copyright © 2017 Julia Sharaeva. All rights reserved.
 //
-#import "UIImage+CroppingImage.h"
 #import "SPFDownloadingPictureOperation.h"
 #import "SPFPicture.h"
 @interface SPFDownloadingPictureOperation()
@@ -26,6 +25,7 @@
 }
 
 - (void) main{
+    if (self.isCancelled) return;
     [self startTaskGetImageFromURL:_photoRecord.imgURL];
 }
 
@@ -49,7 +49,7 @@
     NSData *imageData = [NSData dataWithContentsOfURL:location];
     UIImage *tmpImg = [[UIImage alloc] initWithData:imageData];
     
-    [_photoRecord cachingPicture:[tmpImg croppingImageByFrame:CGRectMake(0, 0, 400, 400)]];
+    [_photoRecord cachingPicture:tmpImg];
     self.photoRecord.imageState = Downloaded;
     self.successBlock();
 }
@@ -60,6 +60,8 @@
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite{
     self.photoRecord.loadedPart = (double)totalBytesWritten /  (double)totalBytesExpectedToWrite;
     self.updateProgressBarBlock();
+    if (self.isCancelled) return;
+
 }
 
 
