@@ -63,5 +63,6 @@ NSString *const SPFCellIdentifier = @"SPFCellIdentifier";
 
 - (void) prepareForReuse{
     self.cellImageView.image = nil;
+    self.accessoryView = nil;
 }
 @end

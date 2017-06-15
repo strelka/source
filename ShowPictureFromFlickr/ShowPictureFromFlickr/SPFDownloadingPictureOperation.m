@@ -34,8 +34,6 @@
 }
 
 - (void) pause{
-    NSLog(@"%@", self);
-    
     if (_photoRecord.loadedPart != 0){
         _photoRecord.imageState = Paused;
         _isPaused = YES;
@@ -43,6 +41,8 @@
         [_task cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
             _resumeData = [[NSData alloc] initWithData:resumeData];
         }];
+    } else {
+        [self cancel];
     }
 }
 
@@ -54,7 +54,6 @@
     return newOper;
 }
 
-//- (void)
 - (void) startTaskGetImageFromURL:(NSURL*)url{
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];

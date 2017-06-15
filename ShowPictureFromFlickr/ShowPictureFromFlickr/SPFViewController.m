@@ -102,13 +102,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    NSLog(@"cellForRowAtIndexPath");
     UITableViewCell *cell = (SPFCustomCell *)[tableView dequeueReusableCellWithIdentifier: @"SPFCellIdentifier" forIndexPath:indexPath];
     
     if (cell == nil) {
         cell = [[SPFCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SPFCellIdentifier"];
     }
     UIActivityIndicatorView *indicator;
+    
     if (nil == cell.accessoryView){
         indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         cell.accessoryView = indicator;
@@ -150,27 +151,51 @@
         [indicator startAnimating];
     }
     
-    [self startOPerationsForPhotoRecord:photo byIndex:indexPath];
-
+    if (!(_tableView.isDragging || _tableView.isDecelerating)) {
+        [self startOPerationsForPhotoRecordbyIndex:indexPath];
+    }
     return cell;
 }
 
-- (void) startOPerationsForPhotoRecord:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPass{
+- (void) startOPerationsForPhotoRecordbyIndex:(NSIndexPath*)indexPath{
+    SPFPicture *pic = _records[indexPath.row];
+    
     switch (pic.imageState) {
+        case Paused:
+            [self resumeDownLoadForPhoto:pic byIndex:indexPath];
+            break;
         case New:
-            [self startDownLoadForPhoto:pic byIndex:indexPass];
+            [self startDownLoadForPhoto:pic byIndex:indexPath];
             break;
         case Downloaded:
-            [self startFiltrationForPhoto:pic byIndex:indexPass];
+            [self startFiltrationForPhoto:pic byIndex:indexPath];
             break;
         default:
             break;
     }
 }
 
-- (void) startDownLoadForPhoto:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPass{
+- (void) resumeDownLoadForPhoto:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPath{
     
-    if (_operation.downloadsInProgress[indexPass]){
+    if (!(_operation.downloadsInProgress[indexPath])){
+        return;
+    }
+    
+    if (Paused != pic.imageState){
+        return;
+    }
+    
+    SPFDownloadingPictureOperation *downloader = [(SPFDownloadingPictureOperation*)_operation.downloadsInProgress[indexPath] resume];
+    _operation.downloadsInProgress[indexPath] = downloader;
+    
+    [_operation.downloadQueue addOperation:downloader];
+    NSLog(@"%@ resume", indexPath);
+}
+
+
+- (void) startDownLoadForPhoto:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPath{
+    
+    if (_operation.downloadsInProgress[indexPath]){
         return;
     }
     
@@ -180,25 +205,25 @@
     
     SPFDownloadingPictureOperation *downloader = [[SPFDownloadingPictureOperation alloc] initWithSPFPicture:pic andComplition:^(){
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.operation.downloadsInProgress removeObjectForKey:indexPass];
-            [self.tableView reloadRowsAtIndexPaths:@[indexPass] withRowAnimation:UITableViewRowAnimationFade];
+            [self.operation.downloadsInProgress removeObjectForKey:indexPath];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         });
     }];
     
     downloader.updateProgressBarBlock = ^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[[self.tableView cellForRowAtIndexPath:indexPass] progressBar] setProgress:pic.loadedPart];
+            [[[self.tableView cellForRowAtIndexPath:indexPath] progressBar] setProgress:pic.loadedPart];
         });
     };
     
     
-    _operation.downloadsInProgress[indexPass] = downloader;
+    _operation.downloadsInProgress[indexPath] = downloader;
     [_operation.downloadQueue addOperation:downloader];
 }
 
-- (void) startFiltrationForPhoto:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPass{
+- (void) startFiltrationForPhoto:(SPFPicture*)pic byIndex:(NSIndexPath*)indexPath{
     
-    if (_operation.filtrationInProgress[indexPass]){
+    if (_operation.filtrationInProgress[indexPath]){
         return;
     }
     
@@ -212,12 +237,12 @@
         __strong SPFFiltrationPictureOperation *strongFilterer = weakFilterer;
         if (strongFilterer.isCancelled) return;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.operation.filtrationInProgress removeObjectForKey:indexPass];
-            [self.tableView reloadRowsAtIndexPaths:@[indexPass] withRowAnimation:UITableViewRowAnimationFade];
+            [self.operation.filtrationInProgress removeObjectForKey:indexPath];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         });
     };
     
-    _operation.filtrationInProgress[indexPass] = filterer;
+    _operation.filtrationInProgress[indexPath] = filterer;
     [_operation.filtrationQueue addOperation:filterer];
 }
 
@@ -269,6 +294,14 @@
 
 - (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     NSLog(@"scrollViewWillBeginDragging");
+    for (NSIndexPath *indexPath in _operation.downloadsInProgress){
+        SPFDownloadingPictureOperation *operation = (SPFDownloadingPictureOperation*)_operation.downloadsInProgress[indexPath];
+        if (operation.isPaused == NO){
+            [operation pause];
+            NSLog(@"%@ paused", indexPath);
+        }
+        
+    }
 }
 
 - (void) scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
@@ -281,14 +314,9 @@
 
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     NSLog(@"scrollViewDidEndDecelerating");
-    
     NSArray *visCells = [_tableView indexPathsForVisibleRows];
-    [_operation.downloadsInProgress[visCells[0]] cancel];
-    NSLog(@"ff");
-    
+    [_tableView reloadRowsAtIndexPaths:visCells withRowAnimation:UITableViewRowAnimationNone];
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
