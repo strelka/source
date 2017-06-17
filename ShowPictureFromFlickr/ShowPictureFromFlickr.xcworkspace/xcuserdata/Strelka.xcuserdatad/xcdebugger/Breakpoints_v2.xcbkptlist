@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowPictureFromFlickr/SPFDownloadingPictureOperation.m"
-            timestampString = "519045302.024544"
+            timestampString = "519224699.84563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "-URLSession:downloadTask:didFinishDownloadingToURL:"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowPictureFromFlickr/SPFDownloadingPictureOperation.m"
-            timestampString = "519045302.024544"
+            timestampString = "519224699.84563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "-URLSession:downloadTask:didFinishDownloadingToURL:"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowPictureFromFlickr/SPFDownloadingPictureOperation.m"
-            timestampString = "519045302.024544"
+            timestampString = "519224699.84563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "-startTaskGetImageFromURL:"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowPictureFromFlickr/SPFDownloadingPictureOperation.m"
-            timestampString = "519045302.024544"
+            timestampString = "519224699.84563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "-startTaskGetImageFromResumeData"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowPictureFromFlickr/SPFDownloadingPictureOperation.m"
-            timestampString = "519045302.024544"
+            timestampString = "519224699.84563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "-URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowPictureFromFlickr/SPFDownloadingPictureOperation.m"
-            timestampString = "519045302.024544"
+            timestampString = "519224699.84563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "-URLSession:downloadTask:didFinishDownloadingToURL:"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowPictureFromFlickr/SPFDownloadingPictureOperation.m"
-            timestampString = "519045302.024544"
+            timestampString = "519224699.84563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "-startTaskGetImageFromURL:"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,12 +330,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowPictureFromFlickr/SPFViewController.m"
-            timestampString = "519220491.292498"
+            timestampString = "519227710.961626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "-scrollViewDidEndDecelerating:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SPFFiltersTableController.m"
+            timestampString = "519225285.868262"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "filters"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SPFFiltersTableController.m"
+            timestampString = "519227710.961626"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShowPictureFromFlickr/SPFViewController.m"
+            timestampString = "519227710.961626"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -39,8 +39,8 @@
     CIImage *ciiImage = [[CIImage alloc] initWithData:imgData];
     if (self.isCancelled) return nil;
     CIContext *context = [[CIContext alloc] initWithOptions:nil];
-    CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone"
-                                  keysAndValues:kCIInputImageKey, ciiImage, @"inputIntensity", @0.8, nil];
+    CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectNoir"
+                                  keysAndValues:kCIInputImageKey, ciiImage, nil];
     CIImage *outCiiImage = [filter outputImage];
     
     if (self.isCancelled) return nil;

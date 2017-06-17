@@ -1,4 +1,4 @@
-//
+ миари//
 //  SPFViewController.m
 //  ShowPictureFromFlickr
 //
@@ -40,7 +40,7 @@
 @property (nonatomic, strong) NSArray *colors;
 
 @property(nonatomic, strong) NSString *searchText;
-
+льбьб≥“б
 @end
 
 @implementation SPFViewController
@@ -225,19 +225,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-+ (UIImage *) imageWithView:(UIView *)view
-{
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    
-    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return img;
 }
 
 @end

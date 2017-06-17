@@ -43,14 +43,15 @@
     annotationView.canShowCallout = YES;
     //annotationView.pinTintColor = _color;
     
-    UIButton *drawRouteBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    UIButton *drawRouteBtn = [[UIButton alloc] init];
+    [drawRouteBtn setImage:[UIImage imageNamed:@"route"] forState:UIControlStateNormal];
+    //UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
     
     drawRouteBtn.tag = 1;
-    infoBtn.tag = 2;
+    //infoBtn.tag = 2;
     
     annotationView.rightCalloutAccessoryView = drawRouteBtn;
-    annotationView.leftCalloutAccessoryView = infoBtn;
+    //annotationView.leftCalloutAccessoryView = infoBtn;
     
     return annotationView;
 }

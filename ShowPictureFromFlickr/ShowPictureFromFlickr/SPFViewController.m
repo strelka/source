@@ -15,6 +15,8 @@
 #import "SPFFiltrationPictureOperation.h"
 #import "SPFCustomCell.h"
 
+#import "SPFFiltersTableController.h"
+
 
 @interface SPFViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -89,14 +91,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    SPFDownloadingPictureOperation *oper = (SPFDownloadingPictureOperation *)_operation.downloadsInProgress[indexPath];
-    if (oper.isPaused == NO){
-        [oper pause];
-    } else {
-        SPFDownloadingPictureOperation *newOper = [oper resume];
-        _operation.downloadsInProgress[indexPath] = newOper;
-        [_operation.downloadQueue addOperation:newOper];
-    }
+    SPFCustomCell *currentCell = [_tableView cellForRowAtIndexPath:indexPath];
+    [currentCell showFiltersMenu];
+    
+    
+//    SPFDownloadingPictureOperation *oper = (SPFDownloadingPictureOperation *)_operation.downloadsInProgress[indexPath];
+//    if (oper.isPaused == NO){
+//        [oper pause];
+//    } else {
+//        SPFDownloadingPictureOperation *newOper = [oper resume];
+//        _operation.downloadsInProgress[indexPath] = newOper;
+//        [_operation.downloadQueue addOperation:newOper];
+//    }
 
 }
 

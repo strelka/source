@@ -98,6 +98,7 @@
             if (data){
                 NSMutableArray *pins = [[NSMutableArray alloc] initWithArray:[mapView annotations]];
                 [mapView removeAnnotations:pins];
+                [_poiArray removeAllObjects];
                 pins = nil;
                 [mapView addAnnotations:data];
             }
@@ -122,33 +123,39 @@
     
     [mfbcell setAtmIcoFor:annotation.isOpen];
     
+    NSLog(@"walk %@", annotation.walkingDistance);
     if (nil == annotation.walkingDistance) {
-    [_service getDistanceFromPoint:[self getCurrentUserCoordinate]
+        annotation.walkingDistance = @"-";
+        [_service getDistanceFromPoint:[self getCurrentUserCoordinate]
                                ToPoint:annotation.coordinate
                                andMode:@"walking"
                          andComplition:^(NSString* distance){                               
-                               dispatch_async(dispatch_get_main_queue(), ^{
+                             
+                             dispatch_async(dispatch_get_main_queue(), ^{
                                    annotation.walkingDistance = distance;
+                                   NSLog(@"%@ -walk  %@", annotation.title, annotation.walkingDistance);
                                    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                                });
                             }];
     }
     
+    NSLog(@"car %@", annotation.carDistance);
     if (nil == annotation.carDistance){
-    [_service getDistanceFromPoint:[self getCurrentUserCoordinate]
+        annotation.carDistance = @"-";
+        [_service getDistanceFromPoint:[self getCurrentUserCoordinate]
                                ToPoint:annotation.coordinate
                                andMode:@"driving"
                          andComplition:^(NSString* distance){
                                    dispatch_async(dispatch_get_main_queue(), ^{
                                        annotation.carDistance = distance;
+                                       NSLog(@"%@ - car %@", annotation.title, annotation.carDistance);
                                        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                                    });
                                }];
-    }
+        }
     
     return mfbcell;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [_poiArray count];

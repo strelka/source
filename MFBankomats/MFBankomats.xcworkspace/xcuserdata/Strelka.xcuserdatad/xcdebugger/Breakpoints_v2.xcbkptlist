@@ -814,7 +814,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MFBankomats/MFBGetDataFromGoogle.m"
@@ -1104,11 +1104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MFBankomats/MFBMapTableDelegate.m"
-            timestampString = "518771580.840145"
+            timestampString = "518774582.614536"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1120,11 +1120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MFBankomats/MFBMapTableDelegate.m"
-            timestampString = "518771580.840145"
+            timestampString = "518774582.614536"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1180,15 +1180,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MFBankomats/MFBMapTableDelegate.m"
-            timestampString = "518773999.825403"
+            timestampString = "518776542.834695"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1200,27 +1200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MFBankomats/MFBMapTableDelegate.m"
-            timestampString = "518773999.825403"
+            timestampString = "518776542.834695"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MFBankomats/MFBMapTableDelegate.m"
-            timestampString = "518773999.825403"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1232,11 +1216,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MFBankomats/MFBMapTableDelegate.m"
-            timestampString = "518773999.825403"
+            timestampString = "518776542.834695"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MFBankomats/MFBMapTableDelegate.m"
+            timestampString = "518776542.834695"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>

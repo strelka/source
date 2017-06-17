@@ -15,4 +15,5 @@
 @property (nonatomic, strong) UIImage *cellImage;
 
 - (void) setImageToImageView;
+- (void) showFiltersMenu;
 @end
