@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "92C362831EA771AB006D3BC7"
+               BlueprintIdentifier = "92160DAD1EF338B9000F634B"
                BuildableName = "Trends.app"
                BlueprintName = "Trends"
                ReferencedContainer = "container:Trends.xcodeproj">
@@ -32,9 +32,19 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "92C3629F1EA771AB006D3BC7"
+               BlueprintIdentifier = "92160DC61EF338B9000F634B"
                BuildableName = "TrendsTests.xctest"
                BlueprintName = "TrendsTests"
+               ReferencedContainer = "container:Trends.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "92160DD11EF338B9000F634B"
+               BuildableName = "TrendsUITests.xctest"
+               BlueprintName = "TrendsUITests"
                ReferencedContainer = "container:Trends.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "92C362831EA771AB006D3BC7"
+            BlueprintIdentifier = "92160DAD1EF338B9000F634B"
             BuildableName = "Trends.app"
             BlueprintName = "Trends"
             ReferencedContainer = "container:Trends.xcodeproj">
@@ -65,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "92C362831EA771AB006D3BC7"
+            BlueprintIdentifier = "92160DAD1EF338B9000F634B"
             BuildableName = "Trends.app"
             BlueprintName = "Trends"
             ReferencedContainer = "container:Trends.xcodeproj">
@@ -84,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "92C362831EA771AB006D3BC7"
+            BlueprintIdentifier = "92160DAD1EF338B9000F634B"
             BuildableName = "Trends.app"
             BlueprintName = "Trends"
             ReferencedContainer = "container:Trends.xcodeproj">

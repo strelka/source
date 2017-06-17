@@ -2,7 +2,7 @@
 //  TrendsTests.m
 //  TrendsTests
 //
-//  Created by Jullia Sharaeva on 19.04.17.
+//  Created by Jullia Sharaeva on 16.06.17.
 //  Copyright © 2017 Julia Sharaeva. All rights reserved.
 //
 

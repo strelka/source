@@ -7,186 +7,252 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9263D74D1EAB513B00275DF0 /* myInstagramConsoleVcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263D74C1EAB513A00275DF0 /* myInstagramConsoleVcViewController.m */; };
-		92B58A411ED8B603009E470D /* getThrendsFromYouTube.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A401ED8B603009E470D /* getThrendsFromYouTube.m */; };
-		92B58A451ED8C15D009E470D /* TRNPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A441ED8C15D009E470D /* TRNPlayerViewController.m */; };
-		92B58A481ED8C18D009E470D /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A471ED8C18D009E470D /* YTPlayerView.m */; };
-		92B58A4B1ED8C3F0009E470D /* TRNYouTubeTrendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A4A1ED8C3F0009E470D /* TRNYouTubeTrendsController.m */; };
-		92B58A4E1ED8C9D5009E470D /* TRNVideoCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B58A4D1ED8C9D5009E470D /* TRNVideoCustomCell.m */; };
-		92C362891EA771AB006D3BC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C362881EA771AB006D3BC7 /* main.m */; };
-		92C3628C1EA771AB006D3BC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C3628B1EA771AB006D3BC7 /* AppDelegate.m */; };
-		92C3628F1EA771AB006D3BC7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C3628E1EA771AB006D3BC7 /* ViewController.m */; };
-		92C362921EA771AB006D3BC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92C362901EA771AB006D3BC7 /* Main.storyboard */; };
-		92C362951EA771AB006D3BC7 /* Trends.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92C362931EA771AB006D3BC7 /* Trends.xcdatamodeld */; };
-		92C362971EA771AB006D3BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C362961EA771AB006D3BC7 /* Assets.xcassets */; };
-		92C3629A1EA771AB006D3BC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92C362981EA771AB006D3BC7 /* LaunchScreen.storyboard */; };
-		92C362A51EA771AC006D3BC7 /* TrendsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C362A41EA771AC006D3BC7 /* TrendsTests.m */; };
-		92C362B71EA89DEB006D3BC7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C362B31EA89DEB006D3BC7 /* Fabric.framework */; };
-		92C362B81EA89DEB006D3BC7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C362B31EA89DEB006D3BC7 /* Fabric.framework */; };
-		92C362B91EA89DEB006D3BC7 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C362B41EA89DEB006D3BC7 /* TwitterKit.framework */; };
-		92C362BA1EA89DEB006D3BC7 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C362B41EA89DEB006D3BC7 /* TwitterKit.framework */; };
-		92C362BB1EA89DEB006D3BC7 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 92C362B51EA89DEB006D3BC7 /* TwitterKitResources.bundle */; };
-		92C362BC1EA89DEB006D3BC7 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 92C362B51EA89DEB006D3BC7 /* TwitterKitResources.bundle */; };
-		92C362BD1EA89DEB006D3BC7 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C362B61EA89DEB006D3BC7 /* TwitterCore.framework */; };
-		92C362BE1EA89DEB006D3BC7 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C362B61EA89DEB006D3BC7 /* TwitterCore.framework */; };
+		73F8C55DE26E3297E268E4D2 /* libPods-TrendsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 978E7F6D0FEA52E5304AECF1 /* libPods-TrendsTests.a */; };
+		92160DB31EF338B9000F634B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92160DB21EF338B9000F634B /* main.m */; };
+		92160DB61EF338B9000F634B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92160DB51EF338B9000F634B /* AppDelegate.m */; };
+		92160DBE1EF338B9000F634B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92160DBD1EF338B9000F634B /* Assets.xcassets */; };
+		92160DCC1EF338B9000F634B /* TrendsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92160DCB1EF338B9000F634B /* TrendsTests.m */; };
+		92160DD71EF338B9000F634B /* TrendsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92160DD61EF338B9000F634B /* TrendsUITests.m */; };
+		92160DED1EF427C4000F634B /* TRNPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92160DEC1EF427C4000F634B /* TRNPageViewController.m */; };
+		92160DFA1EF467C6000F634B /* TRNYouTubeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92160DF91EF467C6000F634B /* TRNYouTubeController.m */; };
+		92160DFC1EF46975000F634B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92160DFB1EF46975000F634B /* Default-568h@2x.png */; };
+		92160DFF1EF46A34000F634B /* TRNTwitterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92160DFE1EF46A34000F634B /* TRNTwitterController.m */; };
+		92160E021EF46A78000F634B /* TRNFlicrController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92160E011EF46A78000F634B /* TRNFlicrController.m */; };
+		92160E051EF46AFE000F634B /* TRNPagesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92160E041EF46AFE000F634B /* TRNPagesManager.m */; };
+		92160E071EF46BE8000F634B /* Test_TRNPagesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92160E061EF46BE8000F634B /* Test_TRNPagesManager.m */; };
+		92160E111EF47815000F634B /* AppDelegateForTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92160E101EF47815000F634B /* AppDelegateForTests.m */; };
+		92160E131EF49D46000F634B /* TestTrnPagesManagerGetViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 92160E121EF49D46000F634B /* TestTrnPagesManagerGetViewControllers.m */; };
+		C62FBB2BBCB8DC01FD434E01 /* libPods-Trends.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C859516811781FF00893B773 /* libPods-Trends.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		92C362A11EA771AB006D3BC7 /* PBXContainerItemProxy */ = {
+		92160DC81EF338B9000F634B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 92C3627C1EA771AB006D3BC7 /* Project object */;
+			containerPortal = 92160DA61EF338B8000F634B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 92C362831EA771AB006D3BC7;
+			remoteGlobalIDString = 92160DAD1EF338B9000F634B;
+			remoteInfo = Trends;
+		};
+		92160DD31EF338B9000F634B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92160DA61EF338B8000F634B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92160DAD1EF338B9000F634B;
 			remoteInfo = Trends;
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		92160E0E1EF47094000F634B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		9263D74B1EAB513A00275DF0 /* myInstagramConsoleVcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = myInstagramConsoleVcViewController.h; path = ../myInstagramConsoleVcViewController.h; sourceTree = "<group>"; };
-		9263D74C1EAB513A00275DF0 /* myInstagramConsoleVcViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = myInstagramConsoleVcViewController.m; path = ../myInstagramConsoleVcViewController.m; sourceTree = "<group>"; };
-		92B58A3F1ED8B603009E470D /* getThrendsFromYouTube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getThrendsFromYouTube.h; sourceTree = "<group>"; };
-		92B58A401ED8B603009E470D /* getThrendsFromYouTube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = getThrendsFromYouTube.m; sourceTree = "<group>"; };
-		92B58A421ED8B648009E470D /* DownloadThrendsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadThrendsProtocol.h; sourceTree = "<group>"; };
-		92B58A431ED8C15D009E470D /* TRNPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNPlayerViewController.h; sourceTree = "<group>"; };
-		92B58A441ED8C15D009E470D /* TRNPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNPlayerViewController.m; sourceTree = "<group>"; };
-		92B58A461ED8C18D009E470D /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
-		92B58A471ED8C18D009E470D /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
-		92B58A491ED8C3F0009E470D /* TRNYouTubeTrendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNYouTubeTrendsController.h; sourceTree = "<group>"; };
-		92B58A4A1ED8C3F0009E470D /* TRNYouTubeTrendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNYouTubeTrendsController.m; sourceTree = "<group>"; };
-		92B58A4C1ED8C9D5009E470D /* TRNVideoCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNVideoCustomCell.h; sourceTree = "<group>"; };
-		92B58A4D1ED8C9D5009E470D /* TRNVideoCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNVideoCustomCell.m; sourceTree = "<group>"; };
-		92C362841EA771AB006D3BC7 /* Trends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trends.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		92C362881EA771AB006D3BC7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		92C3628A1EA771AB006D3BC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		92C3628B1EA771AB006D3BC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		92C3628D1EA771AB006D3BC7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		92C3628E1EA771AB006D3BC7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		92C362911EA771AB006D3BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		92C362941EA771AB006D3BC7 /* Trends.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Trends.xcdatamodel; sourceTree = "<group>"; };
-		92C362961EA771AB006D3BC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		92C362991EA771AB006D3BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		92C3629B1EA771AB006D3BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		92C362A01EA771AB006D3BC7 /* TrendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrendsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		92C362A41EA771AC006D3BC7 /* TrendsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrendsTests.m; sourceTree = "<group>"; };
-		92C362A61EA771AC006D3BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		92C362B31EA89DEB006D3BC7 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
-		92C362B41EA89DEB006D3BC7 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = SOURCE_ROOT; };
-		92C362B51EA89DEB006D3BC7 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
-		92C362B61EA89DEB006D3BC7 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = SOURCE_ROOT; };
+		4E07D31F63EA332560096206 /* Pods-TrendsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrendsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrendsTests/Pods-TrendsTests.release.xcconfig"; sourceTree = "<group>"; };
+		7DD4F58F764809DEFF864741 /* Pods-TrendsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrendsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrendsTests/Pods-TrendsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7E55FCEB73B45BAE4EB0603C /* Pods-Trends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trends.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trends/Pods-Trends.debug.xcconfig"; sourceTree = "<group>"; };
+		7F6F7F9ED291893A985B1868 /* Pods-Trends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trends.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trends/Pods-Trends.release.xcconfig"; sourceTree = "<group>"; };
+		92160DAE1EF338B9000F634B /* Trends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trends.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92160DB21EF338B9000F634B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		92160DB41EF338B9000F634B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		92160DB51EF338B9000F634B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		92160DBD1EF338B9000F634B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		92160DC21EF338B9000F634B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92160DC71EF338B9000F634B /* TrendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrendsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		92160DCB1EF338B9000F634B /* TrendsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrendsTests.m; sourceTree = "<group>"; };
+		92160DCD1EF338B9000F634B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92160DD21EF338B9000F634B /* TrendsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrendsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		92160DD61EF338B9000F634B /* TrendsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrendsUITests.m; sourceTree = "<group>"; };
+		92160DD81EF338B9000F634B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92160DEB1EF427C4000F634B /* TRNPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNPageViewController.h; sourceTree = "<group>"; };
+		92160DEC1EF427C4000F634B /* TRNPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNPageViewController.m; sourceTree = "<group>"; };
+		92160DF71EF464C2000F634B /* TRNChildProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNChildProtocol.h; sourceTree = "<group>"; };
+		92160DF81EF467C6000F634B /* TRNYouTubeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNYouTubeController.h; sourceTree = "<group>"; };
+		92160DF91EF467C6000F634B /* TRNYouTubeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNYouTubeController.m; sourceTree = "<group>"; };
+		92160DFB1EF46975000F634B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		92160DFD1EF46A34000F634B /* TRNTwitterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNTwitterController.h; sourceTree = "<group>"; };
+		92160DFE1EF46A34000F634B /* TRNTwitterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNTwitterController.m; sourceTree = "<group>"; };
+		92160E001EF46A78000F634B /* TRNFlicrController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNFlicrController.h; sourceTree = "<group>"; };
+		92160E011EF46A78000F634B /* TRNFlicrController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNFlicrController.m; sourceTree = "<group>"; };
+		92160E031EF46AFE000F634B /* TRNPagesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNPagesManager.h; sourceTree = "<group>"; };
+		92160E041EF46AFE000F634B /* TRNPagesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNPagesManager.m; sourceTree = "<group>"; };
+		92160E061EF46BE8000F634B /* Test_TRNPagesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_TRNPagesManager.m; sourceTree = "<group>"; };
+		92160E0F1EF47815000F634B /* AppDelegateForTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegateForTests.h; sourceTree = "<group>"; };
+		92160E101EF47815000F634B /* AppDelegateForTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateForTests.m; sourceTree = "<group>"; };
+		92160E121EF49D46000F634B /* TestTrnPagesManagerGetViewControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTrnPagesManagerGetViewControllers.m; sourceTree = "<group>"; };
+		978E7F6D0FEA52E5304AECF1 /* libPods-TrendsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TrendsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C859516811781FF00893B773 /* libPods-Trends.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Trends.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		92C362811EA771AB006D3BC7 /* Frameworks */ = {
+		92160DAB1EF338B9000F634B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92C362BD1EA89DEB006D3BC7 /* TwitterCore.framework in Frameworks */,
-				92C362B71EA89DEB006D3BC7 /* Fabric.framework in Frameworks */,
-				92C362B91EA89DEB006D3BC7 /* TwitterKit.framework in Frameworks */,
+				C62FBB2BBCB8DC01FD434E01 /* libPods-Trends.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		92C3629D1EA771AB006D3BC7 /* Frameworks */ = {
+		92160DC41EF338B9000F634B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92C362B81EA89DEB006D3BC7 /* Fabric.framework in Frameworks */,
-				92C362BE1EA89DEB006D3BC7 /* TwitterCore.framework in Frameworks */,
-				92C362BA1EA89DEB006D3BC7 /* TwitterKit.framework in Frameworks */,
+				73F8C55DE26E3297E268E4D2 /* libPods-TrendsTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92160DCF1EF338B9000F634B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		92C3627B1EA771AB006D3BC7 = {
+		0F1024CCBA72400AA8DA604C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				92C362861EA771AB006D3BC7 /* Trends */,
-				92C362A31EA771AC006D3BC7 /* TrendsTests */,
-				92C362851EA771AB006D3BC7 /* Products */,
-				92C362AF1EA779DF006D3BC7 /* Frameworks */,
+				C859516811781FF00893B773 /* libPods-Trends.a */,
+				978E7F6D0FEA52E5304AECF1 /* libPods-TrendsTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6BFE2FEC6EB0641CF26FD3A6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7E55FCEB73B45BAE4EB0603C /* Pods-Trends.debug.xcconfig */,
+				7F6F7F9ED291893A985B1868 /* Pods-Trends.release.xcconfig */,
+				7DD4F58F764809DEFF864741 /* Pods-TrendsTests.debug.xcconfig */,
+				4E07D31F63EA332560096206 /* Pods-TrendsTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		92160DA51EF338B8000F634B = {
+			isa = PBXGroup;
+			children = (
+				92160E0F1EF47815000F634B /* AppDelegateForTests.h */,
+				92160E101EF47815000F634B /* AppDelegateForTests.m */,
+				92160DFB1EF46975000F634B /* Default-568h@2x.png */,
+				92160DB01EF338B9000F634B /* Trends */,
+				92160DCA1EF338B9000F634B /* TrendsTests */,
+				92160DD51EF338B9000F634B /* TrendsUITests */,
+				92160DAF1EF338B9000F634B /* Products */,
+				0F1024CCBA72400AA8DA604C /* Frameworks */,
+				6BFE2FEC6EB0641CF26FD3A6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
-		92C362851EA771AB006D3BC7 /* Products */ = {
+		92160DAF1EF338B9000F634B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				92C362841EA771AB006D3BC7 /* Trends.app */,
-				92C362A01EA771AB006D3BC7 /* TrendsTests.xctest */,
+				92160DAE1EF338B9000F634B /* Trends.app */,
+				92160DC71EF338B9000F634B /* TrendsTests.xctest */,
+				92160DD21EF338B9000F634B /* TrendsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		92C362861EA771AB006D3BC7 /* Trends */ = {
+		92160DB01EF338B9000F634B /* Trends */ = {
 			isa = PBXGroup;
 			children = (
-				92B58A461ED8C18D009E470D /* YTPlayerView.h */,
-				92B58A471ED8C18D009E470D /* YTPlayerView.m */,
-				9263D74B1EAB513A00275DF0 /* myInstagramConsoleVcViewController.h */,
-				9263D74C1EAB513A00275DF0 /* myInstagramConsoleVcViewController.m */,
-				92C3628A1EA771AB006D3BC7 /* AppDelegate.h */,
-				92C3628B1EA771AB006D3BC7 /* AppDelegate.m */,
-				92C3628D1EA771AB006D3BC7 /* ViewController.h */,
-				92C3628E1EA771AB006D3BC7 /* ViewController.m */,
-				92C362901EA771AB006D3BC7 /* Main.storyboard */,
-				92C362961EA771AB006D3BC7 /* Assets.xcassets */,
-				92C362981EA771AB006D3BC7 /* LaunchScreen.storyboard */,
-				92C3629B1EA771AB006D3BC7 /* Info.plist */,
-				92C362931EA771AB006D3BC7 /* Trends.xcdatamodeld */,
-				92C362871EA771AB006D3BC7 /* Supporting Files */,
-				92B58A3F1ED8B603009E470D /* getThrendsFromYouTube.h */,
-				92B58A401ED8B603009E470D /* getThrendsFromYouTube.m */,
-				92B58A421ED8B648009E470D /* DownloadThrendsProtocol.h */,
-				92B58A431ED8C15D009E470D /* TRNPlayerViewController.h */,
-				92B58A441ED8C15D009E470D /* TRNPlayerViewController.m */,
-				92B58A491ED8C3F0009E470D /* TRNYouTubeTrendsController.h */,
-				92B58A4A1ED8C3F0009E470D /* TRNYouTubeTrendsController.m */,
-				92B58A4C1ED8C9D5009E470D /* TRNVideoCustomCell.h */,
-				92B58A4D1ED8C9D5009E470D /* TRNVideoCustomCell.m */,
+				92160DEA1EF33E6F000F634B /* Controller */,
+				92160DE91EF33E69000F634B /* View */,
+				92160DE81EF33E5E000F634B /* Model */,
+				92160DB41EF338B9000F634B /* AppDelegate.h */,
+				92160DB51EF338B9000F634B /* AppDelegate.m */,
+				92160DBD1EF338B9000F634B /* Assets.xcassets */,
+				92160DC21EF338B9000F634B /* Info.plist */,
+				92160DB11EF338B9000F634B /* Supporting Files */,
 			);
 			path = Trends;
 			sourceTree = "<group>";
 		};
-		92C362871EA771AB006D3BC7 /* Supporting Files */ = {
+		92160DB11EF338B9000F634B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				92C362881EA771AB006D3BC7 /* main.m */,
+				92160DB21EF338B9000F634B /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		92C362A31EA771AC006D3BC7 /* TrendsTests */ = {
+		92160DCA1EF338B9000F634B /* TrendsTests */ = {
 			isa = PBXGroup;
 			children = (
-				92C362A41EA771AC006D3BC7 /* TrendsTests.m */,
-				92C362A61EA771AC006D3BC7 /* Info.plist */,
+				92160DCB1EF338B9000F634B /* TrendsTests.m */,
+				92160DCD1EF338B9000F634B /* Info.plist */,
+				92160E061EF46BE8000F634B /* Test_TRNPagesManager.m */,
+				92160E121EF49D46000F634B /* TestTrnPagesManagerGetViewControllers.m */,
 			);
 			path = TrendsTests;
 			sourceTree = "<group>";
 		};
-		92C362AF1EA779DF006D3BC7 /* Frameworks */ = {
+		92160DD51EF338B9000F634B /* TrendsUITests */ = {
 			isa = PBXGroup;
 			children = (
-				92C362B41EA89DEB006D3BC7 /* TwitterKit.framework */,
-				92C362B61EA89DEB006D3BC7 /* TwitterCore.framework */,
-				92C362B51EA89DEB006D3BC7 /* TwitterKitResources.bundle */,
-				92C362B31EA89DEB006D3BC7 /* Fabric.framework */,
+				92160DD61EF338B9000F634B /* TrendsUITests.m */,
+				92160DD81EF338B9000F634B /* Info.plist */,
 			);
-			name = Frameworks;
+			path = TrendsUITests;
+			sourceTree = "<group>";
+		};
+		92160DE81EF33E5E000F634B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		92160DE91EF33E69000F634B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		92160DEA1EF33E6F000F634B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				92160DEB1EF427C4000F634B /* TRNPageViewController.h */,
+				92160DEC1EF427C4000F634B /* TRNPageViewController.m */,
+				92160DF71EF464C2000F634B /* TRNChildProtocol.h */,
+				92160DF81EF467C6000F634B /* TRNYouTubeController.h */,
+				92160DF91EF467C6000F634B /* TRNYouTubeController.m */,
+				92160DFD1EF46A34000F634B /* TRNTwitterController.h */,
+				92160DFE1EF46A34000F634B /* TRNTwitterController.m */,
+				92160E001EF46A78000F634B /* TRNFlicrController.h */,
+				92160E011EF46A78000F634B /* TRNFlicrController.m */,
+				92160E031EF46AFE000F634B /* TRNPagesManager.h */,
+				92160E041EF46AFE000F634B /* TRNPagesManager.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		92C362831EA771AB006D3BC7 /* Trends */ = {
+		92160DAD1EF338B9000F634B /* Trends */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 92C362A91EA771AC006D3BC7 /* Build configuration list for PBXNativeTarget "Trends" */;
+			buildConfigurationList = 92160DDB1EF338B9000F634B /* Build configuration list for PBXNativeTarget "Trends" */;
 			buildPhases = (
-				92C362801EA771AB006D3BC7 /* Sources */,
-				92C362811EA771AB006D3BC7 /* Frameworks */,
-				92C362821EA771AB006D3BC7 /* Resources */,
-				92C362B21EA89D9A006D3BC7 /* ShellScript */,
+				94E23FCDCE895EAAB0148D59 /* [CP] Check Pods Manifest.lock */,
+				92160DAA1EF338B9000F634B /* Sources */,
+				92160DAB1EF338B9000F634B /* Frameworks */,
+				92160DAC1EF338B9000F634B /* Resources */,
+				92160E0E1EF47094000F634B /* Embed Frameworks */,
+				D225EC545DDE837CBD6349F1 /* [CP] Embed Pods Frameworks */,
+				F8305340F459500CCB0446AB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -194,48 +260,77 @@
 			);
 			name = Trends;
 			productName = Trends;
-			productReference = 92C362841EA771AB006D3BC7 /* Trends.app */;
+			productReference = 92160DAE1EF338B9000F634B /* Trends.app */;
 			productType = "com.apple.product-type.application";
 		};
-		92C3629F1EA771AB006D3BC7 /* TrendsTests */ = {
+		92160DC61EF338B9000F634B /* TrendsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 92C362AC1EA771AC006D3BC7 /* Build configuration list for PBXNativeTarget "TrendsTests" */;
+			buildConfigurationList = 92160DDE1EF338B9000F634B /* Build configuration list for PBXNativeTarget "TrendsTests" */;
 			buildPhases = (
-				92C3629C1EA771AB006D3BC7 /* Sources */,
-				92C3629D1EA771AB006D3BC7 /* Frameworks */,
-				92C3629E1EA771AB006D3BC7 /* Resources */,
+				D52054E452B3169B20C4D19C /* [CP] Check Pods Manifest.lock */,
+				92160DC31EF338B9000F634B /* Sources */,
+				92160DC41EF338B9000F634B /* Frameworks */,
+				92160DC51EF338B9000F634B /* Resources */,
+				8B8AF9277C4A0D7E4D91C678 /* [CP] Embed Pods Frameworks */,
+				2C6229ACAE2ED4E110506562 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				92C362A21EA771AB006D3BC7 /* PBXTargetDependency */,
+				92160DC91EF338B9000F634B /* PBXTargetDependency */,
 			);
 			name = TrendsTests;
 			productName = TrendsTests;
-			productReference = 92C362A01EA771AB006D3BC7 /* TrendsTests.xctest */;
+			productReference = 92160DC71EF338B9000F634B /* TrendsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		92160DD11EF338B9000F634B /* TrendsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92160DE11EF338B9000F634B /* Build configuration list for PBXNativeTarget "TrendsUITests" */;
+			buildPhases = (
+				92160DCE1EF338B9000F634B /* Sources */,
+				92160DCF1EF338B9000F634B /* Frameworks */,
+				92160DD01EF338B9000F634B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				92160DD41EF338B9000F634B /* PBXTargetDependency */,
+			);
+			name = TrendsUITests;
+			productName = TrendsUITests;
+			productReference = 92160DD21EF338B9000F634B /* TrendsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		92C3627C1EA771AB006D3BC7 /* Project object */ = {
+		92160DA61EF338B8000F634B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Julia Sharaeva";
 				TargetAttributes = {
-					92C362831EA771AB006D3BC7 = {
-						CreatedOnToolsVersion = 8.2.1;
+					92160DAD1EF338B9000F634B = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = P85JQ5XGQC;
 						ProvisioningStyle = Automatic;
 					};
-					92C3629F1EA771AB006D3BC7 = {
-						CreatedOnToolsVersion = 8.2.1;
+					92160DC61EF338B9000F634B = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = P85JQ5XGQC;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 92C362831EA771AB006D3BC7;
+						TestTargetID = 92160DAD1EF338B9000F634B;
+					};
+					92160DD11EF338B9000F634B = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = P85JQ5XGQC;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 92160DAD1EF338B9000F634B;
 					};
 				};
 			};
-			buildConfigurationList = 92C3627F1EA771AB006D3BC7 /* Build configuration list for PBXProject "Trends" */;
+			buildConfigurationList = 92160DA91EF338B8000F634B /* Build configuration list for PBXProject "Trends" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -243,116 +338,193 @@
 				en,
 				Base,
 			);
-			mainGroup = 92C3627B1EA771AB006D3BC7;
-			productRefGroup = 92C362851EA771AB006D3BC7 /* Products */;
+			mainGroup = 92160DA51EF338B8000F634B;
+			productRefGroup = 92160DAF1EF338B9000F634B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				92C362831EA771AB006D3BC7 /* Trends */,
-				92C3629F1EA771AB006D3BC7 /* TrendsTests */,
+				92160DAD1EF338B9000F634B /* Trends */,
+				92160DC61EF338B9000F634B /* TrendsTests */,
+				92160DD11EF338B9000F634B /* TrendsUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		92C362821EA771AB006D3BC7 /* Resources */ = {
+		92160DAC1EF338B9000F634B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92C362BB1EA89DEB006D3BC7 /* TwitterKitResources.bundle in Resources */,
-				92C3629A1EA771AB006D3BC7 /* LaunchScreen.storyboard in Resources */,
-				92C362971EA771AB006D3BC7 /* Assets.xcassets in Resources */,
-				92C362921EA771AB006D3BC7 /* Main.storyboard in Resources */,
+				92160DBE1EF338B9000F634B /* Assets.xcassets in Resources */,
+				92160DFC1EF46975000F634B /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		92C3629E1EA771AB006D3BC7 /* Resources */ = {
+		92160DC51EF338B9000F634B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92C362BC1EA89DEB006D3BC7 /* TwitterKitResources.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92160DD01EF338B9000F634B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		92C362B21EA89D9A006D3BC7 /* ShellScript */ = {
+		2C6229ACAE2ED4E110506562 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run ff869bad5a4ff0b9a18c22239129ffbcfb149a21 dd59471b5c14e7808aa7736de0829ec987e39f6ad165ec2dd6851846e4ec85d6";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TrendsTests/Pods-TrendsTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B8AF9277C4A0D7E4D91C678 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TrendsTests/Pods-TrendsTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94E23FCDCE895EAAB0148D59 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D225EC545DDE837CBD6349F1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Trends/Pods-Trends-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D52054E452B3169B20C4D19C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F8305340F459500CCB0446AB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Trends/Pods-Trends-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		92C362801EA771AB006D3BC7 /* Sources */ = {
+		92160DAA1EF338B9000F634B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92C3628F1EA771AB006D3BC7 /* ViewController.m in Sources */,
-				92B58A4B1ED8C3F0009E470D /* TRNYouTubeTrendsController.m in Sources */,
-				92C3628C1EA771AB006D3BC7 /* AppDelegate.m in Sources */,
-				92C362891EA771AB006D3BC7 /* main.m in Sources */,
-				9263D74D1EAB513B00275DF0 /* myInstagramConsoleVcViewController.m in Sources */,
-				92B58A451ED8C15D009E470D /* TRNPlayerViewController.m in Sources */,
-				92C362951EA771AB006D3BC7 /* Trends.xcdatamodeld in Sources */,
-				92B58A4E1ED8C9D5009E470D /* TRNVideoCustomCell.m in Sources */,
-				92B58A481ED8C18D009E470D /* YTPlayerView.m in Sources */,
-				92B58A411ED8B603009E470D /* getThrendsFromYouTube.m in Sources */,
+				92160DB61EF338B9000F634B /* AppDelegate.m in Sources */,
+				92160DFF1EF46A34000F634B /* TRNTwitterController.m in Sources */,
+				92160DB31EF338B9000F634B /* main.m in Sources */,
+				92160E021EF46A78000F634B /* TRNFlicrController.m in Sources */,
+				92160DFA1EF467C6000F634B /* TRNYouTubeController.m in Sources */,
+				92160E051EF46AFE000F634B /* TRNPagesManager.m in Sources */,
+				92160E111EF47815000F634B /* AppDelegateForTests.m in Sources */,
+				92160DED1EF427C4000F634B /* TRNPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		92C3629C1EA771AB006D3BC7 /* Sources */ = {
+		92160DC31EF338B9000F634B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92C362A51EA771AC006D3BC7 /* TrendsTests.m in Sources */,
+				92160DCC1EF338B9000F634B /* TrendsTests.m in Sources */,
+				92160E071EF46BE8000F634B /* Test_TRNPagesManager.m in Sources */,
+				92160E131EF49D46000F634B /* TestTrnPagesManagerGetViewControllers.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92160DCE1EF338B9000F634B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92160DD71EF338B9000F634B /* TrendsUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		92C362A21EA771AB006D3BC7 /* PBXTargetDependency */ = {
+		92160DC91EF338B9000F634B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 92C362831EA771AB006D3BC7 /* Trends */;
-			targetProxy = 92C362A11EA771AB006D3BC7 /* PBXContainerItemProxy */;
+			target = 92160DAD1EF338B9000F634B /* Trends */;
+			targetProxy = 92160DC81EF338B9000F634B /* PBXContainerItemProxy */;
+		};
+		92160DD41EF338B9000F634B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92160DAD1EF338B9000F634B /* Trends */;
+			targetProxy = 92160DD31EF338B9000F634B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		92C362901EA771AB006D3BC7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				92C362911EA771AB006D3BC7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		92C362981EA771AB006D3BC7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				92C362991EA771AB006D3BC7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		92C362A71EA771AC006D3BC7 /* Debug */ = {
+		92160DD91EF338B9000F634B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -388,18 +560,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
-		92C362A81EA771AC006D3BC7 /* Release */ = {
+		92160DDA1EF338B9000F634B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -429,119 +602,131 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		92C362AA1EA771AC006D3BC7 /* Debug */ = {
+		92160DDC1EF338B9000F634B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E55FCEB73B45BAE4EB0603C /* Pods-Trends.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
+				DEVELOPMENT_TEAM = P85JQ5XGQC;
 				INFOPLIST_FILE = Trends/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = home.Trends;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.js.Trends;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		92C362AB1EA771AC006D3BC7 /* Release */ = {
+		92160DDD1EF338B9000F634B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F6F7F9ED291893A985B1868 /* Pods-Trends.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
+				DEVELOPMENT_TEAM = P85JQ5XGQC;
 				INFOPLIST_FILE = Trends/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = home.Trends;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.js.Trends;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
-		92C362AD1EA771AC006D3BC7 /* Debug */ = {
+		92160DDF1EF338B9000F634B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DD4F58F764809DEFF864741 /* Pods-TrendsTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
+				DEVELOPMENT_TEAM = P85JQ5XGQC;
 				INFOPLIST_FILE = TrendsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = home.TrendsTests;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.js.TrendsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trends.app/Trends";
 			};
 			name = Debug;
 		};
-		92C362AE1EA771AC006D3BC7 /* Release */ = {
+		92160DE01EF338B9000F634B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E07D31F63EA332560096206 /* Pods-TrendsTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
+				DEVELOPMENT_TEAM = P85JQ5XGQC;
 				INFOPLIST_FILE = TrendsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = home.TrendsTests;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.js.TrendsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trends.app/Trends";
+			};
+			name = Release;
+		};
+		92160DE21EF338B9000F634B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = P85JQ5XGQC;
+				INFOPLIST_FILE = TrendsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.js.TrendsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Trends;
+			};
+			name = Debug;
+		};
+		92160DE31EF338B9000F634B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = P85JQ5XGQC;
+				INFOPLIST_FILE = TrendsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.js.TrendsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Trends;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		92C3627F1EA771AB006D3BC7 /* Build configuration list for PBXProject "Trends" */ = {
+		92160DA91EF338B8000F634B /* Build configuration list for PBXProject "Trends" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				92C362A71EA771AC006D3BC7 /* Debug */,
-				92C362A81EA771AC006D3BC7 /* Release */,
+				92160DD91EF338B9000F634B /* Debug */,
+				92160DDA1EF338B9000F634B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		92C362A91EA771AC006D3BC7 /* Build configuration list for PBXNativeTarget "Trends" */ = {
+		92160DDB1EF338B9000F634B /* Build configuration list for PBXNativeTarget "Trends" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				92C362AA1EA771AC006D3BC7 /* Debug */,
-				92C362AB1EA771AC006D3BC7 /* Release */,
+				92160DDC1EF338B9000F634B /* Debug */,
+				92160DDD1EF338B9000F634B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		92C362AC1EA771AC006D3BC7 /* Build configuration list for PBXNativeTarget "TrendsTests" */ = {
+		92160DDE1EF338B9000F634B /* Build configuration list for PBXNativeTarget "TrendsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				92C362AD1EA771AC006D3BC7 /* Debug */,
-				92C362AE1EA771AC006D3BC7 /* Release */,
+				92160DDF1EF338B9000F634B /* Debug */,
+				92160DE01EF338B9000F634B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92160DE11EF338B9000F634B /* Build configuration list for PBXNativeTarget "TrendsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92160DE21EF338B9000F634B /* Debug */,
+				92160DE31EF338B9000F634B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		92C362931EA771AB006D3BC7 /* Trends.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				92C362941EA771AB006D3BC7 /* Trends.xcdatamodel */,
-			);
-			currentVersion = 92C362941EA771AB006D3BC7 /* Trends.xcdatamodel */;
-			path = Trends.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
-	rootObject = 92C3627C1EA771AB006D3BC7 /* Project object */;
+	rootObject = 92160DA61EF338B8000F634B /* Project object */;
 }
