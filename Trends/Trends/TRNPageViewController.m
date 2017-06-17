@@ -28,19 +28,15 @@
     pc.pageIndicatorTintColor = [UIColor lightGrayColor];
     pc.currentPageIndicatorTintColor = [UIColor blackColor];
     pc.backgroundColor = [UIColor whiteColor];
-//    
+
     self.dataSource = self;
+    
     _manager = [TRNPagesManager new];
     [self createPages];
-    
-    
-//    TRNAppClildViewController *initialViewController = [self viewControllerAtIndex:0];
-    NSArray *viewControllers = [_manager pages];
-    
-    
-    
-    [self setViewControllers:viewControllers[0] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-    //[self didMoveToParentViewController:self];
+    _pages = [_manager pages];
+
+    [self setViewControllers:@[_pages[0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    [self didMoveToParentViewController:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,9 +50,9 @@
         TRNYouTubeController *ytb = [TRNYouTubeController new];
         TRNFlicrController *fkc = [TRNFlicrController new];
     
-        [_manager registerPage:twc];
-        [_manager registerPage:ytb];
-        [_manager registerPage:fkc];
+        [_manager addPage:twc];
+        [_manager addPage:ytb];
+        [_manager addPage:fkc];
     }
 }
 
@@ -70,25 +66,10 @@
     return (UIViewController*)[_manager getViewControllerAfterViewControllerWithIndex:[vc pageIndex]];
     
 }
-//    NSInteger index = [(TRNAppClildViewController*)viewController index];
-//    
-//    index++;
-//    if (index == 5){
-//        return nil;
-//    }
-//    return [self viewControllerAtIndex:index];
-//}
 
-//`- (TRNAppClildViewController *)viewControllerAtIndex:(NSInteger)index{
-//    TRNAppClildViewController *childViewController = [[TRNAppClildViewController alloc] init];
-//    childViewController.index = index;
-//    
-//    return childViewController;
-//    
-//}
 
 - (NSInteger) presentationCountForPageViewController:(UIPageViewController *)pageViewController{
-    return 3;
+    return [_pages count];
 }
 //
 - (NSInteger) presentationIndexForPageViewController:(UIPageViewController *)pageViewController{

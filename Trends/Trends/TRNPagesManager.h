@@ -10,7 +10,7 @@
 
 @interface TRNPagesManager : NSObject
 @property (nonatomic, strong, readonly) NSMutableArray *pages;
-- (void) registerPage:(id<TRNChildProtocol>) page;
+- (void) addPage:(id<TRNChildProtocol>) page;
 
 - (id <TRNChildProtocol>) getViewControllerBeforeViewControllerWithIndex:(NSInteger) index;
 - (id <TRNChildProtocol>) getViewControllerAfterViewControllerWithIndex:(NSInteger) index;

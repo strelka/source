@@ -210,6 +210,8 @@
 		92160DE81EF33E5E000F634B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				92160E031EF46AFE000F634B /* TRNPagesManager.h */,
+				92160E041EF46AFE000F634B /* TRNPagesManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -233,8 +235,6 @@
 				92160DFE1EF46A34000F634B /* TRNTwitterController.m */,
 				92160E001EF46A78000F634B /* TRNFlicrController.h */,
 				92160E011EF46A78000F634B /* TRNFlicrController.m */,
-				92160E031EF46AFE000F634B /* TRNPagesManager.h */,
-				92160E041EF46AFE000F634B /* TRNPagesManager.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

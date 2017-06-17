@@ -15,7 +15,7 @@
 
 @implementation TRNPagesManager
 
-- (void) registerPage:(id<TRNChildProtocol>) page{
+- (void) addPage:(id<TRNChildProtocol>) page{
     
     if ([page conformsToProtocol:@protocol(TRNChildProtocol)]){
         page.pageIndex = [_pages count];
