@@ -29,9 +29,9 @@
     id protocolMock3 = OCMProtocolMock(@protocol(TRNChildProtocol));
     
     
-    [_manager registerPage:protocolMock1];
-    [_manager registerPage:protocolMock2];
-    [_manager registerPage:protocolMock3];
+    [_manager addPage:protocolMock1];
+    [_manager addPage:protocolMock2];
+    [_manager addPage:protocolMock3];
 
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
@@ -83,6 +83,16 @@
     //then
     XCTAssertNotNil(protocolMock);
     XCTAssertEqual(pages[0], protocolMock);
+}
+
+- (void) test_getAddPage{
+    // given
+    id protocolMock = OCMProtocolMock(@protocol(TRNChildProtocol));
+    NSInteger arrayIndx = [_manager.pages count];
+    // when
+    [_manager addPage:protocolMock];
+    // then
+    XCTAssertEqual(_manager.pages[arrayIndx], protocolMock);
 }
 
 
