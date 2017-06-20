@@ -7,6 +7,7 @@
 //
 
 #import "ravenAdapter.h"
+#import "Raven.h"
 @interface ravenAdapter()
 @property (nonatomic, strong) Raven *raven;
 @end;
